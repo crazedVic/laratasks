@@ -4,7 +4,9 @@ Demonstrates laravel queues and demonstrates a notification and reminder system
 
 
 ## Notes from links: ##
+
 ---
+
 In .env 
 
 #Replace this line.
@@ -60,9 +62,8 @@ Notifications:
 ---
 
 1. Set default queue to 'database' not sync
-2. Add a priority queue (queue.php): ```'queue' => ['default', 'priority']```
 
-To add to the priority queue: ```dispatch((new Job)->onQueue('priority')); ```
+To add to the priority queue: ```dispatch((new Job)->onQueue('priority')); ``` * see gotchas (1)
 
 ---
 
@@ -74,7 +75,9 @@ Run this worker for this project with Supervisor/CRON:
 
 ---
 
-#Gotchas
-- queue worker must be running before queueable stuff runs or it will error
-
+# Gotchas #
+1. secondary queues are not created in the config file, you can essentially dispatch to any string you want as long as the worker
+knows to look for it
+2. dd() inside an item being processed by the queue worker is displayed inside the terminal
+3. The queue worker may need to be rereun if you change any related code
 

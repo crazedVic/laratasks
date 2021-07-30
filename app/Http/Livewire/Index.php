@@ -43,9 +43,9 @@ class Index extends Component
     {
         error_log('testing mail');
 
-        \Auth::user()->notify(new TaskExpiring);
+        \Auth::user()->notify(new TaskExpiring());
 
-        $this->display('message sent successfully');
+        $this->display('message sent');
     }
 
     //adds a task to the db
