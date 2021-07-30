@@ -5,6 +5,13 @@ Demonstrates laravel queues and demonstrates a notification and reminder system
 
 ## Notes from links: ##
 ---
+In .env 
+#Replace this line.
+QUEUE_CONNECTION=sync 
+
+#With this line.
+QUEUE_CONNECTION=database
+---
 
 Queues
 - multiple queues allowed with multiple names, different queues can have different priorities
