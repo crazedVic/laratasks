@@ -1,21 +1,3107 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/alpinejs/dist/alpine.js":
-/*!**********************************************!*\
-  !*** ./node_modules/alpinejs/dist/alpine.js ***!
-  \**********************************************/
-/***/ (function(module) {
+/***/ "./node_modules/alpinejs/dist/module.esm.js":
+/*!**************************************************!*\
+  !*** ./node_modules/alpinejs/dist/module.esm.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("(function (global, factory) {\n   true ? module.exports = factory() :\n  0;\n}(this, (function () { 'use strict';\n\n  function _defineProperty(obj, key, value) {\n    if (key in obj) {\n      Object.defineProperty(obj, key, {\n        value: value,\n        enumerable: true,\n        configurable: true,\n        writable: true\n      });\n    } else {\n      obj[key] = value;\n    }\n\n    return obj;\n  }\n\n  function ownKeys(object, enumerableOnly) {\n    var keys = Object.keys(object);\n\n    if (Object.getOwnPropertySymbols) {\n      var symbols = Object.getOwnPropertySymbols(object);\n      if (enumerableOnly) symbols = symbols.filter(function (sym) {\n        return Object.getOwnPropertyDescriptor(object, sym).enumerable;\n      });\n      keys.push.apply(keys, symbols);\n    }\n\n    return keys;\n  }\n\n  function _objectSpread2(target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i] != null ? arguments[i] : {};\n\n      if (i % 2) {\n        ownKeys(Object(source), true).forEach(function (key) {\n          _defineProperty(target, key, source[key]);\n        });\n      } else if (Object.getOwnPropertyDescriptors) {\n        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));\n      } else {\n        ownKeys(Object(source)).forEach(function (key) {\n          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));\n        });\n      }\n    }\n\n    return target;\n  }\n\n  // Thanks @stimulus:\n  // https://github.com/stimulusjs/stimulus/blob/master/packages/%40stimulus/core/src/application.ts\n  function domReady() {\n    return new Promise(resolve => {\n      if (document.readyState == \"loading\") {\n        document.addEventListener(\"DOMContentLoaded\", resolve);\n      } else {\n        resolve();\n      }\n    });\n  }\n  function arrayUnique(array) {\n    return Array.from(new Set(array));\n  }\n  function isTesting() {\n    return navigator.userAgent.includes(\"Node.js\") || navigator.userAgent.includes(\"jsdom\");\n  }\n  function checkedAttrLooseCompare(valueA, valueB) {\n    return valueA == valueB;\n  }\n  function warnIfMalformedTemplate(el, directive) {\n    if (el.tagName.toLowerCase() !== 'template') {\n      console.warn(`Alpine: [${directive}] directive should only be added to <template> tags. See https://github.com/alpinejs/alpine#${directive}`);\n    } else if (el.content.childElementCount !== 1) {\n      console.warn(`Alpine: <template> tag with [${directive}] encountered with an unexpected number of root elements. Make sure <template> has a single root element. `);\n    }\n  }\n  function kebabCase(subject) {\n    return subject.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/[_\\s]/, '-').toLowerCase();\n  }\n  function camelCase(subject) {\n    return subject.toLowerCase().replace(/-(\\w)/g, (match, char) => char.toUpperCase());\n  }\n  function walk(el, callback) {\n    if (callback(el) === false) return;\n    let node = el.firstElementChild;\n\n    while (node) {\n      walk(node, callback);\n      node = node.nextElementSibling;\n    }\n  }\n  function debounce(func, wait) {\n    var timeout;\n    return function () {\n      var context = this,\n          args = arguments;\n\n      var later = function later() {\n        timeout = null;\n        func.apply(context, args);\n      };\n\n      clearTimeout(timeout);\n      timeout = setTimeout(later, wait);\n    };\n  }\n\n  const handleError = (el, expression, error) => {\n    console.warn(`Alpine Error: \"${error}\"\\n\\nExpression: \"${expression}\"\\nElement:`, el);\n\n    if (!isTesting()) {\n      Object.assign(error, {\n        el,\n        expression\n      });\n      throw error;\n    }\n  };\n\n  function tryCatch(cb, {\n    el,\n    expression\n  }) {\n    try {\n      const value = cb();\n      return value instanceof Promise ? value.catch(e => handleError(el, expression, e)) : value;\n    } catch (e) {\n      handleError(el, expression, e);\n    }\n  }\n\n  function saferEval(el, expression, dataContext, additionalHelperVariables = {}) {\n    return tryCatch(() => {\n      if (typeof expression === 'function') {\n        return expression.call(dataContext);\n      }\n\n      return new Function(['$data', ...Object.keys(additionalHelperVariables)], `var __alpine_result; with($data) { __alpine_result = ${expression} }; return __alpine_result`)(dataContext, ...Object.values(additionalHelperVariables));\n    }, {\n      el,\n      expression\n    });\n  }\n  function saferEvalNoReturn(el, expression, dataContext, additionalHelperVariables = {}) {\n    return tryCatch(() => {\n      if (typeof expression === 'function') {\n        return Promise.resolve(expression.call(dataContext, additionalHelperVariables['$event']));\n      }\n\n      let AsyncFunction = Function;\n      /* MODERN-ONLY:START */\n\n      AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;\n      /* MODERN-ONLY:END */\n      // For the cases when users pass only a function reference to the caller: `x-on:click=\"foo\"`\n      // Where \"foo\" is a function. Also, we'll pass the function the event instance when we call it.\n\n      if (Object.keys(dataContext).includes(expression)) {\n        let methodReference = new Function(['dataContext', ...Object.keys(additionalHelperVariables)], `with(dataContext) { return ${expression} }`)(dataContext, ...Object.values(additionalHelperVariables));\n\n        if (typeof methodReference === 'function') {\n          return Promise.resolve(methodReference.call(dataContext, additionalHelperVariables['$event']));\n        } else {\n          return Promise.resolve();\n        }\n      }\n\n      return Promise.resolve(new AsyncFunction(['dataContext', ...Object.keys(additionalHelperVariables)], `with(dataContext) { ${expression} }`)(dataContext, ...Object.values(additionalHelperVariables)));\n    }, {\n      el,\n      expression\n    });\n  }\n  const xAttrRE = /^x-(on|bind|data|text|html|model|if|for|show|cloak|transition|ref|spread)\\b/;\n  function isXAttr(attr) {\n    const name = replaceAtAndColonWithStandardSyntax(attr.name);\n    return xAttrRE.test(name);\n  }\n  function getXAttrs(el, component, type) {\n    let directives = Array.from(el.attributes).filter(isXAttr).map(parseHtmlAttribute); // Get an object of directives from x-spread.\n\n    let spreadDirective = directives.filter(directive => directive.type === 'spread')[0];\n\n    if (spreadDirective) {\n      let spreadObject = saferEval(el, spreadDirective.expression, component.$data); // Add x-spread directives to the pile of existing directives.\n\n      directives = directives.concat(Object.entries(spreadObject).map(([name, value]) => parseHtmlAttribute({\n        name,\n        value\n      })));\n    }\n\n    if (type) return directives.filter(i => i.type === type);\n    return sortDirectives(directives);\n  }\n\n  function sortDirectives(directives) {\n    let directiveOrder = ['bind', 'model', 'show', 'catch-all'];\n    return directives.sort((a, b) => {\n      let typeA = directiveOrder.indexOf(a.type) === -1 ? 'catch-all' : a.type;\n      let typeB = directiveOrder.indexOf(b.type) === -1 ? 'catch-all' : b.type;\n      return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);\n    });\n  }\n\n  function parseHtmlAttribute({\n    name,\n    value\n  }) {\n    const normalizedName = replaceAtAndColonWithStandardSyntax(name);\n    const typeMatch = normalizedName.match(xAttrRE);\n    const valueMatch = normalizedName.match(/:([a-zA-Z0-9\\-:]+)/);\n    const modifiers = normalizedName.match(/\\.[^.\\]]+(?=[^\\]]*$)/g) || [];\n    return {\n      type: typeMatch ? typeMatch[1] : null,\n      value: valueMatch ? valueMatch[1] : null,\n      modifiers: modifiers.map(i => i.replace('.', '')),\n      expression: value\n    };\n  }\n  function isBooleanAttr(attrName) {\n    // As per HTML spec table https://html.spec.whatwg.org/multipage/indices.html#attributes-3:boolean-attribute\n    // Array roughly ordered by estimated usage\n    const booleanAttributes = ['disabled', 'checked', 'required', 'readonly', 'hidden', 'open', 'selected', 'autofocus', 'itemscope', 'multiple', 'novalidate', 'allowfullscreen', 'allowpaymentrequest', 'formnovalidate', 'autoplay', 'controls', 'loop', 'muted', 'playsinline', 'default', 'ismap', 'reversed', 'async', 'defer', 'nomodule'];\n    return booleanAttributes.includes(attrName);\n  }\n  function replaceAtAndColonWithStandardSyntax(name) {\n    if (name.startsWith('@')) {\n      return name.replace('@', 'x-on:');\n    } else if (name.startsWith(':')) {\n      return name.replace(':', 'x-bind:');\n    }\n\n    return name;\n  }\n  function convertClassStringToArray(classList, filterFn = Boolean) {\n    return classList.split(' ').filter(filterFn);\n  }\n  const TRANSITION_TYPE_IN = 'in';\n  const TRANSITION_TYPE_OUT = 'out';\n  const TRANSITION_CANCELLED = 'cancelled';\n  function transitionIn(el, show, reject, component, forceSkip = false) {\n    // We don't want to transition on the initial page load.\n    if (forceSkip) return show();\n\n    if (el.__x_transition && el.__x_transition.type === TRANSITION_TYPE_IN) {\n      // there is already a similar transition going on, this was probably triggered by\n      // a change in a different property, let's just leave the previous one doing its job\n      return;\n    }\n\n    const attrs = getXAttrs(el, component, 'transition');\n    const showAttr = getXAttrs(el, component, 'show')[0]; // If this is triggered by a x-show.transition.\n\n    if (showAttr && showAttr.modifiers.includes('transition')) {\n      let modifiers = showAttr.modifiers; // If x-show.transition.out, we'll skip the \"in\" transition.\n\n      if (modifiers.includes('out') && !modifiers.includes('in')) return show();\n      const settingBothSidesOfTransition = modifiers.includes('in') && modifiers.includes('out'); // If x-show.transition.in...out... only use \"in\" related modifiers for this transition.\n\n      modifiers = settingBothSidesOfTransition ? modifiers.filter((i, index) => index < modifiers.indexOf('out')) : modifiers;\n      transitionHelperIn(el, modifiers, show, reject); // Otherwise, we can assume x-transition:enter.\n    } else if (attrs.some(attr => ['enter', 'enter-start', 'enter-end'].includes(attr.value))) {\n      transitionClassesIn(el, component, attrs, show, reject);\n    } else {\n      // If neither, just show that damn thing.\n      show();\n    }\n  }\n  function transitionOut(el, hide, reject, component, forceSkip = false) {\n    // We don't want to transition on the initial page load.\n    if (forceSkip) return hide();\n\n    if (el.__x_transition && el.__x_transition.type === TRANSITION_TYPE_OUT) {\n      // there is already a similar transition going on, this was probably triggered by\n      // a change in a different property, let's just leave the previous one doing its job\n      return;\n    }\n\n    const attrs = getXAttrs(el, component, 'transition');\n    const showAttr = getXAttrs(el, component, 'show')[0];\n\n    if (showAttr && showAttr.modifiers.includes('transition')) {\n      let modifiers = showAttr.modifiers;\n      if (modifiers.includes('in') && !modifiers.includes('out')) return hide();\n      const settingBothSidesOfTransition = modifiers.includes('in') && modifiers.includes('out');\n      modifiers = settingBothSidesOfTransition ? modifiers.filter((i, index) => index > modifiers.indexOf('out')) : modifiers;\n      transitionHelperOut(el, modifiers, settingBothSidesOfTransition, hide, reject);\n    } else if (attrs.some(attr => ['leave', 'leave-start', 'leave-end'].includes(attr.value))) {\n      transitionClassesOut(el, component, attrs, hide, reject);\n    } else {\n      hide();\n    }\n  }\n  function transitionHelperIn(el, modifiers, showCallback, reject) {\n    // Default values inspired by: https://material.io/design/motion/speed.html#duration\n    const styleValues = {\n      duration: modifierValue(modifiers, 'duration', 150),\n      origin: modifierValue(modifiers, 'origin', 'center'),\n      first: {\n        opacity: 0,\n        scale: modifierValue(modifiers, 'scale', 95)\n      },\n      second: {\n        opacity: 1,\n        scale: 100\n      }\n    };\n    transitionHelper(el, modifiers, showCallback, () => {}, reject, styleValues, TRANSITION_TYPE_IN);\n  }\n  function transitionHelperOut(el, modifiers, settingBothSidesOfTransition, hideCallback, reject) {\n    // Make the \"out\" transition .5x slower than the \"in\". (Visually better)\n    // HOWEVER, if they explicitly set a duration for the \"out\" transition,\n    // use that.\n    const duration = settingBothSidesOfTransition ? modifierValue(modifiers, 'duration', 150) : modifierValue(modifiers, 'duration', 150) / 2;\n    const styleValues = {\n      duration: duration,\n      origin: modifierValue(modifiers, 'origin', 'center'),\n      first: {\n        opacity: 1,\n        scale: 100\n      },\n      second: {\n        opacity: 0,\n        scale: modifierValue(modifiers, 'scale', 95)\n      }\n    };\n    transitionHelper(el, modifiers, () => {}, hideCallback, reject, styleValues, TRANSITION_TYPE_OUT);\n  }\n\n  function modifierValue(modifiers, key, fallback) {\n    // If the modifier isn't present, use the default.\n    if (modifiers.indexOf(key) === -1) return fallback; // If it IS present, grab the value after it: x-show.transition.duration.500ms\n\n    const rawValue = modifiers[modifiers.indexOf(key) + 1];\n    if (!rawValue) return fallback;\n\n    if (key === 'scale') {\n      // Check if the very next value is NOT a number and return the fallback.\n      // If x-show.transition.scale, we'll use the default scale value.\n      // That is how a user opts out of the opacity transition.\n      if (!isNumeric(rawValue)) return fallback;\n    }\n\n    if (key === 'duration') {\n      // Support x-show.transition.duration.500ms && duration.500\n      let match = rawValue.match(/([0-9]+)ms/);\n      if (match) return match[1];\n    }\n\n    if (key === 'origin') {\n      // Support chaining origin directions: x-show.transition.top.right\n      if (['top', 'right', 'left', 'center', 'bottom'].includes(modifiers[modifiers.indexOf(key) + 2])) {\n        return [rawValue, modifiers[modifiers.indexOf(key) + 2]].join(' ');\n      }\n    }\n\n    return rawValue;\n  }\n\n  function transitionHelper(el, modifiers, hook1, hook2, reject, styleValues, type) {\n    // clear the previous transition if exists to avoid caching the wrong styles\n    if (el.__x_transition) {\n      el.__x_transition.cancel && el.__x_transition.cancel();\n    } // If the user set these style values, we'll put them back when we're done with them.\n\n\n    const opacityCache = el.style.opacity;\n    const transformCache = el.style.transform;\n    const transformOriginCache = el.style.transformOrigin; // If no modifiers are present: x-show.transition, we'll default to both opacity and scale.\n\n    const noModifiers = !modifiers.includes('opacity') && !modifiers.includes('scale');\n    const transitionOpacity = noModifiers || modifiers.includes('opacity');\n    const transitionScale = noModifiers || modifiers.includes('scale'); // These are the explicit stages of a transition (same stages for in and for out).\n    // This way you can get a birds eye view of the hooks, and the differences\n    // between them.\n\n    const stages = {\n      start() {\n        if (transitionOpacity) el.style.opacity = styleValues.first.opacity;\n        if (transitionScale) el.style.transform = `scale(${styleValues.first.scale / 100})`;\n      },\n\n      during() {\n        if (transitionScale) el.style.transformOrigin = styleValues.origin;\n        el.style.transitionProperty = [transitionOpacity ? `opacity` : ``, transitionScale ? `transform` : ``].join(' ').trim();\n        el.style.transitionDuration = `${styleValues.duration / 1000}s`;\n        el.style.transitionTimingFunction = `cubic-bezier(0.4, 0.0, 0.2, 1)`;\n      },\n\n      show() {\n        hook1();\n      },\n\n      end() {\n        if (transitionOpacity) el.style.opacity = styleValues.second.opacity;\n        if (transitionScale) el.style.transform = `scale(${styleValues.second.scale / 100})`;\n      },\n\n      hide() {\n        hook2();\n      },\n\n      cleanup() {\n        if (transitionOpacity) el.style.opacity = opacityCache;\n        if (transitionScale) el.style.transform = transformCache;\n        if (transitionScale) el.style.transformOrigin = transformOriginCache;\n        el.style.transitionProperty = null;\n        el.style.transitionDuration = null;\n        el.style.transitionTimingFunction = null;\n      }\n\n    };\n    transition(el, stages, type, reject);\n  }\n\n  const ensureStringExpression = (expression, el, component) => {\n    return typeof expression === 'function' ? component.evaluateReturnExpression(el, expression) : expression;\n  };\n\n  function transitionClassesIn(el, component, directives, showCallback, reject) {\n    const enter = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'enter') || {\n      expression: ''\n    }).expression, el, component));\n    const enterStart = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'enter-start') || {\n      expression: ''\n    }).expression, el, component));\n    const enterEnd = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'enter-end') || {\n      expression: ''\n    }).expression, el, component));\n    transitionClasses(el, enter, enterStart, enterEnd, showCallback, () => {}, TRANSITION_TYPE_IN, reject);\n  }\n  function transitionClassesOut(el, component, directives, hideCallback, reject) {\n    const leave = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'leave') || {\n      expression: ''\n    }).expression, el, component));\n    const leaveStart = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'leave-start') || {\n      expression: ''\n    }).expression, el, component));\n    const leaveEnd = convertClassStringToArray(ensureStringExpression((directives.find(i => i.value === 'leave-end') || {\n      expression: ''\n    }).expression, el, component));\n    transitionClasses(el, leave, leaveStart, leaveEnd, () => {}, hideCallback, TRANSITION_TYPE_OUT, reject);\n  }\n  function transitionClasses(el, classesDuring, classesStart, classesEnd, hook1, hook2, type, reject) {\n    // clear the previous transition if exists to avoid caching the wrong classes\n    if (el.__x_transition) {\n      el.__x_transition.cancel && el.__x_transition.cancel();\n    }\n\n    const originalClasses = el.__x_original_classes || [];\n    const stages = {\n      start() {\n        el.classList.add(...classesStart);\n      },\n\n      during() {\n        el.classList.add(...classesDuring);\n      },\n\n      show() {\n        hook1();\n      },\n\n      end() {\n        // Don't remove classes that were in the original class attribute.\n        el.classList.remove(...classesStart.filter(i => !originalClasses.includes(i)));\n        el.classList.add(...classesEnd);\n      },\n\n      hide() {\n        hook2();\n      },\n\n      cleanup() {\n        el.classList.remove(...classesDuring.filter(i => !originalClasses.includes(i)));\n        el.classList.remove(...classesEnd.filter(i => !originalClasses.includes(i)));\n      }\n\n    };\n    transition(el, stages, type, reject);\n  }\n  function transition(el, stages, type, reject) {\n    const finish = once(() => {\n      stages.hide(); // Adding an \"isConnected\" check, in case the callback\n      // removed the element from the DOM.\n\n      if (el.isConnected) {\n        stages.cleanup();\n      }\n\n      delete el.__x_transition;\n    });\n    el.__x_transition = {\n      // Set transition type so we can avoid clearing transition if the direction is the same\n      type: type,\n      // create a callback for the last stages of the transition so we can call it\n      // from different point and early terminate it. Once will ensure that function\n      // is only called one time.\n      cancel: once(() => {\n        reject(TRANSITION_CANCELLED);\n        finish();\n      }),\n      finish,\n      // This store the next animation frame so we can cancel it\n      nextFrame: null\n    };\n    stages.start();\n    stages.during();\n    el.__x_transition.nextFrame = requestAnimationFrame(() => {\n      // Note: Safari's transitionDuration property will list out comma separated transition durations\n      // for every single transition property. Let's grab the first one and call it a day.\n      let duration = Number(getComputedStyle(el).transitionDuration.replace(/,.*/, '').replace('s', '')) * 1000;\n\n      if (duration === 0) {\n        duration = Number(getComputedStyle(el).animationDuration.replace('s', '')) * 1000;\n      }\n\n      stages.show();\n      el.__x_transition.nextFrame = requestAnimationFrame(() => {\n        stages.end();\n        setTimeout(el.__x_transition.finish, duration);\n      });\n    });\n  }\n  function isNumeric(subject) {\n    return !Array.isArray(subject) && !isNaN(subject);\n  } // Thanks @vuejs\n  // https://github.com/vuejs/vue/blob/4de4649d9637262a9b007720b59f80ac72a5620c/src/shared/util.js\n\n  function once(callback) {\n    let called = false;\n    return function () {\n      if (!called) {\n        called = true;\n        callback.apply(this, arguments);\n      }\n    };\n  }\n\n  function handleForDirective(component, templateEl, expression, initialUpdate, extraVars) {\n    warnIfMalformedTemplate(templateEl, 'x-for');\n    let iteratorNames = typeof expression === 'function' ? parseForExpression(component.evaluateReturnExpression(templateEl, expression)) : parseForExpression(expression);\n    let items = evaluateItemsAndReturnEmptyIfXIfIsPresentAndFalseOnElement(component, templateEl, iteratorNames, extraVars); // As we walk the array, we'll also walk the DOM (updating/creating as we go).\n\n    let currentEl = templateEl;\n    items.forEach((item, index) => {\n      let iterationScopeVariables = getIterationScopeVariables(iteratorNames, item, index, items, extraVars());\n      let currentKey = generateKeyForIteration(component, templateEl, index, iterationScopeVariables);\n      let nextEl = lookAheadForMatchingKeyedElementAndMoveItIfFound(currentEl.nextElementSibling, currentKey); // If we haven't found a matching key, insert the element at the current position.\n\n      if (!nextEl) {\n        nextEl = addElementInLoopAfterCurrentEl(templateEl, currentEl); // And transition it in if it's not the first page load.\n\n        transitionIn(nextEl, () => {}, () => {}, component, initialUpdate);\n        nextEl.__x_for = iterationScopeVariables;\n        component.initializeElements(nextEl, () => nextEl.__x_for); // Otherwise update the element we found.\n      } else {\n        // Temporarily remove the key indicator to allow the normal \"updateElements\" to work.\n        delete nextEl.__x_for_key;\n        nextEl.__x_for = iterationScopeVariables;\n        component.updateElements(nextEl, () => nextEl.__x_for);\n      }\n\n      currentEl = nextEl;\n      currentEl.__x_for_key = currentKey;\n    });\n    removeAnyLeftOverElementsFromPreviousUpdate(currentEl, component);\n  } // This was taken from VueJS 2.* core. Thanks Vue!\n\n  function parseForExpression(expression) {\n    let forIteratorRE = /,([^,\\}\\]]*)(?:,([^,\\}\\]]*))?$/;\n    let stripParensRE = /^\\(|\\)$/g;\n    let forAliasRE = /([\\s\\S]*?)\\s+(?:in|of)\\s+([\\s\\S]*)/;\n    let inMatch = String(expression).match(forAliasRE);\n    if (!inMatch) return;\n    let res = {};\n    res.items = inMatch[2].trim();\n    let item = inMatch[1].trim().replace(stripParensRE, '');\n    let iteratorMatch = item.match(forIteratorRE);\n\n    if (iteratorMatch) {\n      res.item = item.replace(forIteratorRE, '').trim();\n      res.index = iteratorMatch[1].trim();\n\n      if (iteratorMatch[2]) {\n        res.collection = iteratorMatch[2].trim();\n      }\n    } else {\n      res.item = item;\n    }\n\n    return res;\n  }\n\n  function getIterationScopeVariables(iteratorNames, item, index, items, extraVars) {\n    // We must create a new object, so each iteration has a new scope\n    let scopeVariables = extraVars ? _objectSpread2({}, extraVars) : {};\n    scopeVariables[iteratorNames.item] = item;\n    if (iteratorNames.index) scopeVariables[iteratorNames.index] = index;\n    if (iteratorNames.collection) scopeVariables[iteratorNames.collection] = items;\n    return scopeVariables;\n  }\n\n  function generateKeyForIteration(component, el, index, iterationScopeVariables) {\n    let bindKeyAttribute = getXAttrs(el, component, 'bind').filter(attr => attr.value === 'key')[0]; // If the dev hasn't specified a key, just return the index of the iteration.\n\n    if (!bindKeyAttribute) return index;\n    return component.evaluateReturnExpression(el, bindKeyAttribute.expression, () => iterationScopeVariables);\n  }\n\n  function evaluateItemsAndReturnEmptyIfXIfIsPresentAndFalseOnElement(component, el, iteratorNames, extraVars) {\n    let ifAttribute = getXAttrs(el, component, 'if')[0];\n\n    if (ifAttribute && !component.evaluateReturnExpression(el, ifAttribute.expression)) {\n      return [];\n    }\n\n    let items = component.evaluateReturnExpression(el, iteratorNames.items, extraVars); // This adds support for the `i in n` syntax.\n\n    if (isNumeric(items) && items >= 0) {\n      items = Array.from(Array(items).keys(), i => i + 1);\n    }\n\n    return items;\n  }\n\n  function addElementInLoopAfterCurrentEl(templateEl, currentEl) {\n    let clone = document.importNode(templateEl.content, true);\n    currentEl.parentElement.insertBefore(clone, currentEl.nextElementSibling);\n    return currentEl.nextElementSibling;\n  }\n\n  function lookAheadForMatchingKeyedElementAndMoveItIfFound(nextEl, currentKey) {\n    if (!nextEl) return; // If we are already past the x-for generated elements, we don't need to look ahead.\n\n    if (nextEl.__x_for_key === undefined) return; // If the the key's DO match, no need to look ahead.\n\n    if (nextEl.__x_for_key === currentKey) return nextEl; // If they don't, we'll look ahead for a match.\n    // If we find it, we'll move it to the current position in the loop.\n\n    let tmpNextEl = nextEl;\n\n    while (tmpNextEl) {\n      if (tmpNextEl.__x_for_key === currentKey) {\n        return tmpNextEl.parentElement.insertBefore(tmpNextEl, nextEl);\n      }\n\n      tmpNextEl = tmpNextEl.nextElementSibling && tmpNextEl.nextElementSibling.__x_for_key !== undefined ? tmpNextEl.nextElementSibling : false;\n    }\n  }\n\n  function removeAnyLeftOverElementsFromPreviousUpdate(currentEl, component) {\n    var nextElementFromOldLoop = currentEl.nextElementSibling && currentEl.nextElementSibling.__x_for_key !== undefined ? currentEl.nextElementSibling : false;\n\n    while (nextElementFromOldLoop) {\n      let nextElementFromOldLoopImmutable = nextElementFromOldLoop;\n      let nextSibling = nextElementFromOldLoop.nextElementSibling;\n      transitionOut(nextElementFromOldLoop, () => {\n        nextElementFromOldLoopImmutable.remove();\n      }, () => {}, component);\n      nextElementFromOldLoop = nextSibling && nextSibling.__x_for_key !== undefined ? nextSibling : false;\n    }\n  }\n\n  function handleAttributeBindingDirective(component, el, attrName, expression, extraVars, attrType, modifiers) {\n    var value = component.evaluateReturnExpression(el, expression, extraVars);\n\n    if (attrName === 'value') {\n      if (Alpine.ignoreFocusedForValueBinding && document.activeElement.isSameNode(el)) return; // If nested model key is undefined, set the default value to empty string.\n\n      if (value === undefined && String(expression).match(/\\./)) {\n        value = '';\n      }\n\n      if (el.type === 'radio') {\n        // Set radio value from x-bind:value, if no \"value\" attribute exists.\n        // If there are any initial state values, radio will have a correct\n        // \"checked\" value since x-bind:value is processed before x-model.\n        if (el.attributes.value === undefined && attrType === 'bind') {\n          el.value = value;\n        } else if (attrType !== 'bind') {\n          el.checked = checkedAttrLooseCompare(el.value, value);\n        }\n      } else if (el.type === 'checkbox') {\n        // If we are explicitly binding a string to the :value, set the string,\n        // If the value is a boolean, leave it alone, it will be set to \"on\"\n        // automatically.\n        if (typeof value !== 'boolean' && ![null, undefined].includes(value) && attrType === 'bind') {\n          el.value = String(value);\n        } else if (attrType !== 'bind') {\n          if (Array.isArray(value)) {\n            // I'm purposely not using Array.includes here because it's\n            // strict, and because of Numeric/String mis-casting, I\n            // want the \"includes\" to be \"fuzzy\".\n            el.checked = value.some(val => checkedAttrLooseCompare(val, el.value));\n          } else {\n            el.checked = !!value;\n          }\n        }\n      } else if (el.tagName === 'SELECT') {\n        updateSelect(el, value);\n      } else {\n        if (el.value === value) return;\n        el.value = value;\n      }\n    } else if (attrName === 'class') {\n      if (Array.isArray(value)) {\n        const originalClasses = el.__x_original_classes || [];\n        el.setAttribute('class', arrayUnique(originalClasses.concat(value)).join(' '));\n      } else if (typeof value === 'object') {\n        // Sorting the keys / class names by their boolean value will ensure that\n        // anything that evaluates to `false` and needs to remove classes is run first.\n        const keysSortedByBooleanValue = Object.keys(value).sort((a, b) => value[a] - value[b]);\n        keysSortedByBooleanValue.forEach(classNames => {\n          if (value[classNames]) {\n            convertClassStringToArray(classNames).forEach(className => el.classList.add(className));\n          } else {\n            convertClassStringToArray(classNames).forEach(className => el.classList.remove(className));\n          }\n        });\n      } else {\n        const originalClasses = el.__x_original_classes || [];\n        const newClasses = value ? convertClassStringToArray(value) : [];\n        el.setAttribute('class', arrayUnique(originalClasses.concat(newClasses)).join(' '));\n      }\n    } else {\n      attrName = modifiers.includes('camel') ? camelCase(attrName) : attrName; // If an attribute's bound value is null, undefined or false, remove the attribute\n\n      if ([null, undefined, false].includes(value)) {\n        el.removeAttribute(attrName);\n      } else {\n        isBooleanAttr(attrName) ? setIfChanged(el, attrName, attrName) : setIfChanged(el, attrName, value);\n      }\n    }\n  }\n\n  function setIfChanged(el, attrName, value) {\n    if (el.getAttribute(attrName) != value) {\n      el.setAttribute(attrName, value);\n    }\n  }\n\n  function updateSelect(el, value) {\n    const arrayWrappedValue = [].concat(value).map(value => {\n      return value + '';\n    });\n    Array.from(el.options).forEach(option => {\n      option.selected = arrayWrappedValue.includes(option.value || option.text);\n    });\n  }\n\n  function handleTextDirective(el, output, expression) {\n    // If nested model key is undefined, set the default value to empty string.\n    if (output === undefined && String(expression).match(/\\./)) {\n      output = '';\n    }\n\n    el.textContent = output;\n  }\n\n  function handleHtmlDirective(component, el, expression, extraVars) {\n    el.innerHTML = component.evaluateReturnExpression(el, expression, extraVars);\n  }\n\n  function handleShowDirective(component, el, value, modifiers, initialUpdate = false) {\n    const hide = () => {\n      el.style.display = 'none';\n      el.__x_is_shown = false;\n    };\n\n    const show = () => {\n      if (el.style.length === 1 && el.style.display === 'none') {\n        el.removeAttribute('style');\n      } else {\n        el.style.removeProperty('display');\n      }\n\n      el.__x_is_shown = true;\n    };\n\n    if (initialUpdate === true) {\n      if (value) {\n        show();\n      } else {\n        hide();\n      }\n\n      return;\n    }\n\n    const handle = (resolve, reject) => {\n      if (value) {\n        if (el.style.display === 'none' || el.__x_transition) {\n          transitionIn(el, () => {\n            show();\n          }, reject, component);\n        }\n\n        resolve(() => {});\n      } else {\n        if (el.style.display !== 'none') {\n          transitionOut(el, () => {\n            resolve(() => {\n              hide();\n            });\n          }, reject, component);\n        } else {\n          resolve(() => {});\n        }\n      }\n    }; // The working of x-show is a bit complex because we need to\n    // wait for any child transitions to finish before hiding\n    // some element. Also, this has to be done recursively.\n    // If x-show.immediate, foregoe the waiting.\n\n\n    if (modifiers.includes('immediate')) {\n      handle(finish => finish(), () => {});\n      return;\n    } // x-show is encountered during a DOM tree walk. If an element\n    // we encounter is NOT a child of another x-show element we\n    // can execute the previous x-show stack (if one exists).\n\n\n    if (component.showDirectiveLastElement && !component.showDirectiveLastElement.contains(el)) {\n      component.executeAndClearRemainingShowDirectiveStack();\n    }\n\n    component.showDirectiveStack.push(handle);\n    component.showDirectiveLastElement = el;\n  }\n\n  function handleIfDirective(component, el, expressionResult, initialUpdate, extraVars) {\n    warnIfMalformedTemplate(el, 'x-if');\n    const elementHasAlreadyBeenAdded = el.nextElementSibling && el.nextElementSibling.__x_inserted_me === true;\n\n    if (expressionResult && (!elementHasAlreadyBeenAdded || el.__x_transition)) {\n      const clone = document.importNode(el.content, true);\n      el.parentElement.insertBefore(clone, el.nextElementSibling);\n      transitionIn(el.nextElementSibling, () => {}, () => {}, component, initialUpdate);\n      component.initializeElements(el.nextElementSibling, extraVars);\n      el.nextElementSibling.__x_inserted_me = true;\n    } else if (!expressionResult && elementHasAlreadyBeenAdded) {\n      transitionOut(el.nextElementSibling, () => {\n        el.nextElementSibling.remove();\n      }, () => {}, component, initialUpdate);\n    }\n  }\n\n  function registerListener(component, el, event, modifiers, expression, extraVars = {}) {\n    const options = {\n      passive: modifiers.includes('passive')\n    };\n\n    if (modifiers.includes('camel')) {\n      event = camelCase(event);\n    }\n\n    let handler, listenerTarget;\n\n    if (modifiers.includes('away')) {\n      listenerTarget = document;\n\n      handler = e => {\n        // Don't do anything if the click came from the element or within it.\n        if (el.contains(e.target)) return; // Don't do anything if this element isn't currently visible.\n\n        if (el.offsetWidth < 1 && el.offsetHeight < 1) return; // Now that we are sure the element is visible, AND the click\n        // is from outside it, let's run the expression.\n\n        runListenerHandler(component, expression, e, extraVars);\n\n        if (modifiers.includes('once')) {\n          document.removeEventListener(event, handler, options);\n        }\n      };\n    } else {\n      listenerTarget = modifiers.includes('window') ? window : modifiers.includes('document') ? document : el;\n\n      handler = e => {\n        // Remove this global event handler if the element that declared it\n        // has been removed. It's now stale.\n        if (listenerTarget === window || listenerTarget === document) {\n          if (!document.body.contains(el)) {\n            listenerTarget.removeEventListener(event, handler, options);\n            return;\n          }\n        }\n\n        if (isKeyEvent(event)) {\n          if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) {\n            return;\n          }\n        }\n\n        if (modifiers.includes('prevent')) e.preventDefault();\n        if (modifiers.includes('stop')) e.stopPropagation(); // If the .self modifier isn't present, or if it is present and\n        // the target element matches the element we are registering the\n        // event on, run the handler\n\n        if (!modifiers.includes('self') || e.target === el) {\n          const returnValue = runListenerHandler(component, expression, e, extraVars);\n          returnValue.then(value => {\n            if (value === false) {\n              e.preventDefault();\n            } else {\n              if (modifiers.includes('once')) {\n                listenerTarget.removeEventListener(event, handler, options);\n              }\n            }\n          });\n        }\n      };\n    }\n\n    if (modifiers.includes('debounce')) {\n      let nextModifier = modifiers[modifiers.indexOf('debounce') + 1] || 'invalid-wait';\n      let wait = isNumeric(nextModifier.split('ms')[0]) ? Number(nextModifier.split('ms')[0]) : 250;\n      handler = debounce(handler, wait);\n    }\n\n    listenerTarget.addEventListener(event, handler, options);\n  }\n\n  function runListenerHandler(component, expression, e, extraVars) {\n    return component.evaluateCommandExpression(e.target, expression, () => {\n      return _objectSpread2(_objectSpread2({}, extraVars()), {}, {\n        '$event': e\n      });\n    });\n  }\n\n  function isKeyEvent(event) {\n    return ['keydown', 'keyup'].includes(event);\n  }\n\n  function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {\n    let keyModifiers = modifiers.filter(i => {\n      return !['window', 'document', 'prevent', 'stop'].includes(i);\n    });\n\n    if (keyModifiers.includes('debounce')) {\n      let debounceIndex = keyModifiers.indexOf('debounce');\n      keyModifiers.splice(debounceIndex, isNumeric((keyModifiers[debounceIndex + 1] || 'invalid-wait').split('ms')[0]) ? 2 : 1);\n    } // If no modifier is specified, we'll call it a press.\n\n\n    if (keyModifiers.length === 0) return false; // If one is passed, AND it matches the key pressed, we'll call it a press.\n\n    if (keyModifiers.length === 1 && keyModifiers[0] === keyToModifier(e.key)) return false; // The user is listening for key combinations.\n\n    const systemKeyModifiers = ['ctrl', 'shift', 'alt', 'meta', 'cmd', 'super'];\n    const selectedSystemKeyModifiers = systemKeyModifiers.filter(modifier => keyModifiers.includes(modifier));\n    keyModifiers = keyModifiers.filter(i => !selectedSystemKeyModifiers.includes(i));\n\n    if (selectedSystemKeyModifiers.length > 0) {\n      const activelyPressedKeyModifiers = selectedSystemKeyModifiers.filter(modifier => {\n        // Alias \"cmd\" and \"super\" to \"meta\"\n        if (modifier === 'cmd' || modifier === 'super') modifier = 'meta';\n        return e[`${modifier}Key`];\n      }); // If all the modifiers selected are pressed, ...\n\n      if (activelyPressedKeyModifiers.length === selectedSystemKeyModifiers.length) {\n        // AND the remaining key is pressed as well. It's a press.\n        if (keyModifiers[0] === keyToModifier(e.key)) return false;\n      }\n    } // We'll call it NOT a valid keypress.\n\n\n    return true;\n  }\n\n  function keyToModifier(key) {\n    switch (key) {\n      case '/':\n        return 'slash';\n\n      case ' ':\n      case 'Spacebar':\n        return 'space';\n\n      default:\n        return key && kebabCase(key);\n    }\n  }\n\n  function registerModelListener(component, el, modifiers, expression, extraVars) {\n    // If the element we are binding to is a select, a radio, or checkbox\n    // we'll listen for the change event instead of the \"input\" event.\n    var event = el.tagName.toLowerCase() === 'select' || ['checkbox', 'radio'].includes(el.type) || modifiers.includes('lazy') ? 'change' : 'input';\n    const listenerExpression = `${expression} = rightSideOfExpression($event, ${expression})`;\n    registerListener(component, el, event, modifiers, listenerExpression, () => {\n      return _objectSpread2(_objectSpread2({}, extraVars()), {}, {\n        rightSideOfExpression: generateModelAssignmentFunction(el, modifiers, expression)\n      });\n    });\n  }\n\n  function generateModelAssignmentFunction(el, modifiers, expression) {\n    if (el.type === 'radio') {\n      // Radio buttons only work properly when they share a name attribute.\n      // People might assume we take care of that for them, because\n      // they already set a shared \"x-model\" attribute.\n      if (!el.hasAttribute('name')) el.setAttribute('name', expression);\n    }\n\n    return (event, currentValue) => {\n      // Check for event.detail due to an issue where IE11 handles other events as a CustomEvent.\n      if (event instanceof CustomEvent && event.detail) {\n        return event.detail;\n      } else if (el.type === 'checkbox') {\n        // If the data we are binding to is an array, toggle its value inside the array.\n        if (Array.isArray(currentValue)) {\n          const newValue = modifiers.includes('number') ? safeParseNumber(event.target.value) : event.target.value;\n          return event.target.checked ? currentValue.concat([newValue]) : currentValue.filter(el => !checkedAttrLooseCompare(el, newValue));\n        } else {\n          return event.target.checked;\n        }\n      } else if (el.tagName.toLowerCase() === 'select' && el.multiple) {\n        return modifiers.includes('number') ? Array.from(event.target.selectedOptions).map(option => {\n          const rawValue = option.value || option.text;\n          return safeParseNumber(rawValue);\n        }) : Array.from(event.target.selectedOptions).map(option => {\n          return option.value || option.text;\n        });\n      } else {\n        const rawValue = event.target.value;\n        return modifiers.includes('number') ? safeParseNumber(rawValue) : modifiers.includes('trim') ? rawValue.trim() : rawValue;\n      }\n    };\n  }\n\n  function safeParseNumber(rawValue) {\n    const number = rawValue ? parseFloat(rawValue) : null;\n    return isNumeric(number) ? number : rawValue;\n  }\n\n  /**\n   * Copyright (C) 2017 salesforce.com, inc.\n   */\n  const { isArray } = Array;\n  const { getPrototypeOf, create: ObjectCreate, defineProperty: ObjectDefineProperty, defineProperties: ObjectDefineProperties, isExtensible, getOwnPropertyDescriptor, getOwnPropertyNames, getOwnPropertySymbols, preventExtensions, hasOwnProperty, } = Object;\n  const { push: ArrayPush, concat: ArrayConcat, map: ArrayMap, } = Array.prototype;\n  function isUndefined(obj) {\n      return obj === undefined;\n  }\n  function isFunction(obj) {\n      return typeof obj === 'function';\n  }\n  function isObject(obj) {\n      return typeof obj === 'object';\n  }\n  const proxyToValueMap = new WeakMap();\n  function registerProxy(proxy, value) {\n      proxyToValueMap.set(proxy, value);\n  }\n  const unwrap = (replicaOrAny) => proxyToValueMap.get(replicaOrAny) || replicaOrAny;\n\n  function wrapValue(membrane, value) {\n      return membrane.valueIsObservable(value) ? membrane.getProxy(value) : value;\n  }\n  /**\n   * Unwrap property descriptors will set value on original descriptor\n   * We only need to unwrap if value is specified\n   * @param descriptor external descrpitor provided to define new property on original value\n   */\n  function unwrapDescriptor(descriptor) {\n      if (hasOwnProperty.call(descriptor, 'value')) {\n          descriptor.value = unwrap(descriptor.value);\n      }\n      return descriptor;\n  }\n  function lockShadowTarget(membrane, shadowTarget, originalTarget) {\n      const targetKeys = ArrayConcat.call(getOwnPropertyNames(originalTarget), getOwnPropertySymbols(originalTarget));\n      targetKeys.forEach((key) => {\n          let descriptor = getOwnPropertyDescriptor(originalTarget, key);\n          // We do not need to wrap the descriptor if configurable\n          // Because we can deal with wrapping it when user goes through\n          // Get own property descriptor. There is also a chance that this descriptor\n          // could change sometime in the future, so we can defer wrapping\n          // until we need to\n          if (!descriptor.configurable) {\n              descriptor = wrapDescriptor(membrane, descriptor, wrapValue);\n          }\n          ObjectDefineProperty(shadowTarget, key, descriptor);\n      });\n      preventExtensions(shadowTarget);\n  }\n  class ReactiveProxyHandler {\n      constructor(membrane, value) {\n          this.originalTarget = value;\n          this.membrane = membrane;\n      }\n      get(shadowTarget, key) {\n          const { originalTarget, membrane } = this;\n          const value = originalTarget[key];\n          const { valueObserved } = membrane;\n          valueObserved(originalTarget, key);\n          return membrane.getProxy(value);\n      }\n      set(shadowTarget, key, value) {\n          const { originalTarget, membrane: { valueMutated } } = this;\n          const oldValue = originalTarget[key];\n          if (oldValue !== value) {\n              originalTarget[key] = value;\n              valueMutated(originalTarget, key);\n          }\n          else if (key === 'length' && isArray(originalTarget)) {\n              // fix for issue #236: push will add the new index, and by the time length\n              // is updated, the internal length is already equal to the new length value\n              // therefore, the oldValue is equal to the value. This is the forking logic\n              // to support this use case.\n              valueMutated(originalTarget, key);\n          }\n          return true;\n      }\n      deleteProperty(shadowTarget, key) {\n          const { originalTarget, membrane: { valueMutated } } = this;\n          delete originalTarget[key];\n          valueMutated(originalTarget, key);\n          return true;\n      }\n      apply(shadowTarget, thisArg, argArray) {\n          /* No op */\n      }\n      construct(target, argArray, newTarget) {\n          /* No op */\n      }\n      has(shadowTarget, key) {\n          const { originalTarget, membrane: { valueObserved } } = this;\n          valueObserved(originalTarget, key);\n          return key in originalTarget;\n      }\n      ownKeys(shadowTarget) {\n          const { originalTarget } = this;\n          return ArrayConcat.call(getOwnPropertyNames(originalTarget), getOwnPropertySymbols(originalTarget));\n      }\n      isExtensible(shadowTarget) {\n          const shadowIsExtensible = isExtensible(shadowTarget);\n          if (!shadowIsExtensible) {\n              return shadowIsExtensible;\n          }\n          const { originalTarget, membrane } = this;\n          const targetIsExtensible = isExtensible(originalTarget);\n          if (!targetIsExtensible) {\n              lockShadowTarget(membrane, shadowTarget, originalTarget);\n          }\n          return targetIsExtensible;\n      }\n      setPrototypeOf(shadowTarget, prototype) {\n      }\n      getPrototypeOf(shadowTarget) {\n          const { originalTarget } = this;\n          return getPrototypeOf(originalTarget);\n      }\n      getOwnPropertyDescriptor(shadowTarget, key) {\n          const { originalTarget, membrane } = this;\n          const { valueObserved } = this.membrane;\n          // keys looked up via hasOwnProperty need to be reactive\n          valueObserved(originalTarget, key);\n          let desc = getOwnPropertyDescriptor(originalTarget, key);\n          if (isUndefined(desc)) {\n              return desc;\n          }\n          const shadowDescriptor = getOwnPropertyDescriptor(shadowTarget, key);\n          if (!isUndefined(shadowDescriptor)) {\n              return shadowDescriptor;\n          }\n          // Note: by accessing the descriptor, the key is marked as observed\n          // but access to the value, setter or getter (if available) cannot observe\n          // mutations, just like regular methods, in which case we just do nothing.\n          desc = wrapDescriptor(membrane, desc, wrapValue);\n          if (!desc.configurable) {\n              // If descriptor from original target is not configurable,\n              // We must copy the wrapped descriptor over to the shadow target.\n              // Otherwise, proxy will throw an invariant error.\n              // This is our last chance to lock the value.\n              // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor#Invariants\n              ObjectDefineProperty(shadowTarget, key, desc);\n          }\n          return desc;\n      }\n      preventExtensions(shadowTarget) {\n          const { originalTarget, membrane } = this;\n          lockShadowTarget(membrane, shadowTarget, originalTarget);\n          preventExtensions(originalTarget);\n          return true;\n      }\n      defineProperty(shadowTarget, key, descriptor) {\n          const { originalTarget, membrane } = this;\n          const { valueMutated } = membrane;\n          const { configurable } = descriptor;\n          // We have to check for value in descriptor\n          // because Object.freeze(proxy) calls this method\n          // with only { configurable: false, writeable: false }\n          // Additionally, method will only be called with writeable:false\n          // if the descriptor has a value, as opposed to getter/setter\n          // So we can just check if writable is present and then see if\n          // value is present. This eliminates getter and setter descriptors\n          if (hasOwnProperty.call(descriptor, 'writable') && !hasOwnProperty.call(descriptor, 'value')) {\n              const originalDescriptor = getOwnPropertyDescriptor(originalTarget, key);\n              descriptor.value = originalDescriptor.value;\n          }\n          ObjectDefineProperty(originalTarget, key, unwrapDescriptor(descriptor));\n          if (configurable === false) {\n              ObjectDefineProperty(shadowTarget, key, wrapDescriptor(membrane, descriptor, wrapValue));\n          }\n          valueMutated(originalTarget, key);\n          return true;\n      }\n  }\n\n  function wrapReadOnlyValue(membrane, value) {\n      return membrane.valueIsObservable(value) ? membrane.getReadOnlyProxy(value) : value;\n  }\n  class ReadOnlyHandler {\n      constructor(membrane, value) {\n          this.originalTarget = value;\n          this.membrane = membrane;\n      }\n      get(shadowTarget, key) {\n          const { membrane, originalTarget } = this;\n          const value = originalTarget[key];\n          const { valueObserved } = membrane;\n          valueObserved(originalTarget, key);\n          return membrane.getReadOnlyProxy(value);\n      }\n      set(shadowTarget, key, value) {\n          return false;\n      }\n      deleteProperty(shadowTarget, key) {\n          return false;\n      }\n      apply(shadowTarget, thisArg, argArray) {\n          /* No op */\n      }\n      construct(target, argArray, newTarget) {\n          /* No op */\n      }\n      has(shadowTarget, key) {\n          const { originalTarget, membrane: { valueObserved } } = this;\n          valueObserved(originalTarget, key);\n          return key in originalTarget;\n      }\n      ownKeys(shadowTarget) {\n          const { originalTarget } = this;\n          return ArrayConcat.call(getOwnPropertyNames(originalTarget), getOwnPropertySymbols(originalTarget));\n      }\n      setPrototypeOf(shadowTarget, prototype) {\n      }\n      getOwnPropertyDescriptor(shadowTarget, key) {\n          const { originalTarget, membrane } = this;\n          const { valueObserved } = membrane;\n          // keys looked up via hasOwnProperty need to be reactive\n          valueObserved(originalTarget, key);\n          let desc = getOwnPropertyDescriptor(originalTarget, key);\n          if (isUndefined(desc)) {\n              return desc;\n          }\n          const shadowDescriptor = getOwnPropertyDescriptor(shadowTarget, key);\n          if (!isUndefined(shadowDescriptor)) {\n              return shadowDescriptor;\n          }\n          // Note: by accessing the descriptor, the key is marked as observed\n          // but access to the value or getter (if available) cannot be observed,\n          // just like regular methods, in which case we just do nothing.\n          desc = wrapDescriptor(membrane, desc, wrapReadOnlyValue);\n          if (hasOwnProperty.call(desc, 'set')) {\n              desc.set = undefined; // readOnly membrane does not allow setters\n          }\n          if (!desc.configurable) {\n              // If descriptor from original target is not configurable,\n              // We must copy the wrapped descriptor over to the shadow target.\n              // Otherwise, proxy will throw an invariant error.\n              // This is our last chance to lock the value.\n              // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor#Invariants\n              ObjectDefineProperty(shadowTarget, key, desc);\n          }\n          return desc;\n      }\n      preventExtensions(shadowTarget) {\n          return false;\n      }\n      defineProperty(shadowTarget, key, descriptor) {\n          return false;\n      }\n  }\n  function createShadowTarget(value) {\n      let shadowTarget = undefined;\n      if (isArray(value)) {\n          shadowTarget = [];\n      }\n      else if (isObject(value)) {\n          shadowTarget = {};\n      }\n      return shadowTarget;\n  }\n  const ObjectDotPrototype = Object.prototype;\n  function defaultValueIsObservable(value) {\n      // intentionally checking for null\n      if (value === null) {\n          return false;\n      }\n      // treat all non-object types, including undefined, as non-observable values\n      if (typeof value !== 'object') {\n          return false;\n      }\n      if (isArray(value)) {\n          return true;\n      }\n      const proto = getPrototypeOf(value);\n      return (proto === ObjectDotPrototype || proto === null || getPrototypeOf(proto) === null);\n  }\n  const defaultValueObserved = (obj, key) => {\n      /* do nothing */\n  };\n  const defaultValueMutated = (obj, key) => {\n      /* do nothing */\n  };\n  const defaultValueDistortion = (value) => value;\n  function wrapDescriptor(membrane, descriptor, getValue) {\n      const { set, get } = descriptor;\n      if (hasOwnProperty.call(descriptor, 'value')) {\n          descriptor.value = getValue(membrane, descriptor.value);\n      }\n      else {\n          if (!isUndefined(get)) {\n              descriptor.get = function () {\n                  // invoking the original getter with the original target\n                  return getValue(membrane, get.call(unwrap(this)));\n              };\n          }\n          if (!isUndefined(set)) {\n              descriptor.set = function (value) {\n                  // At this point we don't have a clear indication of whether\n                  // or not a valid mutation will occur, we don't have the key,\n                  // and we are not sure why and how they are invoking this setter.\n                  // Nevertheless we preserve the original semantics by invoking the\n                  // original setter with the original target and the unwrapped value\n                  set.call(unwrap(this), membrane.unwrapProxy(value));\n              };\n          }\n      }\n      return descriptor;\n  }\n  class ReactiveMembrane {\n      constructor(options) {\n          this.valueDistortion = defaultValueDistortion;\n          this.valueMutated = defaultValueMutated;\n          this.valueObserved = defaultValueObserved;\n          this.valueIsObservable = defaultValueIsObservable;\n          this.objectGraph = new WeakMap();\n          if (!isUndefined(options)) {\n              const { valueDistortion, valueMutated, valueObserved, valueIsObservable } = options;\n              this.valueDistortion = isFunction(valueDistortion) ? valueDistortion : defaultValueDistortion;\n              this.valueMutated = isFunction(valueMutated) ? valueMutated : defaultValueMutated;\n              this.valueObserved = isFunction(valueObserved) ? valueObserved : defaultValueObserved;\n              this.valueIsObservable = isFunction(valueIsObservable) ? valueIsObservable : defaultValueIsObservable;\n          }\n      }\n      getProxy(value) {\n          const unwrappedValue = unwrap(value);\n          const distorted = this.valueDistortion(unwrappedValue);\n          if (this.valueIsObservable(distorted)) {\n              const o = this.getReactiveState(unwrappedValue, distorted);\n              // when trying to extract the writable version of a readonly\n              // we return the readonly.\n              return o.readOnly === value ? value : o.reactive;\n          }\n          return distorted;\n      }\n      getReadOnlyProxy(value) {\n          value = unwrap(value);\n          const distorted = this.valueDistortion(value);\n          if (this.valueIsObservable(distorted)) {\n              return this.getReactiveState(value, distorted).readOnly;\n          }\n          return distorted;\n      }\n      unwrapProxy(p) {\n          return unwrap(p);\n      }\n      getReactiveState(value, distortedValue) {\n          const { objectGraph, } = this;\n          let reactiveState = objectGraph.get(distortedValue);\n          if (reactiveState) {\n              return reactiveState;\n          }\n          const membrane = this;\n          reactiveState = {\n              get reactive() {\n                  const reactiveHandler = new ReactiveProxyHandler(membrane, distortedValue);\n                  // caching the reactive proxy after the first time it is accessed\n                  const proxy = new Proxy(createShadowTarget(distortedValue), reactiveHandler);\n                  registerProxy(proxy, value);\n                  ObjectDefineProperty(this, 'reactive', { value: proxy });\n                  return proxy;\n              },\n              get readOnly() {\n                  const readOnlyHandler = new ReadOnlyHandler(membrane, distortedValue);\n                  // caching the readOnly proxy after the first time it is accessed\n                  const proxy = new Proxy(createShadowTarget(distortedValue), readOnlyHandler);\n                  registerProxy(proxy, value);\n                  ObjectDefineProperty(this, 'readOnly', { value: proxy });\n                  return proxy;\n              }\n          };\n          objectGraph.set(distortedValue, reactiveState);\n          return reactiveState;\n      }\n  }\n  /** version: 0.26.0 */\n\n  function wrap(data, mutationCallback) {\n\n    let membrane = new ReactiveMembrane({\n      valueMutated(target, key) {\n        mutationCallback(target, key);\n      }\n\n    });\n    return {\n      data: membrane.getProxy(data),\n      membrane: membrane\n    };\n  }\n  function unwrap$1(membrane, observable) {\n    let unwrappedData = membrane.unwrapProxy(observable);\n    let copy = {};\n    Object.keys(unwrappedData).forEach(key => {\n      if (['$el', '$refs', '$nextTick', '$watch'].includes(key)) return;\n      copy[key] = unwrappedData[key];\n    });\n    return copy;\n  }\n\n  class Component {\n    constructor(el, componentForClone = null) {\n      this.$el = el;\n      const dataAttr = this.$el.getAttribute('x-data');\n      const dataExpression = dataAttr === '' ? '{}' : dataAttr;\n      const initExpression = this.$el.getAttribute('x-init');\n      let dataExtras = {\n        $el: this.$el\n      };\n      let canonicalComponentElementReference = componentForClone ? componentForClone.$el : this.$el;\n      Object.entries(Alpine.magicProperties).forEach(([name, callback]) => {\n        Object.defineProperty(dataExtras, `$${name}`, {\n          get: function get() {\n            return callback(canonicalComponentElementReference);\n          }\n        });\n      });\n      this.unobservedData = componentForClone ? componentForClone.getUnobservedData() : saferEval(el, dataExpression, dataExtras);\n      // Construct a Proxy-based observable. This will be used to handle reactivity.\n\n      let {\n        membrane,\n        data\n      } = this.wrapDataInObservable(this.unobservedData);\n      this.$data = data;\n      this.membrane = membrane; // After making user-supplied data methods reactive, we can now add\n      // our magic properties to the original data for access.\n\n      this.unobservedData.$el = this.$el;\n      this.unobservedData.$refs = this.getRefsProxy();\n      this.nextTickStack = [];\n\n      this.unobservedData.$nextTick = callback => {\n        this.nextTickStack.push(callback);\n      };\n\n      this.watchers = {};\n\n      this.unobservedData.$watch = (property, callback) => {\n        if (!this.watchers[property]) this.watchers[property] = [];\n        this.watchers[property].push(callback);\n      };\n      /* MODERN-ONLY:START */\n      // We remove this piece of code from the legacy build.\n      // In IE11, we have already defined our helpers at this point.\n      // Register custom magic properties.\n\n\n      Object.entries(Alpine.magicProperties).forEach(([name, callback]) => {\n        Object.defineProperty(this.unobservedData, `$${name}`, {\n          get: function get() {\n            return callback(canonicalComponentElementReference, this.$el);\n          }\n        });\n      });\n      /* MODERN-ONLY:END */\n\n      this.showDirectiveStack = [];\n      this.showDirectiveLastElement;\n      componentForClone || Alpine.onBeforeComponentInitializeds.forEach(callback => callback(this));\n      var initReturnedCallback; // If x-init is present AND we aren't cloning (skip x-init on clone)\n\n      if (initExpression && !componentForClone) {\n        // We want to allow data manipulation, but not trigger DOM updates just yet.\n        // We haven't even initialized the elements with their Alpine bindings. I mean c'mon.\n        this.pauseReactivity = true;\n        initReturnedCallback = this.evaluateReturnExpression(this.$el, initExpression);\n        this.pauseReactivity = false;\n      } // Register all our listeners and set all our attribute bindings.\n      // If we're cloning a component, the third parameter ensures no duplicate\n      // event listeners are registered (the mutation observer will take care of them)\n\n\n      this.initializeElements(this.$el, () => {}, componentForClone); // Use mutation observer to detect new elements being added within this component at run-time.\n      // Alpine's just so darn flexible amirite?\n\n      this.listenForNewElementsToInitialize();\n\n      if (typeof initReturnedCallback === 'function') {\n        // Run the callback returned from the \"x-init\" hook to allow the user to do stuff after\n        // Alpine's got it's grubby little paws all over everything.\n        initReturnedCallback.call(this.$data);\n      }\n\n      componentForClone || setTimeout(() => {\n        Alpine.onComponentInitializeds.forEach(callback => callback(this));\n      }, 0);\n    }\n\n    getUnobservedData() {\n      return unwrap$1(this.membrane, this.$data);\n    }\n\n    wrapDataInObservable(data) {\n      var self = this;\n      let updateDom = debounce(function () {\n        self.updateElements(self.$el);\n      }, 0);\n      return wrap(data, (target, key) => {\n        if (self.watchers[key]) {\n          // If there's a watcher for this specific key, run it.\n          self.watchers[key].forEach(callback => callback(target[key]));\n        } else if (Array.isArray(target)) {\n          // Arrays are special cases, if any of the items change, we consider the array as mutated.\n          Object.keys(self.watchers).forEach(fullDotNotationKey => {\n            let dotNotationParts = fullDotNotationKey.split('.'); // Ignore length mutations since they would result in duplicate calls.\n            // For example, when calling push, we would get a mutation for the item's key\n            // and a second mutation for the length property.\n\n            if (key === 'length') return;\n            dotNotationParts.reduce((comparisonData, part) => {\n              if (Object.is(target, comparisonData[part])) {\n                self.watchers[fullDotNotationKey].forEach(callback => callback(target));\n              }\n\n              return comparisonData[part];\n            }, self.unobservedData);\n          });\n        } else {\n          // Let's walk through the watchers with \"dot-notation\" (foo.bar) and see\n          // if this mutation fits any of them.\n          Object.keys(self.watchers).filter(i => i.includes('.')).forEach(fullDotNotationKey => {\n            let dotNotationParts = fullDotNotationKey.split('.'); // If this dot-notation watcher's last \"part\" doesn't match the current\n            // key, then skip it early for performance reasons.\n\n            if (key !== dotNotationParts[dotNotationParts.length - 1]) return; // Now, walk through the dot-notation \"parts\" recursively to find\n            // a match, and call the watcher if one's found.\n\n            dotNotationParts.reduce((comparisonData, part) => {\n              if (Object.is(target, comparisonData)) {\n                // Run the watchers.\n                self.watchers[fullDotNotationKey].forEach(callback => callback(target[key]));\n              }\n\n              return comparisonData[part];\n            }, self.unobservedData);\n          });\n        } // Don't react to data changes for cases like the `x-created` hook.\n\n\n        if (self.pauseReactivity) return;\n        updateDom();\n      });\n    }\n\n    walkAndSkipNestedComponents(el, callback, initializeComponentCallback = () => {}) {\n      walk(el, el => {\n        // We've hit a component.\n        if (el.hasAttribute('x-data')) {\n          // If it's not the current one.\n          if (!el.isSameNode(this.$el)) {\n            // Initialize it if it's not.\n            if (!el.__x) initializeComponentCallback(el); // Now we'll let that sub-component deal with itself.\n\n            return false;\n          }\n        }\n\n        return callback(el);\n      });\n    }\n\n    initializeElements(rootEl, extraVars = () => {}, componentForClone = false) {\n      this.walkAndSkipNestedComponents(rootEl, el => {\n        // Don't touch spawns from for loop\n        if (el.__x_for_key !== undefined) return false; // Don't touch spawns from if directives\n\n        if (el.__x_inserted_me !== undefined) return false;\n        this.initializeElement(el, extraVars, componentForClone ? false : true);\n      }, el => {\n        if (!componentForClone) el.__x = new Component(el);\n      });\n      this.executeAndClearRemainingShowDirectiveStack();\n      this.executeAndClearNextTickStack(rootEl);\n    }\n\n    initializeElement(el, extraVars, shouldRegisterListeners = true) {\n      // To support class attribute merging, we have to know what the element's\n      // original class attribute looked like for reference.\n      if (el.hasAttribute('class') && getXAttrs(el, this).length > 0) {\n        el.__x_original_classes = convertClassStringToArray(el.getAttribute('class'));\n      }\n\n      shouldRegisterListeners && this.registerListeners(el, extraVars);\n      this.resolveBoundAttributes(el, true, extraVars);\n    }\n\n    updateElements(rootEl, extraVars = () => {}) {\n      this.walkAndSkipNestedComponents(rootEl, el => {\n        // Don't touch spawns from for loop (and check if the root is actually a for loop in a parent, don't skip it.)\n        if (el.__x_for_key !== undefined && !el.isSameNode(this.$el)) return false;\n        this.updateElement(el, extraVars);\n      }, el => {\n        el.__x = new Component(el);\n      });\n      this.executeAndClearRemainingShowDirectiveStack();\n      this.executeAndClearNextTickStack(rootEl);\n    }\n\n    executeAndClearNextTickStack(el) {\n      // Skip spawns from alpine directives\n      if (el === this.$el && this.nextTickStack.length > 0) {\n        // We run the tick stack after the next frame to allow any\n        // running transitions to pass the initial show stage.\n        requestAnimationFrame(() => {\n          while (this.nextTickStack.length > 0) {\n            this.nextTickStack.shift()();\n          }\n        });\n      }\n    }\n\n    executeAndClearRemainingShowDirectiveStack() {\n      // The goal here is to start all the x-show transitions\n      // and build a nested promise chain so that elements\n      // only hide when the children are finished hiding.\n      this.showDirectiveStack.reverse().map(handler => {\n        return new Promise((resolve, reject) => {\n          handler(resolve, reject);\n        });\n      }).reduce((promiseChain, promise) => {\n        return promiseChain.then(() => {\n          return promise.then(finishElement => {\n            finishElement();\n          });\n        });\n      }, Promise.resolve(() => {})).catch(e => {\n        if (e !== TRANSITION_CANCELLED) throw e;\n      }); // We've processed the handler stack. let's clear it.\n\n      this.showDirectiveStack = [];\n      this.showDirectiveLastElement = undefined;\n    }\n\n    updateElement(el, extraVars) {\n      this.resolveBoundAttributes(el, false, extraVars);\n    }\n\n    registerListeners(el, extraVars) {\n      getXAttrs(el, this).forEach(({\n        type,\n        value,\n        modifiers,\n        expression\n      }) => {\n        switch (type) {\n          case 'on':\n            registerListener(this, el, value, modifiers, expression, extraVars);\n            break;\n\n          case 'model':\n            registerModelListener(this, el, modifiers, expression, extraVars);\n            break;\n        }\n      });\n    }\n\n    resolveBoundAttributes(el, initialUpdate = false, extraVars) {\n      let attrs = getXAttrs(el, this);\n      attrs.forEach(({\n        type,\n        value,\n        modifiers,\n        expression\n      }) => {\n        switch (type) {\n          case 'model':\n            handleAttributeBindingDirective(this, el, 'value', expression, extraVars, type, modifiers);\n            break;\n\n          case 'bind':\n            // The :key binding on an x-for is special, ignore it.\n            if (el.tagName.toLowerCase() === 'template' && value === 'key') return;\n            handleAttributeBindingDirective(this, el, value, expression, extraVars, type, modifiers);\n            break;\n\n          case 'text':\n            var output = this.evaluateReturnExpression(el, expression, extraVars);\n            handleTextDirective(el, output, expression);\n            break;\n\n          case 'html':\n            handleHtmlDirective(this, el, expression, extraVars);\n            break;\n\n          case 'show':\n            var output = this.evaluateReturnExpression(el, expression, extraVars);\n            handleShowDirective(this, el, output, modifiers, initialUpdate);\n            break;\n\n          case 'if':\n            // If this element also has x-for on it, don't process x-if.\n            // We will let the \"x-for\" directive handle the \"if\"ing.\n            if (attrs.some(i => i.type === 'for')) return;\n            var output = this.evaluateReturnExpression(el, expression, extraVars);\n            handleIfDirective(this, el, output, initialUpdate, extraVars);\n            break;\n\n          case 'for':\n            handleForDirective(this, el, expression, initialUpdate, extraVars);\n            break;\n\n          case 'cloak':\n            el.removeAttribute('x-cloak');\n            break;\n        }\n      });\n    }\n\n    evaluateReturnExpression(el, expression, extraVars = () => {}) {\n      return saferEval(el, expression, this.$data, _objectSpread2(_objectSpread2({}, extraVars()), {}, {\n        $dispatch: this.getDispatchFunction(el)\n      }));\n    }\n\n    evaluateCommandExpression(el, expression, extraVars = () => {}) {\n      return saferEvalNoReturn(el, expression, this.$data, _objectSpread2(_objectSpread2({}, extraVars()), {}, {\n        $dispatch: this.getDispatchFunction(el)\n      }));\n    }\n\n    getDispatchFunction(el) {\n      return (event, detail = {}) => {\n        el.dispatchEvent(new CustomEvent(event, {\n          detail,\n          bubbles: true\n        }));\n      };\n    }\n\n    listenForNewElementsToInitialize() {\n      const targetNode = this.$el;\n      const observerOptions = {\n        childList: true,\n        attributes: true,\n        subtree: true\n      };\n      const observer = new MutationObserver(mutations => {\n        for (let i = 0; i < mutations.length; i++) {\n          // Filter out mutations triggered from child components.\n          const closestParentComponent = mutations[i].target.closest('[x-data]');\n          if (!(closestParentComponent && closestParentComponent.isSameNode(this.$el))) continue;\n\n          if (mutations[i].type === 'attributes' && mutations[i].attributeName === 'x-data') {\n            const xAttr = mutations[i].target.getAttribute('x-data') || '{}';\n            const rawData = saferEval(this.$el, xAttr, {\n              $el: this.$el\n            });\n            Object.keys(rawData).forEach(key => {\n              if (this.$data[key] !== rawData[key]) {\n                this.$data[key] = rawData[key];\n              }\n            });\n          }\n\n          if (mutations[i].addedNodes.length > 0) {\n            mutations[i].addedNodes.forEach(node => {\n              if (node.nodeType !== 1 || node.__x_inserted_me) return;\n\n              if (node.matches('[x-data]') && !node.__x) {\n                node.__x = new Component(node);\n                return;\n              }\n\n              this.initializeElements(node);\n            });\n          }\n        }\n      });\n      observer.observe(targetNode, observerOptions);\n    }\n\n    getRefsProxy() {\n      var self = this;\n      var refObj = {};\n      // One of the goals of this is to not hold elements in memory, but rather re-evaluate\n      // the DOM when the system needs something from it. This way, the framework is flexible and\n      // friendly to outside DOM changes from libraries like Vue/Livewire.\n      // For this reason, I'm using an \"on-demand\" proxy to fake a \"$refs\" object.\n\n      return new Proxy(refObj, {\n        get(object, property) {\n          if (property === '$isAlpineProxy') return true;\n          var ref; // We can't just query the DOM because it's hard to filter out refs in\n          // nested components.\n\n          self.walkAndSkipNestedComponents(self.$el, el => {\n            if (el.hasAttribute('x-ref') && el.getAttribute('x-ref') === property) {\n              ref = el;\n            }\n          });\n          return ref;\n        }\n\n      });\n    }\n\n  }\n\n  const Alpine = {\n    version: \"2.8.2\",\n    pauseMutationObserver: false,\n    magicProperties: {},\n    onComponentInitializeds: [],\n    onBeforeComponentInitializeds: [],\n    ignoreFocusedForValueBinding: false,\n    start: async function start() {\n      if (!isTesting()) {\n        await domReady();\n      }\n\n      this.discoverComponents(el => {\n        this.initializeComponent(el);\n      }); // It's easier and more performant to just support Turbolinks than listen\n      // to MutationObserver mutations at the document level.\n\n      document.addEventListener(\"turbolinks:load\", () => {\n        this.discoverUninitializedComponents(el => {\n          this.initializeComponent(el);\n        });\n      });\n      this.listenForNewUninitializedComponentsAtRunTime();\n    },\n    discoverComponents: function discoverComponents(callback) {\n      const rootEls = document.querySelectorAll('[x-data]');\n      rootEls.forEach(rootEl => {\n        callback(rootEl);\n      });\n    },\n    discoverUninitializedComponents: function discoverUninitializedComponents(callback, el = null) {\n      const rootEls = (el || document).querySelectorAll('[x-data]');\n      Array.from(rootEls).filter(el => el.__x === undefined).forEach(rootEl => {\n        callback(rootEl);\n      });\n    },\n    listenForNewUninitializedComponentsAtRunTime: function listenForNewUninitializedComponentsAtRunTime() {\n      const targetNode = document.querySelector('body');\n      const observerOptions = {\n        childList: true,\n        attributes: true,\n        subtree: true\n      };\n      const observer = new MutationObserver(mutations => {\n        if (this.pauseMutationObserver) return;\n\n        for (let i = 0; i < mutations.length; i++) {\n          if (mutations[i].addedNodes.length > 0) {\n            mutations[i].addedNodes.forEach(node => {\n              // Discard non-element nodes (like line-breaks)\n              if (node.nodeType !== 1) return; // Discard any changes happening within an existing component.\n              // They will take care of themselves.\n\n              if (node.parentElement && node.parentElement.closest('[x-data]')) return;\n              this.discoverUninitializedComponents(el => {\n                this.initializeComponent(el);\n              }, node.parentElement);\n            });\n          }\n        }\n      });\n      observer.observe(targetNode, observerOptions);\n    },\n    initializeComponent: function initializeComponent(el) {\n      if (!el.__x) {\n        // Wrap in a try/catch so that we don't prevent other components\n        // from initializing when one component contains an error.\n        try {\n          el.__x = new Component(el);\n        } catch (error) {\n          setTimeout(() => {\n            throw error;\n          }, 0);\n        }\n      }\n    },\n    clone: function clone(component, newEl) {\n      if (!newEl.__x) {\n        newEl.__x = new Component(newEl, component);\n      }\n    },\n    addMagicProperty: function addMagicProperty(name, callback) {\n      this.magicProperties[name] = callback;\n    },\n    onComponentInitialized: function onComponentInitialized(callback) {\n      this.onComponentInitializeds.push(callback);\n    },\n    onBeforeComponentInitialized: function onBeforeComponentInitialized(callback) {\n      this.onBeforeComponentInitializeds.push(callback);\n    }\n  };\n\n  if (!isTesting()) {\n    window.Alpine = Alpine;\n\n    if (window.deferLoadingAlpine) {\n      window.deferLoadingAlpine(function () {\n        window.Alpine.start();\n      });\n    } else {\n      window.Alpine.start();\n    }\n  }\n\n  return Alpine;\n\n})));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9ub2RlX21vZHVsZXMvYWxwaW5lanMvZGlzdC9hbHBpbmUuanM/ZGYyNCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBLEVBQUUsS0FBNEQ7QUFDOUQsRUFBRSxDQUNvRDtBQUN0RCxDQUFDLHFCQUFxQjs7QUFFdEI7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxPQUFPO0FBQ1AsS0FBSztBQUNMO0FBQ0E7O0FBRUE7QUFDQTs7QUFFQTtBQUNBOztBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsT0FBTztBQUNQO0FBQ0E7O0FBRUE7QUFDQTs7QUFFQTtBQUNBLG1CQUFtQixzQkFBc0I7QUFDekM7O0FBRUE7QUFDQTtBQUNBO0FBQ0EsU0FBUztBQUNULE9BQU87QUFDUDtBQUNBLE9BQU87QUFDUDtBQUNBO0FBQ0EsU0FBUztBQUNUO0FBQ0E7O0FBRUE7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxPQUFPO0FBQ1A7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSwrQkFBK0IsVUFBVSw4RkFBOEYsVUFBVTtBQUNqSixLQUFLO0FBQ0wsbURBQW1ELFVBQVU7QUFDN0Q7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBLG1DQUFtQyxNQUFNLG9CQUFvQixXQUFXOztBQUV4RTtBQUNBO0FBQ0E7QUFDQTtBQUNBLE9BQU87QUFDUDtBQUNBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBO0FBQ0EsR0FBRztBQUNIO0FBQ0E7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBO0FBQ0E7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QztBQUNBO0FBQ0E7QUFDQSw4Q0FBOEM7QUFDOUM7O0FBRUE7QUFDQTtBQUNBO0FBQ0EsZUFBZTtBQUNmLGFBQWE7QUFDYjtBQUNBO0FBQ0EsT0FBTztBQUNQO0FBQ0EsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLFNBQVM7QUFDVDtBQUNBO0FBQ0EsV0FBVztBQUNYO0FBQ0E7QUFDQSxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0E7QUFDQSxLQUFLO0FBQ0w7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBO0FBQ0EsS0FBSztBQUNMO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBO0FBQ0EsT0FBTztBQUNQLEtBQUs7QUFDTDtBQUNBO0FBQ0E7O0FBRUE7O0FBRUEsQ0FBQyIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy9hbHBpbmVqcy9kaXN0L2FscGluZS5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIihmdW5jdGlvbiAoZ2xvYmFsLCBmYWN0b3J5KSB7XG4gIHR5cGVvZiBleHBvcnRzID09PSAnb2JqZWN0JyAmJiB0eXBlb2YgbW9kdWxlICE9PSAndW5kZWZpbmVkJyA/IG1vZHVsZS5leHBvcnRzID0gZmFjdG9yeSgpIDpcbiAgdHlwZW9mIGRlZmluZSA9PT0gJ2Z1bmN0aW9uJyAmJiBkZWZpbmUuYW1kID8gZGVmaW5lKGZhY3RvcnkpIDpcbiAgKGdsb2JhbCA9IGdsb2JhbCB8fCBzZWxmLCBnbG9iYWwuQWxwaW5lID0gZmFjdG9yeSgpKTtcbn0odGhpcywgKGZ1bmN0aW9uICgpIHsgJ3VzZSBzdHJpY3QnO1xuXG4gIGZ1bmN0aW9uIF9kZWZpbmVQcm9wZXJ0eShvYmosIGtleSwgdmFsdWUpIHtcbiAgICBpZiAoa2V5IGluIG9iaikge1xuICAgICAgT2JqZWN0LmRlZmluZVByb3BlcnR5KG9iaiwga2V5LCB7XG4gICAgICAgIHZhbHVlOiB2YWx1ZSxcbiAgICAgICAgZW51bWVyYWJsZTogdHJ1ZSxcbiAgICAgICAgY29uZmlndXJhYmxlOiB0cnVlLFxuICAgICAgICB3cml0YWJsZTogdHJ1ZVxuICAgICAgfSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIG9ialtrZXldID0gdmFsdWU7XG4gICAgfVxuXG4gICAgcmV0dXJuIG9iajtcbiAgfVxuXG4gIGZ1bmN0aW9uIG93bktleXMob2JqZWN0LCBlbnVtZXJhYmxlT25seSkge1xuICAgIHZhciBrZXlzID0gT2JqZWN0LmtleXMob2JqZWN0KTtcblxuICAgIGlmIChPYmplY3QuZ2V0T3duUHJvcGVydHlTeW1ib2xzKSB7XG4gICAgICB2YXIgc3ltYm9scyA9IE9iamVjdC5nZXRPd25Qcm9wZXJ0eVN5bWJvbHMob2JqZWN0KTtcbiAgICAgIGlmIChlbnVtZXJhYmxlT25seSkgc3ltYm9scyA9IHN5bWJvbHMuZmlsdGVyKGZ1bmN0aW9uIChzeW0pIHtcbiAgICAgICAgcmV0dXJuIE9iamVjdC5nZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3Iob2JqZWN0LCBzeW0pLmVudW1lcmFibGU7XG4gICAgICB9KTtcbiAgICAgIGtleXMucHVzaC5hcHBseShrZXlzLCBzeW1ib2xzKTtcbiAgICB9XG5cbiAgICByZXR1cm4ga2V5cztcbiAgfVxuXG4gIGZ1bmN0aW9uIF9vYmplY3RTcHJlYWQyKHRhcmdldCkge1xuICAgIGZvciAodmFyIGkgPSAxOyBpIDwgYXJndW1lbnRzLmxlbmd0aDsgaSsrKSB7XG4gICAgICB2YXIgc291cmNlID0gYXJndW1lbnRzW2ldICE9IG51bGwgPyBhcmd1bWVudHNbaV0gOiB7fTtcblxuICAgICAgaWYgKGkgJSAyKSB7XG4gICAgICAgIG93bktleXMoT2JqZWN0KHNvdXJjZSksIHRydWUpLmZvckVhY2goZnVuY3Rpb24gKGtleSkge1xuICAgICAgICAgIF9kZWZpbmVQcm9wZXJ0eSh0YXJnZXQsIGtleSwgc291cmNlW2tleV0pO1xuICAgICAgICB9KTtcbiAgICAgIH0gZWxzZSBpZiAoT2JqZWN0LmdldE93blByb3BlcnR5RGVzY3JpcHRvcnMpIHtcbiAgICAgICAgT2JqZWN0LmRlZmluZVByb3BlcnRpZXModGFyZ2V0LCBPYmplY3QuZ2V0T3duUHJvcGVydHlEZXNjcmlwdG9ycyhzb3VyY2UpKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIG93bktleXMoT2JqZWN0KHNvdXJjZSkpLmZvckVhY2goZnVuY3Rpb24gKGtleSkge1xuICAgICAgICAgIE9iamVjdC5kZWZpbmVQcm9wZXJ0eSh0YXJnZXQsIGtleSwgT2JqZWN0LmdldE93blByb3BlcnR5RGVzY3JpcHRvcihzb3VyY2UsIGtleSkpO1xuICAgICAgICB9KTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICByZXR1cm4gdGFyZ2V0O1xuICB9XG5cbiAgLy8gVGhhbmtzIEBzdGltdWx1czpcbiAgLy8gaHR0cHM6Ly9naXRodWIuY29tL3N0aW11bHVzanMvc3RpbXVsdXMvYmxvYi9tYXN0ZXIvcGFja2FnZXMvJTQwc3RpbXVsdXMvY29yZS9zcmMvYXBwbGljYXRpb24udHNcbiAgZnVuY3Rpb24gZG9tUmVhZHkoKSB7XG4gICAgcmV0dXJuIG5ldyBQcm9taXNlKHJlc29sdmUgPT4ge1xuICAgICAgaWYgKGRvY3VtZW50LnJlYWR5U3RhdGUgPT0gXCJsb2FkaW5nXCIpIHtcbiAgICAgICAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcihcIkRPTUNvbnRlbnRMb2FkZWRcIiwgcmVzb2x2ZSk7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICByZXNvbHZlKCk7XG4gICAgICB9XG4gICAgfSk7XG4gIH1cbiAgZnVuY3Rpb24gYXJyYXlVbmlxdWUoYXJyYXkpIHtcbiAgICByZXR1cm4gQXJyYXkuZnJvbShuZXcgU2V0KGFycmF5KSk7XG4gIH1cbiAgZnVuY3Rpb24gaXNUZXN0aW5nKCkge1xuICAgIHJldHVybiBuYXZpZ2F0b3IudXNlckFnZW50LmluY2x1ZGVzKFwiTm9kZS5qc1wiKSB8fCBuYXZpZ2F0b3IudXNlckFnZW50LmluY2x1ZGVzKFwianNkb21cIik7XG4gIH1cbiAgZnVuY3Rpb24gY2hlY2tlZEF0dHJMb29zZUNvbXBhcmUodmFsdWVBLCB2YWx1ZUIpIHtcbiAgICByZXR1cm4gdmFsdWVBID09IHZhbHVlQjtcbiAgfVxuICBmdW5jdGlvbiB3YXJuSWZNYWxmb3JtZWRUZW1wbGF0ZShlbCwgZGlyZWN0aXZlKSB7XG4gICAgaWYgKGVsLnRhZ05hbWUudG9Mb3dlckNhc2UoKSAhPT0gJ3RlbXBsYXRlJykge1xuICAgICAgY29uc29sZS53YXJuKGBBbHBpbmU6IFske2RpcmVjdGl2ZX1dIGRpcmVjdGl2ZSBzaG91bGQgb25seSBiZSBhZGRlZCB0byA8dGVtcGxhdGU+IHRhZ3MuIFNlZSBodHRwczovL2dpdGh1Yi5jb20vYWxwaW5lanMvYWxwaW5lIyR7ZGlyZWN0aXZlfWApO1xuICAgIH0gZWxzZSBpZiAoZWwuY29udGVudC5jaGlsZEVsZW1lbnRDb3VudCAhPT0gMSkge1xuICAgICAgY29uc29sZS53YXJuKGBBbHBpbmU6IDx0ZW1wbGF0ZT4gdGFnIHdpdGggWyR7ZGlyZWN0aXZlfV0gZW5jb3VudGVyZWQgd2l0aCBhbiB1bmV4cGVjdGVkIG51bWJlciBvZiByb290IGVsZW1lbnRzLiBNYWtlIHN1cmUgPHRlbXBsYXRlPiBoYXMgYSBzaW5nbGUgcm9vdCBlbGVtZW50LiBgKTtcbiAgICB9XG4gIH1cbiAgZnVuY3Rpb24ga2ViYWJDYXNlKHN1YmplY3QpIHtcbiAgICByZXR1cm4gc3ViamVjdC5yZXBsYWNlKC8oW2Etel0pKFtBLVpdKS9nLCAnJDEtJDInKS5yZXBsYWNlKC9bX1xcc10vLCAnLScpLnRvTG93ZXJDYXNlKCk7XG4gIH1cbiAgZnVuY3Rpb24gY2FtZWxDYXNlKHN1YmplY3QpIHtcbiAgICByZXR1cm4gc3ViamVjdC50b0xvd2VyQ2FzZSgpLnJlcGxhY2UoLy0oXFx3KS9nLCAobWF0Y2gsIGNoYXIpID0+IGNoYXIudG9VcHBlckNhc2UoKSk7XG4gIH1cbiAgZnVuY3Rpb24gd2FsayhlbCwgY2FsbGJhY2spIHtcbiAgICBpZiAoY2FsbGJhY2soZWwpID09PSBmYWxzZSkgcmV0dXJuO1xuICAgIGxldCBub2RlID0gZWwuZmlyc3RFbGVtZW50Q2hpbGQ7XG5cbiAgICB3aGlsZSAobm9kZSkge1xuICAgICAgd2Fsayhub2RlLCBjYWxsYmFjayk7XG4gICAgICBub2RlID0gbm9kZS5uZXh0RWxlbWVudFNpYmxpbmc7XG4gICAgfVxuICB9XG4gIGZ1bmN0aW9uIGRlYm91bmNlKGZ1bmMsIHdhaXQpIHtcbiAgICB2YXIgdGltZW91dDtcbiAgICByZXR1cm4gZnVuY3Rpb24gKCkge1xuICAgICAgdmFyIGNvbnRleHQgPSB0aGlzLFxuICAgICAgICAgIGFyZ3MgPSBhcmd1bWVudHM7XG5cbiAgICAgIHZhciBsYXRlciA9IGZ1bmN0aW9uIGxhdGVyKCkge1xuICAgICAgICB0aW1lb3V0ID0gbnVsbDtcbiAgICAgICAgZnVuYy5hcHBseShjb250ZXh0LCBhcmdzKTtcbiAgICAgIH07XG5cbiAgICAgIGNsZWFyVGltZW91dCh0aW1lb3V0KTtcbiAgICAgIHRpbWVvdXQgPSBzZXRUaW1lb3V0KGxhdGVyLCB3YWl0KTtcbiAgICB9O1xuICB9XG5cbiAgY29uc3QgaGFuZGxlRXJyb3IgPSAoZWwsIGV4cHJlc3Npb24sIGVycm9yKSA9PiB7XG4gICAgY29uc29sZS53YXJuKGBBbHBpbmUgRXJyb3I6IFwiJHtlcnJvcn1cIlxcblxcbkV4cHJlc3Npb246IFwiJHtleHByZXNzaW9ufVwiXFxuRWxlbWVudDpgLCBlbCk7XG5cbiAgICBpZiAoIWlzVGVzdGluZygpKSB7XG4gICAgICBPYmplY3QuYXNzaWduKGVycm9yLCB7XG4gICAgICAgIGVsLFxuICAgICAgICBleHByZXNzaW9uXG4gICAgICB9KTtcbiAgICAgIHRocm93IGVycm9yO1xuICAgIH1cbiAgfTtcblxuICBmdW5jdGlvbiB0cnlDYXRjaChjYiwge1xuICAgIGVsLFxuICAgIGV4cHJlc3Npb25cbiAgfSkge1xuICAgIHRyeSB7XG4gICAgICBjb25zdCB2YWx1ZSA9IGNiKCk7XG4gICAgICByZXR1cm4gdmFsdWUgaW5zdGFuY2VvZiBQcm9taXNlID8gdmFsdWUuY2F0Y2goZSA9PiBoYW5kbGVFcnJvcihlbCwgZXhwcmVzc2lvbiwgZSkpIDogdmFsdWU7XG4gICAgfSBjYXRjaCAoZSkge1xuICAgICAgaGFuZGxlRXJyb3IoZWwsIGV4cHJlc3Npb24sIGUpO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHNhZmVyRXZhbChlbCwgZXhwcmVzc2lvbiwgZGF0YUNvbnRleHQsIGFkZGl0aW9uYWxIZWxwZXJWYXJpYWJsZXMgPSB7fSkge1xuICAgIHJldHVybiB0cnlDYXRjaCgoKSA9PiB7XG4gICAgICBpZiAodHlwZW9mIGV4cHJlc3Npb24gPT09ICdmdW5jdGlvbicpIHtcbiAgICAgICAgcmV0dXJuIGV4cHJlc3Npb24uY2FsbChkYXRhQ29udGV4dCk7XG4gICAgICB9XG5cbiAgICAgIHJldHVybiBuZXcgRnVuY3Rpb24oWyckZGF0YScsIC4uLk9iamVjdC5rZXlzKGFkZGl0aW9uYWxIZWxwZXJWYXJpYWJsZXMpXSwgYHZhciBfX2FscGluZV9yZXN1bHQ7IHdpdGgoJGRhdGEpIHsgX19hbHBpbmVfcmVzdWx0ID0gJHtleHByZXNzaW9ufSB9OyByZXR1cm4gX19hbHBpbmVfcmVzdWx0YCkoZGF0YUNvbnRleHQsIC4uLk9iamVjdC52YWx1ZXMoYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlcykpO1xuICAgIH0sIHtcbiAgICAgIGVsLFxuICAgICAgZXhwcmVzc2lvblxuICAgIH0pO1xuICB9XG4gIGZ1bmN0aW9uIHNhZmVyRXZhbE5vUmV0dXJuKGVsLCBleHByZXNzaW9uLCBkYXRhQ29udGV4dCwgYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlcyA9IHt9KSB7XG4gICAgcmV0dXJuIHRyeUNhdGNoKCgpID0+IHtcbiAgICAgIGlmICh0eXBlb2YgZXhwcmVzc2lvbiA9PT0gJ2Z1bmN0aW9uJykge1xuICAgICAgICByZXR1cm4gUHJvbWlzZS5yZXNvbHZlKGV4cHJlc3Npb24uY2FsbChkYXRhQ29udGV4dCwgYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlc1snJGV2ZW50J10pKTtcbiAgICAgIH1cblxuICAgICAgbGV0IEFzeW5jRnVuY3Rpb24gPSBGdW5jdGlvbjtcbiAgICAgIC8qIE1PREVSTi1PTkxZOlNUQVJUICovXG5cbiAgICAgIEFzeW5jRnVuY3Rpb24gPSBPYmplY3QuZ2V0UHJvdG90eXBlT2YoYXN5bmMgZnVuY3Rpb24gKCkge30pLmNvbnN0cnVjdG9yO1xuICAgICAgLyogTU9ERVJOLU9OTFk6RU5EICovXG4gICAgICAvLyBGb3IgdGhlIGNhc2VzIHdoZW4gdXNlcnMgcGFzcyBvbmx5IGEgZnVuY3Rpb24gcmVmZXJlbmNlIHRvIHRoZSBjYWxsZXI6IGB4LW9uOmNsaWNrPVwiZm9vXCJgXG4gICAgICAvLyBXaGVyZSBcImZvb1wiIGlzIGEgZnVuY3Rpb24uIEFsc28sIHdlJ2xsIHBhc3MgdGhlIGZ1bmN0aW9uIHRoZSBldmVudCBpbnN0YW5jZSB3aGVuIHdlIGNhbGwgaXQuXG5cbiAgICAgIGlmIChPYmplY3Qua2V5cyhkYXRhQ29udGV4dCkuaW5jbHVkZXMoZXhwcmVzc2lvbikpIHtcbiAgICAgICAgbGV0IG1ldGhvZFJlZmVyZW5jZSA9IG5ldyBGdW5jdGlvbihbJ2RhdGFDb250ZXh0JywgLi4uT2JqZWN0LmtleXMoYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlcyldLCBgd2l0aChkYXRhQ29udGV4dCkgeyByZXR1cm4gJHtleHByZXNzaW9ufSB9YCkoZGF0YUNvbnRleHQsIC4uLk9iamVjdC52YWx1ZXMoYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlcykpO1xuXG4gICAgICAgIGlmICh0eXBlb2YgbWV0aG9kUmVmZXJlbmNlID09PSAnZnVuY3Rpb24nKSB7XG4gICAgICAgICAgcmV0dXJuIFByb21pc2UucmVzb2x2ZShtZXRob2RSZWZlcmVuY2UuY2FsbChkYXRhQ29udGV4dCwgYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlc1snJGV2ZW50J10pKTtcbiAgICAgICAgfSBlbHNlIHtcbiAgICAgICAgICByZXR1cm4gUHJvbWlzZS5yZXNvbHZlKCk7XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgcmV0dXJuIFByb21pc2UucmVzb2x2ZShuZXcgQXN5bmNGdW5jdGlvbihbJ2RhdGFDb250ZXh0JywgLi4uT2JqZWN0LmtleXMoYWRkaXRpb25hbEhlbHBlclZhcmlhYmxlcyldLCBgd2l0aChkYXRhQ29udGV4dCkgeyAke2V4cHJlc3Npb259IH1gKShkYXRhQ29udGV4dCwgLi4uT2JqZWN0LnZhbHVlcyhhZGRpdGlvbmFsSGVscGVyVmFyaWFibGVzKSkpO1xuICAgIH0sIHtcbiAgICAgIGVsLFxuICAgICAgZXhwcmVzc2lvblxuICAgIH0pO1xuICB9XG4gIGNvbnN0IHhBdHRyUkUgPSAvXngtKG9ufGJpbmR8ZGF0YXx0ZXh0fGh0bWx8bW9kZWx8aWZ8Zm9yfHNob3d8Y2xvYWt8dHJhbnNpdGlvbnxyZWZ8c3ByZWFkKVxcYi87XG4gIGZ1bmN0aW9uIGlzWEF0dHIoYXR0cikge1xuICAgIGNvbnN0IG5hbWUgPSByZXBsYWNlQXRBbmRDb2xvbldpdGhTdGFuZGFyZFN5bnRheChhdHRyLm5hbWUpO1xuICAgIHJldHVybiB4QXR0clJFLnRlc3QobmFtZSk7XG4gIH1cbiAgZnVuY3Rpb24gZ2V0WEF0dHJzKGVsLCBjb21wb25lbnQsIHR5cGUpIHtcbiAgICBsZXQgZGlyZWN0aXZlcyA9IEFycmF5LmZyb20oZWwuYXR0cmlidXRlcykuZmlsdGVyKGlzWEF0dHIpLm1hcChwYXJzZUh0bWxBdHRyaWJ1dGUpOyAvLyBHZXQgYW4gb2JqZWN0IG9mIGRpcmVjdGl2ZXMgZnJvbSB4LXNwcmVhZC5cblxuICAgIGxldCBzcHJlYWREaXJlY3RpdmUgPSBkaXJlY3RpdmVzLmZpbHRlcihkaXJlY3RpdmUgPT4gZGlyZWN0aXZlLnR5cGUgPT09ICdzcHJlYWQnKVswXTtcblxuICAgIGlmIChzcHJlYWREaXJlY3RpdmUpIHtcbiAgICAgIGxldCBzcHJlYWRPYmplY3QgPSBzYWZlckV2YWwoZWwsIHNwcmVhZERpcmVjdGl2ZS5leHByZXNzaW9uLCBjb21wb25lbnQuJGRhdGEpOyAvLyBBZGQgeC1zcHJlYWQgZGlyZWN0aXZlcyB0byB0aGUgcGlsZSBvZiBleGlzdGluZyBkaXJlY3RpdmVzLlxuXG4gICAgICBkaXJlY3RpdmVzID0gZGlyZWN0aXZlcy5jb25jYXQoT2JqZWN0LmVudHJpZXMoc3ByZWFkT2JqZWN0KS5tYXAoKFtuYW1lLCB2YWx1ZV0pID0+IHBhcnNlSHRtbEF0dHJpYnV0ZSh7XG4gICAgICAgIG5hbWUsXG4gICAgICAgIHZhbHVlXG4gICAgICB9KSkpO1xuICAgIH1cblxuICAgIGlmICh0eXBlKSByZXR1cm4gZGlyZWN0aXZlcy5maWx0ZXIoaSA9PiBpLnR5cGUgPT09IHR5cGUpO1xuICAgIHJldHVybiBzb3J0RGlyZWN0aXZlcyhkaXJlY3RpdmVzKTtcbiAgfVxuXG4gIGZ1bmN0aW9uIHNvcnREaXJlY3RpdmVzKGRpcmVjdGl2ZXMpIHtcbiAgICBsZXQgZGlyZWN0aXZlT3JkZXIgPSBbJ2JpbmQnLCAnbW9kZWwnLCAnc2hvdycsICdjYXRjaC1hbGwnXTtcbiAgICByZXR1cm4gZGlyZWN0aXZlcy5zb3J0KChhLCBiKSA9PiB7XG4gICAgICBsZXQgdHlwZUEgPSBkaXJlY3RpdmVPcmRlci5pbmRleE9mKGEudHlwZSkgPT09IC0xID8gJ2NhdGNoLWFsbCcgOiBhLnR5cGU7XG4gICAgICBsZXQgdHlwZUIgPSBkaXJlY3RpdmVPcmRlci5pbmRleE9mKGIudHlwZSkgPT09IC0xID8gJ2NhdGNoLWFsbCcgOiBiLnR5cGU7XG4gICAgICByZXR1cm4gZGlyZWN0aXZlT3JkZXIuaW5kZXhPZih0eXBlQSkgLSBkaXJlY3RpdmVPcmRlci5pbmRleE9mKHR5cGVCKTtcbiAgICB9KTtcbiAgfVxuXG4gIGZ1bmN0aW9uIHBhcnNlSHRtbEF0dHJpYnV0ZSh7XG4gICAgbmFtZSxcbiAgICB2YWx1ZVxuICB9KSB7XG4gICAgY29uc3Qgbm9ybWFsaXplZE5hbWUgPSByZXBsYWNlQXRBbmRDb2xvbldpdGhTdGFuZGFyZFN5bnRheChuYW1lKTtcbiAgICBjb25zdCB0eXBlTWF0Y2ggPSBub3JtYWxpemVkTmFtZS5tYXRjaCh4QXR0clJFKTtcbiAgICBjb25zdCB2YWx1ZU1hdGNoID0gbm9ybWFsaXplZE5hbWUubWF0Y2goLzooW2EtekEtWjAtOVxcLTpdKykvKTtcbiAgICBjb25zdCBtb2RpZmllcnMgPSBub3JtYWxpemVkTmFtZS5tYXRjaCgvXFwuW14uXFxdXSsoPz1bXlxcXV0qJCkvZykgfHwgW107XG4gICAgcmV0dXJuIHtcbiAgICAgIHR5cGU6IHR5cGVNYXRjaCA/IHR5cGVNYXRjaFsxXSA6IG51bGwsXG4gICAgICB2YWx1ZTogdmFsdWVNYXRjaCA/IHZhbHVlTWF0Y2hbMV0gOiBudWxsLFxuICAgICAgbW9kaWZpZXJzOiBtb2RpZmllcnMubWFwKGkgPT4gaS5yZXBsYWNlKCcuJywgJycpKSxcbiAgICAgIGV4cHJlc3Npb246IHZhbHVlXG4gICAgfTtcbiAgfVxuICBmdW5jdGlvbiBpc0Jvb2xlYW5BdHRyKGF0dHJOYW1lKSB7XG4gICAgLy8gQXMgcGVyIEhUTUwgc3BlYyB0YWJsZSBodHRwczovL2h0bWwuc3BlYy53aGF0d2cub3JnL211bHRpcGFnZS9pbmRpY2VzLmh0bWwjYXR0cmlidXRlcy0zOmJvb2xlYW4tYXR0cmlidXRlXG4gICAgLy8gQXJyYXkgcm91Z2hseSBvcmRlcmVkIGJ5IGVzdGltYXRlZCB1c2FnZVxuICAgIGNvbnN0IGJvb2xlYW5BdHRyaWJ1dGVzID0gWydkaXNhYmxlZCcsICdjaGVja2VkJywgJ3JlcXVpcmVkJywgJ3JlYWRvbmx5JywgJ2hpZGRlbicsICdvcGVuJywgJ3NlbGVjdGVkJywgJ2F1dG9mb2N1cycsICdpdGVtc2NvcGUnLCAnbXVsdGlwbGUnLCAnbm92YWxpZGF0ZScsICdhbGxvd2Z1bGxzY3JlZW4nLCAnYWxsb3dwYXltZW50cmVxdWVzdCcsICdmb3Jtbm92YWxpZGF0ZScsICdhdXRvcGxheScsICdjb250cm9scycsICdsb29wJywgJ211dGVkJywgJ3BsYXlzaW5saW5lJywgJ2RlZmF1bHQnLCAnaXNtYXAnLCAncmV2ZXJzZWQnLCAnYXN5bmMnLCAnZGVmZXInLCAnbm9tb2R1bGUnXTtcbiAgICByZXR1cm4gYm9vbGVhbkF0dHJpYnV0ZXMuaW5jbHVkZXMoYXR0ck5hbWUpO1xuICB9XG4gIGZ1bmN0aW9uIHJlcGxhY2VBdEFuZENvbG9uV2l0aFN0YW5kYXJkU3ludGF4KG5hbWUpIHtcbiAgICBpZiAobmFtZS5zdGFydHNXaXRoKCdAJykpIHtcbiAgICAgIHJldHVybiBuYW1lLnJlcGxhY2UoJ0AnLCAneC1vbjonKTtcbiAgICB9IGVsc2UgaWYgKG5hbWUuc3RhcnRzV2l0aCgnOicpKSB7XG4gICAgICByZXR1cm4gbmFtZS5yZXBsYWNlKCc6JywgJ3gtYmluZDonKTtcbiAgICB9XG5cbiAgICByZXR1cm4gbmFtZTtcbiAgfVxuICBmdW5jdGlvbiBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KGNsYXNzTGlzdCwgZmlsdGVyRm4gPSBCb29sZWFuKSB7XG4gICAgcmV0dXJuIGNsYXNzTGlzdC5zcGxpdCgnICcpLmZpbHRlcihmaWx0ZXJGbik7XG4gIH1cbiAgY29uc3QgVFJBTlNJVElPTl9UWVBFX0lOID0gJ2luJztcbiAgY29uc3QgVFJBTlNJVElPTl9UWVBFX09VVCA9ICdvdXQnO1xuICBjb25zdCBUUkFOU0lUSU9OX0NBTkNFTExFRCA9ICdjYW5jZWxsZWQnO1xuICBmdW5jdGlvbiB0cmFuc2l0aW9uSW4oZWwsIHNob3csIHJlamVjdCwgY29tcG9uZW50LCBmb3JjZVNraXAgPSBmYWxzZSkge1xuICAgIC8vIFdlIGRvbid0IHdhbnQgdG8gdHJhbnNpdGlvbiBvbiB0aGUgaW5pdGlhbCBwYWdlIGxvYWQuXG4gICAgaWYgKGZvcmNlU2tpcCkgcmV0dXJuIHNob3coKTtcblxuICAgIGlmIChlbC5fX3hfdHJhbnNpdGlvbiAmJiBlbC5fX3hfdHJhbnNpdGlvbi50eXBlID09PSBUUkFOU0lUSU9OX1RZUEVfSU4pIHtcbiAgICAgIC8vIHRoZXJlIGlzIGFscmVhZHkgYSBzaW1pbGFyIHRyYW5zaXRpb24gZ29pbmcgb24sIHRoaXMgd2FzIHByb2JhYmx5IHRyaWdnZXJlZCBieVxuICAgICAgLy8gYSBjaGFuZ2UgaW4gYSBkaWZmZXJlbnQgcHJvcGVydHksIGxldCdzIGp1c3QgbGVhdmUgdGhlIHByZXZpb3VzIG9uZSBkb2luZyBpdHMgam9iXG4gICAgICByZXR1cm47XG4gICAgfVxuXG4gICAgY29uc3QgYXR0cnMgPSBnZXRYQXR0cnMoZWwsIGNvbXBvbmVudCwgJ3RyYW5zaXRpb24nKTtcbiAgICBjb25zdCBzaG93QXR0ciA9IGdldFhBdHRycyhlbCwgY29tcG9uZW50LCAnc2hvdycpWzBdOyAvLyBJZiB0aGlzIGlzIHRyaWdnZXJlZCBieSBhIHgtc2hvdy50cmFuc2l0aW9uLlxuXG4gICAgaWYgKHNob3dBdHRyICYmIHNob3dBdHRyLm1vZGlmaWVycy5pbmNsdWRlcygndHJhbnNpdGlvbicpKSB7XG4gICAgICBsZXQgbW9kaWZpZXJzID0gc2hvd0F0dHIubW9kaWZpZXJzOyAvLyBJZiB4LXNob3cudHJhbnNpdGlvbi5vdXQsIHdlJ2xsIHNraXAgdGhlIFwiaW5cIiB0cmFuc2l0aW9uLlxuXG4gICAgICBpZiAobW9kaWZpZXJzLmluY2x1ZGVzKCdvdXQnKSAmJiAhbW9kaWZpZXJzLmluY2x1ZGVzKCdpbicpKSByZXR1cm4gc2hvdygpO1xuICAgICAgY29uc3Qgc2V0dGluZ0JvdGhTaWRlc09mVHJhbnNpdGlvbiA9IG1vZGlmaWVycy5pbmNsdWRlcygnaW4nKSAmJiBtb2RpZmllcnMuaW5jbHVkZXMoJ291dCcpOyAvLyBJZiB4LXNob3cudHJhbnNpdGlvbi5pbi4uLm91dC4uLiBvbmx5IHVzZSBcImluXCIgcmVsYXRlZCBtb2RpZmllcnMgZm9yIHRoaXMgdHJhbnNpdGlvbi5cblxuICAgICAgbW9kaWZpZXJzID0gc2V0dGluZ0JvdGhTaWRlc09mVHJhbnNpdGlvbiA/IG1vZGlmaWVycy5maWx0ZXIoKGksIGluZGV4KSA9PiBpbmRleCA8IG1vZGlmaWVycy5pbmRleE9mKCdvdXQnKSkgOiBtb2RpZmllcnM7XG4gICAgICB0cmFuc2l0aW9uSGVscGVySW4oZWwsIG1vZGlmaWVycywgc2hvdywgcmVqZWN0KTsgLy8gT3RoZXJ3aXNlLCB3ZSBjYW4gYXNzdW1lIHgtdHJhbnNpdGlvbjplbnRlci5cbiAgICB9IGVsc2UgaWYgKGF0dHJzLnNvbWUoYXR0ciA9PiBbJ2VudGVyJywgJ2VudGVyLXN0YXJ0JywgJ2VudGVyLWVuZCddLmluY2x1ZGVzKGF0dHIudmFsdWUpKSkge1xuICAgICAgdHJhbnNpdGlvbkNsYXNzZXNJbihlbCwgY29tcG9uZW50LCBhdHRycywgc2hvdywgcmVqZWN0KTtcbiAgICB9IGVsc2Uge1xuICAgICAgLy8gSWYgbmVpdGhlciwganVzdCBzaG93IHRoYXQgZGFtbiB0aGluZy5cbiAgICAgIHNob3coKTtcbiAgICB9XG4gIH1cbiAgZnVuY3Rpb24gdHJhbnNpdGlvbk91dChlbCwgaGlkZSwgcmVqZWN0LCBjb21wb25lbnQsIGZvcmNlU2tpcCA9IGZhbHNlKSB7XG4gICAgLy8gV2UgZG9uJ3Qgd2FudCB0byB0cmFuc2l0aW9uIG9uIHRoZSBpbml0aWFsIHBhZ2UgbG9hZC5cbiAgICBpZiAoZm9yY2VTa2lwKSByZXR1cm4gaGlkZSgpO1xuXG4gICAgaWYgKGVsLl9feF90cmFuc2l0aW9uICYmIGVsLl9feF90cmFuc2l0aW9uLnR5cGUgPT09IFRSQU5TSVRJT05fVFlQRV9PVVQpIHtcbiAgICAgIC8vIHRoZXJlIGlzIGFscmVhZHkgYSBzaW1pbGFyIHRyYW5zaXRpb24gZ29pbmcgb24sIHRoaXMgd2FzIHByb2JhYmx5IHRyaWdnZXJlZCBieVxuICAgICAgLy8gYSBjaGFuZ2UgaW4gYSBkaWZmZXJlbnQgcHJvcGVydHksIGxldCdzIGp1c3QgbGVhdmUgdGhlIHByZXZpb3VzIG9uZSBkb2luZyBpdHMgam9iXG4gICAgICByZXR1cm47XG4gICAgfVxuXG4gICAgY29uc3QgYXR0cnMgPSBnZXRYQXR0cnMoZWwsIGNvbXBvbmVudCwgJ3RyYW5zaXRpb24nKTtcbiAgICBjb25zdCBzaG93QXR0ciA9IGdldFhBdHRycyhlbCwgY29tcG9uZW50LCAnc2hvdycpWzBdO1xuXG4gICAgaWYgKHNob3dBdHRyICYmIHNob3dBdHRyLm1vZGlmaWVycy5pbmNsdWRlcygndHJhbnNpdGlvbicpKSB7XG4gICAgICBsZXQgbW9kaWZpZXJzID0gc2hvd0F0dHIubW9kaWZpZXJzO1xuICAgICAgaWYgKG1vZGlmaWVycy5pbmNsdWRlcygnaW4nKSAmJiAhbW9kaWZpZXJzLmluY2x1ZGVzKCdvdXQnKSkgcmV0dXJuIGhpZGUoKTtcbiAgICAgIGNvbnN0IHNldHRpbmdCb3RoU2lkZXNPZlRyYW5zaXRpb24gPSBtb2RpZmllcnMuaW5jbHVkZXMoJ2luJykgJiYgbW9kaWZpZXJzLmluY2x1ZGVzKCdvdXQnKTtcbiAgICAgIG1vZGlmaWVycyA9IHNldHRpbmdCb3RoU2lkZXNPZlRyYW5zaXRpb24gPyBtb2RpZmllcnMuZmlsdGVyKChpLCBpbmRleCkgPT4gaW5kZXggPiBtb2RpZmllcnMuaW5kZXhPZignb3V0JykpIDogbW9kaWZpZXJzO1xuICAgICAgdHJhbnNpdGlvbkhlbHBlck91dChlbCwgbW9kaWZpZXJzLCBzZXR0aW5nQm90aFNpZGVzT2ZUcmFuc2l0aW9uLCBoaWRlLCByZWplY3QpO1xuICAgIH0gZWxzZSBpZiAoYXR0cnMuc29tZShhdHRyID0+IFsnbGVhdmUnLCAnbGVhdmUtc3RhcnQnLCAnbGVhdmUtZW5kJ10uaW5jbHVkZXMoYXR0ci52YWx1ZSkpKSB7XG4gICAgICB0cmFuc2l0aW9uQ2xhc3Nlc091dChlbCwgY29tcG9uZW50LCBhdHRycywgaGlkZSwgcmVqZWN0KTtcbiAgICB9IGVsc2Uge1xuICAgICAgaGlkZSgpO1xuICAgIH1cbiAgfVxuICBmdW5jdGlvbiB0cmFuc2l0aW9uSGVscGVySW4oZWwsIG1vZGlmaWVycywgc2hvd0NhbGxiYWNrLCByZWplY3QpIHtcbiAgICAvLyBEZWZhdWx0IHZhbHVlcyBpbnNwaXJlZCBieTogaHR0cHM6Ly9tYXRlcmlhbC5pby9kZXNpZ24vbW90aW9uL3NwZWVkLmh0bWwjZHVyYXRpb25cbiAgICBjb25zdCBzdHlsZVZhbHVlcyA9IHtcbiAgICAgIGR1cmF0aW9uOiBtb2RpZmllclZhbHVlKG1vZGlmaWVycywgJ2R1cmF0aW9uJywgMTUwKSxcbiAgICAgIG9yaWdpbjogbW9kaWZpZXJWYWx1ZShtb2RpZmllcnMsICdvcmlnaW4nLCAnY2VudGVyJyksXG4gICAgICBmaXJzdDoge1xuICAgICAgICBvcGFjaXR5OiAwLFxuICAgICAgICBzY2FsZTogbW9kaWZpZXJWYWx1ZShtb2RpZmllcnMsICdzY2FsZScsIDk1KVxuICAgICAgfSxcbiAgICAgIHNlY29uZDoge1xuICAgICAgICBvcGFjaXR5OiAxLFxuICAgICAgICBzY2FsZTogMTAwXG4gICAgICB9XG4gICAgfTtcbiAgICB0cmFuc2l0aW9uSGVscGVyKGVsLCBtb2RpZmllcnMsIHNob3dDYWxsYmFjaywgKCkgPT4ge30sIHJlamVjdCwgc3R5bGVWYWx1ZXMsIFRSQU5TSVRJT05fVFlQRV9JTik7XG4gIH1cbiAgZnVuY3Rpb24gdHJhbnNpdGlvbkhlbHBlck91dChlbCwgbW9kaWZpZXJzLCBzZXR0aW5nQm90aFNpZGVzT2ZUcmFuc2l0aW9uLCBoaWRlQ2FsbGJhY2ssIHJlamVjdCkge1xuICAgIC8vIE1ha2UgdGhlIFwib3V0XCIgdHJhbnNpdGlvbiAuNXggc2xvd2VyIHRoYW4gdGhlIFwiaW5cIi4gKFZpc3VhbGx5IGJldHRlcilcbiAgICAvLyBIT1dFVkVSLCBpZiB0aGV5IGV4cGxpY2l0bHkgc2V0IGEgZHVyYXRpb24gZm9yIHRoZSBcIm91dFwiIHRyYW5zaXRpb24sXG4gICAgLy8gdXNlIHRoYXQuXG4gICAgY29uc3QgZHVyYXRpb24gPSBzZXR0aW5nQm90aFNpZGVzT2ZUcmFuc2l0aW9uID8gbW9kaWZpZXJWYWx1ZShtb2RpZmllcnMsICdkdXJhdGlvbicsIDE1MCkgOiBtb2RpZmllclZhbHVlKG1vZGlmaWVycywgJ2R1cmF0aW9uJywgMTUwKSAvIDI7XG4gICAgY29uc3Qgc3R5bGVWYWx1ZXMgPSB7XG4gICAgICBkdXJhdGlvbjogZHVyYXRpb24sXG4gICAgICBvcmlnaW46IG1vZGlmaWVyVmFsdWUobW9kaWZpZXJzLCAnb3JpZ2luJywgJ2NlbnRlcicpLFxuICAgICAgZmlyc3Q6IHtcbiAgICAgICAgb3BhY2l0eTogMSxcbiAgICAgICAgc2NhbGU6IDEwMFxuICAgICAgfSxcbiAgICAgIHNlY29uZDoge1xuICAgICAgICBvcGFjaXR5OiAwLFxuICAgICAgICBzY2FsZTogbW9kaWZpZXJWYWx1ZShtb2RpZmllcnMsICdzY2FsZScsIDk1KVxuICAgICAgfVxuICAgIH07XG4gICAgdHJhbnNpdGlvbkhlbHBlcihlbCwgbW9kaWZpZXJzLCAoKSA9PiB7fSwgaGlkZUNhbGxiYWNrLCByZWplY3QsIHN0eWxlVmFsdWVzLCBUUkFOU0lUSU9OX1RZUEVfT1VUKTtcbiAgfVxuXG4gIGZ1bmN0aW9uIG1vZGlmaWVyVmFsdWUobW9kaWZpZXJzLCBrZXksIGZhbGxiYWNrKSB7XG4gICAgLy8gSWYgdGhlIG1vZGlmaWVyIGlzbid0IHByZXNlbnQsIHVzZSB0aGUgZGVmYXVsdC5cbiAgICBpZiAobW9kaWZpZXJzLmluZGV4T2Yoa2V5KSA9PT0gLTEpIHJldHVybiBmYWxsYmFjazsgLy8gSWYgaXQgSVMgcHJlc2VudCwgZ3JhYiB0aGUgdmFsdWUgYWZ0ZXIgaXQ6IHgtc2hvdy50cmFuc2l0aW9uLmR1cmF0aW9uLjUwMG1zXG5cbiAgICBjb25zdCByYXdWYWx1ZSA9IG1vZGlmaWVyc1ttb2RpZmllcnMuaW5kZXhPZihrZXkpICsgMV07XG4gICAgaWYgKCFyYXdWYWx1ZSkgcmV0dXJuIGZhbGxiYWNrO1xuXG4gICAgaWYgKGtleSA9PT0gJ3NjYWxlJykge1xuICAgICAgLy8gQ2hlY2sgaWYgdGhlIHZlcnkgbmV4dCB2YWx1ZSBpcyBOT1QgYSBudW1iZXIgYW5kIHJldHVybiB0aGUgZmFsbGJhY2suXG4gICAgICAvLyBJZiB4LXNob3cudHJhbnNpdGlvbi5zY2FsZSwgd2UnbGwgdXNlIHRoZSBkZWZhdWx0IHNjYWxlIHZhbHVlLlxuICAgICAgLy8gVGhhdCBpcyBob3cgYSB1c2VyIG9wdHMgb3V0IG9mIHRoZSBvcGFjaXR5IHRyYW5zaXRpb24uXG4gICAgICBpZiAoIWlzTnVtZXJpYyhyYXdWYWx1ZSkpIHJldHVybiBmYWxsYmFjaztcbiAgICB9XG5cbiAgICBpZiAoa2V5ID09PSAnZHVyYXRpb24nKSB7XG4gICAgICAvLyBTdXBwb3J0IHgtc2hvdy50cmFuc2l0aW9uLmR1cmF0aW9uLjUwMG1zICYmIGR1cmF0aW9uLjUwMFxuICAgICAgbGV0IG1hdGNoID0gcmF3VmFsdWUubWF0Y2goLyhbMC05XSspbXMvKTtcbiAgICAgIGlmIChtYXRjaCkgcmV0dXJuIG1hdGNoWzFdO1xuICAgIH1cblxuICAgIGlmIChrZXkgPT09ICdvcmlnaW4nKSB7XG4gICAgICAvLyBTdXBwb3J0IGNoYWluaW5nIG9yaWdpbiBkaXJlY3Rpb25zOiB4LXNob3cudHJhbnNpdGlvbi50b3AucmlnaHRcbiAgICAgIGlmIChbJ3RvcCcsICdyaWdodCcsICdsZWZ0JywgJ2NlbnRlcicsICdib3R0b20nXS5pbmNsdWRlcyhtb2RpZmllcnNbbW9kaWZpZXJzLmluZGV4T2Yoa2V5KSArIDJdKSkge1xuICAgICAgICByZXR1cm4gW3Jhd1ZhbHVlLCBtb2RpZmllcnNbbW9kaWZpZXJzLmluZGV4T2Yoa2V5KSArIDJdXS5qb2luKCcgJyk7XG4gICAgICB9XG4gICAgfVxuXG4gICAgcmV0dXJuIHJhd1ZhbHVlO1xuICB9XG5cbiAgZnVuY3Rpb24gdHJhbnNpdGlvbkhlbHBlcihlbCwgbW9kaWZpZXJzLCBob29rMSwgaG9vazIsIHJlamVjdCwgc3R5bGVWYWx1ZXMsIHR5cGUpIHtcbiAgICAvLyBjbGVhciB0aGUgcHJldmlvdXMgdHJhbnNpdGlvbiBpZiBleGlzdHMgdG8gYXZvaWQgY2FjaGluZyB0aGUgd3Jvbmcgc3R5bGVzXG4gICAgaWYgKGVsLl9feF90cmFuc2l0aW9uKSB7XG4gICAgICBlbC5fX3hfdHJhbnNpdGlvbi5jYW5jZWwgJiYgZWwuX194X3RyYW5zaXRpb24uY2FuY2VsKCk7XG4gICAgfSAvLyBJZiB0aGUgdXNlciBzZXQgdGhlc2Ugc3R5bGUgdmFsdWVzLCB3ZSdsbCBwdXQgdGhlbSBiYWNrIHdoZW4gd2UncmUgZG9uZSB3aXRoIHRoZW0uXG5cblxuICAgIGNvbnN0IG9wYWNpdHlDYWNoZSA9IGVsLnN0eWxlLm9wYWNpdHk7XG4gICAgY29uc3QgdHJhbnNmb3JtQ2FjaGUgPSBlbC5zdHlsZS50cmFuc2Zvcm07XG4gICAgY29uc3QgdHJhbnNmb3JtT3JpZ2luQ2FjaGUgPSBlbC5zdHlsZS50cmFuc2Zvcm1PcmlnaW47IC8vIElmIG5vIG1vZGlmaWVycyBhcmUgcHJlc2VudDogeC1zaG93LnRyYW5zaXRpb24sIHdlJ2xsIGRlZmF1bHQgdG8gYm90aCBvcGFjaXR5IGFuZCBzY2FsZS5cblxuICAgIGNvbnN0IG5vTW9kaWZpZXJzID0gIW1vZGlmaWVycy5pbmNsdWRlcygnb3BhY2l0eScpICYmICFtb2RpZmllcnMuaW5jbHVkZXMoJ3NjYWxlJyk7XG4gICAgY29uc3QgdHJhbnNpdGlvbk9wYWNpdHkgPSBub01vZGlmaWVycyB8fCBtb2RpZmllcnMuaW5jbHVkZXMoJ29wYWNpdHknKTtcbiAgICBjb25zdCB0cmFuc2l0aW9uU2NhbGUgPSBub01vZGlmaWVycyB8fCBtb2RpZmllcnMuaW5jbHVkZXMoJ3NjYWxlJyk7IC8vIFRoZXNlIGFyZSB0aGUgZXhwbGljaXQgc3RhZ2VzIG9mIGEgdHJhbnNpdGlvbiAoc2FtZSBzdGFnZXMgZm9yIGluIGFuZCBmb3Igb3V0KS5cbiAgICAvLyBUaGlzIHdheSB5b3UgY2FuIGdldCBhIGJpcmRzIGV5ZSB2aWV3IG9mIHRoZSBob29rcywgYW5kIHRoZSBkaWZmZXJlbmNlc1xuICAgIC8vIGJldHdlZW4gdGhlbS5cblxuICAgIGNvbnN0IHN0YWdlcyA9IHtcbiAgICAgIHN0YXJ0KCkge1xuICAgICAgICBpZiAodHJhbnNpdGlvbk9wYWNpdHkpIGVsLnN0eWxlLm9wYWNpdHkgPSBzdHlsZVZhbHVlcy5maXJzdC5vcGFjaXR5O1xuICAgICAgICBpZiAodHJhbnNpdGlvblNjYWxlKSBlbC5zdHlsZS50cmFuc2Zvcm0gPSBgc2NhbGUoJHtzdHlsZVZhbHVlcy5maXJzdC5zY2FsZSAvIDEwMH0pYDtcbiAgICAgIH0sXG5cbiAgICAgIGR1cmluZygpIHtcbiAgICAgICAgaWYgKHRyYW5zaXRpb25TY2FsZSkgZWwuc3R5bGUudHJhbnNmb3JtT3JpZ2luID0gc3R5bGVWYWx1ZXMub3JpZ2luO1xuICAgICAgICBlbC5zdHlsZS50cmFuc2l0aW9uUHJvcGVydHkgPSBbdHJhbnNpdGlvbk9wYWNpdHkgPyBgb3BhY2l0eWAgOiBgYCwgdHJhbnNpdGlvblNjYWxlID8gYHRyYW5zZm9ybWAgOiBgYF0uam9pbignICcpLnRyaW0oKTtcbiAgICAgICAgZWwuc3R5bGUudHJhbnNpdGlvbkR1cmF0aW9uID0gYCR7c3R5bGVWYWx1ZXMuZHVyYXRpb24gLyAxMDAwfXNgO1xuICAgICAgICBlbC5zdHlsZS50cmFuc2l0aW9uVGltaW5nRnVuY3Rpb24gPSBgY3ViaWMtYmV6aWVyKDAuNCwgMC4wLCAwLjIsIDEpYDtcbiAgICAgIH0sXG5cbiAgICAgIHNob3coKSB7XG4gICAgICAgIGhvb2sxKCk7XG4gICAgICB9LFxuXG4gICAgICBlbmQoKSB7XG4gICAgICAgIGlmICh0cmFuc2l0aW9uT3BhY2l0eSkgZWwuc3R5bGUub3BhY2l0eSA9IHN0eWxlVmFsdWVzLnNlY29uZC5vcGFjaXR5O1xuICAgICAgICBpZiAodHJhbnNpdGlvblNjYWxlKSBlbC5zdHlsZS50cmFuc2Zvcm0gPSBgc2NhbGUoJHtzdHlsZVZhbHVlcy5zZWNvbmQuc2NhbGUgLyAxMDB9KWA7XG4gICAgICB9LFxuXG4gICAgICBoaWRlKCkge1xuICAgICAgICBob29rMigpO1xuICAgICAgfSxcblxuICAgICAgY2xlYW51cCgpIHtcbiAgICAgICAgaWYgKHRyYW5zaXRpb25PcGFjaXR5KSBlbC5zdHlsZS5vcGFjaXR5ID0gb3BhY2l0eUNhY2hlO1xuICAgICAgICBpZiAodHJhbnNpdGlvblNjYWxlKSBlbC5zdHlsZS50cmFuc2Zvcm0gPSB0cmFuc2Zvcm1DYWNoZTtcbiAgICAgICAgaWYgKHRyYW5zaXRpb25TY2FsZSkgZWwuc3R5bGUudHJhbnNmb3JtT3JpZ2luID0gdHJhbnNmb3JtT3JpZ2luQ2FjaGU7XG4gICAgICAgIGVsLnN0eWxlLnRyYW5zaXRpb25Qcm9wZXJ0eSA9IG51bGw7XG4gICAgICAgIGVsLnN0eWxlLnRyYW5zaXRpb25EdXJhdGlvbiA9IG51bGw7XG4gICAgICAgIGVsLnN0eWxlLnRyYW5zaXRpb25UaW1pbmdGdW5jdGlvbiA9IG51bGw7XG4gICAgICB9XG5cbiAgICB9O1xuICAgIHRyYW5zaXRpb24oZWwsIHN0YWdlcywgdHlwZSwgcmVqZWN0KTtcbiAgfVxuXG4gIGNvbnN0IGVuc3VyZVN0cmluZ0V4cHJlc3Npb24gPSAoZXhwcmVzc2lvbiwgZWwsIGNvbXBvbmVudCkgPT4ge1xuICAgIHJldHVybiB0eXBlb2YgZXhwcmVzc2lvbiA9PT0gJ2Z1bmN0aW9uJyA/IGNvbXBvbmVudC5ldmFsdWF0ZVJldHVybkV4cHJlc3Npb24oZWwsIGV4cHJlc3Npb24pIDogZXhwcmVzc2lvbjtcbiAgfTtcblxuICBmdW5jdGlvbiB0cmFuc2l0aW9uQ2xhc3Nlc0luKGVsLCBjb21wb25lbnQsIGRpcmVjdGl2ZXMsIHNob3dDYWxsYmFjaywgcmVqZWN0KSB7XG4gICAgY29uc3QgZW50ZXIgPSBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KGVuc3VyZVN0cmluZ0V4cHJlc3Npb24oKGRpcmVjdGl2ZXMuZmluZChpID0+IGkudmFsdWUgPT09ICdlbnRlcicpIHx8IHtcbiAgICAgIGV4cHJlc3Npb246ICcnXG4gICAgfSkuZXhwcmVzc2lvbiwgZWwsIGNvbXBvbmVudCkpO1xuICAgIGNvbnN0IGVudGVyU3RhcnQgPSBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KGVuc3VyZVN0cmluZ0V4cHJlc3Npb24oKGRpcmVjdGl2ZXMuZmluZChpID0+IGkudmFsdWUgPT09ICdlbnRlci1zdGFydCcpIHx8IHtcbiAgICAgIGV4cHJlc3Npb246ICcnXG4gICAgfSkuZXhwcmVzc2lvbiwgZWwsIGNvbXBvbmVudCkpO1xuICAgIGNvbnN0IGVudGVyRW5kID0gY29udmVydENsYXNzU3RyaW5nVG9BcnJheShlbnN1cmVTdHJpbmdFeHByZXNzaW9uKChkaXJlY3RpdmVzLmZpbmQoaSA9PiBpLnZhbHVlID09PSAnZW50ZXItZW5kJykgfHwge1xuICAgICAgZXhwcmVzc2lvbjogJydcbiAgICB9KS5leHByZXNzaW9uLCBlbCwgY29tcG9uZW50KSk7XG4gICAgdHJhbnNpdGlvbkNsYXNzZXMoZWwsIGVudGVyLCBlbnRlclN0YXJ0LCBlbnRlckVuZCwgc2hvd0NhbGxiYWNrLCAoKSA9PiB7fSwgVFJBTlNJVElPTl9UWVBFX0lOLCByZWplY3QpO1xuICB9XG4gIGZ1bmN0aW9uIHRyYW5zaXRpb25DbGFzc2VzT3V0KGVsLCBjb21wb25lbnQsIGRpcmVjdGl2ZXMsIGhpZGVDYWxsYmFjaywgcmVqZWN0KSB7XG4gICAgY29uc3QgbGVhdmUgPSBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KGVuc3VyZVN0cmluZ0V4cHJlc3Npb24oKGRpcmVjdGl2ZXMuZmluZChpID0+IGkudmFsdWUgPT09ICdsZWF2ZScpIHx8IHtcbiAgICAgIGV4cHJlc3Npb246ICcnXG4gICAgfSkuZXhwcmVzc2lvbiwgZWwsIGNvbXBvbmVudCkpO1xuICAgIGNvbnN0IGxlYXZlU3RhcnQgPSBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KGVuc3VyZVN0cmluZ0V4cHJlc3Npb24oKGRpcmVjdGl2ZXMuZmluZChpID0+IGkudmFsdWUgPT09ICdsZWF2ZS1zdGFydCcpIHx8IHtcbiAgICAgIGV4cHJlc3Npb246ICcnXG4gICAgfSkuZXhwcmVzc2lvbiwgZWwsIGNvbXBvbmVudCkpO1xuICAgIGNvbnN0IGxlYXZlRW5kID0gY29udmVydENsYXNzU3RyaW5nVG9BcnJheShlbnN1cmVTdHJpbmdFeHByZXNzaW9uKChkaXJlY3RpdmVzLmZpbmQoaSA9PiBpLnZhbHVlID09PSAnbGVhdmUtZW5kJykgfHwge1xuICAgICAgZXhwcmVzc2lvbjogJydcbiAgICB9KS5leHByZXNzaW9uLCBlbCwgY29tcG9uZW50KSk7XG4gICAgdHJhbnNpdGlvbkNsYXNzZXMoZWwsIGxlYXZlLCBsZWF2ZVN0YXJ0LCBsZWF2ZUVuZCwgKCkgPT4ge30sIGhpZGVDYWxsYmFjaywgVFJBTlNJVElPTl9UWVBFX09VVCwgcmVqZWN0KTtcbiAgfVxuICBmdW5jdGlvbiB0cmFuc2l0aW9uQ2xhc3NlcyhlbCwgY2xhc3Nlc0R1cmluZywgY2xhc3Nlc1N0YXJ0LCBjbGFzc2VzRW5kLCBob29rMSwgaG9vazIsIHR5cGUsIHJlamVjdCkge1xuICAgIC8vIGNsZWFyIHRoZSBwcmV2aW91cyB0cmFuc2l0aW9uIGlmIGV4aXN0cyB0byBhdm9pZCBjYWNoaW5nIHRoZSB3cm9uZyBjbGFzc2VzXG4gICAgaWYgKGVsLl9feF90cmFuc2l0aW9uKSB7XG4gICAgICBlbC5fX3hfdHJhbnNpdGlvbi5jYW5jZWwgJiYgZWwuX194X3RyYW5zaXRpb24uY2FuY2VsKCk7XG4gICAgfVxuXG4gICAgY29uc3Qgb3JpZ2luYWxDbGFzc2VzID0gZWwuX194X29yaWdpbmFsX2NsYXNzZXMgfHwgW107XG4gICAgY29uc3Qgc3RhZ2VzID0ge1xuICAgICAgc3RhcnQoKSB7XG4gICAgICAgIGVsLmNsYXNzTGlzdC5hZGQoLi4uY2xhc3Nlc1N0YXJ0KTtcbiAgICAgIH0sXG5cbiAgICAgIGR1cmluZygpIHtcbiAgICAgICAgZWwuY2xhc3NMaXN0LmFkZCguLi5jbGFzc2VzRHVyaW5nKTtcbiAgICAgIH0sXG5cbiAgICAgIHNob3coKSB7XG4gICAgICAgIGhvb2sxKCk7XG4gICAgICB9LFxuXG4gICAgICBlbmQoKSB7XG4gICAgICAgIC8vIERvbid0IHJlbW92ZSBjbGFzc2VzIHRoYXQgd2VyZSBpbiB0aGUgb3JpZ2luYWwgY2xhc3MgYXR0cmlidXRlLlxuICAgICAgICBlbC5jbGFzc0xpc3QucmVtb3ZlKC4uLmNsYXNzZXNTdGFydC5maWx0ZXIoaSA9PiAhb3JpZ2luYWxDbGFzc2VzLmluY2x1ZGVzKGkpKSk7XG4gICAgICAgIGVsLmNsYXNzTGlzdC5hZGQoLi4uY2xhc3Nlc0VuZCk7XG4gICAgICB9LFxuXG4gICAgICBoaWRlKCkge1xuICAgICAgICBob29rMigpO1xuICAgICAgfSxcblxuICAgICAgY2xlYW51cCgpIHtcbiAgICAgICAgZWwuY2xhc3NMaXN0LnJlbW92ZSguLi5jbGFzc2VzRHVyaW5nLmZpbHRlcihpID0+ICFvcmlnaW5hbENsYXNzZXMuaW5jbHVkZXMoaSkpKTtcbiAgICAgICAgZWwuY2xhc3NMaXN0LnJlbW92ZSguLi5jbGFzc2VzRW5kLmZpbHRlcihpID0+ICFvcmlnaW5hbENsYXNzZXMuaW5jbHVkZXMoaSkpKTtcbiAgICAgIH1cblxuICAgIH07XG4gICAgdHJhbnNpdGlvbihlbCwgc3RhZ2VzLCB0eXBlLCByZWplY3QpO1xuICB9XG4gIGZ1bmN0aW9uIHRyYW5zaXRpb24oZWwsIHN0YWdlcywgdHlwZSwgcmVqZWN0KSB7XG4gICAgY29uc3QgZmluaXNoID0gb25jZSgoKSA9PiB7XG4gICAgICBzdGFnZXMuaGlkZSgpOyAvLyBBZGRpbmcgYW4gXCJpc0Nvbm5lY3RlZFwiIGNoZWNrLCBpbiBjYXNlIHRoZSBjYWxsYmFja1xuICAgICAgLy8gcmVtb3ZlZCB0aGUgZWxlbWVudCBmcm9tIHRoZSBET00uXG5cbiAgICAgIGlmIChlbC5pc0Nvbm5lY3RlZCkge1xuICAgICAgICBzdGFnZXMuY2xlYW51cCgpO1xuICAgICAgfVxuXG4gICAgICBkZWxldGUgZWwuX194X3RyYW5zaXRpb247XG4gICAgfSk7XG4gICAgZWwuX194X3RyYW5zaXRpb24gPSB7XG4gICAgICAvLyBTZXQgdHJhbnNpdGlvbiB0eXBlIHNvIHdlIGNhbiBhdm9pZCBjbGVhcmluZyB0cmFuc2l0aW9uIGlmIHRoZSBkaXJlY3Rpb24gaXMgdGhlIHNhbWVcbiAgICAgIHR5cGU6IHR5cGUsXG4gICAgICAvLyBjcmVhdGUgYSBjYWxsYmFjayBmb3IgdGhlIGxhc3Qgc3RhZ2VzIG9mIHRoZSB0cmFuc2l0aW9uIHNvIHdlIGNhbiBjYWxsIGl0XG4gICAgICAvLyBmcm9tIGRpZmZlcmVudCBwb2ludCBhbmQgZWFybHkgdGVybWluYXRlIGl0LiBPbmNlIHdpbGwgZW5zdXJlIHRoYXQgZnVuY3Rpb25cbiAgICAgIC8vIGlzIG9ubHkgY2FsbGVkIG9uZSB0aW1lLlxuICAgICAgY2FuY2VsOiBvbmNlKCgpID0+IHtcbiAgICAgICAgcmVqZWN0KFRSQU5TSVRJT05fQ0FOQ0VMTEVEKTtcbiAgICAgICAgZmluaXNoKCk7XG4gICAgICB9KSxcbiAgICAgIGZpbmlzaCxcbiAgICAgIC8vIFRoaXMgc3RvcmUgdGhlIG5leHQgYW5pbWF0aW9uIGZyYW1lIHNvIHdlIGNhbiBjYW5jZWwgaXRcbiAgICAgIG5leHRGcmFtZTogbnVsbFxuICAgIH07XG4gICAgc3RhZ2VzLnN0YXJ0KCk7XG4gICAgc3RhZ2VzLmR1cmluZygpO1xuICAgIGVsLl9feF90cmFuc2l0aW9uLm5leHRGcmFtZSA9IHJlcXVlc3RBbmltYXRpb25GcmFtZSgoKSA9PiB7XG4gICAgICAvLyBOb3RlOiBTYWZhcmkncyB0cmFuc2l0aW9uRHVyYXRpb24gcHJvcGVydHkgd2lsbCBsaXN0IG91dCBjb21tYSBzZXBhcmF0ZWQgdHJhbnNpdGlvbiBkdXJhdGlvbnNcbiAgICAgIC8vIGZvciBldmVyeSBzaW5nbGUgdHJhbnNpdGlvbiBwcm9wZXJ0eS4gTGV0J3MgZ3JhYiB0aGUgZmlyc3Qgb25lIGFuZCBjYWxsIGl0IGEgZGF5LlxuICAgICAgbGV0IGR1cmF0aW9uID0gTnVtYmVyKGdldENvbXB1dGVkU3R5bGUoZWwpLnRyYW5zaXRpb25EdXJhdGlvbi5yZXBsYWNlKC8sLiovLCAnJykucmVwbGFjZSgncycsICcnKSkgKiAxMDAwO1xuXG4gICAgICBpZiAoZHVyYXRpb24gPT09IDApIHtcbiAgICAgICAgZHVyYXRpb24gPSBOdW1iZXIoZ2V0Q29tcHV0ZWRTdHlsZShlbCkuYW5pbWF0aW9uRHVyYXRpb24ucmVwbGFjZSgncycsICcnKSkgKiAxMDAwO1xuICAgICAgfVxuXG4gICAgICBzdGFnZXMuc2hvdygpO1xuICAgICAgZWwuX194X3RyYW5zaXRpb24ubmV4dEZyYW1lID0gcmVxdWVzdEFuaW1hdGlvbkZyYW1lKCgpID0+IHtcbiAgICAgICAgc3RhZ2VzLmVuZCgpO1xuICAgICAgICBzZXRUaW1lb3V0KGVsLl9feF90cmFuc2l0aW9uLmZpbmlzaCwgZHVyYXRpb24pO1xuICAgICAgfSk7XG4gICAgfSk7XG4gIH1cbiAgZnVuY3Rpb24gaXNOdW1lcmljKHN1YmplY3QpIHtcbiAgICByZXR1cm4gIUFycmF5LmlzQXJyYXkoc3ViamVjdCkgJiYgIWlzTmFOKHN1YmplY3QpO1xuICB9IC8vIFRoYW5rcyBAdnVlanNcbiAgLy8gaHR0cHM6Ly9naXRodWIuY29tL3Z1ZWpzL3Z1ZS9ibG9iLzRkZTQ2NDlkOTYzNzI2MmE5YjAwNzcyMGI1OWY4MGFjNzJhNTYyMGMvc3JjL3NoYXJlZC91dGlsLmpzXG5cbiAgZnVuY3Rpb24gb25jZShjYWxsYmFjaykge1xuICAgIGxldCBjYWxsZWQgPSBmYWxzZTtcbiAgICByZXR1cm4gZnVuY3Rpb24gKCkge1xuICAgICAgaWYgKCFjYWxsZWQpIHtcbiAgICAgICAgY2FsbGVkID0gdHJ1ZTtcbiAgICAgICAgY2FsbGJhY2suYXBwbHkodGhpcywgYXJndW1lbnRzKTtcbiAgICAgIH1cbiAgICB9O1xuICB9XG5cbiAgZnVuY3Rpb24gaGFuZGxlRm9yRGlyZWN0aXZlKGNvbXBvbmVudCwgdGVtcGxhdGVFbCwgZXhwcmVzc2lvbiwgaW5pdGlhbFVwZGF0ZSwgZXh0cmFWYXJzKSB7XG4gICAgd2FybklmTWFsZm9ybWVkVGVtcGxhdGUodGVtcGxhdGVFbCwgJ3gtZm9yJyk7XG4gICAgbGV0IGl0ZXJhdG9yTmFtZXMgPSB0eXBlb2YgZXhwcmVzc2lvbiA9PT0gJ2Z1bmN0aW9uJyA/IHBhcnNlRm9yRXhwcmVzc2lvbihjb21wb25lbnQuZXZhbHVhdGVSZXR1cm5FeHByZXNzaW9uKHRlbXBsYXRlRWwsIGV4cHJlc3Npb24pKSA6IHBhcnNlRm9yRXhwcmVzc2lvbihleHByZXNzaW9uKTtcbiAgICBsZXQgaXRlbXMgPSBldmFsdWF0ZUl0ZW1zQW5kUmV0dXJuRW1wdHlJZlhJZklzUHJlc2VudEFuZEZhbHNlT25FbGVtZW50KGNvbXBvbmVudCwgdGVtcGxhdGVFbCwgaXRlcmF0b3JOYW1lcywgZXh0cmFWYXJzKTsgLy8gQXMgd2Ugd2FsayB0aGUgYXJyYXksIHdlJ2xsIGFsc28gd2FsayB0aGUgRE9NICh1cGRhdGluZy9jcmVhdGluZyBhcyB3ZSBnbykuXG5cbiAgICBsZXQgY3VycmVudEVsID0gdGVtcGxhdGVFbDtcbiAgICBpdGVtcy5mb3JFYWNoKChpdGVtLCBpbmRleCkgPT4ge1xuICAgICAgbGV0IGl0ZXJhdGlvblNjb3BlVmFyaWFibGVzID0gZ2V0SXRlcmF0aW9uU2NvcGVWYXJpYWJsZXMoaXRlcmF0b3JOYW1lcywgaXRlbSwgaW5kZXgsIGl0ZW1zLCBleHRyYVZhcnMoKSk7XG4gICAgICBsZXQgY3VycmVudEtleSA9IGdlbmVyYXRlS2V5Rm9ySXRlcmF0aW9uKGNvbXBvbmVudCwgdGVtcGxhdGVFbCwgaW5kZXgsIGl0ZXJhdGlvblNjb3BlVmFyaWFibGVzKTtcbiAgICAgIGxldCBuZXh0RWwgPSBsb29rQWhlYWRGb3JNYXRjaGluZ0tleWVkRWxlbWVudEFuZE1vdmVJdElmRm91bmQoY3VycmVudEVsLm5leHRFbGVtZW50U2libGluZywgY3VycmVudEtleSk7IC8vIElmIHdlIGhhdmVuJ3QgZm91bmQgYSBtYXRjaGluZyBrZXksIGluc2VydCB0aGUgZWxlbWVudCBhdCB0aGUgY3VycmVudCBwb3NpdGlvbi5cblxuICAgICAgaWYgKCFuZXh0RWwpIHtcbiAgICAgICAgbmV4dEVsID0gYWRkRWxlbWVudEluTG9vcEFmdGVyQ3VycmVudEVsKHRlbXBsYXRlRWwsIGN1cnJlbnRFbCk7IC8vIEFuZCB0cmFuc2l0aW9uIGl0IGluIGlmIGl0J3Mgbm90IHRoZSBmaXJzdCBwYWdlIGxvYWQuXG5cbiAgICAgICAgdHJhbnNpdGlvbkluKG5leHRFbCwgKCkgPT4ge30sICgpID0+IHt9LCBjb21wb25lbnQsIGluaXRpYWxVcGRhdGUpO1xuICAgICAgICBuZXh0RWwuX194X2ZvciA9IGl0ZXJhdGlvblNjb3BlVmFyaWFibGVzO1xuICAgICAgICBjb21wb25lbnQuaW5pdGlhbGl6ZUVsZW1lbnRzKG5leHRFbCwgKCkgPT4gbmV4dEVsLl9feF9mb3IpOyAvLyBPdGhlcndpc2UgdXBkYXRlIHRoZSBlbGVtZW50IHdlIGZvdW5kLlxuICAgICAgfSBlbHNlIHtcbiAgICAgICAgLy8gVGVtcG9yYXJpbHkgcmVtb3ZlIHRoZSBrZXkgaW5kaWNhdG9yIHRvIGFsbG93IHRoZSBub3JtYWwgXCJ1cGRhdGVFbGVtZW50c1wiIHRvIHdvcmsuXG4gICAgICAgIGRlbGV0ZSBuZXh0RWwuX194X2Zvcl9rZXk7XG4gICAgICAgIG5leHRFbC5fX3hfZm9yID0gaXRlcmF0aW9uU2NvcGVWYXJpYWJsZXM7XG4gICAgICAgIGNvbXBvbmVudC51cGRhdGVFbGVtZW50cyhuZXh0RWwsICgpID0+IG5leHRFbC5fX3hfZm9yKTtcbiAgICAgIH1cblxuICAgICAgY3VycmVudEVsID0gbmV4dEVsO1xuICAgICAgY3VycmVudEVsLl9feF9mb3Jfa2V5ID0gY3VycmVudEtleTtcbiAgICB9KTtcbiAgICByZW1vdmVBbnlMZWZ0T3ZlckVsZW1lbnRzRnJvbVByZXZpb3VzVXBkYXRlKGN1cnJlbnRFbCwgY29tcG9uZW50KTtcbiAgfSAvLyBUaGlzIHdhcyB0YWtlbiBmcm9tIFZ1ZUpTIDIuKiBjb3JlLiBUaGFua3MgVnVlIVxuXG4gIGZ1bmN0aW9uIHBhcnNlRm9yRXhwcmVzc2lvbihleHByZXNzaW9uKSB7XG4gICAgbGV0IGZvckl0ZXJhdG9yUkUgPSAvLChbXixcXH1cXF1dKikoPzosKFteLFxcfVxcXV0qKSk/JC87XG4gICAgbGV0IHN0cmlwUGFyZW5zUkUgPSAvXlxcKHxcXCkkL2c7XG4gICAgbGV0IGZvckFsaWFzUkUgPSAvKFtcXHNcXFNdKj8pXFxzKyg/OmlufG9mKVxccysoW1xcc1xcU10qKS87XG4gICAgbGV0IGluTWF0Y2ggPSBTdHJpbmcoZXhwcmVzc2lvbikubWF0Y2goZm9yQWxpYXNSRSk7XG4gICAgaWYgKCFpbk1hdGNoKSByZXR1cm47XG4gICAgbGV0IHJlcyA9IHt9O1xuICAgIHJlcy5pdGVtcyA9IGluTWF0Y2hbMl0udHJpbSgpO1xuICAgIGxldCBpdGVtID0gaW5NYXRjaFsxXS50cmltKCkucmVwbGFjZShzdHJpcFBhcmVuc1JFLCAnJyk7XG4gICAgbGV0IGl0ZXJhdG9yTWF0Y2ggPSBpdGVtLm1hdGNoKGZvckl0ZXJhdG9yUkUpO1xuXG4gICAgaWYgKGl0ZXJhdG9yTWF0Y2gpIHtcbiAgICAgIHJlcy5pdGVtID0gaXRlbS5yZXBsYWNlKGZvckl0ZXJhdG9yUkUsICcnKS50cmltKCk7XG4gICAgICByZXMuaW5kZXggPSBpdGVyYXRvck1hdGNoWzFdLnRyaW0oKTtcblxuICAgICAgaWYgKGl0ZXJhdG9yTWF0Y2hbMl0pIHtcbiAgICAgICAgcmVzLmNvbGxlY3Rpb24gPSBpdGVyYXRvck1hdGNoWzJdLnRyaW0oKTtcbiAgICAgIH1cbiAgICB9IGVsc2Uge1xuICAgICAgcmVzLml0ZW0gPSBpdGVtO1xuICAgIH1cblxuICAgIHJldHVybiByZXM7XG4gIH1cblxuICBmdW5jdGlvbiBnZXRJdGVyYXRpb25TY29wZVZhcmlhYmxlcyhpdGVyYXRvck5hbWVzLCBpdGVtLCBpbmRleCwgaXRlbXMsIGV4dHJhVmFycykge1xuICAgIC8vIFdlIG11c3QgY3JlYXRlIGEgbmV3IG9iamVjdCwgc28gZWFjaCBpdGVyYXRpb24gaGFzIGEgbmV3IHNjb3BlXG4gICAgbGV0IHNjb3BlVmFyaWFibGVzID0gZXh0cmFWYXJzID8gX29iamVjdFNwcmVhZDIoe30sIGV4dHJhVmFycykgOiB7fTtcbiAgICBzY29wZVZhcmlhYmxlc1tpdGVyYXRvck5hbWVzLml0ZW1dID0gaXRlbTtcbiAgICBpZiAoaXRlcmF0b3JOYW1lcy5pbmRleCkgc2NvcGVWYXJpYWJsZXNbaXRlcmF0b3JOYW1lcy5pbmRleF0gPSBpbmRleDtcbiAgICBpZiAoaXRlcmF0b3JOYW1lcy5jb2xsZWN0aW9uKSBzY29wZVZhcmlhYmxlc1tpdGVyYXRvck5hbWVzLmNvbGxlY3Rpb25dID0gaXRlbXM7XG4gICAgcmV0dXJuIHNjb3BlVmFyaWFibGVzO1xuICB9XG5cbiAgZnVuY3Rpb24gZ2VuZXJhdGVLZXlGb3JJdGVyYXRpb24oY29tcG9uZW50LCBlbCwgaW5kZXgsIGl0ZXJhdGlvblNjb3BlVmFyaWFibGVzKSB7XG4gICAgbGV0IGJpbmRLZXlBdHRyaWJ1dGUgPSBnZXRYQXR0cnMoZWwsIGNvbXBvbmVudCwgJ2JpbmQnKS5maWx0ZXIoYXR0ciA9PiBhdHRyLnZhbHVlID09PSAna2V5JylbMF07IC8vIElmIHRoZSBkZXYgaGFzbid0IHNwZWNpZmllZCBhIGtleSwganVzdCByZXR1cm4gdGhlIGluZGV4IG9mIHRoZSBpdGVyYXRpb24uXG5cbiAgICBpZiAoIWJpbmRLZXlBdHRyaWJ1dGUpIHJldHVybiBpbmRleDtcbiAgICByZXR1cm4gY29tcG9uZW50LmV2YWx1YXRlUmV0dXJuRXhwcmVzc2lvbihlbCwgYmluZEtleUF0dHJpYnV0ZS5leHByZXNzaW9uLCAoKSA9PiBpdGVyYXRpb25TY29wZVZhcmlhYmxlcyk7XG4gIH1cblxuICBmdW5jdGlvbiBldmFsdWF0ZUl0ZW1zQW5kUmV0dXJuRW1wdHlJZlhJZklzUHJlc2VudEFuZEZhbHNlT25FbGVtZW50KGNvbXBvbmVudCwgZWwsIGl0ZXJhdG9yTmFtZXMsIGV4dHJhVmFycykge1xuICAgIGxldCBpZkF0dHJpYnV0ZSA9IGdldFhBdHRycyhlbCwgY29tcG9uZW50LCAnaWYnKVswXTtcblxuICAgIGlmIChpZkF0dHJpYnV0ZSAmJiAhY29tcG9uZW50LmV2YWx1YXRlUmV0dXJuRXhwcmVzc2lvbihlbCwgaWZBdHRyaWJ1dGUuZXhwcmVzc2lvbikpIHtcbiAgICAgIHJldHVybiBbXTtcbiAgICB9XG5cbiAgICBsZXQgaXRlbXMgPSBjb21wb25lbnQuZXZhbHVhdGVSZXR1cm5FeHByZXNzaW9uKGVsLCBpdGVyYXRvck5hbWVzLml0ZW1zLCBleHRyYVZhcnMpOyAvLyBUaGlzIGFkZHMgc3VwcG9ydCBmb3IgdGhlIGBpIGluIG5gIHN5bnRheC5cblxuICAgIGlmIChpc051bWVyaWMoaXRlbXMpICYmIGl0ZW1zID49IDApIHtcbiAgICAgIGl0ZW1zID0gQXJyYXkuZnJvbShBcnJheShpdGVtcykua2V5cygpLCBpID0+IGkgKyAxKTtcbiAgICB9XG5cbiAgICByZXR1cm4gaXRlbXM7XG4gIH1cblxuICBmdW5jdGlvbiBhZGRFbGVtZW50SW5Mb29wQWZ0ZXJDdXJyZW50RWwodGVtcGxhdGVFbCwgY3VycmVudEVsKSB7XG4gICAgbGV0IGNsb25lID0gZG9jdW1lbnQuaW1wb3J0Tm9kZSh0ZW1wbGF0ZUVsLmNvbnRlbnQsIHRydWUpO1xuICAgIGN1cnJlbnRFbC5wYXJlbnRFbGVtZW50Lmluc2VydEJlZm9yZShjbG9uZSwgY3VycmVudEVsLm5leHRFbGVtZW50U2libGluZyk7XG4gICAgcmV0dXJuIGN1cnJlbnRFbC5uZXh0RWxlbWVudFNpYmxpbmc7XG4gIH1cblxuICBmdW5jdGlvbiBsb29rQWhlYWRGb3JNYXRjaGluZ0tleWVkRWxlbWVudEFuZE1vdmVJdElmRm91bmQobmV4dEVsLCBjdXJyZW50S2V5KSB7XG4gICAgaWYgKCFuZXh0RWwpIHJldHVybjsgLy8gSWYgd2UgYXJlIGFscmVhZHkgcGFzdCB0aGUgeC1mb3IgZ2VuZXJhdGVkIGVsZW1lbnRzLCB3ZSBkb24ndCBuZWVkIHRvIGxvb2sgYWhlYWQuXG5cbiAgICBpZiAobmV4dEVsLl9feF9mb3Jfa2V5ID09PSB1bmRlZmluZWQpIHJldHVybjsgLy8gSWYgdGhlIHRoZSBrZXkncyBETyBtYXRjaCwgbm8gbmVlZCB0byBsb29rIGFoZWFkLlxuXG4gICAgaWYgKG5leHRFbC5fX3hfZm9yX2tleSA9PT0gY3VycmVudEtleSkgcmV0dXJuIG5leHRFbDsgLy8gSWYgdGhleSBkb24ndCwgd2UnbGwgbG9vayBhaGVhZCBmb3IgYSBtYXRjaC5cbiAgICAvLyBJZiB3ZSBmaW5kIGl0LCB3ZSdsbCBtb3ZlIGl0IHRvIHRoZSBjdXJyZW50IHBvc2l0aW9uIGluIHRoZSBsb29wLlxuXG4gICAgbGV0IHRtcE5leHRFbCA9IG5leHRFbDtcblxuICAgIHdoaWxlICh0bXBOZXh0RWwpIHtcbiAgICAgIGlmICh0bXBOZXh0RWwuX194X2Zvcl9rZXkgPT09IGN1cnJlbnRLZXkpIHtcbiAgICAgICAgcmV0dXJuIHRtcE5leHRFbC5wYXJlbnRFbGVtZW50Lmluc2VydEJlZm9yZSh0bXBOZXh0RWwsIG5leHRFbCk7XG4gICAgICB9XG5cbiAgICAgIHRtcE5leHRFbCA9IHRtcE5leHRFbC5uZXh0RWxlbWVudFNpYmxpbmcgJiYgdG1wTmV4dEVsLm5leHRFbGVtZW50U2libGluZy5fX3hfZm9yX2tleSAhPT0gdW5kZWZpbmVkID8gdG1wTmV4dEVsLm5leHRFbGVtZW50U2libGluZyA6IGZhbHNlO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHJlbW92ZUFueUxlZnRPdmVyRWxlbWVudHNGcm9tUHJldmlvdXNVcGRhdGUoY3VycmVudEVsLCBjb21wb25lbnQpIHtcbiAgICB2YXIgbmV4dEVsZW1lbnRGcm9tT2xkTG9vcCA9IGN1cnJlbnRFbC5uZXh0RWxlbWVudFNpYmxpbmcgJiYgY3VycmVudEVsLm5leHRFbGVtZW50U2libGluZy5fX3hfZm9yX2tleSAhPT0gdW5kZWZpbmVkID8gY3VycmVudEVsLm5leHRFbGVtZW50U2libGluZyA6IGZhbHNlO1xuXG4gICAgd2hpbGUgKG5leHRFbGVtZW50RnJvbU9sZExvb3ApIHtcbiAgICAgIGxldCBuZXh0RWxlbWVudEZyb21PbGRMb29wSW1tdXRhYmxlID0gbmV4dEVsZW1lbnRGcm9tT2xkTG9vcDtcbiAgICAgIGxldCBuZXh0U2libGluZyA9IG5leHRFbGVtZW50RnJvbU9sZExvb3AubmV4dEVsZW1lbnRTaWJsaW5nO1xuICAgICAgdHJhbnNpdGlvbk91dChuZXh0RWxlbWVudEZyb21PbGRMb29wLCAoKSA9PiB7XG4gICAgICAgIG5leHRFbGVtZW50RnJvbU9sZExvb3BJbW11dGFibGUucmVtb3ZlKCk7XG4gICAgICB9LCAoKSA9PiB7fSwgY29tcG9uZW50KTtcbiAgICAgIG5leHRFbGVtZW50RnJvbU9sZExvb3AgPSBuZXh0U2libGluZyAmJiBuZXh0U2libGluZy5fX3hfZm9yX2tleSAhPT0gdW5kZWZpbmVkID8gbmV4dFNpYmxpbmcgOiBmYWxzZTtcbiAgICB9XG4gIH1cblxuICBmdW5jdGlvbiBoYW5kbGVBdHRyaWJ1dGVCaW5kaW5nRGlyZWN0aXZlKGNvbXBvbmVudCwgZWwsIGF0dHJOYW1lLCBleHByZXNzaW9uLCBleHRyYVZhcnMsIGF0dHJUeXBlLCBtb2RpZmllcnMpIHtcbiAgICB2YXIgdmFsdWUgPSBjb21wb25lbnQuZXZhbHVhdGVSZXR1cm5FeHByZXNzaW9uKGVsLCBleHByZXNzaW9uLCBleHRyYVZhcnMpO1xuXG4gICAgaWYgKGF0dHJOYW1lID09PSAndmFsdWUnKSB7XG4gICAgICBpZiAoQWxwaW5lLmlnbm9yZUZvY3VzZWRGb3JWYWx1ZUJpbmRpbmcgJiYgZG9jdW1lbnQuYWN0aXZlRWxlbWVudC5pc1NhbWVOb2RlKGVsKSkgcmV0dXJuOyAvLyBJZiBuZXN0ZWQgbW9kZWwga2V5IGlzIHVuZGVmaW5lZCwgc2V0IHRoZSBkZWZhdWx0IHZhbHVlIHRvIGVtcHR5IHN0cmluZy5cblxuICAgICAgaWYgKHZhbHVlID09PSB1bmRlZmluZWQgJiYgU3RyaW5nKGV4cHJlc3Npb24pLm1hdGNoKC9cXC4vKSkge1xuICAgICAgICB2YWx1ZSA9ICcnO1xuICAgICAgfVxuXG4gICAgICBpZiAoZWwudHlwZSA9PT0gJ3JhZGlvJykge1xuICAgICAgICAvLyBTZXQgcmFkaW8gdmFsdWUgZnJvbSB4LWJpbmQ6dmFsdWUsIGlmIG5vIFwidmFsdWVcIiBhdHRyaWJ1dGUgZXhpc3RzLlxuICAgICAgICAvLyBJZiB0aGVyZSBhcmUgYW55IGluaXRpYWwgc3RhdGUgdmFsdWVzLCByYWRpbyB3aWxsIGhhdmUgYSBjb3JyZWN0XG4gICAgICAgIC8vIFwiY2hlY2tlZFwiIHZhbHVlIHNpbmNlIHgtYmluZDp2YWx1ZSBpcyBwcm9jZXNzZWQgYmVmb3JlIHgtbW9kZWwuXG4gICAgICAgIGlmIChlbC5hdHRyaWJ1dGVzLnZhbHVlID09PSB1bmRlZmluZWQgJiYgYXR0clR5cGUgPT09ICdiaW5kJykge1xuICAgICAgICAgIGVsLnZhbHVlID0gdmFsdWU7XG4gICAgICAgIH0gZWxzZSBpZiAoYXR0clR5cGUgIT09ICdiaW5kJykge1xuICAgICAgICAgIGVsLmNoZWNrZWQgPSBjaGVja2VkQXR0ckxvb3NlQ29tcGFyZShlbC52YWx1ZSwgdmFsdWUpO1xuICAgICAgICB9XG4gICAgICB9IGVsc2UgaWYgKGVsLnR5cGUgPT09ICdjaGVja2JveCcpIHtcbiAgICAgICAgLy8gSWYgd2UgYXJlIGV4cGxpY2l0bHkgYmluZGluZyBhIHN0cmluZyB0byB0aGUgOnZhbHVlLCBzZXQgdGhlIHN0cmluZyxcbiAgICAgICAgLy8gSWYgdGhlIHZhbHVlIGlzIGEgYm9vbGVhbiwgbGVhdmUgaXQgYWxvbmUsIGl0IHdpbGwgYmUgc2V0IHRvIFwib25cIlxuICAgICAgICAvLyBhdXRvbWF0aWNhbGx5LlxuICAgICAgICBpZiAodHlwZW9mIHZhbHVlICE9PSAnYm9vbGVhbicgJiYgIVtudWxsLCB1bmRlZmluZWRdLmluY2x1ZGVzKHZhbHVlKSAmJiBhdHRyVHlwZSA9PT0gJ2JpbmQnKSB7XG4gICAgICAgICAgZWwudmFsdWUgPSBTdHJpbmcodmFsdWUpO1xuICAgICAgICB9IGVsc2UgaWYgKGF0dHJUeXBlICE9PSAnYmluZCcpIHtcbiAgICAgICAgICBpZiAoQXJyYXkuaXNBcnJheSh2YWx1ZSkpIHtcbiAgICAgICAgICAgIC8vIEknbSBwdXJwb3NlbHkgbm90IHVzaW5nIEFycmF5LmluY2x1ZGVzIGhlcmUgYmVjYXVzZSBpdCdzXG4gICAgICAgICAgICAvLyBzdHJpY3QsIGFuZCBiZWNhdXNlIG9mIE51bWVyaWMvU3RyaW5nIG1pcy1jYXN0aW5nLCBJXG4gICAgICAgICAgICAvLyB3YW50IHRoZSBcImluY2x1ZGVzXCIgdG8gYmUgXCJmdXp6eVwiLlxuICAgICAgICAgICAgZWwuY2hlY2tlZCA9IHZhbHVlLnNvbWUodmFsID0+IGNoZWNrZWRBdHRyTG9vc2VDb21wYXJlKHZhbCwgZWwudmFsdWUpKTtcbiAgICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgICAgZWwuY2hlY2tlZCA9ICEhdmFsdWU7XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9IGVsc2UgaWYgKGVsLnRhZ05hbWUgPT09ICdTRUxFQ1QnKSB7XG4gICAgICAgIHVwZGF0ZVNlbGVjdChlbCwgdmFsdWUpO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgaWYgKGVsLnZhbHVlID09PSB2YWx1ZSkgcmV0dXJuO1xuICAgICAgICBlbC52YWx1ZSA9IHZhbHVlO1xuICAgICAgfVxuICAgIH0gZWxzZSBpZiAoYXR0ck5hbWUgPT09ICdjbGFzcycpIHtcbiAgICAgIGlmIChBcnJheS5pc0FycmF5KHZhbHVlKSkge1xuICAgICAgICBjb25zdCBvcmlnaW5hbENsYXNzZXMgPSBlbC5fX3hfb3JpZ2luYWxfY2xhc3NlcyB8fCBbXTtcbiAgICAgICAgZWwuc2V0QXR0cmlidXRlKCdjbGFzcycsIGFycmF5VW5pcXVlKG9yaWdpbmFsQ2xhc3Nlcy5jb25jYXQodmFsdWUpKS5qb2luKCcgJykpO1xuICAgICAgfSBlbHNlIGlmICh0eXBlb2YgdmFsdWUgPT09ICdvYmplY3QnKSB7XG4gICAgICAgIC8vIFNvcnRpbmcgdGhlIGtleXMgLyBjbGFzcyBuYW1lcyBieSB0aGVpciBib29sZWFuIHZhbHVlIHdpbGwgZW5zdXJlIHRoYXRcbiAgICAgICAgLy8gYW55dGhpbmcgdGhhdCBldmFsdWF0ZXMgdG8gYGZhbHNlYCBhbmQgbmVlZHMgdG8gcmVtb3ZlIGNsYXNzZXMgaXMgcnVuIGZpcnN0LlxuICAgICAgICBjb25zdCBrZXlzU29ydGVkQnlCb29sZWFuVmFsdWUgPSBPYmplY3Qua2V5cyh2YWx1ZSkuc29ydCgoYSwgYikgPT4gdmFsdWVbYV0gLSB2YWx1ZVtiXSk7XG4gICAgICAgIGtleXNTb3J0ZWRCeUJvb2xlYW5WYWx1ZS5mb3JFYWNoKGNsYXNzTmFtZXMgPT4ge1xuICAgICAgICAgIGlmICh2YWx1ZVtjbGFzc05hbWVzXSkge1xuICAgICAgICAgICAgY29udmVydENsYXNzU3RyaW5nVG9BcnJheShjbGFzc05hbWVzKS5mb3JFYWNoKGNsYXNzTmFtZSA9PiBlbC5jbGFzc0xpc3QuYWRkKGNsYXNzTmFtZSkpO1xuICAgICAgICAgIH0gZWxzZSB7XG4gICAgICAgICAgICBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KGNsYXNzTmFtZXMpLmZvckVhY2goY2xhc3NOYW1lID0+IGVsLmNsYXNzTGlzdC5yZW1vdmUoY2xhc3NOYW1lKSk7XG4gICAgICAgICAgfVxuICAgICAgICB9KTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGNvbnN0IG9yaWdpbmFsQ2xhc3NlcyA9IGVsLl9feF9vcmlnaW5hbF9jbGFzc2VzIHx8IFtdO1xuICAgICAgICBjb25zdCBuZXdDbGFzc2VzID0gdmFsdWUgPyBjb252ZXJ0Q2xhc3NTdHJpbmdUb0FycmF5KHZhbHVlKSA6IFtdO1xuICAgICAgICBlbC5zZXRBdHRyaWJ1dGUoJ2NsYXNzJywgYXJyYXlVbmlxdWUob3JpZ2luYWxDbGFzc2VzLmNvbmNhdChuZXdDbGFzc2VzKSkuam9pbignICcpKTtcbiAgICAgIH1cbiAgICB9IGVsc2Uge1xuICAgICAgYXR0ck5hbWUgPSBtb2RpZmllcnMuaW5jbHVkZXMoJ2NhbWVsJykgPyBjYW1lbENhc2UoYXR0ck5hbWUpIDogYXR0ck5hbWU7IC8vIElmIGFuIGF0dHJpYnV0ZSdzIGJvdW5kIHZhbHVlIGlzIG51bGwsIHVuZGVmaW5lZCBvciBmYWxzZSwgcmVtb3ZlIHRoZSBhdHRyaWJ1dGVcblxuICAgICAgaWYgKFtudWxsLCB1bmRlZmluZWQsIGZhbHNlXS5pbmNsdWRlcyh2YWx1ZSkpIHtcbiAgICAgICAgZWwucmVtb3ZlQXR0cmlidXRlKGF0dHJOYW1lKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGlzQm9vbGVhbkF0dHIoYXR0ck5hbWUpID8gc2V0SWZDaGFuZ2VkKGVsLCBhdHRyTmFtZSwgYXR0ck5hbWUpIDogc2V0SWZDaGFuZ2VkKGVsLCBhdHRyTmFtZSwgdmFsdWUpO1xuICAgICAgfVxuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHNldElmQ2hhbmdlZChlbCwgYXR0ck5hbWUsIHZhbHVlKSB7XG4gICAgaWYgKGVsLmdldEF0dHJpYnV0ZShhdHRyTmFtZSkgIT0gdmFsdWUpIHtcbiAgICAgIGVsLnNldEF0dHJpYnV0ZShhdHRyTmFtZSwgdmFsdWUpO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHVwZGF0ZVNlbGVjdChlbCwgdmFsdWUpIHtcbiAgICBjb25zdCBhcnJheVdyYXBwZWRWYWx1ZSA9IFtdLmNvbmNhdCh2YWx1ZSkubWFwKHZhbHVlID0+IHtcbiAgICAgIHJldHVybiB2YWx1ZSArICcnO1xuICAgIH0pO1xuICAgIEFycmF5LmZyb20oZWwub3B0aW9ucykuZm9yRWFjaChvcHRpb24gPT4ge1xuICAgICAgb3B0aW9uLnNlbGVjdGVkID0gYXJyYXlXcmFwcGVkVmFsdWUuaW5jbHVkZXMob3B0aW9uLnZhbHVlIHx8IG9wdGlvbi50ZXh0KTtcbiAgICB9KTtcbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZVRleHREaXJlY3RpdmUoZWwsIG91dHB1dCwgZXhwcmVzc2lvbikge1xuICAgIC8vIElmIG5lc3RlZCBtb2RlbCBrZXkgaXMgdW5kZWZpbmVkLCBzZXQgdGhlIGRlZmF1bHQgdmFsdWUgdG8gZW1wdHkgc3RyaW5nLlxuICAgIGlmIChvdXRwdXQgPT09IHVuZGVmaW5lZCAmJiBTdHJpbmcoZXhwcmVzc2lvbikubWF0Y2goL1xcLi8pKSB7XG4gICAgICBvdXRwdXQgPSAnJztcbiAgICB9XG5cbiAgICBlbC50ZXh0Q29udGVudCA9IG91dHB1dDtcbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZUh0bWxEaXJlY3RpdmUoY29tcG9uZW50LCBlbCwgZXhwcmVzc2lvbiwgZXh0cmFWYXJzKSB7XG4gICAgZWwuaW5uZXJIVE1MID0gY29tcG9uZW50LmV2YWx1YXRlUmV0dXJuRXhwcmVzc2lvbihlbCwgZXhwcmVzc2lvbiwgZXh0cmFWYXJzKTtcbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZVNob3dEaXJlY3RpdmUoY29tcG9uZW50LCBlbCwgdmFsdWUsIG1vZGlmaWVycywgaW5pdGlhbFVwZGF0ZSA9IGZhbHNlKSB7XG4gICAgY29uc3QgaGlkZSA9ICgpID0+IHtcbiAgICAgIGVsLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7XG4gICAgICBlbC5fX3hfaXNfc2hvd24gPSBmYWxzZTtcbiAgICB9O1xuXG4gICAgY29uc3Qgc2hvdyA9ICgpID0+IHtcbiAgICAgIGlmIChlbC5zdHlsZS5sZW5ndGggPT09IDEgJiYgZWwuc3R5bGUuZGlzcGxheSA9PT0gJ25vbmUnKSB7XG4gICAgICAgIGVsLnJlbW92ZUF0dHJpYnV0ZSgnc3R5bGUnKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGVsLnN0eWxlLnJlbW92ZVByb3BlcnR5KCdkaXNwbGF5Jyk7XG4gICAgICB9XG5cbiAgICAgIGVsLl9feF9pc19zaG93biA9IHRydWU7XG4gICAgfTtcblxuICAgIGlmIChpbml0aWFsVXBkYXRlID09PSB0cnVlKSB7XG4gICAgICBpZiAodmFsdWUpIHtcbiAgICAgICAgc2hvdygpO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgaGlkZSgpO1xuICAgICAgfVxuXG4gICAgICByZXR1cm47XG4gICAgfVxuXG4gICAgY29uc3QgaGFuZGxlID0gKHJlc29sdmUsIHJlamVjdCkgPT4ge1xuICAgICAgaWYgKHZhbHVlKSB7XG4gICAgICAgIGlmIChlbC5zdHlsZS5kaXNwbGF5ID09PSAnbm9uZScgfHwgZWwuX194X3RyYW5zaXRpb24pIHtcbiAgICAgICAgICB0cmFuc2l0aW9uSW4oZWwsICgpID0+IHtcbiAgICAgICAgICAgIHNob3coKTtcbiAgICAgICAgICB9LCByZWplY3QsIGNvbXBvbmVudCk7XG4gICAgICAgIH1cblxuICAgICAgICByZXNvbHZlKCgpID0+IHt9KTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGlmIChlbC5zdHlsZS5kaXNwbGF5ICE9PSAnbm9uZScpIHtcbiAgICAgICAgICB0cmFuc2l0aW9uT3V0KGVsLCAoKSA9PiB7XG4gICAgICAgICAgICByZXNvbHZlKCgpID0+IHtcbiAgICAgICAgICAgICAgaGlkZSgpO1xuICAgICAgICAgICAgfSk7XG4gICAgICAgICAgfSwgcmVqZWN0LCBjb21wb25lbnQpO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgIHJlc29sdmUoKCkgPT4ge30pO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfTsgLy8gVGhlIHdvcmtpbmcgb2YgeC1zaG93IGlzIGEgYml0IGNvbXBsZXggYmVjYXVzZSB3ZSBuZWVkIHRvXG4gICAgLy8gd2FpdCBmb3IgYW55IGNoaWxkIHRyYW5zaXRpb25zIHRvIGZpbmlzaCBiZWZvcmUgaGlkaW5nXG4gICAgLy8gc29tZSBlbGVtZW50LiBBbHNvLCB0aGlzIGhhcyB0byBiZSBkb25lIHJlY3Vyc2l2ZWx5LlxuICAgIC8vIElmIHgtc2hvdy5pbW1lZGlhdGUsIGZvcmVnb2UgdGhlIHdhaXRpbmcuXG5cblxuICAgIGlmIChtb2RpZmllcnMuaW5jbHVkZXMoJ2ltbWVkaWF0ZScpKSB7XG4gICAgICBoYW5kbGUoZmluaXNoID0+IGZpbmlzaCgpLCAoKSA9PiB7fSk7XG4gICAgICByZXR1cm47XG4gICAgfSAvLyB4LXNob3cgaXMgZW5jb3VudGVyZWQgZHVyaW5nIGEgRE9NIHRyZWUgd2Fsay4gSWYgYW4gZWxlbWVudFxuICAgIC8vIHdlIGVuY291bnRlciBpcyBOT1QgYSBjaGlsZCBvZiBhbm90aGVyIHgtc2hvdyBlbGVtZW50IHdlXG4gICAgLy8gY2FuIGV4ZWN1dGUgdGhlIHByZXZpb3VzIHgtc2hvdyBzdGFjayAoaWYgb25lIGV4aXN0cykuXG5cblxuICAgIGlmIChjb21wb25lbnQuc2hvd0RpcmVjdGl2ZUxhc3RFbGVtZW50ICYmICFjb21wb25lbnQuc2hvd0RpcmVjdGl2ZUxhc3RFbGVtZW50LmNvbnRhaW5zKGVsKSkge1xuICAgICAgY29tcG9uZW50LmV4ZWN1dGVBbmRDbGVhclJlbWFpbmluZ1Nob3dEaXJlY3RpdmVTdGFjaygpO1xuICAgIH1cblxuICAgIGNvbXBvbmVudC5zaG93RGlyZWN0aXZlU3RhY2sucHVzaChoYW5kbGUpO1xuICAgIGNvbXBvbmVudC5zaG93RGlyZWN0aXZlTGFzdEVsZW1lbnQgPSBlbDtcbiAgfVxuXG4gIGZ1bmN0aW9uIGhhbmRsZUlmRGlyZWN0aXZlKGNvbXBvbmVudCwgZWwsIGV4cHJlc3Npb25SZXN1bHQsIGluaXRpYWxVcGRhdGUsIGV4dHJhVmFycykge1xuICAgIHdhcm5JZk1hbGZvcm1lZFRlbXBsYXRlKGVsLCAneC1pZicpO1xuICAgIGNvbnN0IGVsZW1lbnRIYXNBbHJlYWR5QmVlbkFkZGVkID0gZWwubmV4dEVsZW1lbnRTaWJsaW5nICYmIGVsLm5leHRFbGVtZW50U2libGluZy5fX3hfaW5zZXJ0ZWRfbWUgPT09IHRydWU7XG5cbiAgICBpZiAoZXhwcmVzc2lvblJlc3VsdCAmJiAoIWVsZW1lbnRIYXNBbHJlYWR5QmVlbkFkZGVkIHx8IGVsLl9feF90cmFuc2l0aW9uKSkge1xuICAgICAgY29uc3QgY2xvbmUgPSBkb2N1bWVudC5pbXBvcnROb2RlKGVsLmNvbnRlbnQsIHRydWUpO1xuICAgICAgZWwucGFyZW50RWxlbWVudC5pbnNlcnRCZWZvcmUoY2xvbmUsIGVsLm5leHRFbGVtZW50U2libGluZyk7XG4gICAgICB0cmFuc2l0aW9uSW4oZWwubmV4dEVsZW1lbnRTaWJsaW5nLCAoKSA9PiB7fSwgKCkgPT4ge30sIGNvbXBvbmVudCwgaW5pdGlhbFVwZGF0ZSk7XG4gICAgICBjb21wb25lbnQuaW5pdGlhbGl6ZUVsZW1lbnRzKGVsLm5leHRFbGVtZW50U2libGluZywgZXh0cmFWYXJzKTtcbiAgICAgIGVsLm5leHRFbGVtZW50U2libGluZy5fX3hfaW5zZXJ0ZWRfbWUgPSB0cnVlO1xuICAgIH0gZWxzZSBpZiAoIWV4cHJlc3Npb25SZXN1bHQgJiYgZWxlbWVudEhhc0FscmVhZHlCZWVuQWRkZWQpIHtcbiAgICAgIHRyYW5zaXRpb25PdXQoZWwubmV4dEVsZW1lbnRTaWJsaW5nLCAoKSA9PiB7XG4gICAgICAgIGVsLm5leHRFbGVtZW50U2libGluZy5yZW1vdmUoKTtcbiAgICAgIH0sICgpID0+IHt9LCBjb21wb25lbnQsIGluaXRpYWxVcGRhdGUpO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHJlZ2lzdGVyTGlzdGVuZXIoY29tcG9uZW50LCBlbCwgZXZlbnQsIG1vZGlmaWVycywgZXhwcmVzc2lvbiwgZXh0cmFWYXJzID0ge30pIHtcbiAgICBjb25zdCBvcHRpb25zID0ge1xuICAgICAgcGFzc2l2ZTogbW9kaWZpZXJzLmluY2x1ZGVzKCdwYXNzaXZlJylcbiAgICB9O1xuXG4gICAgaWYgKG1vZGlmaWVycy5pbmNsdWRlcygnY2FtZWwnKSkge1xuICAgICAgZXZlbnQgPSBjYW1lbENhc2UoZXZlbnQpO1xuICAgIH1cblxuICAgIGxldCBoYW5kbGVyLCBsaXN0ZW5lclRhcmdldDtcblxuICAgIGlmIChtb2RpZmllcnMuaW5jbHVkZXMoJ2F3YXknKSkge1xuICAgICAgbGlzdGVuZXJUYXJnZXQgPSBkb2N1bWVudDtcblxuICAgICAgaGFuZGxlciA9IGUgPT4ge1xuICAgICAgICAvLyBEb24ndCBkbyBhbnl0aGluZyBpZiB0aGUgY2xpY2sgY2FtZSBmcm9tIHRoZSBlbGVtZW50IG9yIHdpdGhpbiBpdC5cbiAgICAgICAgaWYgKGVsLmNvbnRhaW5zKGUudGFyZ2V0KSkgcmV0dXJuOyAvLyBEb24ndCBkbyBhbnl0aGluZyBpZiB0aGlzIGVsZW1lbnQgaXNuJ3QgY3VycmVudGx5IHZpc2libGUuXG5cbiAgICAgICAgaWYgKGVsLm9mZnNldFdpZHRoIDwgMSAmJiBlbC5vZmZzZXRIZWlnaHQgPCAxKSByZXR1cm47IC8vIE5vdyB0aGF0IHdlIGFyZSBzdXJlIHRoZSBlbGVtZW50IGlzIHZpc2libGUsIEFORCB0aGUgY2xpY2tcbiAgICAgICAgLy8gaXMgZnJvbSBvdXRzaWRlIGl0LCBsZXQncyBydW4gdGhlIGV4cHJlc3Npb24uXG5cbiAgICAgICAgcnVuTGlzdGVuZXJIYW5kbGVyKGNvbXBvbmVudCwgZXhwcmVzc2lvbiwgZSwgZXh0cmFWYXJzKTtcblxuICAgICAgICBpZiAobW9kaWZpZXJzLmluY2x1ZGVzKCdvbmNlJykpIHtcbiAgICAgICAgICBkb2N1bWVudC5yZW1vdmVFdmVudExpc3RlbmVyKGV2ZW50LCBoYW5kbGVyLCBvcHRpb25zKTtcbiAgICAgICAgfVxuICAgICAgfTtcbiAgICB9IGVsc2Uge1xuICAgICAgbGlzdGVuZXJUYXJnZXQgPSBtb2RpZmllcnMuaW5jbHVkZXMoJ3dpbmRvdycpID8gd2luZG93IDogbW9kaWZpZXJzLmluY2x1ZGVzKCdkb2N1bWVudCcpID8gZG9jdW1lbnQgOiBlbDtcblxuICAgICAgaGFuZGxlciA9IGUgPT4ge1xuICAgICAgICAvLyBSZW1vdmUgdGhpcyBnbG9iYWwgZXZlbnQgaGFuZGxlciBpZiB0aGUgZWxlbWVudCB0aGF0IGRlY2xhcmVkIGl0XG4gICAgICAgIC8vIGhhcyBiZWVuIHJlbW92ZWQuIEl0J3Mgbm93IHN0YWxlLlxuICAgICAgICBpZiAobGlzdGVuZXJUYXJnZXQgPT09IHdpbmRvdyB8fCBsaXN0ZW5lclRhcmdldCA9PT0gZG9jdW1lbnQpIHtcbiAgICAgICAgICBpZiAoIWRvY3VtZW50LmJvZHkuY29udGFpbnMoZWwpKSB7XG4gICAgICAgICAgICBsaXN0ZW5lclRhcmdldC5yZW1vdmVFdmVudExpc3RlbmVyKGV2ZW50LCBoYW5kbGVyLCBvcHRpb25zKTtcbiAgICAgICAgICAgIHJldHVybjtcbiAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICBpZiAoaXNLZXlFdmVudChldmVudCkpIHtcbiAgICAgICAgICBpZiAoaXNMaXN0ZW5pbmdGb3JBU3BlY2lmaWNLZXlUaGF0SGFzbnRCZWVuUHJlc3NlZChlLCBtb2RpZmllcnMpKSB7XG4gICAgICAgICAgICByZXR1cm47XG4gICAgICAgICAgfVxuICAgICAgICB9XG5cbiAgICAgICAgaWYgKG1vZGlmaWVycy5pbmNsdWRlcygncHJldmVudCcpKSBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgICAgIGlmIChtb2RpZmllcnMuaW5jbHVkZXMoJ3N0b3AnKSkgZS5zdG9wUHJvcGFnYXRpb24oKTsgLy8gSWYgdGhlIC5zZWxmIG1vZGlmaWVyIGlzbid0IHByZXNlbnQsIG9yIGlmIGl0IGlzIHByZXNlbnQgYW5kXG4gICAgICAgIC8vIHRoZSB0YXJnZXQgZWxlbWVudCBtYXRjaGVzIHRoZSBlbGVtZW50IHdlIGFyZSByZWdpc3RlcmluZyB0aGVcbiAgICAgICAgLy8gZXZlbnQgb24sIHJ1biB0aGUgaGFuZGxlclxuXG4gICAgICAgIGlmICghbW9kaWZpZXJzLmluY2x1ZGVzKCdzZWxmJykgfHwgZS50YXJnZXQgPT09IGVsKSB7XG4gICAgICAgICAgY29uc3QgcmV0dXJuVmFsdWUgPSBydW5MaXN0ZW5lckhhbmRsZXIoY29tcG9uZW50LCBleHByZXNzaW9uLCBlLCBleHRyYVZhcnMpO1xuICAgICAgICAgIHJldHVyblZhbHVlLnRoZW4odmFsdWUgPT4ge1xuICAgICAgICAgICAgaWYgKHZhbHVlID09PSBmYWxzZSkge1xuICAgICAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgICAgICBpZiAobW9kaWZpZXJzLmluY2x1ZGVzKCdvbmNlJykpIHtcbiAgICAgICAgICAgICAgICBsaXN0ZW5lclRhcmdldC5yZW1vdmVFdmVudExpc3RlbmVyKGV2ZW50LCBoYW5kbGVyLCBvcHRpb25zKTtcbiAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgIH0pO1xuICAgICAgICB9XG4gICAgICB9O1xuICAgIH1cblxuICAgIGlmIChtb2RpZmllcnMuaW5jbHVkZXMoJ2RlYm91bmNlJykpIHtcbiAgICAgIGxldCBuZXh0TW9kaWZpZXIgPSBtb2RpZmllcnNbbW9kaWZpZXJzLmluZGV4T2YoJ2RlYm91bmNlJykgKyAxXSB8fCAnaW52YWxpZC13YWl0JztcbiAgICAgIGxldCB3YWl0ID0gaXNOdW1lcmljKG5leHRNb2RpZmllci5zcGxpdCgnbXMnKVswXSkgPyBOdW1iZXIobmV4dE1vZGlmaWVyLnNwbGl0KCdtcycpWzBdKSA6IDI1MDtcbiAgICAgIGhhbmRsZXIgPSBkZWJvdW5jZShoYW5kbGVyLCB3YWl0KTtcbiAgICB9XG5cbiAgICBsaXN0ZW5lclRhcmdldC5hZGRFdmVudExpc3RlbmVyKGV2ZW50LCBoYW5kbGVyLCBvcHRpb25zKTtcbiAgfVxuXG4gIGZ1bmN0aW9uIHJ1bkxpc3RlbmVySGFuZGxlcihjb21wb25lbnQsIGV4cHJlc3Npb24sIGUsIGV4dHJhVmFycykge1xuICAgIHJldHVybiBjb21wb25lbnQuZXZhbHVhdGVDb21tYW5kRXhwcmVzc2lvbihlLnRhcmdldCwgZXhwcmVzc2lvbiwgKCkgPT4ge1xuICAgICAgcmV0dXJuIF9vYmplY3RTcHJlYWQyKF9vYmplY3RTcHJlYWQyKHt9LCBleHRyYVZhcnMoKSksIHt9LCB7XG4gICAgICAgICckZXZlbnQnOiBlXG4gICAgICB9KTtcbiAgICB9KTtcbiAgfVxuXG4gIGZ1bmN0aW9uIGlzS2V5RXZlbnQoZXZlbnQpIHtcbiAgICByZXR1cm4gWydrZXlkb3duJywgJ2tleXVwJ10uaW5jbHVkZXMoZXZlbnQpO1xuICB9XG5cbiAgZnVuY3Rpb24gaXNMaXN0ZW5pbmdGb3JBU3BlY2lmaWNLZXlUaGF0SGFzbnRCZWVuUHJlc3NlZChlLCBtb2RpZmllcnMpIHtcbiAgICBsZXQga2V5TW9kaWZpZXJzID0gbW9kaWZpZXJzLmZpbHRlcihpID0+IHtcbiAgICAgIHJldHVybiAhWyd3aW5kb3cnLCAnZG9jdW1lbnQnLCAncHJldmVudCcsICdzdG9wJ10uaW5jbHVkZXMoaSk7XG4gICAgfSk7XG5cbiAgICBpZiAoa2V5TW9kaWZpZXJzLmluY2x1ZGVzKCdkZWJvdW5jZScpKSB7XG4gICAgICBsZXQgZGVib3VuY2VJbmRleCA9IGtleU1vZGlmaWVycy5pbmRleE9mKCdkZWJvdW5jZScpO1xuICAgICAga2V5TW9kaWZpZXJzLnNwbGljZShkZWJvdW5jZUluZGV4LCBpc051bWVyaWMoKGtleU1vZGlmaWVyc1tkZWJvdW5jZUluZGV4ICsgMV0gfHwgJ2ludmFsaWQtd2FpdCcpLnNwbGl0KCdtcycpWzBdKSA/IDIgOiAxKTtcbiAgICB9IC8vIElmIG5vIG1vZGlmaWVyIGlzIHNwZWNpZmllZCwgd2UnbGwgY2FsbCBpdCBhIHByZXNzLlxuXG5cbiAgICBpZiAoa2V5TW9kaWZpZXJzLmxlbmd0aCA9PT0gMCkgcmV0dXJuIGZhbHNlOyAvLyBJZiBvbmUgaXMgcGFzc2VkLCBBTkQgaXQgbWF0Y2hlcyB0aGUga2V5IHByZXNzZWQsIHdlJ2xsIGNhbGwgaXQgYSBwcmVzcy5cblxuICAgIGlmIChrZXlNb2RpZmllcnMubGVuZ3RoID09PSAxICYmIGtleU1vZGlmaWVyc1swXSA9PT0ga2V5VG9Nb2RpZmllcihlLmtleSkpIHJldHVybiBmYWxzZTsgLy8gVGhlIHVzZXIgaXMgbGlzdGVuaW5nIGZvciBrZXkgY29tYmluYXRpb25zLlxuXG4gICAgY29uc3Qgc3lzdGVtS2V5TW9kaWZpZXJzID0gWydjdHJsJywgJ3NoaWZ0JywgJ2FsdCcsICdtZXRhJywgJ2NtZCcsICdzdXBlciddO1xuICAgIGNvbnN0IHNlbGVjdGVkU3lzdGVtS2V5TW9kaWZpZXJzID0gc3lzdGVtS2V5TW9kaWZpZXJzLmZpbHRlcihtb2RpZmllciA9PiBrZXlNb2RpZmllcnMuaW5jbHVkZXMobW9kaWZpZXIpKTtcbiAgICBrZXlNb2RpZmllcnMgPSBrZXlNb2RpZmllcnMuZmlsdGVyKGkgPT4gIXNlbGVjdGVkU3lzdGVtS2V5TW9kaWZpZXJzLmluY2x1ZGVzKGkpKTtcblxuICAgIGlmIChzZWxlY3RlZFN5c3RlbUtleU1vZGlmaWVycy5sZW5ndGggPiAwKSB7XG4gICAgICBjb25zdCBhY3RpdmVseVByZXNzZWRLZXlNb2RpZmllcnMgPSBzZWxlY3RlZFN5c3RlbUtleU1vZGlmaWVycy5maWx0ZXIobW9kaWZpZXIgPT4ge1xuICAgICAgICAvLyBBbGlhcyBcImNtZFwiIGFuZCBcInN1cGVyXCIgdG8gXCJtZXRhXCJcbiAgICAgICAgaWYgKG1vZGlmaWVyID09PSAnY21kJyB8fCBtb2RpZmllciA9PT0gJ3N1cGVyJykgbW9kaWZpZXIgPSAnbWV0YSc7XG4gICAgICAgIHJldHVybiBlW2Ake21vZGlmaWVyfUtleWBdO1xuICAgICAgfSk7IC8vIElmIGFsbCB0aGUgbW9kaWZpZXJzIHNlbGVjdGVkIGFyZSBwcmVzc2VkLCAuLi5cblxuICAgICAgaWYgKGFjdGl2ZWx5UHJlc3NlZEtleU1vZGlmaWVycy5sZW5ndGggPT09IHNlbGVjdGVkU3lzdGVtS2V5TW9kaWZpZXJzLmxlbmd0aCkge1xuICAgICAgICAvLyBBTkQgdGhlIHJlbWFpbmluZyBrZXkgaXMgcHJlc3NlZCBhcyB3ZWxsLiBJdCdzIGEgcHJlc3MuXG4gICAgICAgIGlmIChrZXlNb2RpZmllcnNbMF0gPT09IGtleVRvTW9kaWZpZXIoZS5rZXkpKSByZXR1cm4gZmFsc2U7XG4gICAgICB9XG4gICAgfSAvLyBXZSdsbCBjYWxsIGl0IE5PVCBhIHZhbGlkIGtleXByZXNzLlxuXG5cbiAgICByZXR1cm4gdHJ1ZTtcbiAgfVxuXG4gIGZ1bmN0aW9uIGtleVRvTW9kaWZpZXIoa2V5KSB7XG4gICAgc3dpdGNoIChrZXkpIHtcbiAgICAgIGNhc2UgJy8nOlxuICAgICAgICByZXR1cm4gJ3NsYXNoJztcblxuICAgICAgY2FzZSAnICc6XG4gICAgICBjYXNlICdTcGFjZWJhcic6XG4gICAgICAgIHJldHVybiAnc3BhY2UnO1xuXG4gICAgICBkZWZhdWx0OlxuICAgICAgICByZXR1cm4ga2V5ICYmIGtlYmFiQ2FzZShrZXkpO1xuICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHJlZ2lzdGVyTW9kZWxMaXN0ZW5lcihjb21wb25lbnQsIGVsLCBtb2RpZmllcnMsIGV4cHJlc3Npb24sIGV4dHJhVmFycykge1xuICAgIC8vIElmIHRoZSBlbGVtZW50IHdlIGFyZSBiaW5kaW5nIHRvIGlzIGEgc2VsZWN0LCBhIHJhZGlvLCBvciBjaGVja2JveFxuICAgIC8vIHdlJ2xsIGxpc3RlbiBmb3IgdGhlIGNoYW5nZSBldmVudCBpbnN0ZWFkIG9mIHRoZSBcImlucHV0XCIgZXZlbnQuXG4gICAgdmFyIGV2ZW50ID0gZWwudGFnTmFtZS50b0xvd2VyQ2FzZSgpID09PSAnc2VsZWN0JyB8fCBbJ2NoZWNrYm94JywgJ3JhZGlvJ10uaW5jbHVkZXMoZWwudHlwZSkgfHwgbW9kaWZpZXJzLmluY2x1ZGVzKCdsYXp5JykgPyAnY2hhbmdlJyA6ICdpbnB1dCc7XG4gICAgY29uc3QgbGlzdGVuZXJFeHByZXNzaW9uID0gYCR7ZXhwcmVzc2lvbn0gPSByaWdodFNpZGVPZkV4cHJlc3Npb24oJGV2ZW50LCAke2V4cHJlc3Npb259KWA7XG4gICAgcmVnaXN0ZXJMaXN0ZW5lcihjb21wb25lbnQsIGVsLCBldmVudCwgbW9kaWZpZXJzLCBsaXN0ZW5lckV4cHJlc3Npb24sICgpID0+IHtcbiAgICAgIHJldHVybiBfb2JqZWN0U3ByZWFkMihfb2JqZWN0U3ByZWFkMih7fSwgZXh0cmFWYXJzKCkpLCB7fSwge1xuICAgICAgICByaWdodFNpZGVPZkV4cHJlc3Npb246IGdlbmVyYXRlTW9kZWxBc3NpZ25tZW50RnVuY3Rpb24oZWwsIG1vZGlmaWVycywgZXhwcmVzc2lvbilcbiAgICAgIH0pO1xuICAgIH0pO1xuICB9XG5cbiAgZnVuY3Rpb24gZ2VuZXJhdGVNb2RlbEFzc2lnbm1lbnRGdW5jdGlvbihlbCwgbW9kaWZpZXJzLCBleHByZXNzaW9uKSB7XG4gICAgaWYgKGVsLnR5cGUgPT09ICdyYWRpbycpIHtcbiAgICAgIC8vIFJhZGlvIGJ1dHRvbnMgb25seSB3b3JrIHByb3Blcmx5IHdoZW4gdGhleSBzaGFyZSBhIG5hbWUgYXR0cmlidXRlLlxuICAgICAgLy8gUGVvcGxlIG1pZ2h0IGFzc3VtZSB3ZSB0YWtlIGNhcmUgb2YgdGhhdCBmb3IgdGhlbSwgYmVjYXVzZVxuICAgICAgLy8gdGhleSBhbHJlYWR5IHNldCBhIHNoYXJlZCBcIngtbW9kZWxcIiBhdHRyaWJ1dGUuXG4gICAgICBpZiAoIWVsLmhhc0F0dHJpYnV0ZSgnbmFtZScpKSBlbC5zZXRBdHRyaWJ1dGUoJ25hbWUnLCBleHByZXNzaW9uKTtcbiAgICB9XG5cbiAgICByZXR1cm4gKGV2ZW50LCBjdXJyZW50VmFsdWUpID0+IHtcbiAgICAgIC8vIENoZWNrIGZvciBldmVudC5kZXRhaWwgZHVlIHRvIGFuIGlzc3VlIHdoZXJlIElFMTEgaGFuZGxlcyBvdGhlciBldmVudHMgYXMgYSBDdXN0b21FdmVudC5cbiAgICAgIGlmIChldmVudCBpbnN0YW5jZW9mIEN1c3RvbUV2ZW50ICYmIGV2ZW50LmRldGFpbCkge1xuICAgICAgICByZXR1cm4gZXZlbnQuZGV0YWlsO1xuICAgICAgfSBlbHNlIGlmIChlbC50eXBlID09PSAnY2hlY2tib3gnKSB7XG4gICAgICAgIC8vIElmIHRoZSBkYXRhIHdlIGFyZSBiaW5kaW5nIHRvIGlzIGFuIGFycmF5LCB0b2dnbGUgaXRzIHZhbHVlIGluc2lkZSB0aGUgYXJyYXkuXG4gICAgICAgIGlmIChBcnJheS5pc0FycmF5KGN1cnJlbnRWYWx1ZSkpIHtcbiAgICAgICAgICBjb25zdCBuZXdWYWx1ZSA9IG1vZGlmaWVycy5pbmNsdWRlcygnbnVtYmVyJykgPyBzYWZlUGFyc2VOdW1iZXIoZXZlbnQudGFyZ2V0LnZhbHVlKSA6IGV2ZW50LnRhcmdldC52YWx1ZTtcbiAgICAgICAgICByZXR1cm4gZXZlbnQudGFyZ2V0LmNoZWNrZWQgPyBjdXJyZW50VmFsdWUuY29uY2F0KFtuZXdWYWx1ZV0pIDogY3VycmVudFZhbHVlLmZpbHRlcihlbCA9PiAhY2hlY2tlZEF0dHJMb29zZUNvbXBhcmUoZWwsIG5ld1ZhbHVlKSk7XG4gICAgICAgIH0gZWxzZSB7XG4gICAgICAgICAgcmV0dXJuIGV2ZW50LnRhcmdldC5jaGVja2VkO1xuICAgICAgICB9XG4gICAgICB9IGVsc2UgaWYgKGVsLnRhZ05hbWUudG9Mb3dlckNhc2UoKSA9PT0gJ3NlbGVjdCcgJiYgZWwubXVsdGlwbGUpIHtcbiAgICAgICAgcmV0dXJuIG1vZGlmaWVycy5pbmNsdWRlcygnbnVtYmVyJykgPyBBcnJheS5mcm9tKGV2ZW50LnRhcmdldC5zZWxlY3RlZE9wdGlvbnMpLm1hcChvcHRpb24gPT4ge1xuICAgICAgICAgIGNvbnN0IHJhd1ZhbHVlID0gb3B0aW9uLnZhbHVlIHx8IG9wdGlvbi50ZXh0O1xuICAgICAgICAgIHJldHVybiBzYWZlUGFyc2VOdW1iZXIocmF3VmFsdWUpO1xuICAgICAgICB9KSA6IEFycmF5LmZyb20oZXZlbnQudGFyZ2V0LnNlbGVjdGVkT3B0aW9ucykubWFwKG9wdGlvbiA9PiB7XG4gICAgICAgICAgcmV0dXJuIG9wdGlvbi52YWx1ZSB8fCBvcHRpb24udGV4dDtcbiAgICAgICAgfSk7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICBjb25zdCByYXdWYWx1ZSA9IGV2ZW50LnRhcmdldC52YWx1ZTtcbiAgICAgICAgcmV0dXJuIG1vZGlmaWVycy5pbmNsdWRlcygnbnVtYmVyJykgPyBzYWZlUGFyc2VOdW1iZXIocmF3VmFsdWUpIDogbW9kaWZpZXJzLmluY2x1ZGVzKCd0cmltJykgPyByYXdWYWx1ZS50cmltKCkgOiByYXdWYWx1ZTtcbiAgICAgIH1cbiAgICB9O1xuICB9XG5cbiAgZnVuY3Rpb24gc2FmZVBhcnNlTnVtYmVyKHJhd1ZhbHVlKSB7XG4gICAgY29uc3QgbnVtYmVyID0gcmF3VmFsdWUgPyBwYXJzZUZsb2F0KHJhd1ZhbHVlKSA6IG51bGw7XG4gICAgcmV0dXJuIGlzTnVtZXJpYyhudW1iZXIpID8gbnVtYmVyIDogcmF3VmFsdWU7XG4gIH1cblxuICAvKipcbiAgICogQ29weXJpZ2h0IChDKSAyMDE3IHNhbGVzZm9yY2UuY29tLCBpbmMuXG4gICAqL1xuICBjb25zdCB7IGlzQXJyYXkgfSA9IEFycmF5O1xuICBjb25zdCB7IGdldFByb3RvdHlwZU9mLCBjcmVhdGU6IE9iamVjdENyZWF0ZSwgZGVmaW5lUHJvcGVydHk6IE9iamVjdERlZmluZVByb3BlcnR5LCBkZWZpbmVQcm9wZXJ0aWVzOiBPYmplY3REZWZpbmVQcm9wZXJ0aWVzLCBpc0V4dGVuc2libGUsIGdldE93blByb3BlcnR5RGVzY3JpcHRvciwgZ2V0T3duUHJvcGVydHlOYW1lcywgZ2V0T3duUHJvcGVydHlTeW1ib2xzLCBwcmV2ZW50RXh0ZW5zaW9ucywgaGFzT3duUHJvcGVydHksIH0gPSBPYmplY3Q7XG4gIGNvbnN0IHsgcHVzaDogQXJyYXlQdXNoLCBjb25jYXQ6IEFycmF5Q29uY2F0LCBtYXA6IEFycmF5TWFwLCB9ID0gQXJyYXkucHJvdG90eXBlO1xuICBmdW5jdGlvbiBpc1VuZGVmaW5lZChvYmopIHtcbiAgICAgIHJldHVybiBvYmogPT09IHVuZGVmaW5lZDtcbiAgfVxuICBmdW5jdGlvbiBpc0Z1bmN0aW9uKG9iaikge1xuICAgICAgcmV0dXJuIHR5cGVvZiBvYmogPT09ICdmdW5jdGlvbic7XG4gIH1cbiAgZnVuY3Rpb24gaXNPYmplY3Qob2JqKSB7XG4gICAgICByZXR1cm4gdHlwZW9mIG9iaiA9PT0gJ29iamVjdCc7XG4gIH1cbiAgY29uc3QgcHJveHlUb1ZhbHVlTWFwID0gbmV3IFdlYWtNYXAoKTtcbiAgZnVuY3Rpb24gcmVnaXN0ZXJQcm94eShwcm94eSwgdmFsdWUpIHtcbiAgICAgIHByb3h5VG9WYWx1ZU1hcC5zZXQocHJveHksIHZhbHVlKTtcbiAgfVxuICBjb25zdCB1bndyYXAgPSAocmVwbGljYU9yQW55KSA9PiBwcm94eVRvVmFsdWVNYXAuZ2V0KHJlcGxpY2FPckFueSkgfHwgcmVwbGljYU9yQW55O1xuXG4gIGZ1bmN0aW9uIHdyYXBWYWx1ZShtZW1icmFuZSwgdmFsdWUpIHtcbiAgICAgIHJldHVybiBtZW1icmFuZS52YWx1ZUlzT2JzZXJ2YWJsZSh2YWx1ZSkgPyBtZW1icmFuZS5nZXRQcm94eSh2YWx1ZSkgOiB2YWx1ZTtcbiAgfVxuICAvKipcbiAgICogVW53cmFwIHByb3BlcnR5IGRlc2NyaXB0b3JzIHdpbGwgc2V0IHZhbHVlIG9uIG9yaWdpbmFsIGRlc2NyaXB0b3JcbiAgICogV2Ugb25seSBuZWVkIHRvIHVud3JhcCBpZiB2YWx1ZSBpcyBzcGVjaWZpZWRcbiAgICogQHBhcmFtIGRlc2NyaXB0b3IgZXh0ZXJuYWwgZGVzY3JwaXRvciBwcm92aWRlZCB0byBkZWZpbmUgbmV3IHByb3BlcnR5IG9uIG9yaWdpbmFsIHZhbHVlXG4gICAqL1xuICBmdW5jdGlvbiB1bndyYXBEZXNjcmlwdG9yKGRlc2NyaXB0b3IpIHtcbiAgICAgIGlmIChoYXNPd25Qcm9wZXJ0eS5jYWxsKGRlc2NyaXB0b3IsICd2YWx1ZScpKSB7XG4gICAgICAgICAgZGVzY3JpcHRvci52YWx1ZSA9IHVud3JhcChkZXNjcmlwdG9yLnZhbHVlKTtcbiAgICAgIH1cbiAgICAgIHJldHVybiBkZXNjcmlwdG9yO1xuICB9XG4gIGZ1bmN0aW9uIGxvY2tTaGFkb3dUYXJnZXQobWVtYnJhbmUsIHNoYWRvd1RhcmdldCwgb3JpZ2luYWxUYXJnZXQpIHtcbiAgICAgIGNvbnN0IHRhcmdldEtleXMgPSBBcnJheUNvbmNhdC5jYWxsKGdldE93blByb3BlcnR5TmFtZXMob3JpZ2luYWxUYXJnZXQpLCBnZXRPd25Qcm9wZXJ0eVN5bWJvbHMob3JpZ2luYWxUYXJnZXQpKTtcbiAgICAgIHRhcmdldEtleXMuZm9yRWFjaCgoa2V5KSA9PiB7XG4gICAgICAgICAgbGV0IGRlc2NyaXB0b3IgPSBnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3Iob3JpZ2luYWxUYXJnZXQsIGtleSk7XG4gICAgICAgICAgLy8gV2UgZG8gbm90IG5lZWQgdG8gd3JhcCB0aGUgZGVzY3JpcHRvciBpZiBjb25maWd1cmFibGVcbiAgICAgICAgICAvLyBCZWNhdXNlIHdlIGNhbiBkZWFsIHdpdGggd3JhcHBpbmcgaXQgd2hlbiB1c2VyIGdvZXMgdGhyb3VnaFxuICAgICAgICAgIC8vIEdldCBvd24gcHJvcGVydHkgZGVzY3JpcHRvci4gVGhlcmUgaXMgYWxzbyBhIGNoYW5jZSB0aGF0IHRoaXMgZGVzY3JpcHRvclxuICAgICAgICAgIC8vIGNvdWxkIGNoYW5nZSBzb21ldGltZSBpbiB0aGUgZnV0dXJlLCBzbyB3ZSBjYW4gZGVmZXIgd3JhcHBpbmdcbiAgICAgICAgICAvLyB1bnRpbCB3ZSBuZWVkIHRvXG4gICAgICAgICAgaWYgKCFkZXNjcmlwdG9yLmNvbmZpZ3VyYWJsZSkge1xuICAgICAgICAgICAgICBkZXNjcmlwdG9yID0gd3JhcERlc2NyaXB0b3IobWVtYnJhbmUsIGRlc2NyaXB0b3IsIHdyYXBWYWx1ZSk7XG4gICAgICAgICAgfVxuICAgICAgICAgIE9iamVjdERlZmluZVByb3BlcnR5KHNoYWRvd1RhcmdldCwga2V5LCBkZXNjcmlwdG9yKTtcbiAgICAgIH0pO1xuICAgICAgcHJldmVudEV4dGVuc2lvbnMoc2hhZG93VGFyZ2V0KTtcbiAgfVxuICBjbGFzcyBSZWFjdGl2ZVByb3h5SGFuZGxlciB7XG4gICAgICBjb25zdHJ1Y3RvcihtZW1icmFuZSwgdmFsdWUpIHtcbiAgICAgICAgICB0aGlzLm9yaWdpbmFsVGFyZ2V0ID0gdmFsdWU7XG4gICAgICAgICAgdGhpcy5tZW1icmFuZSA9IG1lbWJyYW5lO1xuICAgICAgfVxuICAgICAgZ2V0KHNoYWRvd1RhcmdldCwga2V5KSB7XG4gICAgICAgICAgY29uc3QgeyBvcmlnaW5hbFRhcmdldCwgbWVtYnJhbmUgfSA9IHRoaXM7XG4gICAgICAgICAgY29uc3QgdmFsdWUgPSBvcmlnaW5hbFRhcmdldFtrZXldO1xuICAgICAgICAgIGNvbnN0IHsgdmFsdWVPYnNlcnZlZCB9ID0gbWVtYnJhbmU7XG4gICAgICAgICAgdmFsdWVPYnNlcnZlZChvcmlnaW5hbFRhcmdldCwga2V5KTtcbiAgICAgICAgICByZXR1cm4gbWVtYnJhbmUuZ2V0UHJveHkodmFsdWUpO1xuICAgICAgfVxuICAgICAgc2V0KHNoYWRvd1RhcmdldCwga2V5LCB2YWx1ZSkge1xuICAgICAgICAgIGNvbnN0IHsgb3JpZ2luYWxUYXJnZXQsIG1lbWJyYW5lOiB7IHZhbHVlTXV0YXRlZCB9IH0gPSB0aGlzO1xuICAgICAgICAgIGNvbnN0IG9sZFZhbHVlID0gb3JpZ2luYWxUYXJnZXRba2V5XTtcbiAgICAgICAgICBpZiAob2xkVmFsdWUgIT09IHZhbHVlKSB7XG4gICAgICAgICAgICAgIG9yaWdpbmFsVGFyZ2V0W2tleV0gPSB2YWx1ZTtcbiAgICAgICAgICAgICAgdmFsdWVNdXRhdGVkKG9yaWdpbmFsVGFyZ2V0LCBrZXkpO1xuICAgICAgICAgIH1cbiAgICAgICAgICBlbHNlIGlmIChrZXkgPT09ICdsZW5ndGgnICYmIGlzQXJyYXkob3JpZ2luYWxUYXJnZXQpKSB7XG4gICAgICAgICAgICAgIC8vIGZpeCBmb3IgaXNzdWUgIzIzNjogcHVzaCB3aWxsIGFkZCB0aGUgbmV3IGluZGV4LCBhbmQgYnkgdGhlIHRpbWUgbGVuZ3RoXG4gICAgICAgICAgICAgIC8vIGlzIHVwZGF0ZWQsIHRoZSBpbnRlcm5hbCBsZW5ndGggaXMgYWxyZWFkeSBlcXVhbCB0byB0aGUgbmV3IGxlbmd0aCB2YWx1ZVxuICAgICAgICAgICAgICAvLyB0aGVyZWZvcmUsIHRoZSBvbGRWYWx1ZSBpcyBlcXVhbCB0byB0aGUgdmFsdWUuIFRoaXMgaXMgdGhlIGZvcmtpbmcgbG9naWNcbiAgICAgICAgICAgICAgLy8gdG8gc3VwcG9ydCB0aGlzIHVzZSBjYXNlLlxuICAgICAgICAgICAgICB2YWx1ZU11dGF0ZWQob3JpZ2luYWxUYXJnZXQsIGtleSk7XG4gICAgICAgICAgfVxuICAgICAgICAgIHJldHVybiB0cnVlO1xuICAgICAgfVxuICAgICAgZGVsZXRlUHJvcGVydHkoc2hhZG93VGFyZ2V0LCBrZXkpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0LCBtZW1icmFuZTogeyB2YWx1ZU11dGF0ZWQgfSB9ID0gdGhpcztcbiAgICAgICAgICBkZWxldGUgb3JpZ2luYWxUYXJnZXRba2V5XTtcbiAgICAgICAgICB2YWx1ZU11dGF0ZWQob3JpZ2luYWxUYXJnZXQsIGtleSk7XG4gICAgICAgICAgcmV0dXJuIHRydWU7XG4gICAgICB9XG4gICAgICBhcHBseShzaGFkb3dUYXJnZXQsIHRoaXNBcmcsIGFyZ0FycmF5KSB7XG4gICAgICAgICAgLyogTm8gb3AgKi9cbiAgICAgIH1cbiAgICAgIGNvbnN0cnVjdCh0YXJnZXQsIGFyZ0FycmF5LCBuZXdUYXJnZXQpIHtcbiAgICAgICAgICAvKiBObyBvcCAqL1xuICAgICAgfVxuICAgICAgaGFzKHNoYWRvd1RhcmdldCwga2V5KSB7XG4gICAgICAgICAgY29uc3QgeyBvcmlnaW5hbFRhcmdldCwgbWVtYnJhbmU6IHsgdmFsdWVPYnNlcnZlZCB9IH0gPSB0aGlzO1xuICAgICAgICAgIHZhbHVlT2JzZXJ2ZWQob3JpZ2luYWxUYXJnZXQsIGtleSk7XG4gICAgICAgICAgcmV0dXJuIGtleSBpbiBvcmlnaW5hbFRhcmdldDtcbiAgICAgIH1cbiAgICAgIG93bktleXMoc2hhZG93VGFyZ2V0KSB7XG4gICAgICAgICAgY29uc3QgeyBvcmlnaW5hbFRhcmdldCB9ID0gdGhpcztcbiAgICAgICAgICByZXR1cm4gQXJyYXlDb25jYXQuY2FsbChnZXRPd25Qcm9wZXJ0eU5hbWVzKG9yaWdpbmFsVGFyZ2V0KSwgZ2V0T3duUHJvcGVydHlTeW1ib2xzKG9yaWdpbmFsVGFyZ2V0KSk7XG4gICAgICB9XG4gICAgICBpc0V4dGVuc2libGUoc2hhZG93VGFyZ2V0KSB7XG4gICAgICAgICAgY29uc3Qgc2hhZG93SXNFeHRlbnNpYmxlID0gaXNFeHRlbnNpYmxlKHNoYWRvd1RhcmdldCk7XG4gICAgICAgICAgaWYgKCFzaGFkb3dJc0V4dGVuc2libGUpIHtcbiAgICAgICAgICAgICAgcmV0dXJuIHNoYWRvd0lzRXh0ZW5zaWJsZTtcbiAgICAgICAgICB9XG4gICAgICAgICAgY29uc3QgeyBvcmlnaW5hbFRhcmdldCwgbWVtYnJhbmUgfSA9IHRoaXM7XG4gICAgICAgICAgY29uc3QgdGFyZ2V0SXNFeHRlbnNpYmxlID0gaXNFeHRlbnNpYmxlKG9yaWdpbmFsVGFyZ2V0KTtcbiAgICAgICAgICBpZiAoIXRhcmdldElzRXh0ZW5zaWJsZSkge1xuICAgICAgICAgICAgICBsb2NrU2hhZG93VGFyZ2V0KG1lbWJyYW5lLCBzaGFkb3dUYXJnZXQsIG9yaWdpbmFsVGFyZ2V0KTtcbiAgICAgICAgICB9XG4gICAgICAgICAgcmV0dXJuIHRhcmdldElzRXh0ZW5zaWJsZTtcbiAgICAgIH1cbiAgICAgIHNldFByb3RvdHlwZU9mKHNoYWRvd1RhcmdldCwgcHJvdG90eXBlKSB7XG4gICAgICB9XG4gICAgICBnZXRQcm90b3R5cGVPZihzaGFkb3dUYXJnZXQpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0IH0gPSB0aGlzO1xuICAgICAgICAgIHJldHVybiBnZXRQcm90b3R5cGVPZihvcmlnaW5hbFRhcmdldCk7XG4gICAgICB9XG4gICAgICBnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3Ioc2hhZG93VGFyZ2V0LCBrZXkpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0LCBtZW1icmFuZSB9ID0gdGhpcztcbiAgICAgICAgICBjb25zdCB7IHZhbHVlT2JzZXJ2ZWQgfSA9IHRoaXMubWVtYnJhbmU7XG4gICAgICAgICAgLy8ga2V5cyBsb29rZWQgdXAgdmlhIGhhc093blByb3BlcnR5IG5lZWQgdG8gYmUgcmVhY3RpdmVcbiAgICAgICAgICB2YWx1ZU9ic2VydmVkKG9yaWdpbmFsVGFyZ2V0LCBrZXkpO1xuICAgICAgICAgIGxldCBkZXNjID0gZ2V0T3duUHJvcGVydHlEZXNjcmlwdG9yKG9yaWdpbmFsVGFyZ2V0LCBrZXkpO1xuICAgICAgICAgIGlmIChpc1VuZGVmaW5lZChkZXNjKSkge1xuICAgICAgICAgICAgICByZXR1cm4gZGVzYztcbiAgICAgICAgICB9XG4gICAgICAgICAgY29uc3Qgc2hhZG93RGVzY3JpcHRvciA9IGdldE93blByb3BlcnR5RGVzY3JpcHRvcihzaGFkb3dUYXJnZXQsIGtleSk7XG4gICAgICAgICAgaWYgKCFpc1VuZGVmaW5lZChzaGFkb3dEZXNjcmlwdG9yKSkge1xuICAgICAgICAgICAgICByZXR1cm4gc2hhZG93RGVzY3JpcHRvcjtcbiAgICAgICAgICB9XG4gICAgICAgICAgLy8gTm90ZTogYnkgYWNjZXNzaW5nIHRoZSBkZXNjcmlwdG9yLCB0aGUga2V5IGlzIG1hcmtlZCBhcyBvYnNlcnZlZFxuICAgICAgICAgIC8vIGJ1dCBhY2Nlc3MgdG8gdGhlIHZhbHVlLCBzZXR0ZXIgb3IgZ2V0dGVyIChpZiBhdmFpbGFibGUpIGNhbm5vdCBvYnNlcnZlXG4gICAgICAgICAgLy8gbXV0YXRpb25zLCBqdXN0IGxpa2UgcmVndWxhciBtZXRob2RzLCBpbiB3aGljaCBjYXNlIHdlIGp1c3QgZG8gbm90aGluZy5cbiAgICAgICAgICBkZXNjID0gd3JhcERlc2NyaXB0b3IobWVtYnJhbmUsIGRlc2MsIHdyYXBWYWx1ZSk7XG4gICAgICAgICAgaWYgKCFkZXNjLmNvbmZpZ3VyYWJsZSkge1xuICAgICAgICAgICAgICAvLyBJZiBkZXNjcmlwdG9yIGZyb20gb3JpZ2luYWwgdGFyZ2V0IGlzIG5vdCBjb25maWd1cmFibGUsXG4gICAgICAgICAgICAgIC8vIFdlIG11c3QgY29weSB0aGUgd3JhcHBlZCBkZXNjcmlwdG9yIG92ZXIgdG8gdGhlIHNoYWRvdyB0YXJnZXQuXG4gICAgICAgICAgICAgIC8vIE90aGVyd2lzZSwgcHJveHkgd2lsbCB0aHJvdyBhbiBpbnZhcmlhbnQgZXJyb3IuXG4gICAgICAgICAgICAgIC8vIFRoaXMgaXMgb3VyIGxhc3QgY2hhbmNlIHRvIGxvY2sgdGhlIHZhbHVlLlxuICAgICAgICAgICAgICAvLyBodHRwczovL2RldmVsb3Blci5tb3ppbGxhLm9yZy9lbi1VUy9kb2NzL1dlYi9KYXZhU2NyaXB0L1JlZmVyZW5jZS9HbG9iYWxfT2JqZWN0cy9Qcm94eS9oYW5kbGVyL2dldE93blByb3BlcnR5RGVzY3JpcHRvciNJbnZhcmlhbnRzXG4gICAgICAgICAgICAgIE9iamVjdERlZmluZVByb3BlcnR5KHNoYWRvd1RhcmdldCwga2V5LCBkZXNjKTtcbiAgICAgICAgICB9XG4gICAgICAgICAgcmV0dXJuIGRlc2M7XG4gICAgICB9XG4gICAgICBwcmV2ZW50RXh0ZW5zaW9ucyhzaGFkb3dUYXJnZXQpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0LCBtZW1icmFuZSB9ID0gdGhpcztcbiAgICAgICAgICBsb2NrU2hhZG93VGFyZ2V0KG1lbWJyYW5lLCBzaGFkb3dUYXJnZXQsIG9yaWdpbmFsVGFyZ2V0KTtcbiAgICAgICAgICBwcmV2ZW50RXh0ZW5zaW9ucyhvcmlnaW5hbFRhcmdldCk7XG4gICAgICAgICAgcmV0dXJuIHRydWU7XG4gICAgICB9XG4gICAgICBkZWZpbmVQcm9wZXJ0eShzaGFkb3dUYXJnZXQsIGtleSwgZGVzY3JpcHRvcikge1xuICAgICAgICAgIGNvbnN0IHsgb3JpZ2luYWxUYXJnZXQsIG1lbWJyYW5lIH0gPSB0aGlzO1xuICAgICAgICAgIGNvbnN0IHsgdmFsdWVNdXRhdGVkIH0gPSBtZW1icmFuZTtcbiAgICAgICAgICBjb25zdCB7IGNvbmZpZ3VyYWJsZSB9ID0gZGVzY3JpcHRvcjtcbiAgICAgICAgICAvLyBXZSBoYXZlIHRvIGNoZWNrIGZvciB2YWx1ZSBpbiBkZXNjcmlwdG9yXG4gICAgICAgICAgLy8gYmVjYXVzZSBPYmplY3QuZnJlZXplKHByb3h5KSBjYWxscyB0aGlzIG1ldGhvZFxuICAgICAgICAgIC8vIHdpdGggb25seSB7IGNvbmZpZ3VyYWJsZTogZmFsc2UsIHdyaXRlYWJsZTogZmFsc2UgfVxuICAgICAgICAgIC8vIEFkZGl0aW9uYWxseSwgbWV0aG9kIHdpbGwgb25seSBiZSBjYWxsZWQgd2l0aCB3cml0ZWFibGU6ZmFsc2VcbiAgICAgICAgICAvLyBpZiB0aGUgZGVzY3JpcHRvciBoYXMgYSB2YWx1ZSwgYXMgb3Bwb3NlZCB0byBnZXR0ZXIvc2V0dGVyXG4gICAgICAgICAgLy8gU28gd2UgY2FuIGp1c3QgY2hlY2sgaWYgd3JpdGFibGUgaXMgcHJlc2VudCBhbmQgdGhlbiBzZWUgaWZcbiAgICAgICAgICAvLyB2YWx1ZSBpcyBwcmVzZW50LiBUaGlzIGVsaW1pbmF0ZXMgZ2V0dGVyIGFuZCBzZXR0ZXIgZGVzY3JpcHRvcnNcbiAgICAgICAgICBpZiAoaGFzT3duUHJvcGVydHkuY2FsbChkZXNjcmlwdG9yLCAnd3JpdGFibGUnKSAmJiAhaGFzT3duUHJvcGVydHkuY2FsbChkZXNjcmlwdG9yLCAndmFsdWUnKSkge1xuICAgICAgICAgICAgICBjb25zdCBvcmlnaW5hbERlc2NyaXB0b3IgPSBnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3Iob3JpZ2luYWxUYXJnZXQsIGtleSk7XG4gICAgICAgICAgICAgIGRlc2NyaXB0b3IudmFsdWUgPSBvcmlnaW5hbERlc2NyaXB0b3IudmFsdWU7XG4gICAgICAgICAgfVxuICAgICAgICAgIE9iamVjdERlZmluZVByb3BlcnR5KG9yaWdpbmFsVGFyZ2V0LCBrZXksIHVud3JhcERlc2NyaXB0b3IoZGVzY3JpcHRvcikpO1xuICAgICAgICAgIGlmIChjb25maWd1cmFibGUgPT09IGZhbHNlKSB7XG4gICAgICAgICAgICAgIE9iamVjdERlZmluZVByb3BlcnR5KHNoYWRvd1RhcmdldCwga2V5LCB3cmFwRGVzY3JpcHRvcihtZW1icmFuZSwgZGVzY3JpcHRvciwgd3JhcFZhbHVlKSk7XG4gICAgICAgICAgfVxuICAgICAgICAgIHZhbHVlTXV0YXRlZChvcmlnaW5hbFRhcmdldCwga2V5KTtcbiAgICAgICAgICByZXR1cm4gdHJ1ZTtcbiAgICAgIH1cbiAgfVxuXG4gIGZ1bmN0aW9uIHdyYXBSZWFkT25seVZhbHVlKG1lbWJyYW5lLCB2YWx1ZSkge1xuICAgICAgcmV0dXJuIG1lbWJyYW5lLnZhbHVlSXNPYnNlcnZhYmxlKHZhbHVlKSA/IG1lbWJyYW5lLmdldFJlYWRPbmx5UHJveHkodmFsdWUpIDogdmFsdWU7XG4gIH1cbiAgY2xhc3MgUmVhZE9ubHlIYW5kbGVyIHtcbiAgICAgIGNvbnN0cnVjdG9yKG1lbWJyYW5lLCB2YWx1ZSkge1xuICAgICAgICAgIHRoaXMub3JpZ2luYWxUYXJnZXQgPSB2YWx1ZTtcbiAgICAgICAgICB0aGlzLm1lbWJyYW5lID0gbWVtYnJhbmU7XG4gICAgICB9XG4gICAgICBnZXQoc2hhZG93VGFyZ2V0LCBrZXkpIHtcbiAgICAgICAgICBjb25zdCB7IG1lbWJyYW5lLCBvcmlnaW5hbFRhcmdldCB9ID0gdGhpcztcbiAgICAgICAgICBjb25zdCB2YWx1ZSA9IG9yaWdpbmFsVGFyZ2V0W2tleV07XG4gICAgICAgICAgY29uc3QgeyB2YWx1ZU9ic2VydmVkIH0gPSBtZW1icmFuZTtcbiAgICAgICAgICB2YWx1ZU9ic2VydmVkKG9yaWdpbmFsVGFyZ2V0LCBrZXkpO1xuICAgICAgICAgIHJldHVybiBtZW1icmFuZS5nZXRSZWFkT25seVByb3h5KHZhbHVlKTtcbiAgICAgIH1cbiAgICAgIHNldChzaGFkb3dUYXJnZXQsIGtleSwgdmFsdWUpIHtcbiAgICAgICAgICByZXR1cm4gZmFsc2U7XG4gICAgICB9XG4gICAgICBkZWxldGVQcm9wZXJ0eShzaGFkb3dUYXJnZXQsIGtleSkge1xuICAgICAgICAgIHJldHVybiBmYWxzZTtcbiAgICAgIH1cbiAgICAgIGFwcGx5KHNoYWRvd1RhcmdldCwgdGhpc0FyZywgYXJnQXJyYXkpIHtcbiAgICAgICAgICAvKiBObyBvcCAqL1xuICAgICAgfVxuICAgICAgY29uc3RydWN0KHRhcmdldCwgYXJnQXJyYXksIG5ld1RhcmdldCkge1xuICAgICAgICAgIC8qIE5vIG9wICovXG4gICAgICB9XG4gICAgICBoYXMoc2hhZG93VGFyZ2V0LCBrZXkpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0LCBtZW1icmFuZTogeyB2YWx1ZU9ic2VydmVkIH0gfSA9IHRoaXM7XG4gICAgICAgICAgdmFsdWVPYnNlcnZlZChvcmlnaW5hbFRhcmdldCwga2V5KTtcbiAgICAgICAgICByZXR1cm4ga2V5IGluIG9yaWdpbmFsVGFyZ2V0O1xuICAgICAgfVxuICAgICAgb3duS2V5cyhzaGFkb3dUYXJnZXQpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0IH0gPSB0aGlzO1xuICAgICAgICAgIHJldHVybiBBcnJheUNvbmNhdC5jYWxsKGdldE93blByb3BlcnR5TmFtZXMob3JpZ2luYWxUYXJnZXQpLCBnZXRPd25Qcm9wZXJ0eVN5bWJvbHMob3JpZ2luYWxUYXJnZXQpKTtcbiAgICAgIH1cbiAgICAgIHNldFByb3RvdHlwZU9mKHNoYWRvd1RhcmdldCwgcHJvdG90eXBlKSB7XG4gICAgICB9XG4gICAgICBnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3Ioc2hhZG93VGFyZ2V0LCBrZXkpIHtcbiAgICAgICAgICBjb25zdCB7IG9yaWdpbmFsVGFyZ2V0LCBtZW1icmFuZSB9ID0gdGhpcztcbiAgICAgICAgICBjb25zdCB7IHZhbHVlT2JzZXJ2ZWQgfSA9IG1lbWJyYW5lO1xuICAgICAgICAgIC8vIGtleXMgbG9va2VkIHVwIHZpYSBoYXNPd25Qcm9wZXJ0eSBuZWVkIHRvIGJlIHJlYWN0aXZlXG4gICAgICAgICAgdmFsdWVPYnNlcnZlZChvcmlnaW5hbFRhcmdldCwga2V5KTtcbiAgICAgICAgICBsZXQgZGVzYyA9IGdldE93blByb3BlcnR5RGVzY3JpcHRvcihvcmlnaW5hbFRhcmdldCwga2V5KTtcbiAgICAgICAgICBpZiAoaXNVbmRlZmluZWQoZGVzYykpIHtcbiAgICAgICAgICAgICAgcmV0dXJuIGRlc2M7XG4gICAgICAgICAgfVxuICAgICAgICAgIGNvbnN0IHNoYWRvd0Rlc2NyaXB0b3IgPSBnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3Ioc2hhZG93VGFyZ2V0LCBrZXkpO1xuICAgICAgICAgIGlmICghaXNVbmRlZmluZWQoc2hhZG93RGVzY3JpcHRvcikpIHtcbiAgICAgICAgICAgICAgcmV0dXJuIHNoYWRvd0Rlc2NyaXB0b3I7XG4gICAgICAgICAgfVxuICAgICAgICAgIC8vIE5vdGU6IGJ5IGFjY2Vzc2luZyB0aGUgZGVzY3JpcHRvciwgdGhlIGtleSBpcyBtYXJrZWQgYXMgb2JzZXJ2ZWRcbiAgICAgICAgICAvLyBidXQgYWNjZXNzIHRvIHRoZSB2YWx1ZSBvciBnZXR0ZXIgKGlmIGF2YWlsYWJsZSkgY2Fubm90IGJlIG9ic2VydmVkLFxuICAgICAgICAgIC8vIGp1c3QgbGlrZSByZWd1bGFyIG1ldGhvZHMsIGluIHdoaWNoIGNhc2Ugd2UganVzdCBkbyBub3RoaW5nLlxuICAgICAgICAgIGRlc2MgPSB3cmFwRGVzY3JpcHRvcihtZW1icmFuZSwgZGVzYywgd3JhcFJlYWRPbmx5VmFsdWUpO1xuICAgICAgICAgIGlmIChoYXNPd25Qcm9wZXJ0eS5jYWxsKGRlc2MsICdzZXQnKSkge1xuICAgICAgICAgICAgICBkZXNjLnNldCA9IHVuZGVmaW5lZDsgLy8gcmVhZE9ubHkgbWVtYnJhbmUgZG9lcyBub3QgYWxsb3cgc2V0dGVyc1xuICAgICAgICAgIH1cbiAgICAgICAgICBpZiAoIWRlc2MuY29uZmlndXJhYmxlKSB7XG4gICAgICAgICAgICAgIC8vIElmIGRlc2NyaXB0b3IgZnJvbSBvcmlnaW5hbCB0YXJnZXQgaXMgbm90IGNvbmZpZ3VyYWJsZSxcbiAgICAgICAgICAgICAgLy8gV2UgbXVzdCBjb3B5IHRoZSB3cmFwcGVkIGRlc2NyaXB0b3Igb3ZlciB0byB0aGUgc2hhZG93IHRhcmdldC5cbiAgICAgICAgICAgICAgLy8gT3RoZXJ3aXNlLCBwcm94eSB3aWxsIHRocm93IGFuIGludmFyaWFudCBlcnJvci5cbiAgICAgICAgICAgICAgLy8gVGhpcyBpcyBvdXIgbGFzdCBjaGFuY2UgdG8gbG9jayB0aGUgdmFsdWUuXG4gICAgICAgICAgICAgIC8vIGh0dHBzOi8vZGV2ZWxvcGVyLm1vemlsbGEub3JnL2VuLVVTL2RvY3MvV2ViL0phdmFTY3JpcHQvUmVmZXJlbmNlL0dsb2JhbF9PYmplY3RzL1Byb3h5L2hhbmRsZXIvZ2V0T3duUHJvcGVydHlEZXNjcmlwdG9yI0ludmFyaWFudHNcbiAgICAgICAgICAgICAgT2JqZWN0RGVmaW5lUHJvcGVydHkoc2hhZG93VGFyZ2V0LCBrZXksIGRlc2MpO1xuICAgICAgICAgIH1cbiAgICAgICAgICByZXR1cm4gZGVzYztcbiAgICAgIH1cbiAgICAgIHByZXZlbnRFeHRlbnNpb25zKHNoYWRvd1RhcmdldCkge1xuICAgICAgICAgIHJldHVybiBmYWxzZTtcbiAgICAgIH1cbiAgICAgIGRlZmluZVByb3BlcnR5KHNoYWRvd1RhcmdldCwga2V5LCBkZXNjcmlwdG9yKSB7XG4gICAgICAgICAgcmV0dXJuIGZhbHNlO1xuICAgICAgfVxuICB9XG4gIGZ1bmN0aW9uIGNyZWF0ZVNoYWRvd1RhcmdldCh2YWx1ZSkge1xuICAgICAgbGV0IHNoYWRvd1RhcmdldCA9IHVuZGVmaW5lZDtcbiAgICAgIGlmIChpc0FycmF5KHZhbHVlKSkge1xuICAgICAgICAgIHNoYWRvd1RhcmdldCA9IFtdO1xuICAgICAgfVxuICAgICAgZWxzZSBpZiAoaXNPYmplY3QodmFsdWUpKSB7XG4gICAgICAgICAgc2hhZG93VGFyZ2V0ID0ge307XG4gICAgICB9XG4gICAgICByZXR1cm4gc2hhZG93VGFyZ2V0O1xuICB9XG4gIGNvbnN0IE9iamVjdERvdFByb3RvdHlwZSA9IE9iamVjdC5wcm90b3R5cGU7XG4gIGZ1bmN0aW9uIGRlZmF1bHRWYWx1ZUlzT2JzZXJ2YWJsZSh2YWx1ZSkge1xuICAgICAgLy8gaW50ZW50aW9uYWxseSBjaGVja2luZyBmb3IgbnVsbFxuICAgICAgaWYgKHZhbHVlID09PSBudWxsKSB7XG4gICAgICAgICAgcmV0dXJuIGZhbHNlO1xuICAgICAgfVxuICAgICAgLy8gdHJlYXQgYWxsIG5vbi1vYmplY3QgdHlwZXMsIGluY2x1ZGluZyB1bmRlZmluZWQsIGFzIG5vbi1vYnNlcnZhYmxlIHZhbHVlc1xuICAgICAgaWYgKHR5cGVvZiB2YWx1ZSAhPT0gJ29iamVjdCcpIHtcbiAgICAgICAgICByZXR1cm4gZmFsc2U7XG4gICAgICB9XG4gICAgICBpZiAoaXNBcnJheSh2YWx1ZSkpIHtcbiAgICAgICAgICByZXR1cm4gdHJ1ZTtcbiAgICAgIH1cbiAgICAgIGNvbnN0IHByb3RvID0gZ2V0UHJvdG90eXBlT2YodmFsdWUpO1xuICAgICAgcmV0dXJuIChwcm90byA9PT0gT2JqZWN0RG90UHJvdG90eXBlIHx8IHByb3RvID09PSBudWxsIHx8IGdldFByb3RvdHlwZU9mKHByb3RvKSA9PT0gbnVsbCk7XG4gIH1cbiAgY29uc3QgZGVmYXVsdFZhbHVlT2JzZXJ2ZWQgPSAob2JqLCBrZXkpID0+IHtcbiAgICAgIC8qIGRvIG5vdGhpbmcgKi9cbiAgfTtcbiAgY29uc3QgZGVmYXVsdFZhbHVlTXV0YXRlZCA9IChvYmosIGtleSkgPT4ge1xuICAgICAgLyogZG8gbm90aGluZyAqL1xuICB9O1xuICBjb25zdCBkZWZhdWx0VmFsdWVEaXN0b3J0aW9uID0gKHZhbHVlKSA9PiB2YWx1ZTtcbiAgZnVuY3Rpb24gd3JhcERlc2NyaXB0b3IobWVtYnJhbmUsIGRlc2NyaXB0b3IsIGdldFZhbHVlKSB7XG4gICAgICBjb25zdCB7IHNldCwgZ2V0IH0gPSBkZXNjcmlwdG9yO1xuICAgICAgaWYgKGhhc093blByb3BlcnR5LmNhbGwoZGVzY3JpcHRvciwgJ3ZhbHVlJykpIHtcbiAgICAgICAgICBkZXNjcmlwdG9yLnZhbHVlID0gZ2V0VmFsdWUobWVtYnJhbmUsIGRlc2NyaXB0b3IudmFsdWUpO1xuICAgICAgfVxuICAgICAgZWxzZSB7XG4gICAgICAgICAgaWYgKCFpc1VuZGVmaW5lZChnZXQpKSB7XG4gICAgICAgICAgICAgIGRlc2NyaXB0b3IuZ2V0ID0gZnVuY3Rpb24gKCkge1xuICAgICAgICAgICAgICAgICAgLy8gaW52b2tpbmcgdGhlIG9yaWdpbmFsIGdldHRlciB3aXRoIHRoZSBvcmlnaW5hbCB0YXJnZXRcbiAgICAgICAgICAgICAgICAgIHJldHVybiBnZXRWYWx1ZShtZW1icmFuZSwgZ2V0LmNhbGwodW53cmFwKHRoaXMpKSk7XG4gICAgICAgICAgICAgIH07XG4gICAgICAgICAgfVxuICAgICAgICAgIGlmICghaXNVbmRlZmluZWQoc2V0KSkge1xuICAgICAgICAgICAgICBkZXNjcmlwdG9yLnNldCA9IGZ1bmN0aW9uICh2YWx1ZSkge1xuICAgICAgICAgICAgICAgICAgLy8gQXQgdGhpcyBwb2ludCB3ZSBkb24ndCBoYXZlIGEgY2xlYXIgaW5kaWNhdGlvbiBvZiB3aGV0aGVyXG4gICAgICAgICAgICAgICAgICAvLyBvciBub3QgYSB2YWxpZCBtdXRhdGlvbiB3aWxsIG9jY3VyLCB3ZSBkb24ndCBoYXZlIHRoZSBrZXksXG4gICAgICAgICAgICAgICAgICAvLyBhbmQgd2UgYXJlIG5vdCBzdXJlIHdoeSBhbmQgaG93IHRoZXkgYXJlIGludm9raW5nIHRoaXMgc2V0dGVyLlxuICAgICAgICAgICAgICAgICAgLy8gTmV2ZXJ0aGVsZXNzIHdlIHByZXNlcnZlIHRoZSBvcmlnaW5hbCBzZW1hbnRpY3MgYnkgaW52b2tpbmcgdGhlXG4gICAgICAgICAgICAgICAgICAvLyBvcmlnaW5hbCBzZXR0ZXIgd2l0aCB0aGUgb3JpZ2luYWwgdGFyZ2V0IGFuZCB0aGUgdW53cmFwcGVkIHZhbHVlXG4gICAgICAgICAgICAgICAgICBzZXQuY2FsbCh1bndyYXAodGhpcyksIG1lbWJyYW5lLnVud3JhcFByb3h5KHZhbHVlKSk7XG4gICAgICAgICAgICAgIH07XG4gICAgICAgICAgfVxuICAgICAgfVxuICAgICAgcmV0dXJuIGRlc2NyaXB0b3I7XG4gIH1cbiAgY2xhc3MgUmVhY3RpdmVNZW1icmFuZSB7XG4gICAgICBjb25zdHJ1Y3RvcihvcHRpb25zKSB7XG4gICAgICAgICAgdGhpcy52YWx1ZURpc3RvcnRpb24gPSBkZWZhdWx0VmFsdWVEaXN0b3J0aW9uO1xuICAgICAgICAgIHRoaXMudmFsdWVNdXRhdGVkID0gZGVmYXVsdFZhbHVlTXV0YXRlZDtcbiAgICAgICAgICB0aGlzLnZhbHVlT2JzZXJ2ZWQgPSBkZWZhdWx0VmFsdWVPYnNlcnZlZDtcbiAgICAgICAgICB0aGlzLnZhbHVlSXNPYnNlcnZhYmxlID0gZGVmYXVsdFZhbHVlSXNPYnNlcnZhYmxlO1xuICAgICAgICAgIHRoaXMub2JqZWN0R3JhcGggPSBuZXcgV2Vha01hcCgpO1xuICAgICAgICAgIGlmICghaXNVbmRlZmluZWQob3B0aW9ucykpIHtcbiAgICAgICAgICAgICAgY29uc3QgeyB2YWx1ZURpc3RvcnRpb24sIHZhbHVlTXV0YXRlZCwgdmFsdWVPYnNlcnZlZCwgdmFsdWVJc09ic2VydmFibGUgfSA9IG9wdGlvbnM7XG4gICAgICAgICAgICAgIHRoaXMudmFsdWVEaXN0b3J0aW9uID0gaXNGdW5jdGlvbih2YWx1ZURpc3RvcnRpb24pID8gdmFsdWVEaXN0b3J0aW9uIDogZGVmYXVsdFZhbHVlRGlzdG9ydGlvbjtcbiAgICAgICAgICAgICAgdGhpcy52YWx1ZU11dGF0ZWQgPSBpc0Z1bmN0aW9uKHZhbHVlTXV0YXRlZCkgPyB2YWx1ZU11dGF0ZWQgOiBkZWZhdWx0VmFsdWVNdXRhdGVkO1xuICAgICAgICAgICAgICB0aGlzLnZhbHVlT2JzZXJ2ZWQgPSBpc0Z1bmN0aW9uKHZhbHVlT2JzZXJ2ZWQpID8gdmFsdWVPYnNlcnZlZCA6IGRlZmF1bHRWYWx1ZU9ic2VydmVkO1xuICAgICAgICAgICAgICB0aGlzLnZhbHVlSXNPYnNlcnZhYmxlID0gaXNGdW5jdGlvbih2YWx1ZUlzT2JzZXJ2YWJsZSkgPyB2YWx1ZUlzT2JzZXJ2YWJsZSA6IGRlZmF1bHRWYWx1ZUlzT2JzZXJ2YWJsZTtcbiAgICAgICAgICB9XG4gICAgICB9XG4gICAgICBnZXRQcm94eSh2YWx1ZSkge1xuICAgICAgICAgIGNvbnN0IHVud3JhcHBlZFZhbHVlID0gdW53cmFwKHZhbHVlKTtcbiAgICAgICAgICBjb25zdCBkaXN0b3J0ZWQgPSB0aGlzLnZhbHVlRGlzdG9ydGlvbih1bndyYXBwZWRWYWx1ZSk7XG4gICAgICAgICAgaWYgKHRoaXMudmFsdWVJc09ic2VydmFibGUoZGlzdG9ydGVkKSkge1xuICAgICAgICAgICAgICBjb25zdCBvID0gdGhpcy5nZXRSZWFjdGl2ZVN0YXRlKHVud3JhcHBlZFZhbHVlLCBkaXN0b3J0ZWQpO1xuICAgICAgICAgICAgICAvLyB3aGVuIHRyeWluZyB0byBleHRyYWN0IHRoZSB3cml0YWJsZSB2ZXJzaW9uIG9mIGEgcmVhZG9ubHlcbiAgICAgICAgICAgICAgLy8gd2UgcmV0dXJuIHRoZSByZWFkb25seS5cbiAgICAgICAgICAgICAgcmV0dXJuIG8ucmVhZE9ubHkgPT09IHZhbHVlID8gdmFsdWUgOiBvLnJlYWN0aXZlO1xuICAgICAgICAgIH1cbiAgICAgICAgICByZXR1cm4gZGlzdG9ydGVkO1xuICAgICAgfVxuICAgICAgZ2V0UmVhZE9ubHlQcm94eSh2YWx1ZSkge1xuICAgICAgICAgIHZhbHVlID0gdW53cmFwKHZhbHVlKTtcbiAgICAgICAgICBjb25zdCBkaXN0b3J0ZWQgPSB0aGlzLnZhbHVlRGlzdG9ydGlvbih2YWx1ZSk7XG4gICAgICAgICAgaWYgKHRoaXMudmFsdWVJc09ic2VydmFibGUoZGlzdG9ydGVkKSkge1xuICAgICAgICAgICAgICByZXR1cm4gdGhpcy5nZXRSZWFjdGl2ZVN0YXRlKHZhbHVlLCBkaXN0b3J0ZWQpLnJlYWRPbmx5O1xuICAgICAgICAgIH1cbiAgICAgICAgICByZXR1cm4gZGlzdG9ydGVkO1xuICAgICAgfVxuICAgICAgdW53cmFwUHJveHkocCkge1xuICAgICAgICAgIHJldHVybiB1bndyYXAocCk7XG4gICAgICB9XG4gICAgICBnZXRSZWFjdGl2ZVN0YXRlKHZhbHVlLCBkaXN0b3J0ZWRWYWx1ZSkge1xuICAgICAgICAgIGNvbnN0IHsgb2JqZWN0R3JhcGgsIH0gPSB0aGlzO1xuICAgICAgICAgIGxldCByZWFjdGl2ZVN0YXRlID0gb2JqZWN0R3JhcGguZ2V0KGRpc3RvcnRlZFZhbHVlKTtcbiAgICAgICAgICBpZiAocmVhY3RpdmVTdGF0ZSkge1xuICAgICAgICAgICAgICByZXR1cm4gcmVhY3RpdmVTdGF0ZTtcbiAgICAgICAgICB9XG4gICAgICAgICAgY29uc3QgbWVtYnJhbmUgPSB0aGlzO1xuICAgICAgICAgIHJlYWN0aXZlU3RhdGUgPSB7XG4gICAgICAgICAgICAgIGdldCByZWFjdGl2ZSgpIHtcbiAgICAgICAgICAgICAgICAgIGNvbnN0IHJlYWN0aXZlSGFuZGxlciA9IG5ldyBSZWFjdGl2ZVByb3h5SGFuZGxlcihtZW1icmFuZSwgZGlzdG9ydGVkVmFsdWUpO1xuICAgICAgICAgICAgICAgICAgLy8gY2FjaGluZyB0aGUgcmVhY3RpdmUgcHJveHkgYWZ0ZXIgdGhlIGZpcnN0IHRpbWUgaXQgaXMgYWNjZXNzZWRcbiAgICAgICAgICAgICAgICAgIGNvbnN0IHByb3h5ID0gbmV3IFByb3h5KGNyZWF0ZVNoYWRvd1RhcmdldChkaXN0b3J0ZWRWYWx1ZSksIHJlYWN0aXZlSGFuZGxlcik7XG4gICAgICAgICAgICAgICAgICByZWdpc3RlclByb3h5KHByb3h5LCB2YWx1ZSk7XG4gICAgICAgICAgICAgICAgICBPYmplY3REZWZpbmVQcm9wZXJ0eSh0aGlzLCAncmVhY3RpdmUnLCB7IHZhbHVlOiBwcm94eSB9KTtcbiAgICAgICAgICAgICAgICAgIHJldHVybiBwcm94eTtcbiAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgZ2V0IHJlYWRPbmx5KCkge1xuICAgICAgICAgICAgICAgICAgY29uc3QgcmVhZE9ubHlIYW5kbGVyID0gbmV3IFJlYWRPbmx5SGFuZGxlcihtZW1icmFuZSwgZGlzdG9ydGVkVmFsdWUpO1xuICAgICAgICAgICAgICAgICAgLy8gY2FjaGluZyB0aGUgcmVhZE9ubHkgcHJveHkgYWZ0ZXIgdGhlIGZpcnN0IHRpbWUgaXQgaXMgYWNjZXNzZWRcbiAgICAgICAgICAgICAgICAgIGNvbnN0IHByb3h5ID0gbmV3IFByb3h5KGNyZWF0ZVNoYWRvd1RhcmdldChkaXN0b3J0ZWRWYWx1ZSksIHJlYWRPbmx5SGFuZGxlcik7XG4gICAgICAgICAgICAgICAgICByZWdpc3RlclByb3h5KHByb3h5LCB2YWx1ZSk7XG4gICAgICAgICAgICAgICAgICBPYmplY3REZWZpbmVQcm9wZXJ0eSh0aGlzLCAncmVhZE9ubHknLCB7IHZhbHVlOiBwcm94eSB9KTtcbiAgICAgICAgICAgICAgICAgIHJldHVybiBwcm94eTtcbiAgICAgICAgICAgICAgfVxuICAgICAgICAgIH07XG4gICAgICAgICAgb2JqZWN0R3JhcGguc2V0KGRpc3RvcnRlZFZhbHVlLCByZWFjdGl2ZVN0YXRlKTtcbiAgICAgICAgICByZXR1cm4gcmVhY3RpdmVTdGF0ZTtcbiAgICAgIH1cbiAgfVxuICAvKiogdmVyc2lvbjogMC4yNi4wICovXG5cbiAgZnVuY3Rpb24gd3JhcChkYXRhLCBtdXRhdGlvbkNhbGxiYWNrKSB7XG5cbiAgICBsZXQgbWVtYnJhbmUgPSBuZXcgUmVhY3RpdmVNZW1icmFuZSh7XG4gICAgICB2YWx1ZU11dGF0ZWQodGFyZ2V0LCBrZXkpIHtcbiAgICAgICAgbXV0YXRpb25DYWxsYmFjayh0YXJnZXQsIGtleSk7XG4gICAgICB9XG5cbiAgICB9KTtcbiAgICByZXR1cm4ge1xuICAgICAgZGF0YTogbWVtYnJhbmUuZ2V0UHJveHkoZGF0YSksXG4gICAgICBtZW1icmFuZTogbWVtYnJhbmVcbiAgICB9O1xuICB9XG4gIGZ1bmN0aW9uIHVud3JhcCQxKG1lbWJyYW5lLCBvYnNlcnZhYmxlKSB7XG4gICAgbGV0IHVud3JhcHBlZERhdGEgPSBtZW1icmFuZS51bndyYXBQcm94eShvYnNlcnZhYmxlKTtcbiAgICBsZXQgY29weSA9IHt9O1xuICAgIE9iamVjdC5rZXlzKHVud3JhcHBlZERhdGEpLmZvckVhY2goa2V5ID0+IHtcbiAgICAgIGlmIChbJyRlbCcsICckcmVmcycsICckbmV4dFRpY2snLCAnJHdhdGNoJ10uaW5jbHVkZXMoa2V5KSkgcmV0dXJuO1xuICAgICAgY29weVtrZXldID0gdW53cmFwcGVkRGF0YVtrZXldO1xuICAgIH0pO1xuICAgIHJldHVybiBjb3B5O1xuICB9XG5cbiAgY2xhc3MgQ29tcG9uZW50IHtcbiAgICBjb25zdHJ1Y3RvcihlbCwgY29tcG9uZW50Rm9yQ2xvbmUgPSBudWxsKSB7XG4gICAgICB0aGlzLiRlbCA9IGVsO1xuICAgICAgY29uc3QgZGF0YUF0dHIgPSB0aGlzLiRlbC5nZXRBdHRyaWJ1dGUoJ3gtZGF0YScpO1xuICAgICAgY29uc3QgZGF0YUV4cHJlc3Npb24gPSBkYXRhQXR0ciA9PT0gJycgPyAne30nIDogZGF0YUF0dHI7XG4gICAgICBjb25zdCBpbml0RXhwcmVzc2lvbiA9IHRoaXMuJGVsLmdldEF0dHJpYnV0ZSgneC1pbml0Jyk7XG4gICAgICBsZXQgZGF0YUV4dHJhcyA9IHtcbiAgICAgICAgJGVsOiB0aGlzLiRlbFxuICAgICAgfTtcbiAgICAgIGxldCBjYW5vbmljYWxDb21wb25lbnRFbGVtZW50UmVmZXJlbmNlID0gY29tcG9uZW50Rm9yQ2xvbmUgPyBjb21wb25lbnRGb3JDbG9uZS4kZWwgOiB0aGlzLiRlbDtcbiAgICAgIE9iamVjdC5lbnRyaWVzKEFscGluZS5tYWdpY1Byb3BlcnRpZXMpLmZvckVhY2goKFtuYW1lLCBjYWxsYmFja10pID0+IHtcbiAgICAgICAgT2JqZWN0LmRlZmluZVByb3BlcnR5KGRhdGFFeHRyYXMsIGAkJHtuYW1lfWAsIHtcbiAgICAgICAgICBnZXQ6IGZ1bmN0aW9uIGdldCgpIHtcbiAgICAgICAgICAgIHJldHVybiBjYWxsYmFjayhjYW5vbmljYWxDb21wb25lbnRFbGVtZW50UmVmZXJlbmNlKTtcbiAgICAgICAgICB9XG4gICAgICAgIH0pO1xuICAgICAgfSk7XG4gICAgICB0aGlzLnVub2JzZXJ2ZWREYXRhID0gY29tcG9uZW50Rm9yQ2xvbmUgPyBjb21wb25lbnRGb3JDbG9uZS5nZXRVbm9ic2VydmVkRGF0YSgpIDogc2FmZXJFdmFsKGVsLCBkYXRhRXhwcmVzc2lvbiwgZGF0YUV4dHJhcyk7XG4gICAgICAvLyBDb25zdHJ1Y3QgYSBQcm94eS1iYXNlZCBvYnNlcnZhYmxlLiBUaGlzIHdpbGwgYmUgdXNlZCB0byBoYW5kbGUgcmVhY3Rpdml0eS5cblxuICAgICAgbGV0IHtcbiAgICAgICAgbWVtYnJhbmUsXG4gICAgICAgIGRhdGFcbiAgICAgIH0gPSB0aGlzLndyYXBEYXRhSW5PYnNlcnZhYmxlKHRoaXMudW5vYnNlcnZlZERhdGEpO1xuICAgICAgdGhpcy4kZGF0YSA9IGRhdGE7XG4gICAgICB0aGlzLm1lbWJyYW5lID0gbWVtYnJhbmU7IC8vIEFmdGVyIG1ha2luZyB1c2VyLXN1cHBsaWVkIGRhdGEgbWV0aG9kcyByZWFjdGl2ZSwgd2UgY2FuIG5vdyBhZGRcbiAgICAgIC8vIG91ciBtYWdpYyBwcm9wZXJ0aWVzIHRvIHRoZSBvcmlnaW5hbCBkYXRhIGZvciBhY2Nlc3MuXG5cbiAgICAgIHRoaXMudW5vYnNlcnZlZERhdGEuJGVsID0gdGhpcy4kZWw7XG4gICAgICB0aGlzLnVub2JzZXJ2ZWREYXRhLiRyZWZzID0gdGhpcy5nZXRSZWZzUHJveHkoKTtcbiAgICAgIHRoaXMubmV4dFRpY2tTdGFjayA9IFtdO1xuXG4gICAgICB0aGlzLnVub2JzZXJ2ZWREYXRhLiRuZXh0VGljayA9IGNhbGxiYWNrID0+IHtcbiAgICAgICAgdGhpcy5uZXh0VGlja1N0YWNrLnB1c2goY2FsbGJhY2spO1xuICAgICAgfTtcblxuICAgICAgdGhpcy53YXRjaGVycyA9IHt9O1xuXG4gICAgICB0aGlzLnVub2JzZXJ2ZWREYXRhLiR3YXRjaCA9IChwcm9wZXJ0eSwgY2FsbGJhY2spID0+IHtcbiAgICAgICAgaWYgKCF0aGlzLndhdGNoZXJzW3Byb3BlcnR5XSkgdGhpcy53YXRjaGVyc1twcm9wZXJ0eV0gPSBbXTtcbiAgICAgICAgdGhpcy53YXRjaGVyc1twcm9wZXJ0eV0ucHVzaChjYWxsYmFjayk7XG4gICAgICB9O1xuICAgICAgLyogTU9ERVJOLU9OTFk6U1RBUlQgKi9cbiAgICAgIC8vIFdlIHJlbW92ZSB0aGlzIHBpZWNlIG9mIGNvZGUgZnJvbSB0aGUgbGVnYWN5IGJ1aWxkLlxuICAgICAgLy8gSW4gSUUxMSwgd2UgaGF2ZSBhbHJlYWR5IGRlZmluZWQgb3VyIGhlbHBlcnMgYXQgdGhpcyBwb2ludC5cbiAgICAgIC8vIFJlZ2lzdGVyIGN1c3RvbSBtYWdpYyBwcm9wZXJ0aWVzLlxuXG5cbiAgICAgIE9iamVjdC5lbnRyaWVzKEFscGluZS5tYWdpY1Byb3BlcnRpZXMpLmZvckVhY2goKFtuYW1lLCBjYWxsYmFja10pID0+IHtcbiAgICAgICAgT2JqZWN0LmRlZmluZVByb3BlcnR5KHRoaXMudW5vYnNlcnZlZERhdGEsIGAkJHtuYW1lfWAsIHtcbiAgICAgICAgICBnZXQ6IGZ1bmN0aW9uIGdldCgpIHtcbiAgICAgICAgICAgIHJldHVybiBjYWxsYmFjayhjYW5vbmljYWxDb21wb25lbnRFbGVtZW50UmVmZXJlbmNlLCB0aGlzLiRlbCk7XG4gICAgICAgICAgfVxuICAgICAgICB9KTtcbiAgICAgIH0pO1xuICAgICAgLyogTU9ERVJOLU9OTFk6RU5EICovXG5cbiAgICAgIHRoaXMuc2hvd0RpcmVjdGl2ZVN0YWNrID0gW107XG4gICAgICB0aGlzLnNob3dEaXJlY3RpdmVMYXN0RWxlbWVudDtcbiAgICAgIGNvbXBvbmVudEZvckNsb25lIHx8IEFscGluZS5vbkJlZm9yZUNvbXBvbmVudEluaXRpYWxpemVkcy5mb3JFYWNoKGNhbGxiYWNrID0+IGNhbGxiYWNrKHRoaXMpKTtcbiAgICAgIHZhciBpbml0UmV0dXJuZWRDYWxsYmFjazsgLy8gSWYgeC1pbml0IGlzIHByZXNlbnQgQU5EIHdlIGFyZW4ndCBjbG9uaW5nIChza2lwIHgtaW5pdCBvbiBjbG9uZSlcblxuICAgICAgaWYgKGluaXRFeHByZXNzaW9uICYmICFjb21wb25lbnRGb3JDbG9uZSkge1xuICAgICAgICAvLyBXZSB3YW50IHRvIGFsbG93IGRhdGEgbWFuaXB1bGF0aW9uLCBidXQgbm90IHRyaWdnZXIgRE9NIHVwZGF0ZXMganVzdCB5ZXQuXG4gICAgICAgIC8vIFdlIGhhdmVuJ3QgZXZlbiBpbml0aWFsaXplZCB0aGUgZWxlbWVudHMgd2l0aCB0aGVpciBBbHBpbmUgYmluZGluZ3MuIEkgbWVhbiBjJ21vbi5cbiAgICAgICAgdGhpcy5wYXVzZVJlYWN0aXZpdHkgPSB0cnVlO1xuICAgICAgICBpbml0UmV0dXJuZWRDYWxsYmFjayA9IHRoaXMuZXZhbHVhdGVSZXR1cm5FeHByZXNzaW9uKHRoaXMuJGVsLCBpbml0RXhwcmVzc2lvbik7XG4gICAgICAgIHRoaXMucGF1c2VSZWFjdGl2aXR5ID0gZmFsc2U7XG4gICAgICB9IC8vIFJlZ2lzdGVyIGFsbCBvdXIgbGlzdGVuZXJzIGFuZCBzZXQgYWxsIG91ciBhdHRyaWJ1dGUgYmluZGluZ3MuXG4gICAgICAvLyBJZiB3ZSdyZSBjbG9uaW5nIGEgY29tcG9uZW50LCB0aGUgdGhpcmQgcGFyYW1ldGVyIGVuc3VyZXMgbm8gZHVwbGljYXRlXG4gICAgICAvLyBldmVudCBsaXN0ZW5lcnMgYXJlIHJlZ2lzdGVyZWQgKHRoZSBtdXRhdGlvbiBvYnNlcnZlciB3aWxsIHRha2UgY2FyZSBvZiB0aGVtKVxuXG5cbiAgICAgIHRoaXMuaW5pdGlhbGl6ZUVsZW1lbnRzKHRoaXMuJGVsLCAoKSA9PiB7fSwgY29tcG9uZW50Rm9yQ2xvbmUpOyAvLyBVc2UgbXV0YXRpb24gb2JzZXJ2ZXIgdG8gZGV0ZWN0IG5ldyBlbGVtZW50cyBiZWluZyBhZGRlZCB3aXRoaW4gdGhpcyBjb21wb25lbnQgYXQgcnVuLXRpbWUuXG4gICAgICAvLyBBbHBpbmUncyBqdXN0IHNvIGRhcm4gZmxleGlibGUgYW1pcml0ZT9cblxuICAgICAgdGhpcy5saXN0ZW5Gb3JOZXdFbGVtZW50c1RvSW5pdGlhbGl6ZSgpO1xuXG4gICAgICBpZiAodHlwZW9mIGluaXRSZXR1cm5lZENhbGxiYWNrID09PSAnZnVuY3Rpb24nKSB7XG4gICAgICAgIC8vIFJ1biB0aGUgY2FsbGJhY2sgcmV0dXJuZWQgZnJvbSB0aGUgXCJ4LWluaXRcIiBob29rIHRvIGFsbG93IHRoZSB1c2VyIHRvIGRvIHN0dWZmIGFmdGVyXG4gICAgICAgIC8vIEFscGluZSdzIGdvdCBpdCdzIGdydWJieSBsaXR0bGUgcGF3cyBhbGwgb3ZlciBldmVyeXRoaW5nLlxuICAgICAgICBpbml0UmV0dXJuZWRDYWxsYmFjay5jYWxsKHRoaXMuJGRhdGEpO1xuICAgICAgfVxuXG4gICAgICBjb21wb25lbnRGb3JDbG9uZSB8fCBzZXRUaW1lb3V0KCgpID0+IHtcbiAgICAgICAgQWxwaW5lLm9uQ29tcG9uZW50SW5pdGlhbGl6ZWRzLmZvckVhY2goY2FsbGJhY2sgPT4gY2FsbGJhY2sodGhpcykpO1xuICAgICAgfSwgMCk7XG4gICAgfVxuXG4gICAgZ2V0VW5vYnNlcnZlZERhdGEoKSB7XG4gICAgICByZXR1cm4gdW53cmFwJDEodGhpcy5tZW1icmFuZSwgdGhpcy4kZGF0YSk7XG4gICAgfVxuXG4gICAgd3JhcERhdGFJbk9ic2VydmFibGUoZGF0YSkge1xuICAgICAgdmFyIHNlbGYgPSB0aGlzO1xuICAgICAgbGV0IHVwZGF0ZURvbSA9IGRlYm91bmNlKGZ1bmN0aW9uICgpIHtcbiAgICAgICAgc2VsZi51cGRhdGVFbGVtZW50cyhzZWxmLiRlbCk7XG4gICAgICB9LCAwKTtcbiAgICAgIHJldHVybiB3cmFwKGRhdGEsICh0YXJnZXQsIGtleSkgPT4ge1xuICAgICAgICBpZiAoc2VsZi53YXRjaGVyc1trZXldKSB7XG4gICAgICAgICAgLy8gSWYgdGhlcmUncyBhIHdhdGNoZXIgZm9yIHRoaXMgc3BlY2lmaWMga2V5LCBydW4gaXQuXG4gICAgICAgICAgc2VsZi53YXRjaGVyc1trZXldLmZvckVhY2goY2FsbGJhY2sgPT4gY2FsbGJhY2sodGFyZ2V0W2tleV0pKTtcbiAgICAgICAgfSBlbHNlIGlmIChBcnJheS5pc0FycmF5KHRhcmdldCkpIHtcbiAgICAgICAgICAvLyBBcnJheXMgYXJlIHNwZWNpYWwgY2FzZXMsIGlmIGFueSBvZiB0aGUgaXRlbXMgY2hhbmdlLCB3ZSBjb25zaWRlciB0aGUgYXJyYXkgYXMgbXV0YXRlZC5cbiAgICAgICAgICBPYmplY3Qua2V5cyhzZWxmLndhdGNoZXJzKS5mb3JFYWNoKGZ1bGxEb3ROb3RhdGlvbktleSA9PiB7XG4gICAgICAgICAgICBsZXQgZG90Tm90YXRpb25QYXJ0cyA9IGZ1bGxEb3ROb3RhdGlvbktleS5zcGxpdCgnLicpOyAvLyBJZ25vcmUgbGVuZ3RoIG11dGF0aW9ucyBzaW5jZSB0aGV5IHdvdWxkIHJlc3VsdCBpbiBkdXBsaWNhdGUgY2FsbHMuXG4gICAgICAgICAgICAvLyBGb3IgZXhhbXBsZSwgd2hlbiBjYWxsaW5nIHB1c2gsIHdlIHdvdWxkIGdldCBhIG11dGF0aW9uIGZvciB0aGUgaXRlbSdzIGtleVxuICAgICAgICAgICAgLy8gYW5kIGEgc2Vjb25kIG11dGF0aW9uIGZvciB0aGUgbGVuZ3RoIHByb3BlcnR5LlxuXG4gICAgICAgICAgICBpZiAoa2V5ID09PSAnbGVuZ3RoJykgcmV0dXJuO1xuICAgICAgICAgICAgZG90Tm90YXRpb25QYXJ0cy5yZWR1Y2UoKGNvbXBhcmlzb25EYXRhLCBwYXJ0KSA9PiB7XG4gICAgICAgICAgICAgIGlmIChPYmplY3QuaXModGFyZ2V0LCBjb21wYXJpc29uRGF0YVtwYXJ0XSkpIHtcbiAgICAgICAgICAgICAgICBzZWxmLndhdGNoZXJzW2Z1bGxEb3ROb3RhdGlvbktleV0uZm9yRWFjaChjYWxsYmFjayA9PiBjYWxsYmFjayh0YXJnZXQpKTtcbiAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgIHJldHVybiBjb21wYXJpc29uRGF0YVtwYXJ0XTtcbiAgICAgICAgICAgIH0sIHNlbGYudW5vYnNlcnZlZERhdGEpO1xuICAgICAgICAgIH0pO1xuICAgICAgICB9IGVsc2Uge1xuICAgICAgICAgIC8vIExldCdzIHdhbGsgdGhyb3VnaCB0aGUgd2F0Y2hlcnMgd2l0aCBcImRvdC1ub3RhdGlvblwiIChmb28uYmFyKSBhbmQgc2VlXG4gICAgICAgICAgLy8gaWYgdGhpcyBtdXRhdGlvbiBmaXRzIGFueSBvZiB0aGVtLlxuICAgICAgICAgIE9iamVjdC5rZXlzKHNlbGYud2F0Y2hlcnMpLmZpbHRlcihpID0+IGkuaW5jbHVkZXMoJy4nKSkuZm9yRWFjaChmdWxsRG90Tm90YXRpb25LZXkgPT4ge1xuICAgICAgICAgICAgbGV0IGRvdE5vdGF0aW9uUGFydHMgPSBmdWxsRG90Tm90YXRpb25LZXkuc3BsaXQoJy4nKTsgLy8gSWYgdGhpcyBkb3Qtbm90YXRpb24gd2F0Y2hlcidzIGxhc3QgXCJwYXJ0XCIgZG9lc24ndCBtYXRjaCB0aGUgY3VycmVudFxuICAgICAgICAgICAgLy8ga2V5LCB0aGVuIHNraXAgaXQgZWFybHkgZm9yIHBlcmZvcm1hbmNlIHJlYXNvbnMuXG5cbiAgICAgICAgICAgIGlmIChrZXkgIT09IGRvdE5vdGF0aW9uUGFydHNbZG90Tm90YXRpb25QYXJ0cy5sZW5ndGggLSAxXSkgcmV0dXJuOyAvLyBOb3csIHdhbGsgdGhyb3VnaCB0aGUgZG90LW5vdGF0aW9uIFwicGFydHNcIiByZWN1cnNpdmVseSB0byBmaW5kXG4gICAgICAgICAgICAvLyBhIG1hdGNoLCBhbmQgY2FsbCB0aGUgd2F0Y2hlciBpZiBvbmUncyBmb3VuZC5cblxuICAgICAgICAgICAgZG90Tm90YXRpb25QYXJ0cy5yZWR1Y2UoKGNvbXBhcmlzb25EYXRhLCBwYXJ0KSA9PiB7XG4gICAgICAgICAgICAgIGlmIChPYmplY3QuaXModGFyZ2V0LCBjb21wYXJpc29uRGF0YSkpIHtcbiAgICAgICAgICAgICAgICAvLyBSdW4gdGhlIHdhdGNoZXJzLlxuICAgICAgICAgICAgICAgIHNlbGYud2F0Y2hlcnNbZnVsbERvdE5vdGF0aW9uS2V5XS5mb3JFYWNoKGNhbGxiYWNrID0+IGNhbGxiYWNrKHRhcmdldFtrZXldKSk7XG4gICAgICAgICAgICAgIH1cblxuICAgICAgICAgICAgICByZXR1cm4gY29tcGFyaXNvbkRhdGFbcGFydF07XG4gICAgICAgICAgICB9LCBzZWxmLnVub2JzZXJ2ZWREYXRhKTtcbiAgICAgICAgICB9KTtcbiAgICAgICAgfSAvLyBEb24ndCByZWFjdCB0byBkYXRhIGNoYW5nZXMgZm9yIGNhc2VzIGxpa2UgdGhlIGB4LWNyZWF0ZWRgIGhvb2suXG5cblxuICAgICAgICBpZiAoc2VsZi5wYXVzZVJlYWN0aXZpdHkpIHJldHVybjtcbiAgICAgICAgdXBkYXRlRG9tKCk7XG4gICAgICB9KTtcbiAgICB9XG5cbiAgICB3YWxrQW5kU2tpcE5lc3RlZENvbXBvbmVudHMoZWwsIGNhbGxiYWNrLCBpbml0aWFsaXplQ29tcG9uZW50Q2FsbGJhY2sgPSAoKSA9PiB7fSkge1xuICAgICAgd2FsayhlbCwgZWwgPT4ge1xuICAgICAgICAvLyBXZSd2ZSBoaXQgYSBjb21wb25lbnQuXG4gICAgICAgIGlmIChlbC5oYXNBdHRyaWJ1dGUoJ3gtZGF0YScpKSB7XG4gICAgICAgICAgLy8gSWYgaXQncyBub3QgdGhlIGN1cnJlbnQgb25lLlxuICAgICAgICAgIGlmICghZWwuaXNTYW1lTm9kZSh0aGlzLiRlbCkpIHtcbiAgICAgICAgICAgIC8vIEluaXRpYWxpemUgaXQgaWYgaXQncyBub3QuXG4gICAgICAgICAgICBpZiAoIWVsLl9feCkgaW5pdGlhbGl6ZUNvbXBvbmVudENhbGxiYWNrKGVsKTsgLy8gTm93IHdlJ2xsIGxldCB0aGF0IHN1Yi1jb21wb25lbnQgZGVhbCB3aXRoIGl0c2VsZi5cblxuICAgICAgICAgICAgcmV0dXJuIGZhbHNlO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuXG4gICAgICAgIHJldHVybiBjYWxsYmFjayhlbCk7XG4gICAgICB9KTtcbiAgICB9XG5cbiAgICBpbml0aWFsaXplRWxlbWVudHMocm9vdEVsLCBleHRyYVZhcnMgPSAoKSA9PiB7fSwgY29tcG9uZW50Rm9yQ2xvbmUgPSBmYWxzZSkge1xuICAgICAgdGhpcy53YWxrQW5kU2tpcE5lc3RlZENvbXBvbmVudHMocm9vdEVsLCBlbCA9PiB7XG4gICAgICAgIC8vIERvbid0IHRvdWNoIHNwYXducyBmcm9tIGZvciBsb29wXG4gICAgICAgIGlmIChlbC5fX3hfZm9yX2tleSAhPT0gdW5kZWZpbmVkKSByZXR1cm4gZmFsc2U7IC8vIERvbid0IHRvdWNoIHNwYXducyBmcm9tIGlmIGRpcmVjdGl2ZXNcblxuICAgICAgICBpZiAoZWwuX194X2luc2VydGVkX21lICE9PSB1bmRlZmluZWQpIHJldHVybiBmYWxzZTtcbiAgICAgICAgdGhpcy5pbml0aWFsaXplRWxlbWVudChlbCwgZXh0cmFWYXJzLCBjb21wb25lbnRGb3JDbG9uZSA/IGZhbHNlIDogdHJ1ZSk7XG4gICAgICB9LCBlbCA9PiB7XG4gICAgICAgIGlmICghY29tcG9uZW50Rm9yQ2xvbmUpIGVsLl9feCA9IG5ldyBDb21wb25lbnQoZWwpO1xuICAgICAgfSk7XG4gICAgICB0aGlzLmV4ZWN1dGVBbmRDbGVhclJlbWFpbmluZ1Nob3dEaXJlY3RpdmVTdGFjaygpO1xuICAgICAgdGhpcy5leGVjdXRlQW5kQ2xlYXJOZXh0VGlja1N0YWNrKHJvb3RFbCk7XG4gICAgfVxuXG4gICAgaW5pdGlhbGl6ZUVsZW1lbnQoZWwsIGV4dHJhVmFycywgc2hvdWxkUmVnaXN0ZXJMaXN0ZW5lcnMgPSB0cnVlKSB7XG4gICAgICAvLyBUbyBzdXBwb3J0IGNsYXNzIGF0dHJpYnV0ZSBtZXJnaW5nLCB3ZSBoYXZlIHRvIGtub3cgd2hhdCB0aGUgZWxlbWVudCdzXG4gICAgICAvLyBvcmlnaW5hbCBjbGFzcyBhdHRyaWJ1dGUgbG9va2VkIGxpa2UgZm9yIHJlZmVyZW5jZS5cbiAgICAgIGlmIChlbC5oYXNBdHRyaWJ1dGUoJ2NsYXNzJykgJiYgZ2V0WEF0dHJzKGVsLCB0aGlzKS5sZW5ndGggPiAwKSB7XG4gICAgICAgIGVsLl9feF9vcmlnaW5hbF9jbGFzc2VzID0gY29udmVydENsYXNzU3RyaW5nVG9BcnJheShlbC5nZXRBdHRyaWJ1dGUoJ2NsYXNzJykpO1xuICAgICAgfVxuXG4gICAgICBzaG91bGRSZWdpc3Rlckxpc3RlbmVycyAmJiB0aGlzLnJlZ2lzdGVyTGlzdGVuZXJzKGVsLCBleHRyYVZhcnMpO1xuICAgICAgdGhpcy5yZXNvbHZlQm91bmRBdHRyaWJ1dGVzKGVsLCB0cnVlLCBleHRyYVZhcnMpO1xuICAgIH1cblxuICAgIHVwZGF0ZUVsZW1lbnRzKHJvb3RFbCwgZXh0cmFWYXJzID0gKCkgPT4ge30pIHtcbiAgICAgIHRoaXMud2Fsa0FuZFNraXBOZXN0ZWRDb21wb25lbnRzKHJvb3RFbCwgZWwgPT4ge1xuICAgICAgICAvLyBEb24ndCB0b3VjaCBzcGF3bnMgZnJvbSBmb3IgbG9vcCAoYW5kIGNoZWNrIGlmIHRoZSByb290IGlzIGFjdHVhbGx5IGEgZm9yIGxvb3AgaW4gYSBwYXJlbnQsIGRvbid0IHNraXAgaXQuKVxuICAgICAgICBpZiAoZWwuX194X2Zvcl9rZXkgIT09IHVuZGVmaW5lZCAmJiAhZWwuaXNTYW1lTm9kZSh0aGlzLiRlbCkpIHJldHVybiBmYWxzZTtcbiAgICAgICAgdGhpcy51cGRhdGVFbGVtZW50KGVsLCBleHRyYVZhcnMpO1xuICAgICAgfSwgZWwgPT4ge1xuICAgICAgICBlbC5fX3ggPSBuZXcgQ29tcG9uZW50KGVsKTtcbiAgICAgIH0pO1xuICAgICAgdGhpcy5leGVjdXRlQW5kQ2xlYXJSZW1haW5pbmdTaG93RGlyZWN0aXZlU3RhY2soKTtcbiAgICAgIHRoaXMuZXhlY3V0ZUFuZENsZWFyTmV4dFRpY2tTdGFjayhyb290RWwpO1xuICAgIH1cblxuICAgIGV4ZWN1dGVBbmRDbGVhck5leHRUaWNrU3RhY2soZWwpIHtcbiAgICAgIC8vIFNraXAgc3Bhd25zIGZyb20gYWxwaW5lIGRpcmVjdGl2ZXNcbiAgICAgIGlmIChlbCA9PT0gdGhpcy4kZWwgJiYgdGhpcy5uZXh0VGlja1N0YWNrLmxlbmd0aCA+IDApIHtcbiAgICAgICAgLy8gV2UgcnVuIHRoZSB0aWNrIHN0YWNrIGFmdGVyIHRoZSBuZXh0IGZyYW1lIHRvIGFsbG93IGFueVxuICAgICAgICAvLyBydW5uaW5nIHRyYW5zaXRpb25zIHRvIHBhc3MgdGhlIGluaXRpYWwgc2hvdyBzdGFnZS5cbiAgICAgICAgcmVxdWVzdEFuaW1hdGlvbkZyYW1lKCgpID0+IHtcbiAgICAgICAgICB3aGlsZSAodGhpcy5uZXh0VGlja1N0YWNrLmxlbmd0aCA+IDApIHtcbiAgICAgICAgICAgIHRoaXMubmV4dFRpY2tTdGFjay5zaGlmdCgpKCk7XG4gICAgICAgICAgfVxuICAgICAgICB9KTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICBleGVjdXRlQW5kQ2xlYXJSZW1haW5pbmdTaG93RGlyZWN0aXZlU3RhY2soKSB7XG4gICAgICAvLyBUaGUgZ29hbCBoZXJlIGlzIHRvIHN0YXJ0IGFsbCB0aGUgeC1zaG93IHRyYW5zaXRpb25zXG4gICAgICAvLyBhbmQgYnVpbGQgYSBuZXN0ZWQgcHJvbWlzZSBjaGFpbiBzbyB0aGF0IGVsZW1lbnRzXG4gICAgICAvLyBvbmx5IGhpZGUgd2hlbiB0aGUgY2hpbGRyZW4gYXJlIGZpbmlzaGVkIGhpZGluZy5cbiAgICAgIHRoaXMuc2hvd0RpcmVjdGl2ZVN0YWNrLnJldmVyc2UoKS5tYXAoaGFuZGxlciA9PiB7XG4gICAgICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7XG4gICAgICAgICAgaGFuZGxlcihyZXNvbHZlLCByZWplY3QpO1xuICAgICAgICB9KTtcbiAgICAgIH0pLnJlZHVjZSgocHJvbWlzZUNoYWluLCBwcm9taXNlKSA9PiB7XG4gICAgICAgIHJldHVybiBwcm9taXNlQ2hhaW4udGhlbigoKSA9PiB7XG4gICAgICAgICAgcmV0dXJuIHByb21pc2UudGhlbihmaW5pc2hFbGVtZW50ID0+IHtcbiAgICAgICAgICAgIGZpbmlzaEVsZW1lbnQoKTtcbiAgICAgICAgICB9KTtcbiAgICAgICAgfSk7XG4gICAgICB9LCBQcm9taXNlLnJlc29sdmUoKCkgPT4ge30pKS5jYXRjaChlID0+IHtcbiAgICAgICAgaWYgKGUgIT09IFRSQU5TSVRJT05fQ0FOQ0VMTEVEKSB0aHJvdyBlO1xuICAgICAgfSk7IC8vIFdlJ3ZlIHByb2Nlc3NlZCB0aGUgaGFuZGxlciBzdGFjay4gbGV0J3MgY2xlYXIgaXQuXG5cbiAgICAgIHRoaXMuc2hvd0RpcmVjdGl2ZVN0YWNrID0gW107XG4gICAgICB0aGlzLnNob3dEaXJlY3RpdmVMYXN0RWxlbWVudCA9IHVuZGVmaW5lZDtcbiAgICB9XG5cbiAgICB1cGRhdGVFbGVtZW50KGVsLCBleHRyYVZhcnMpIHtcbiAgICAgIHRoaXMucmVzb2x2ZUJvdW5kQXR0cmlidXRlcyhlbCwgZmFsc2UsIGV4dHJhVmFycyk7XG4gICAgfVxuXG4gICAgcmVnaXN0ZXJMaXN0ZW5lcnMoZWwsIGV4dHJhVmFycykge1xuICAgICAgZ2V0WEF0dHJzKGVsLCB0aGlzKS5mb3JFYWNoKCh7XG4gICAgICAgIHR5cGUsXG4gICAgICAgIHZhbHVlLFxuICAgICAgICBtb2RpZmllcnMsXG4gICAgICAgIGV4cHJlc3Npb25cbiAgICAgIH0pID0+IHtcbiAgICAgICAgc3dpdGNoICh0eXBlKSB7XG4gICAgICAgICAgY2FzZSAnb24nOlxuICAgICAgICAgICAgcmVnaXN0ZXJMaXN0ZW5lcih0aGlzLCBlbCwgdmFsdWUsIG1vZGlmaWVycywgZXhwcmVzc2lvbiwgZXh0cmFWYXJzKTtcbiAgICAgICAgICAgIGJyZWFrO1xuXG4gICAgICAgICAgY2FzZSAnbW9kZWwnOlxuICAgICAgICAgICAgcmVnaXN0ZXJNb2RlbExpc3RlbmVyKHRoaXMsIGVsLCBtb2RpZmllcnMsIGV4cHJlc3Npb24sIGV4dHJhVmFycyk7XG4gICAgICAgICAgICBicmVhaztcbiAgICAgICAgfVxuICAgICAgfSk7XG4gICAgfVxuXG4gICAgcmVzb2x2ZUJvdW5kQXR0cmlidXRlcyhlbCwgaW5pdGlhbFVwZGF0ZSA9IGZhbHNlLCBleHRyYVZhcnMpIHtcbiAgICAgIGxldCBhdHRycyA9IGdldFhBdHRycyhlbCwgdGhpcyk7XG4gICAgICBhdHRycy5mb3JFYWNoKCh7XG4gICAgICAgIHR5cGUsXG4gICAgICAgIHZhbHVlLFxuICAgICAgICBtb2RpZmllcnMsXG4gICAgICAgIGV4cHJlc3Npb25cbiAgICAgIH0pID0+IHtcbiAgICAgICAgc3dpdGNoICh0eXBlKSB7XG4gICAgICAgICAgY2FzZSAnbW9kZWwnOlxuICAgICAgICAgICAgaGFuZGxlQXR0cmlidXRlQmluZGluZ0RpcmVjdGl2ZSh0aGlzLCBlbCwgJ3ZhbHVlJywgZXhwcmVzc2lvbiwgZXh0cmFWYXJzLCB0eXBlLCBtb2RpZmllcnMpO1xuICAgICAgICAgICAgYnJlYWs7XG5cbiAgICAgICAgICBjYXNlICdiaW5kJzpcbiAgICAgICAgICAgIC8vIFRoZSA6a2V5IGJpbmRpbmcgb24gYW4geC1mb3IgaXMgc3BlY2lhbCwgaWdub3JlIGl0LlxuICAgICAgICAgICAgaWYgKGVsLnRhZ05hbWUudG9Mb3dlckNhc2UoKSA9PT0gJ3RlbXBsYXRlJyAmJiB2YWx1ZSA9PT0gJ2tleScpIHJldHVybjtcbiAgICAgICAgICAgIGhhbmRsZUF0dHJpYnV0ZUJpbmRpbmdEaXJlY3RpdmUodGhpcywgZWwsIHZhbHVlLCBleHByZXNzaW9uLCBleHRyYVZhcnMsIHR5cGUsIG1vZGlmaWVycyk7XG4gICAgICAgICAgICBicmVhaztcblxuICAgICAgICAgIGNhc2UgJ3RleHQnOlxuICAgICAgICAgICAgdmFyIG91dHB1dCA9IHRoaXMuZXZhbHVhdGVSZXR1cm5FeHByZXNzaW9uKGVsLCBleHByZXNzaW9uLCBleHRyYVZhcnMpO1xuICAgICAgICAgICAgaGFuZGxlVGV4dERpcmVjdGl2ZShlbCwgb3V0cHV0LCBleHByZXNzaW9uKTtcbiAgICAgICAgICAgIGJyZWFrO1xuXG4gICAgICAgICAgY2FzZSAnaHRtbCc6XG4gICAgICAgICAgICBoYW5kbGVIdG1sRGlyZWN0aXZlKHRoaXMsIGVsLCBleHByZXNzaW9uLCBleHRyYVZhcnMpO1xuICAgICAgICAgICAgYnJlYWs7XG5cbiAgICAgICAgICBjYXNlICdzaG93JzpcbiAgICAgICAgICAgIHZhciBvdXRwdXQgPSB0aGlzLmV2YWx1YXRlUmV0dXJuRXhwcmVzc2lvbihlbCwgZXhwcmVzc2lvbiwgZXh0cmFWYXJzKTtcbiAgICAgICAgICAgIGhhbmRsZVNob3dEaXJlY3RpdmUodGhpcywgZWwsIG91dHB1dCwgbW9kaWZpZXJzLCBpbml0aWFsVXBkYXRlKTtcbiAgICAgICAgICAgIGJyZWFrO1xuXG4gICAgICAgICAgY2FzZSAnaWYnOlxuICAgICAgICAgICAgLy8gSWYgdGhpcyBlbGVtZW50IGFsc28gaGFzIHgtZm9yIG9uIGl0LCBkb24ndCBwcm9jZXNzIHgtaWYuXG4gICAgICAgICAgICAvLyBXZSB3aWxsIGxldCB0aGUgXCJ4LWZvclwiIGRpcmVjdGl2ZSBoYW5kbGUgdGhlIFwiaWZcImluZy5cbiAgICAgICAgICAgIGlmIChhdHRycy5zb21lKGkgPT4gaS50eXBlID09PSAnZm9yJykpIHJldHVybjtcbiAgICAgICAgICAgIHZhciBvdXRwdXQgPSB0aGlzLmV2YWx1YXRlUmV0dXJuRXhwcmVzc2lvbihlbCwgZXhwcmVzc2lvbiwgZXh0cmFWYXJzKTtcbiAgICAgICAgICAgIGhhbmRsZUlmRGlyZWN0aXZlKHRoaXMsIGVsLCBvdXRwdXQsIGluaXRpYWxVcGRhdGUsIGV4dHJhVmFycyk7XG4gICAgICAgICAgICBicmVhaztcblxuICAgICAgICAgIGNhc2UgJ2Zvcic6XG4gICAgICAgICAgICBoYW5kbGVGb3JEaXJlY3RpdmUodGhpcywgZWwsIGV4cHJlc3Npb24sIGluaXRpYWxVcGRhdGUsIGV4dHJhVmFycyk7XG4gICAgICAgICAgICBicmVhaztcblxuICAgICAgICAgIGNhc2UgJ2Nsb2FrJzpcbiAgICAgICAgICAgIGVsLnJlbW92ZUF0dHJpYnV0ZSgneC1jbG9haycpO1xuICAgICAgICAgICAgYnJlYWs7XG4gICAgICAgIH1cbiAgICAgIH0pO1xuICAgIH1cblxuICAgIGV2YWx1YXRlUmV0dXJuRXhwcmVzc2lvbihlbCwgZXhwcmVzc2lvbiwgZXh0cmFWYXJzID0gKCkgPT4ge30pIHtcbiAgICAgIHJldHVybiBzYWZlckV2YWwoZWwsIGV4cHJlc3Npb24sIHRoaXMuJGRhdGEsIF9vYmplY3RTcHJlYWQyKF9vYmplY3RTcHJlYWQyKHt9LCBleHRyYVZhcnMoKSksIHt9LCB7XG4gICAgICAgICRkaXNwYXRjaDogdGhpcy5nZXREaXNwYXRjaEZ1bmN0aW9uKGVsKVxuICAgICAgfSkpO1xuICAgIH1cblxuICAgIGV2YWx1YXRlQ29tbWFuZEV4cHJlc3Npb24oZWwsIGV4cHJlc3Npb24sIGV4dHJhVmFycyA9ICgpID0+IHt9KSB7XG4gICAgICByZXR1cm4gc2FmZXJFdmFsTm9SZXR1cm4oZWwsIGV4cHJlc3Npb24sIHRoaXMuJGRhdGEsIF9vYmplY3RTcHJlYWQyKF9vYmplY3RTcHJlYWQyKHt9LCBleHRyYVZhcnMoKSksIHt9LCB7XG4gICAgICAgICRkaXNwYXRjaDogdGhpcy5nZXREaXNwYXRjaEZ1bmN0aW9uKGVsKVxuICAgICAgfSkpO1xuICAgIH1cblxuICAgIGdldERpc3BhdGNoRnVuY3Rpb24oZWwpIHtcbiAgICAgIHJldHVybiAoZXZlbnQsIGRldGFpbCA9IHt9KSA9PiB7XG4gICAgICAgIGVsLmRpc3BhdGNoRXZlbnQobmV3IEN1c3RvbUV2ZW50KGV2ZW50LCB7XG4gICAgICAgICAgZGV0YWlsLFxuICAgICAgICAgIGJ1YmJsZXM6IHRydWVcbiAgICAgICAgfSkpO1xuICAgICAgfTtcbiAgICB9XG5cbiAgICBsaXN0ZW5Gb3JOZXdFbGVtZW50c1RvSW5pdGlhbGl6ZSgpIHtcbiAgICAgIGNvbnN0IHRhcmdldE5vZGUgPSB0aGlzLiRlbDtcbiAgICAgIGNvbnN0IG9ic2VydmVyT3B0aW9ucyA9IHtcbiAgICAgICAgY2hpbGRMaXN0OiB0cnVlLFxuICAgICAgICBhdHRyaWJ1dGVzOiB0cnVlLFxuICAgICAgICBzdWJ0cmVlOiB0cnVlXG4gICAgICB9O1xuICAgICAgY29uc3Qgb2JzZXJ2ZXIgPSBuZXcgTXV0YXRpb25PYnNlcnZlcihtdXRhdGlvbnMgPT4ge1xuICAgICAgICBmb3IgKGxldCBpID0gMDsgaSA8IG11dGF0aW9ucy5sZW5ndGg7IGkrKykge1xuICAgICAgICAgIC8vIEZpbHRlciBvdXQgbXV0YXRpb25zIHRyaWdnZXJlZCBmcm9tIGNoaWxkIGNvbXBvbmVudHMuXG4gICAgICAgICAgY29uc3QgY2xvc2VzdFBhcmVudENvbXBvbmVudCA9IG11dGF0aW9uc1tpXS50YXJnZXQuY2xvc2VzdCgnW3gtZGF0YV0nKTtcbiAgICAgICAgICBpZiAoIShjbG9zZXN0UGFyZW50Q29tcG9uZW50ICYmIGNsb3Nlc3RQYXJlbnRDb21wb25lbnQuaXNTYW1lTm9kZSh0aGlzLiRlbCkpKSBjb250aW51ZTtcblxuICAgICAgICAgIGlmIChtdXRhdGlvbnNbaV0udHlwZSA9PT0gJ2F0dHJpYnV0ZXMnICYmIG11dGF0aW9uc1tpXS5hdHRyaWJ1dGVOYW1lID09PSAneC1kYXRhJykge1xuICAgICAgICAgICAgY29uc3QgeEF0dHIgPSBtdXRhdGlvbnNbaV0udGFyZ2V0LmdldEF0dHJpYnV0ZSgneC1kYXRhJykgfHwgJ3t9JztcbiAgICAgICAgICAgIGNvbnN0IHJhd0RhdGEgPSBzYWZlckV2YWwodGhpcy4kZWwsIHhBdHRyLCB7XG4gICAgICAgICAgICAgICRlbDogdGhpcy4kZWxcbiAgICAgICAgICAgIH0pO1xuICAgICAgICAgICAgT2JqZWN0LmtleXMocmF3RGF0YSkuZm9yRWFjaChrZXkgPT4ge1xuICAgICAgICAgICAgICBpZiAodGhpcy4kZGF0YVtrZXldICE9PSByYXdEYXRhW2tleV0pIHtcbiAgICAgICAgICAgICAgICB0aGlzLiRkYXRhW2tleV0gPSByYXdEYXRhW2tleV07XG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH0pO1xuICAgICAgICAgIH1cblxuICAgICAgICAgIGlmIChtdXRhdGlvbnNbaV0uYWRkZWROb2Rlcy5sZW5ndGggPiAwKSB7XG4gICAgICAgICAgICBtdXRhdGlvbnNbaV0uYWRkZWROb2Rlcy5mb3JFYWNoKG5vZGUgPT4ge1xuICAgICAgICAgICAgICBpZiAobm9kZS5ub2RlVHlwZSAhPT0gMSB8fCBub2RlLl9feF9pbnNlcnRlZF9tZSkgcmV0dXJuO1xuXG4gICAgICAgICAgICAgIGlmIChub2RlLm1hdGNoZXMoJ1t4LWRhdGFdJykgJiYgIW5vZGUuX194KSB7XG4gICAgICAgICAgICAgICAgbm9kZS5fX3ggPSBuZXcgQ29tcG9uZW50KG5vZGUpO1xuICAgICAgICAgICAgICAgIHJldHVybjtcbiAgICAgICAgICAgICAgfVxuXG4gICAgICAgICAgICAgIHRoaXMuaW5pdGlhbGl6ZUVsZW1lbnRzKG5vZGUpO1xuICAgICAgICAgICAgfSk7XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9KTtcbiAgICAgIG9ic2VydmVyLm9ic2VydmUodGFyZ2V0Tm9kZSwgb2JzZXJ2ZXJPcHRpb25zKTtcbiAgICB9XG5cbiAgICBnZXRSZWZzUHJveHkoKSB7XG4gICAgICB2YXIgc2VsZiA9IHRoaXM7XG4gICAgICB2YXIgcmVmT2JqID0ge307XG4gICAgICAvLyBPbmUgb2YgdGhlIGdvYWxzIG9mIHRoaXMgaXMgdG8gbm90IGhvbGQgZWxlbWVudHMgaW4gbWVtb3J5LCBidXQgcmF0aGVyIHJlLWV2YWx1YXRlXG4gICAgICAvLyB0aGUgRE9NIHdoZW4gdGhlIHN5c3RlbSBuZWVkcyBzb21ldGhpbmcgZnJvbSBpdC4gVGhpcyB3YXksIHRoZSBmcmFtZXdvcmsgaXMgZmxleGlibGUgYW5kXG4gICAgICAvLyBmcmllbmRseSB0byBvdXRzaWRlIERPTSBjaGFuZ2VzIGZyb20gbGlicmFyaWVzIGxpa2UgVnVlL0xpdmV3aXJlLlxuICAgICAgLy8gRm9yIHRoaXMgcmVhc29uLCBJJ20gdXNpbmcgYW4gXCJvbi1kZW1hbmRcIiBwcm94eSB0byBmYWtlIGEgXCIkcmVmc1wiIG9iamVjdC5cblxuICAgICAgcmV0dXJuIG5ldyBQcm94eShyZWZPYmosIHtcbiAgICAgICAgZ2V0KG9iamVjdCwgcHJvcGVydHkpIHtcbiAgICAgICAgICBpZiAocHJvcGVydHkgPT09ICckaXNBbHBpbmVQcm94eScpIHJldHVybiB0cnVlO1xuICAgICAgICAgIHZhciByZWY7IC8vIFdlIGNhbid0IGp1c3QgcXVlcnkgdGhlIERPTSBiZWNhdXNlIGl0J3MgaGFyZCB0byBmaWx0ZXIgb3V0IHJlZnMgaW5cbiAgICAgICAgICAvLyBuZXN0ZWQgY29tcG9uZW50cy5cblxuICAgICAgICAgIHNlbGYud2Fsa0FuZFNraXBOZXN0ZWRDb21wb25lbnRzKHNlbGYuJGVsLCBlbCA9PiB7XG4gICAgICAgICAgICBpZiAoZWwuaGFzQXR0cmlidXRlKCd4LXJlZicpICYmIGVsLmdldEF0dHJpYnV0ZSgneC1yZWYnKSA9PT0gcHJvcGVydHkpIHtcbiAgICAgICAgICAgICAgcmVmID0gZWw7XG4gICAgICAgICAgICB9XG4gICAgICAgICAgfSk7XG4gICAgICAgICAgcmV0dXJuIHJlZjtcbiAgICAgICAgfVxuXG4gICAgICB9KTtcbiAgICB9XG5cbiAgfVxuXG4gIGNvbnN0IEFscGluZSA9IHtcbiAgICB2ZXJzaW9uOiBcIjIuOC4yXCIsXG4gICAgcGF1c2VNdXRhdGlvbk9ic2VydmVyOiBmYWxzZSxcbiAgICBtYWdpY1Byb3BlcnRpZXM6IHt9LFxuICAgIG9uQ29tcG9uZW50SW5pdGlhbGl6ZWRzOiBbXSxcbiAgICBvbkJlZm9yZUNvbXBvbmVudEluaXRpYWxpemVkczogW10sXG4gICAgaWdub3JlRm9jdXNlZEZvclZhbHVlQmluZGluZzogZmFsc2UsXG4gICAgc3RhcnQ6IGFzeW5jIGZ1bmN0aW9uIHN0YXJ0KCkge1xuICAgICAgaWYgKCFpc1Rlc3RpbmcoKSkge1xuICAgICAgICBhd2FpdCBkb21SZWFkeSgpO1xuICAgICAgfVxuXG4gICAgICB0aGlzLmRpc2NvdmVyQ29tcG9uZW50cyhlbCA9PiB7XG4gICAgICAgIHRoaXMuaW5pdGlhbGl6ZUNvbXBvbmVudChlbCk7XG4gICAgICB9KTsgLy8gSXQncyBlYXNpZXIgYW5kIG1vcmUgcGVyZm9ybWFudCB0byBqdXN0IHN1cHBvcnQgVHVyYm9saW5rcyB0aGFuIGxpc3RlblxuICAgICAgLy8gdG8gTXV0YXRpb25PYnNlcnZlciBtdXRhdGlvbnMgYXQgdGhlIGRvY3VtZW50IGxldmVsLlxuXG4gICAgICBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKFwidHVyYm9saW5rczpsb2FkXCIsICgpID0+IHtcbiAgICAgICAgdGhpcy5kaXNjb3ZlclVuaW5pdGlhbGl6ZWRDb21wb25lbnRzKGVsID0+IHtcbiAgICAgICAgICB0aGlzLmluaXRpYWxpemVDb21wb25lbnQoZWwpO1xuICAgICAgICB9KTtcbiAgICAgIH0pO1xuICAgICAgdGhpcy5saXN0ZW5Gb3JOZXdVbmluaXRpYWxpemVkQ29tcG9uZW50c0F0UnVuVGltZSgpO1xuICAgIH0sXG4gICAgZGlzY292ZXJDb21wb25lbnRzOiBmdW5jdGlvbiBkaXNjb3ZlckNvbXBvbmVudHMoY2FsbGJhY2spIHtcbiAgICAgIGNvbnN0IHJvb3RFbHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCdbeC1kYXRhXScpO1xuICAgICAgcm9vdEVscy5mb3JFYWNoKHJvb3RFbCA9PiB7XG4gICAgICAgIGNhbGxiYWNrKHJvb3RFbCk7XG4gICAgICB9KTtcbiAgICB9LFxuICAgIGRpc2NvdmVyVW5pbml0aWFsaXplZENvbXBvbmVudHM6IGZ1bmN0aW9uIGRpc2NvdmVyVW5pbml0aWFsaXplZENvbXBvbmVudHMoY2FsbGJhY2ssIGVsID0gbnVsbCkge1xuICAgICAgY29uc3Qgcm9vdEVscyA9IChlbCB8fCBkb2N1bWVudCkucXVlcnlTZWxlY3RvckFsbCgnW3gtZGF0YV0nKTtcbiAgICAgIEFycmF5LmZyb20ocm9vdEVscykuZmlsdGVyKGVsID0+IGVsLl9feCA9PT0gdW5kZWZpbmVkKS5mb3JFYWNoKHJvb3RFbCA9PiB7XG4gICAgICAgIGNhbGxiYWNrKHJvb3RFbCk7XG4gICAgICB9KTtcbiAgICB9LFxuICAgIGxpc3RlbkZvck5ld1VuaW5pdGlhbGl6ZWRDb21wb25lbnRzQXRSdW5UaW1lOiBmdW5jdGlvbiBsaXN0ZW5Gb3JOZXdVbmluaXRpYWxpemVkQ29tcG9uZW50c0F0UnVuVGltZSgpIHtcbiAgICAgIGNvbnN0IHRhcmdldE5vZGUgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCdib2R5Jyk7XG4gICAgICBjb25zdCBvYnNlcnZlck9wdGlvbnMgPSB7XG4gICAgICAgIGNoaWxkTGlzdDogdHJ1ZSxcbiAgICAgICAgYXR0cmlidXRlczogdHJ1ZSxcbiAgICAgICAgc3VidHJlZTogdHJ1ZVxuICAgICAgfTtcbiAgICAgIGNvbnN0IG9ic2VydmVyID0gbmV3IE11dGF0aW9uT2JzZXJ2ZXIobXV0YXRpb25zID0+IHtcbiAgICAgICAgaWYgKHRoaXMucGF1c2VNdXRhdGlvbk9ic2VydmVyKSByZXR1cm47XG5cbiAgICAgICAgZm9yIChsZXQgaSA9IDA7IGkgPCBtdXRhdGlvbnMubGVuZ3RoOyBpKyspIHtcbiAgICAgICAgICBpZiAobXV0YXRpb25zW2ldLmFkZGVkTm9kZXMubGVuZ3RoID4gMCkge1xuICAgICAgICAgICAgbXV0YXRpb25zW2ldLmFkZGVkTm9kZXMuZm9yRWFjaChub2RlID0+IHtcbiAgICAgICAgICAgICAgLy8gRGlzY2FyZCBub24tZWxlbWVudCBub2RlcyAobGlrZSBsaW5lLWJyZWFrcylcbiAgICAgICAgICAgICAgaWYgKG5vZGUubm9kZVR5cGUgIT09IDEpIHJldHVybjsgLy8gRGlzY2FyZCBhbnkgY2hhbmdlcyBoYXBwZW5pbmcgd2l0aGluIGFuIGV4aXN0aW5nIGNvbXBvbmVudC5cbiAgICAgICAgICAgICAgLy8gVGhleSB3aWxsIHRha2UgY2FyZSBvZiB0aGVtc2VsdmVzLlxuXG4gICAgICAgICAgICAgIGlmIChub2RlLnBhcmVudEVsZW1lbnQgJiYgbm9kZS5wYXJlbnRFbGVtZW50LmNsb3Nlc3QoJ1t4LWRhdGFdJykpIHJldHVybjtcbiAgICAgICAgICAgICAgdGhpcy5kaXNjb3ZlclVuaW5pdGlhbGl6ZWRDb21wb25lbnRzKGVsID0+IHtcbiAgICAgICAgICAgICAgICB0aGlzLmluaXRpYWxpemVDb21wb25lbnQoZWwpO1xuICAgICAgICAgICAgICB9LCBub2RlLnBhcmVudEVsZW1lbnQpO1xuICAgICAgICAgICAgfSk7XG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9KTtcbiAgICAgIG9ic2VydmVyLm9ic2VydmUodGFyZ2V0Tm9kZSwgb2JzZXJ2ZXJPcHRpb25zKTtcbiAgICB9LFxuICAgIGluaXRpYWxpemVDb21wb25lbnQ6IGZ1bmN0aW9uIGluaXRpYWxpemVDb21wb25lbnQoZWwpIHtcbiAgICAgIGlmICghZWwuX194KSB7XG4gICAgICAgIC8vIFdyYXAgaW4gYSB0cnkvY2F0Y2ggc28gdGhhdCB3ZSBkb24ndCBwcmV2ZW50IG90aGVyIGNvbXBvbmVudHNcbiAgICAgICAgLy8gZnJvbSBpbml0aWFsaXppbmcgd2hlbiBvbmUgY29tcG9uZW50IGNvbnRhaW5zIGFuIGVycm9yLlxuICAgICAgICB0cnkge1xuICAgICAgICAgIGVsLl9feCA9IG5ldyBDb21wb25lbnQoZWwpO1xuICAgICAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgICAgIHNldFRpbWVvdXQoKCkgPT4ge1xuICAgICAgICAgICAgdGhyb3cgZXJyb3I7XG4gICAgICAgICAgfSwgMCk7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9LFxuICAgIGNsb25lOiBmdW5jdGlvbiBjbG9uZShjb21wb25lbnQsIG5ld0VsKSB7XG4gICAgICBpZiAoIW5ld0VsLl9feCkge1xuICAgICAgICBuZXdFbC5fX3ggPSBuZXcgQ29tcG9uZW50KG5ld0VsLCBjb21wb25lbnQpO1xuICAgICAgfVxuICAgIH0sXG4gICAgYWRkTWFnaWNQcm9wZXJ0eTogZnVuY3Rpb24gYWRkTWFnaWNQcm9wZXJ0eShuYW1lLCBjYWxsYmFjaykge1xuICAgICAgdGhpcy5tYWdpY1Byb3BlcnRpZXNbbmFtZV0gPSBjYWxsYmFjaztcbiAgICB9LFxuICAgIG9uQ29tcG9uZW50SW5pdGlhbGl6ZWQ6IGZ1bmN0aW9uIG9uQ29tcG9uZW50SW5pdGlhbGl6ZWQoY2FsbGJhY2spIHtcbiAgICAgIHRoaXMub25Db21wb25lbnRJbml0aWFsaXplZHMucHVzaChjYWxsYmFjayk7XG4gICAgfSxcbiAgICBvbkJlZm9yZUNvbXBvbmVudEluaXRpYWxpemVkOiBmdW5jdGlvbiBvbkJlZm9yZUNvbXBvbmVudEluaXRpYWxpemVkKGNhbGxiYWNrKSB7XG4gICAgICB0aGlzLm9uQmVmb3JlQ29tcG9uZW50SW5pdGlhbGl6ZWRzLnB1c2goY2FsbGJhY2spO1xuICAgIH1cbiAgfTtcblxuICBpZiAoIWlzVGVzdGluZygpKSB7XG4gICAgd2luZG93LkFscGluZSA9IEFscGluZTtcblxuICAgIGlmICh3aW5kb3cuZGVmZXJMb2FkaW5nQWxwaW5lKSB7XG4gICAgICB3aW5kb3cuZGVmZXJMb2FkaW5nQWxwaW5lKGZ1bmN0aW9uICgpIHtcbiAgICAgICAgd2luZG93LkFscGluZS5zdGFydCgpO1xuICAgICAgfSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHdpbmRvdy5BbHBpbmUuc3RhcnQoKTtcbiAgICB9XG4gIH1cblxuICByZXR1cm4gQWxwaW5lO1xuXG59KSkpO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/alpinejs/dist/alpine.js\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ module_default)
+/* harmony export */ });
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __markAsModule = (target) => __defProp(target, "__esModule", {value: true});
+var __commonJS = (callback, module) => () => {
+  if (!module) {
+    module = {exports: {}};
+    callback(module.exports, module);
+  }
+  return module.exports;
+};
+var __exportStar = (target, module, desc) => {
+  if (module && typeof module === "object" || typeof module === "function") {
+    for (let key of __getOwnPropNames(module))
+      if (!__hasOwnProp.call(target, key) && key !== "default")
+        __defProp(target, key, {get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable});
+  }
+  return target;
+};
+var __toModule = (module) => {
+  return __exportStar(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? {get: () => module.default, enumerable: true} : {value: module, enumerable: true})), module);
+};
+
+// node_modules/@vue/shared/dist/shared.cjs.js
+var require_shared_cjs = __commonJS((exports) => {
+  "use strict";
+  Object.defineProperty(exports, "__esModule", {value: true});
+  function makeMap(str, expectsLowerCase) {
+    const map = Object.create(null);
+    const list = str.split(",");
+    for (let i = 0; i < list.length; i++) {
+      map[list[i]] = true;
+    }
+    return expectsLowerCase ? (val) => !!map[val.toLowerCase()] : (val) => !!map[val];
+  }
+  var PatchFlagNames = {
+    [1]: `TEXT`,
+    [2]: `CLASS`,
+    [4]: `STYLE`,
+    [8]: `PROPS`,
+    [16]: `FULL_PROPS`,
+    [32]: `HYDRATE_EVENTS`,
+    [64]: `STABLE_FRAGMENT`,
+    [128]: `KEYED_FRAGMENT`,
+    [256]: `UNKEYED_FRAGMENT`,
+    [512]: `NEED_PATCH`,
+    [1024]: `DYNAMIC_SLOTS`,
+    [2048]: `DEV_ROOT_FRAGMENT`,
+    [-1]: `HOISTED`,
+    [-2]: `BAIL`
+  };
+  var slotFlagsText = {
+    [1]: "STABLE",
+    [2]: "DYNAMIC",
+    [3]: "FORWARDED"
+  };
+  var GLOBALS_WHITE_LISTED = "Infinity,undefined,NaN,isFinite,isNaN,parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,BigInt";
+  var isGloballyWhitelisted = /* @__PURE__ */ makeMap(GLOBALS_WHITE_LISTED);
+  var range = 2;
+  function generateCodeFrame(source, start2 = 0, end = source.length) {
+    const lines = source.split(/\r?\n/);
+    let count = 0;
+    const res = [];
+    for (let i = 0; i < lines.length; i++) {
+      count += lines[i].length + 1;
+      if (count >= start2) {
+        for (let j = i - range; j <= i + range || end > count; j++) {
+          if (j < 0 || j >= lines.length)
+            continue;
+          const line = j + 1;
+          res.push(`${line}${" ".repeat(Math.max(3 - String(line).length, 0))}|  ${lines[j]}`);
+          const lineLength = lines[j].length;
+          if (j === i) {
+            const pad = start2 - (count - lineLength) + 1;
+            const length = Math.max(1, end > count ? lineLength - pad : end - start2);
+            res.push(`   |  ` + " ".repeat(pad) + "^".repeat(length));
+          } else if (j > i) {
+            if (end > count) {
+              const length = Math.max(Math.min(end - count, lineLength), 1);
+              res.push(`   |  ` + "^".repeat(length));
+            }
+            count += lineLength + 1;
+          }
+        }
+        break;
+      }
+    }
+    return res.join("\n");
+  }
+  var specialBooleanAttrs = `itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly`;
+  var isSpecialBooleanAttr = /* @__PURE__ */ makeMap(specialBooleanAttrs);
+  var isBooleanAttr2 = /* @__PURE__ */ makeMap(specialBooleanAttrs + `,async,autofocus,autoplay,controls,default,defer,disabled,hidden,loop,open,required,reversed,scoped,seamless,checked,muted,multiple,selected`);
+  var unsafeAttrCharRE = /[>/="'\u0009\u000a\u000c\u0020]/;
+  var attrValidationCache = {};
+  function isSSRSafeAttrName(name) {
+    if (attrValidationCache.hasOwnProperty(name)) {
+      return attrValidationCache[name];
+    }
+    const isUnsafe = unsafeAttrCharRE.test(name);
+    if (isUnsafe) {
+      console.error(`unsafe attribute name: ${name}`);
+    }
+    return attrValidationCache[name] = !isUnsafe;
+  }
+  var propsToAttrMap = {
+    acceptCharset: "accept-charset",
+    className: "class",
+    htmlFor: "for",
+    httpEquiv: "http-equiv"
+  };
+  var isNoUnitNumericStyleProp = /* @__PURE__ */ makeMap(`animation-iteration-count,border-image-outset,border-image-slice,border-image-width,box-flex,box-flex-group,box-ordinal-group,column-count,columns,flex,flex-grow,flex-positive,flex-shrink,flex-negative,flex-order,grid-row,grid-row-end,grid-row-span,grid-row-start,grid-column,grid-column-end,grid-column-span,grid-column-start,font-weight,line-clamp,line-height,opacity,order,orphans,tab-size,widows,z-index,zoom,fill-opacity,flood-opacity,stop-opacity,stroke-dasharray,stroke-dashoffset,stroke-miterlimit,stroke-opacity,stroke-width`);
+  var isKnownAttr = /* @__PURE__ */ makeMap(`accept,accept-charset,accesskey,action,align,allow,alt,async,autocapitalize,autocomplete,autofocus,autoplay,background,bgcolor,border,buffered,capture,challenge,charset,checked,cite,class,code,codebase,color,cols,colspan,content,contenteditable,contextmenu,controls,coords,crossorigin,csp,data,datetime,decoding,default,defer,dir,dirname,disabled,download,draggable,dropzone,enctype,enterkeyhint,for,form,formaction,formenctype,formmethod,formnovalidate,formtarget,headers,height,hidden,high,href,hreflang,http-equiv,icon,id,importance,integrity,ismap,itemprop,keytype,kind,label,lang,language,loading,list,loop,low,manifest,max,maxlength,minlength,media,min,multiple,muted,name,novalidate,open,optimum,pattern,ping,placeholder,poster,preload,radiogroup,readonly,referrerpolicy,rel,required,reversed,rows,rowspan,sandbox,scope,scoped,selected,shape,size,sizes,slot,span,spellcheck,src,srcdoc,srclang,srcset,start,step,style,summary,tabindex,target,title,translate,type,usemap,value,width,wrap`);
+  function normalizeStyle(value) {
+    if (isArray(value)) {
+      const res = {};
+      for (let i = 0; i < value.length; i++) {
+        const item = value[i];
+        const normalized = normalizeStyle(isString(item) ? parseStringStyle(item) : item);
+        if (normalized) {
+          for (const key in normalized) {
+            res[key] = normalized[key];
+          }
+        }
+      }
+      return res;
+    } else if (isObject(value)) {
+      return value;
+    }
+  }
+  var listDelimiterRE = /;(?![^(]*\))/g;
+  var propertyDelimiterRE = /:(.+)/;
+  function parseStringStyle(cssText) {
+    const ret = {};
+    cssText.split(listDelimiterRE).forEach((item) => {
+      if (item) {
+        const tmp = item.split(propertyDelimiterRE);
+        tmp.length > 1 && (ret[tmp[0].trim()] = tmp[1].trim());
+      }
+    });
+    return ret;
+  }
+  function stringifyStyle(styles) {
+    let ret = "";
+    if (!styles) {
+      return ret;
+    }
+    for (const key in styles) {
+      const value = styles[key];
+      const normalizedKey = key.startsWith(`--`) ? key : hyphenate(key);
+      if (isString(value) || typeof value === "number" && isNoUnitNumericStyleProp(normalizedKey)) {
+        ret += `${normalizedKey}:${value};`;
+      }
+    }
+    return ret;
+  }
+  function normalizeClass(value) {
+    let res = "";
+    if (isString(value)) {
+      res = value;
+    } else if (isArray(value)) {
+      for (let i = 0; i < value.length; i++) {
+        const normalized = normalizeClass(value[i]);
+        if (normalized) {
+          res += normalized + " ";
+        }
+      }
+    } else if (isObject(value)) {
+      for (const name in value) {
+        if (value[name]) {
+          res += name + " ";
+        }
+      }
+    }
+    return res.trim();
+  }
+  var HTML_TAGS = "html,body,base,head,link,meta,style,title,address,article,aside,footer,header,h1,h2,h3,h4,h5,h6,hgroup,nav,section,div,dd,dl,dt,figcaption,figure,picture,hr,img,li,main,ol,p,pre,ul,a,b,abbr,bdi,bdo,br,cite,code,data,dfn,em,i,kbd,mark,q,rp,rt,rtc,ruby,s,samp,small,span,strong,sub,sup,time,u,var,wbr,area,audio,map,track,video,embed,object,param,source,canvas,script,noscript,del,ins,caption,col,colgroup,table,thead,tbody,td,th,tr,button,datalist,fieldset,form,input,label,legend,meter,optgroup,option,output,progress,select,textarea,details,dialog,menu,summary,template,blockquote,iframe,tfoot";
+  var SVG_TAGS = "svg,animate,animateMotion,animateTransform,circle,clipPath,color-profile,defs,desc,discard,ellipse,feBlend,feColorMatrix,feComponentTransfer,feComposite,feConvolveMatrix,feDiffuseLighting,feDisplacementMap,feDistanceLight,feDropShadow,feFlood,feFuncA,feFuncB,feFuncG,feFuncR,feGaussianBlur,feImage,feMerge,feMergeNode,feMorphology,feOffset,fePointLight,feSpecularLighting,feSpotLight,feTile,feTurbulence,filter,foreignObject,g,hatch,hatchpath,image,line,linearGradient,marker,mask,mesh,meshgradient,meshpatch,meshrow,metadata,mpath,path,pattern,polygon,polyline,radialGradient,rect,set,solidcolor,stop,switch,symbol,text,textPath,title,tspan,unknown,use,view";
+  var VOID_TAGS = "area,base,br,col,embed,hr,img,input,link,meta,param,source,track,wbr";
+  var isHTMLTag = /* @__PURE__ */ makeMap(HTML_TAGS);
+  var isSVGTag = /* @__PURE__ */ makeMap(SVG_TAGS);
+  var isVoidTag = /* @__PURE__ */ makeMap(VOID_TAGS);
+  var escapeRE = /["'&<>]/;
+  function escapeHtml(string) {
+    const str = "" + string;
+    const match = escapeRE.exec(str);
+    if (!match) {
+      return str;
+    }
+    let html = "";
+    let escaped;
+    let index;
+    let lastIndex = 0;
+    for (index = match.index; index < str.length; index++) {
+      switch (str.charCodeAt(index)) {
+        case 34:
+          escaped = "&quot;";
+          break;
+        case 38:
+          escaped = "&amp;";
+          break;
+        case 39:
+          escaped = "&#39;";
+          break;
+        case 60:
+          escaped = "&lt;";
+          break;
+        case 62:
+          escaped = "&gt;";
+          break;
+        default:
+          continue;
+      }
+      if (lastIndex !== index) {
+        html += str.substring(lastIndex, index);
+      }
+      lastIndex = index + 1;
+      html += escaped;
+    }
+    return lastIndex !== index ? html + str.substring(lastIndex, index) : html;
+  }
+  var commentStripRE = /^-?>|<!--|-->|--!>|<!-$/g;
+  function escapeHtmlComment(src) {
+    return src.replace(commentStripRE, "");
+  }
+  function looseCompareArrays(a, b) {
+    if (a.length !== b.length)
+      return false;
+    let equal = true;
+    for (let i = 0; equal && i < a.length; i++) {
+      equal = looseEqual(a[i], b[i]);
+    }
+    return equal;
+  }
+  function looseEqual(a, b) {
+    if (a === b)
+      return true;
+    let aValidType = isDate(a);
+    let bValidType = isDate(b);
+    if (aValidType || bValidType) {
+      return aValidType && bValidType ? a.getTime() === b.getTime() : false;
+    }
+    aValidType = isArray(a);
+    bValidType = isArray(b);
+    if (aValidType || bValidType) {
+      return aValidType && bValidType ? looseCompareArrays(a, b) : false;
+    }
+    aValidType = isObject(a);
+    bValidType = isObject(b);
+    if (aValidType || bValidType) {
+      if (!aValidType || !bValidType) {
+        return false;
+      }
+      const aKeysCount = Object.keys(a).length;
+      const bKeysCount = Object.keys(b).length;
+      if (aKeysCount !== bKeysCount) {
+        return false;
+      }
+      for (const key in a) {
+        const aHasKey = a.hasOwnProperty(key);
+        const bHasKey = b.hasOwnProperty(key);
+        if (aHasKey && !bHasKey || !aHasKey && bHasKey || !looseEqual(a[key], b[key])) {
+          return false;
+        }
+      }
+    }
+    return String(a) === String(b);
+  }
+  function looseIndexOf(arr, val) {
+    return arr.findIndex((item) => looseEqual(item, val));
+  }
+  var toDisplayString = (val) => {
+    return val == null ? "" : isObject(val) ? JSON.stringify(val, replacer, 2) : String(val);
+  };
+  var replacer = (_key, val) => {
+    if (isMap(val)) {
+      return {
+        [`Map(${val.size})`]: [...val.entries()].reduce((entries, [key, val2]) => {
+          entries[`${key} =>`] = val2;
+          return entries;
+        }, {})
+      };
+    } else if (isSet(val)) {
+      return {
+        [`Set(${val.size})`]: [...val.values()]
+      };
+    } else if (isObject(val) && !isArray(val) && !isPlainObject(val)) {
+      return String(val);
+    }
+    return val;
+  };
+  var babelParserDefaultPlugins = [
+    "bigInt",
+    "optionalChaining",
+    "nullishCoalescingOperator"
+  ];
+  var EMPTY_OBJ = Object.freeze({});
+  var EMPTY_ARR = Object.freeze([]);
+  var NOOP = () => {
+  };
+  var NO = () => false;
+  var onRE = /^on[^a-z]/;
+  var isOn = (key) => onRE.test(key);
+  var isModelListener = (key) => key.startsWith("onUpdate:");
+  var extend = Object.assign;
+  var remove = (arr, el) => {
+    const i = arr.indexOf(el);
+    if (i > -1) {
+      arr.splice(i, 1);
+    }
+  };
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  var hasOwn = (val, key) => hasOwnProperty.call(val, key);
+  var isArray = Array.isArray;
+  var isMap = (val) => toTypeString(val) === "[object Map]";
+  var isSet = (val) => toTypeString(val) === "[object Set]";
+  var isDate = (val) => val instanceof Date;
+  var isFunction = (val) => typeof val === "function";
+  var isString = (val) => typeof val === "string";
+  var isSymbol = (val) => typeof val === "symbol";
+  var isObject = (val) => val !== null && typeof val === "object";
+  var isPromise = (val) => {
+    return isObject(val) && isFunction(val.then) && isFunction(val.catch);
+  };
+  var objectToString = Object.prototype.toString;
+  var toTypeString = (value) => objectToString.call(value);
+  var toRawType = (value) => {
+    return toTypeString(value).slice(8, -1);
+  };
+  var isPlainObject = (val) => toTypeString(val) === "[object Object]";
+  var isIntegerKey = (key) => isString(key) && key !== "NaN" && key[0] !== "-" && "" + parseInt(key, 10) === key;
+  var isReservedProp = /* @__PURE__ */ makeMap(",key,ref,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted");
+  var cacheStringFunction = (fn) => {
+    const cache = Object.create(null);
+    return (str) => {
+      const hit = cache[str];
+      return hit || (cache[str] = fn(str));
+    };
+  };
+  var camelizeRE = /-(\w)/g;
+  var camelize = cacheStringFunction((str) => {
+    return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : "");
+  });
+  var hyphenateRE = /\B([A-Z])/g;
+  var hyphenate = cacheStringFunction((str) => str.replace(hyphenateRE, "-$1").toLowerCase());
+  var capitalize = cacheStringFunction((str) => str.charAt(0).toUpperCase() + str.slice(1));
+  var toHandlerKey = cacheStringFunction((str) => str ? `on${capitalize(str)}` : ``);
+  var hasChanged = (value, oldValue) => value !== oldValue && (value === value || oldValue === oldValue);
+  var invokeArrayFns = (fns, arg) => {
+    for (let i = 0; i < fns.length; i++) {
+      fns[i](arg);
+    }
+  };
+  var def = (obj, key, value) => {
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: false,
+      value
+    });
+  };
+  var toNumber = (val) => {
+    const n = parseFloat(val);
+    return isNaN(n) ? val : n;
+  };
+  var _globalThis;
+  var getGlobalThis = () => {
+    return _globalThis || (_globalThis = typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : typeof __webpack_require__.g !== "undefined" ? __webpack_require__.g : {});
+  };
+  exports.EMPTY_ARR = EMPTY_ARR;
+  exports.EMPTY_OBJ = EMPTY_OBJ;
+  exports.NO = NO;
+  exports.NOOP = NOOP;
+  exports.PatchFlagNames = PatchFlagNames;
+  exports.babelParserDefaultPlugins = babelParserDefaultPlugins;
+  exports.camelize = camelize;
+  exports.capitalize = capitalize;
+  exports.def = def;
+  exports.escapeHtml = escapeHtml;
+  exports.escapeHtmlComment = escapeHtmlComment;
+  exports.extend = extend;
+  exports.generateCodeFrame = generateCodeFrame;
+  exports.getGlobalThis = getGlobalThis;
+  exports.hasChanged = hasChanged;
+  exports.hasOwn = hasOwn;
+  exports.hyphenate = hyphenate;
+  exports.invokeArrayFns = invokeArrayFns;
+  exports.isArray = isArray;
+  exports.isBooleanAttr = isBooleanAttr2;
+  exports.isDate = isDate;
+  exports.isFunction = isFunction;
+  exports.isGloballyWhitelisted = isGloballyWhitelisted;
+  exports.isHTMLTag = isHTMLTag;
+  exports.isIntegerKey = isIntegerKey;
+  exports.isKnownAttr = isKnownAttr;
+  exports.isMap = isMap;
+  exports.isModelListener = isModelListener;
+  exports.isNoUnitNumericStyleProp = isNoUnitNumericStyleProp;
+  exports.isObject = isObject;
+  exports.isOn = isOn;
+  exports.isPlainObject = isPlainObject;
+  exports.isPromise = isPromise;
+  exports.isReservedProp = isReservedProp;
+  exports.isSSRSafeAttrName = isSSRSafeAttrName;
+  exports.isSVGTag = isSVGTag;
+  exports.isSet = isSet;
+  exports.isSpecialBooleanAttr = isSpecialBooleanAttr;
+  exports.isString = isString;
+  exports.isSymbol = isSymbol;
+  exports.isVoidTag = isVoidTag;
+  exports.looseEqual = looseEqual;
+  exports.looseIndexOf = looseIndexOf;
+  exports.makeMap = makeMap;
+  exports.normalizeClass = normalizeClass;
+  exports.normalizeStyle = normalizeStyle;
+  exports.objectToString = objectToString;
+  exports.parseStringStyle = parseStringStyle;
+  exports.propsToAttrMap = propsToAttrMap;
+  exports.remove = remove;
+  exports.slotFlagsText = slotFlagsText;
+  exports.stringifyStyle = stringifyStyle;
+  exports.toDisplayString = toDisplayString;
+  exports.toHandlerKey = toHandlerKey;
+  exports.toNumber = toNumber;
+  exports.toRawType = toRawType;
+  exports.toTypeString = toTypeString;
+});
+
+// node_modules/@vue/shared/index.js
+var require_shared = __commonJS((exports, module) => {
+  "use strict";
+  if (false) {} else {
+    module.exports = require_shared_cjs();
+  }
+});
+
+// node_modules/@vue/reactivity/dist/reactivity.cjs.js
+var require_reactivity_cjs = __commonJS((exports) => {
+  "use strict";
+  Object.defineProperty(exports, "__esModule", {value: true});
+  var shared = require_shared();
+  var targetMap = new WeakMap();
+  var effectStack = [];
+  var activeEffect;
+  var ITERATE_KEY = Symbol("iterate");
+  var MAP_KEY_ITERATE_KEY = Symbol("Map key iterate");
+  function isEffect(fn) {
+    return fn && fn._isEffect === true;
+  }
+  function effect3(fn, options = shared.EMPTY_OBJ) {
+    if (isEffect(fn)) {
+      fn = fn.raw;
+    }
+    const effect4 = createReactiveEffect(fn, options);
+    if (!options.lazy) {
+      effect4();
+    }
+    return effect4;
+  }
+  function stop2(effect4) {
+    if (effect4.active) {
+      cleanup(effect4);
+      if (effect4.options.onStop) {
+        effect4.options.onStop();
+      }
+      effect4.active = false;
+    }
+  }
+  var uid = 0;
+  function createReactiveEffect(fn, options) {
+    const effect4 = function reactiveEffect() {
+      if (!effect4.active) {
+        return fn();
+      }
+      if (!effectStack.includes(effect4)) {
+        cleanup(effect4);
+        try {
+          enableTracking();
+          effectStack.push(effect4);
+          activeEffect = effect4;
+          return fn();
+        } finally {
+          effectStack.pop();
+          resetTracking();
+          activeEffect = effectStack[effectStack.length - 1];
+        }
+      }
+    };
+    effect4.id = uid++;
+    effect4.allowRecurse = !!options.allowRecurse;
+    effect4._isEffect = true;
+    effect4.active = true;
+    effect4.raw = fn;
+    effect4.deps = [];
+    effect4.options = options;
+    return effect4;
+  }
+  function cleanup(effect4) {
+    const {deps} = effect4;
+    if (deps.length) {
+      for (let i = 0; i < deps.length; i++) {
+        deps[i].delete(effect4);
+      }
+      deps.length = 0;
+    }
+  }
+  var shouldTrack = true;
+  var trackStack = [];
+  function pauseTracking() {
+    trackStack.push(shouldTrack);
+    shouldTrack = false;
+  }
+  function enableTracking() {
+    trackStack.push(shouldTrack);
+    shouldTrack = true;
+  }
+  function resetTracking() {
+    const last = trackStack.pop();
+    shouldTrack = last === void 0 ? true : last;
+  }
+  function track(target, type, key) {
+    if (!shouldTrack || activeEffect === void 0) {
+      return;
+    }
+    let depsMap = targetMap.get(target);
+    if (!depsMap) {
+      targetMap.set(target, depsMap = new Map());
+    }
+    let dep = depsMap.get(key);
+    if (!dep) {
+      depsMap.set(key, dep = new Set());
+    }
+    if (!dep.has(activeEffect)) {
+      dep.add(activeEffect);
+      activeEffect.deps.push(dep);
+      if (activeEffect.options.onTrack) {
+        activeEffect.options.onTrack({
+          effect: activeEffect,
+          target,
+          type,
+          key
+        });
+      }
+    }
+  }
+  function trigger(target, type, key, newValue, oldValue, oldTarget) {
+    const depsMap = targetMap.get(target);
+    if (!depsMap) {
+      return;
+    }
+    const effects = new Set();
+    const add2 = (effectsToAdd) => {
+      if (effectsToAdd) {
+        effectsToAdd.forEach((effect4) => {
+          if (effect4 !== activeEffect || effect4.allowRecurse) {
+            effects.add(effect4);
+          }
+        });
+      }
+    };
+    if (type === "clear") {
+      depsMap.forEach(add2);
+    } else if (key === "length" && shared.isArray(target)) {
+      depsMap.forEach((dep, key2) => {
+        if (key2 === "length" || key2 >= newValue) {
+          add2(dep);
+        }
+      });
+    } else {
+      if (key !== void 0) {
+        add2(depsMap.get(key));
+      }
+      switch (type) {
+        case "add":
+          if (!shared.isArray(target)) {
+            add2(depsMap.get(ITERATE_KEY));
+            if (shared.isMap(target)) {
+              add2(depsMap.get(MAP_KEY_ITERATE_KEY));
+            }
+          } else if (shared.isIntegerKey(key)) {
+            add2(depsMap.get("length"));
+          }
+          break;
+        case "delete":
+          if (!shared.isArray(target)) {
+            add2(depsMap.get(ITERATE_KEY));
+            if (shared.isMap(target)) {
+              add2(depsMap.get(MAP_KEY_ITERATE_KEY));
+            }
+          }
+          break;
+        case "set":
+          if (shared.isMap(target)) {
+            add2(depsMap.get(ITERATE_KEY));
+          }
+          break;
+      }
+    }
+    const run = (effect4) => {
+      if (effect4.options.onTrigger) {
+        effect4.options.onTrigger({
+          effect: effect4,
+          target,
+          key,
+          type,
+          newValue,
+          oldValue,
+          oldTarget
+        });
+      }
+      if (effect4.options.scheduler) {
+        effect4.options.scheduler(effect4);
+      } else {
+        effect4();
+      }
+    };
+    effects.forEach(run);
+  }
+  var isNonTrackableKeys = /* @__PURE__ */ shared.makeMap(`__proto__,__v_isRef,__isVue`);
+  var builtInSymbols = new Set(Object.getOwnPropertyNames(Symbol).map((key) => Symbol[key]).filter(shared.isSymbol));
+  var get2 = /* @__PURE__ */ createGetter();
+  var shallowGet = /* @__PURE__ */ createGetter(false, true);
+  var readonlyGet = /* @__PURE__ */ createGetter(true);
+  var shallowReadonlyGet = /* @__PURE__ */ createGetter(true, true);
+  var arrayInstrumentations = {};
+  ["includes", "indexOf", "lastIndexOf"].forEach((key) => {
+    const method = Array.prototype[key];
+    arrayInstrumentations[key] = function(...args) {
+      const arr = toRaw2(this);
+      for (let i = 0, l = this.length; i < l; i++) {
+        track(arr, "get", i + "");
+      }
+      const res = method.apply(arr, args);
+      if (res === -1 || res === false) {
+        return method.apply(arr, args.map(toRaw2));
+      } else {
+        return res;
+      }
+    };
+  });
+  ["push", "pop", "shift", "unshift", "splice"].forEach((key) => {
+    const method = Array.prototype[key];
+    arrayInstrumentations[key] = function(...args) {
+      pauseTracking();
+      const res = method.apply(this, args);
+      resetTracking();
+      return res;
+    };
+  });
+  function createGetter(isReadonly2 = false, shallow = false) {
+    return function get3(target, key, receiver) {
+      if (key === "__v_isReactive") {
+        return !isReadonly2;
+      } else if (key === "__v_isReadonly") {
+        return isReadonly2;
+      } else if (key === "__v_raw" && receiver === (isReadonly2 ? shallow ? shallowReadonlyMap : readonlyMap : shallow ? shallowReactiveMap : reactiveMap).get(target)) {
+        return target;
+      }
+      const targetIsArray = shared.isArray(target);
+      if (!isReadonly2 && targetIsArray && shared.hasOwn(arrayInstrumentations, key)) {
+        return Reflect.get(arrayInstrumentations, key, receiver);
+      }
+      const res = Reflect.get(target, key, receiver);
+      if (shared.isSymbol(key) ? builtInSymbols.has(key) : isNonTrackableKeys(key)) {
+        return res;
+      }
+      if (!isReadonly2) {
+        track(target, "get", key);
+      }
+      if (shallow) {
+        return res;
+      }
+      if (isRef(res)) {
+        const shouldUnwrap = !targetIsArray || !shared.isIntegerKey(key);
+        return shouldUnwrap ? res.value : res;
+      }
+      if (shared.isObject(res)) {
+        return isReadonly2 ? readonly(res) : reactive3(res);
+      }
+      return res;
+    };
+  }
+  var set2 = /* @__PURE__ */ createSetter();
+  var shallowSet = /* @__PURE__ */ createSetter(true);
+  function createSetter(shallow = false) {
+    return function set3(target, key, value, receiver) {
+      let oldValue = target[key];
+      if (!shallow) {
+        value = toRaw2(value);
+        oldValue = toRaw2(oldValue);
+        if (!shared.isArray(target) && isRef(oldValue) && !isRef(value)) {
+          oldValue.value = value;
+          return true;
+        }
+      }
+      const hadKey = shared.isArray(target) && shared.isIntegerKey(key) ? Number(key) < target.length : shared.hasOwn(target, key);
+      const result = Reflect.set(target, key, value, receiver);
+      if (target === toRaw2(receiver)) {
+        if (!hadKey) {
+          trigger(target, "add", key, value);
+        } else if (shared.hasChanged(value, oldValue)) {
+          trigger(target, "set", key, value, oldValue);
+        }
+      }
+      return result;
+    };
+  }
+  function deleteProperty(target, key) {
+    const hadKey = shared.hasOwn(target, key);
+    const oldValue = target[key];
+    const result = Reflect.deleteProperty(target, key);
+    if (result && hadKey) {
+      trigger(target, "delete", key, void 0, oldValue);
+    }
+    return result;
+  }
+  function has(target, key) {
+    const result = Reflect.has(target, key);
+    if (!shared.isSymbol(key) || !builtInSymbols.has(key)) {
+      track(target, "has", key);
+    }
+    return result;
+  }
+  function ownKeys(target) {
+    track(target, "iterate", shared.isArray(target) ? "length" : ITERATE_KEY);
+    return Reflect.ownKeys(target);
+  }
+  var mutableHandlers = {
+    get: get2,
+    set: set2,
+    deleteProperty,
+    has,
+    ownKeys
+  };
+  var readonlyHandlers = {
+    get: readonlyGet,
+    set(target, key) {
+      {
+        console.warn(`Set operation on key "${String(key)}" failed: target is readonly.`, target);
+      }
+      return true;
+    },
+    deleteProperty(target, key) {
+      {
+        console.warn(`Delete operation on key "${String(key)}" failed: target is readonly.`, target);
+      }
+      return true;
+    }
+  };
+  var shallowReactiveHandlers = shared.extend({}, mutableHandlers, {
+    get: shallowGet,
+    set: shallowSet
+  });
+  var shallowReadonlyHandlers = shared.extend({}, readonlyHandlers, {
+    get: shallowReadonlyGet
+  });
+  var toReactive = (value) => shared.isObject(value) ? reactive3(value) : value;
+  var toReadonly = (value) => shared.isObject(value) ? readonly(value) : value;
+  var toShallow = (value) => value;
+  var getProto = (v) => Reflect.getPrototypeOf(v);
+  function get$1(target, key, isReadonly2 = false, isShallow = false) {
+    target = target["__v_raw"];
+    const rawTarget = toRaw2(target);
+    const rawKey = toRaw2(key);
+    if (key !== rawKey) {
+      !isReadonly2 && track(rawTarget, "get", key);
+    }
+    !isReadonly2 && track(rawTarget, "get", rawKey);
+    const {has: has2} = getProto(rawTarget);
+    const wrap = isShallow ? toShallow : isReadonly2 ? toReadonly : toReactive;
+    if (has2.call(rawTarget, key)) {
+      return wrap(target.get(key));
+    } else if (has2.call(rawTarget, rawKey)) {
+      return wrap(target.get(rawKey));
+    } else if (target !== rawTarget) {
+      target.get(key);
+    }
+  }
+  function has$1(key, isReadonly2 = false) {
+    const target = this["__v_raw"];
+    const rawTarget = toRaw2(target);
+    const rawKey = toRaw2(key);
+    if (key !== rawKey) {
+      !isReadonly2 && track(rawTarget, "has", key);
+    }
+    !isReadonly2 && track(rawTarget, "has", rawKey);
+    return key === rawKey ? target.has(key) : target.has(key) || target.has(rawKey);
+  }
+  function size(target, isReadonly2 = false) {
+    target = target["__v_raw"];
+    !isReadonly2 && track(toRaw2(target), "iterate", ITERATE_KEY);
+    return Reflect.get(target, "size", target);
+  }
+  function add(value) {
+    value = toRaw2(value);
+    const target = toRaw2(this);
+    const proto = getProto(target);
+    const hadKey = proto.has.call(target, value);
+    if (!hadKey) {
+      target.add(value);
+      trigger(target, "add", value, value);
+    }
+    return this;
+  }
+  function set$1(key, value) {
+    value = toRaw2(value);
+    const target = toRaw2(this);
+    const {has: has2, get: get3} = getProto(target);
+    let hadKey = has2.call(target, key);
+    if (!hadKey) {
+      key = toRaw2(key);
+      hadKey = has2.call(target, key);
+    } else {
+      checkIdentityKeys(target, has2, key);
+    }
+    const oldValue = get3.call(target, key);
+    target.set(key, value);
+    if (!hadKey) {
+      trigger(target, "add", key, value);
+    } else if (shared.hasChanged(value, oldValue)) {
+      trigger(target, "set", key, value, oldValue);
+    }
+    return this;
+  }
+  function deleteEntry(key) {
+    const target = toRaw2(this);
+    const {has: has2, get: get3} = getProto(target);
+    let hadKey = has2.call(target, key);
+    if (!hadKey) {
+      key = toRaw2(key);
+      hadKey = has2.call(target, key);
+    } else {
+      checkIdentityKeys(target, has2, key);
+    }
+    const oldValue = get3 ? get3.call(target, key) : void 0;
+    const result = target.delete(key);
+    if (hadKey) {
+      trigger(target, "delete", key, void 0, oldValue);
+    }
+    return result;
+  }
+  function clear() {
+    const target = toRaw2(this);
+    const hadItems = target.size !== 0;
+    const oldTarget = shared.isMap(target) ? new Map(target) : new Set(target);
+    const result = target.clear();
+    if (hadItems) {
+      trigger(target, "clear", void 0, void 0, oldTarget);
+    }
+    return result;
+  }
+  function createForEach(isReadonly2, isShallow) {
+    return function forEach(callback, thisArg) {
+      const observed = this;
+      const target = observed["__v_raw"];
+      const rawTarget = toRaw2(target);
+      const wrap = isShallow ? toShallow : isReadonly2 ? toReadonly : toReactive;
+      !isReadonly2 && track(rawTarget, "iterate", ITERATE_KEY);
+      return target.forEach((value, key) => {
+        return callback.call(thisArg, wrap(value), wrap(key), observed);
+      });
+    };
+  }
+  function createIterableMethod(method, isReadonly2, isShallow) {
+    return function(...args) {
+      const target = this["__v_raw"];
+      const rawTarget = toRaw2(target);
+      const targetIsMap = shared.isMap(rawTarget);
+      const isPair = method === "entries" || method === Symbol.iterator && targetIsMap;
+      const isKeyOnly = method === "keys" && targetIsMap;
+      const innerIterator = target[method](...args);
+      const wrap = isShallow ? toShallow : isReadonly2 ? toReadonly : toReactive;
+      !isReadonly2 && track(rawTarget, "iterate", isKeyOnly ? MAP_KEY_ITERATE_KEY : ITERATE_KEY);
+      return {
+        next() {
+          const {value, done} = innerIterator.next();
+          return done ? {value, done} : {
+            value: isPair ? [wrap(value[0]), wrap(value[1])] : wrap(value),
+            done
+          };
+        },
+        [Symbol.iterator]() {
+          return this;
+        }
+      };
+    };
+  }
+  function createReadonlyMethod(type) {
+    return function(...args) {
+      {
+        const key = args[0] ? `on key "${args[0]}" ` : ``;
+        console.warn(`${shared.capitalize(type)} operation ${key}failed: target is readonly.`, toRaw2(this));
+      }
+      return type === "delete" ? false : this;
+    };
+  }
+  var mutableInstrumentations = {
+    get(key) {
+      return get$1(this, key);
+    },
+    get size() {
+      return size(this);
+    },
+    has: has$1,
+    add,
+    set: set$1,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, false)
+  };
+  var shallowInstrumentations = {
+    get(key) {
+      return get$1(this, key, false, true);
+    },
+    get size() {
+      return size(this);
+    },
+    has: has$1,
+    add,
+    set: set$1,
+    delete: deleteEntry,
+    clear,
+    forEach: createForEach(false, true)
+  };
+  var readonlyInstrumentations = {
+    get(key) {
+      return get$1(this, key, true);
+    },
+    get size() {
+      return size(this, true);
+    },
+    has(key) {
+      return has$1.call(this, key, true);
+    },
+    add: createReadonlyMethod("add"),
+    set: createReadonlyMethod("set"),
+    delete: createReadonlyMethod("delete"),
+    clear: createReadonlyMethod("clear"),
+    forEach: createForEach(true, false)
+  };
+  var shallowReadonlyInstrumentations = {
+    get(key) {
+      return get$1(this, key, true, true);
+    },
+    get size() {
+      return size(this, true);
+    },
+    has(key) {
+      return has$1.call(this, key, true);
+    },
+    add: createReadonlyMethod("add"),
+    set: createReadonlyMethod("set"),
+    delete: createReadonlyMethod("delete"),
+    clear: createReadonlyMethod("clear"),
+    forEach: createForEach(true, true)
+  };
+  var iteratorMethods = ["keys", "values", "entries", Symbol.iterator];
+  iteratorMethods.forEach((method) => {
+    mutableInstrumentations[method] = createIterableMethod(method, false, false);
+    readonlyInstrumentations[method] = createIterableMethod(method, true, false);
+    shallowInstrumentations[method] = createIterableMethod(method, false, true);
+    shallowReadonlyInstrumentations[method] = createIterableMethod(method, true, true);
+  });
+  function createInstrumentationGetter(isReadonly2, shallow) {
+    const instrumentations = shallow ? isReadonly2 ? shallowReadonlyInstrumentations : shallowInstrumentations : isReadonly2 ? readonlyInstrumentations : mutableInstrumentations;
+    return (target, key, receiver) => {
+      if (key === "__v_isReactive") {
+        return !isReadonly2;
+      } else if (key === "__v_isReadonly") {
+        return isReadonly2;
+      } else if (key === "__v_raw") {
+        return target;
+      }
+      return Reflect.get(shared.hasOwn(instrumentations, key) && key in target ? instrumentations : target, key, receiver);
+    };
+  }
+  var mutableCollectionHandlers = {
+    get: createInstrumentationGetter(false, false)
+  };
+  var shallowCollectionHandlers = {
+    get: createInstrumentationGetter(false, true)
+  };
+  var readonlyCollectionHandlers = {
+    get: createInstrumentationGetter(true, false)
+  };
+  var shallowReadonlyCollectionHandlers = {
+    get: createInstrumentationGetter(true, true)
+  };
+  function checkIdentityKeys(target, has2, key) {
+    const rawKey = toRaw2(key);
+    if (rawKey !== key && has2.call(target, rawKey)) {
+      const type = shared.toRawType(target);
+      console.warn(`Reactive ${type} contains both the raw and reactive versions of the same object${type === `Map` ? ` as keys` : ``}, which can lead to inconsistencies. Avoid differentiating between the raw and reactive versions of an object and only use the reactive version if possible.`);
+    }
+  }
+  var reactiveMap = new WeakMap();
+  var shallowReactiveMap = new WeakMap();
+  var readonlyMap = new WeakMap();
+  var shallowReadonlyMap = new WeakMap();
+  function targetTypeMap(rawType) {
+    switch (rawType) {
+      case "Object":
+      case "Array":
+        return 1;
+      case "Map":
+      case "Set":
+      case "WeakMap":
+      case "WeakSet":
+        return 2;
+      default:
+        return 0;
+    }
+  }
+  function getTargetType(value) {
+    return value["__v_skip"] || !Object.isExtensible(value) ? 0 : targetTypeMap(shared.toRawType(value));
+  }
+  function reactive3(target) {
+    if (target && target["__v_isReadonly"]) {
+      return target;
+    }
+    return createReactiveObject(target, false, mutableHandlers, mutableCollectionHandlers, reactiveMap);
+  }
+  function shallowReactive(target) {
+    return createReactiveObject(target, false, shallowReactiveHandlers, shallowCollectionHandlers, shallowReactiveMap);
+  }
+  function readonly(target) {
+    return createReactiveObject(target, true, readonlyHandlers, readonlyCollectionHandlers, readonlyMap);
+  }
+  function shallowReadonly(target) {
+    return createReactiveObject(target, true, shallowReadonlyHandlers, shallowReadonlyCollectionHandlers, shallowReadonlyMap);
+  }
+  function createReactiveObject(target, isReadonly2, baseHandlers, collectionHandlers, proxyMap) {
+    if (!shared.isObject(target)) {
+      {
+        console.warn(`value cannot be made reactive: ${String(target)}`);
+      }
+      return target;
+    }
+    if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
+      return target;
+    }
+    const existingProxy = proxyMap.get(target);
+    if (existingProxy) {
+      return existingProxy;
+    }
+    const targetType = getTargetType(target);
+    if (targetType === 0) {
+      return target;
+    }
+    const proxy = new Proxy(target, targetType === 2 ? collectionHandlers : baseHandlers);
+    proxyMap.set(target, proxy);
+    return proxy;
+  }
+  function isReactive2(value) {
+    if (isReadonly(value)) {
+      return isReactive2(value["__v_raw"]);
+    }
+    return !!(value && value["__v_isReactive"]);
+  }
+  function isReadonly(value) {
+    return !!(value && value["__v_isReadonly"]);
+  }
+  function isProxy(value) {
+    return isReactive2(value) || isReadonly(value);
+  }
+  function toRaw2(observed) {
+    return observed && toRaw2(observed["__v_raw"]) || observed;
+  }
+  function markRaw(value) {
+    shared.def(value, "__v_skip", true);
+    return value;
+  }
+  var convert = (val) => shared.isObject(val) ? reactive3(val) : val;
+  function isRef(r) {
+    return Boolean(r && r.__v_isRef === true);
+  }
+  function ref(value) {
+    return createRef(value);
+  }
+  function shallowRef(value) {
+    return createRef(value, true);
+  }
+  var RefImpl = class {
+    constructor(_rawValue, _shallow = false) {
+      this._rawValue = _rawValue;
+      this._shallow = _shallow;
+      this.__v_isRef = true;
+      this._value = _shallow ? _rawValue : convert(_rawValue);
+    }
+    get value() {
+      track(toRaw2(this), "get", "value");
+      return this._value;
+    }
+    set value(newVal) {
+      if (shared.hasChanged(toRaw2(newVal), this._rawValue)) {
+        this._rawValue = newVal;
+        this._value = this._shallow ? newVal : convert(newVal);
+        trigger(toRaw2(this), "set", "value", newVal);
+      }
+    }
+  };
+  function createRef(rawValue, shallow = false) {
+    if (isRef(rawValue)) {
+      return rawValue;
+    }
+    return new RefImpl(rawValue, shallow);
+  }
+  function triggerRef(ref2) {
+    trigger(toRaw2(ref2), "set", "value", ref2.value);
+  }
+  function unref(ref2) {
+    return isRef(ref2) ? ref2.value : ref2;
+  }
+  var shallowUnwrapHandlers = {
+    get: (target, key, receiver) => unref(Reflect.get(target, key, receiver)),
+    set: (target, key, value, receiver) => {
+      const oldValue = target[key];
+      if (isRef(oldValue) && !isRef(value)) {
+        oldValue.value = value;
+        return true;
+      } else {
+        return Reflect.set(target, key, value, receiver);
+      }
+    }
+  };
+  function proxyRefs(objectWithRefs) {
+    return isReactive2(objectWithRefs) ? objectWithRefs : new Proxy(objectWithRefs, shallowUnwrapHandlers);
+  }
+  var CustomRefImpl = class {
+    constructor(factory) {
+      this.__v_isRef = true;
+      const {get: get3, set: set3} = factory(() => track(this, "get", "value"), () => trigger(this, "set", "value"));
+      this._get = get3;
+      this._set = set3;
+    }
+    get value() {
+      return this._get();
+    }
+    set value(newVal) {
+      this._set(newVal);
+    }
+  };
+  function customRef(factory) {
+    return new CustomRefImpl(factory);
+  }
+  function toRefs(object) {
+    if (!isProxy(object)) {
+      console.warn(`toRefs() expects a reactive object but received a plain one.`);
+    }
+    const ret = shared.isArray(object) ? new Array(object.length) : {};
+    for (const key in object) {
+      ret[key] = toRef(object, key);
+    }
+    return ret;
+  }
+  var ObjectRefImpl = class {
+    constructor(_object, _key) {
+      this._object = _object;
+      this._key = _key;
+      this.__v_isRef = true;
+    }
+    get value() {
+      return this._object[this._key];
+    }
+    set value(newVal) {
+      this._object[this._key] = newVal;
+    }
+  };
+  function toRef(object, key) {
+    return isRef(object[key]) ? object[key] : new ObjectRefImpl(object, key);
+  }
+  var ComputedRefImpl = class {
+    constructor(getter, _setter, isReadonly2) {
+      this._setter = _setter;
+      this._dirty = true;
+      this.__v_isRef = true;
+      this.effect = effect3(getter, {
+        lazy: true,
+        scheduler: () => {
+          if (!this._dirty) {
+            this._dirty = true;
+            trigger(toRaw2(this), "set", "value");
+          }
+        }
+      });
+      this["__v_isReadonly"] = isReadonly2;
+    }
+    get value() {
+      const self2 = toRaw2(this);
+      if (self2._dirty) {
+        self2._value = this.effect();
+        self2._dirty = false;
+      }
+      track(self2, "get", "value");
+      return self2._value;
+    }
+    set value(newValue) {
+      this._setter(newValue);
+    }
+  };
+  function computed(getterOrOptions) {
+    let getter;
+    let setter;
+    if (shared.isFunction(getterOrOptions)) {
+      getter = getterOrOptions;
+      setter = () => {
+        console.warn("Write operation failed: computed value is readonly");
+      };
+    } else {
+      getter = getterOrOptions.get;
+      setter = getterOrOptions.set;
+    }
+    return new ComputedRefImpl(getter, setter, shared.isFunction(getterOrOptions) || !getterOrOptions.set);
+  }
+  exports.ITERATE_KEY = ITERATE_KEY;
+  exports.computed = computed;
+  exports.customRef = customRef;
+  exports.effect = effect3;
+  exports.enableTracking = enableTracking;
+  exports.isProxy = isProxy;
+  exports.isReactive = isReactive2;
+  exports.isReadonly = isReadonly;
+  exports.isRef = isRef;
+  exports.markRaw = markRaw;
+  exports.pauseTracking = pauseTracking;
+  exports.proxyRefs = proxyRefs;
+  exports.reactive = reactive3;
+  exports.readonly = readonly;
+  exports.ref = ref;
+  exports.resetTracking = resetTracking;
+  exports.shallowReactive = shallowReactive;
+  exports.shallowReadonly = shallowReadonly;
+  exports.shallowRef = shallowRef;
+  exports.stop = stop2;
+  exports.toRaw = toRaw2;
+  exports.toRef = toRef;
+  exports.toRefs = toRefs;
+  exports.track = track;
+  exports.trigger = trigger;
+  exports.triggerRef = triggerRef;
+  exports.unref = unref;
+});
+
+// node_modules/@vue/reactivity/index.js
+var require_reactivity = __commonJS((exports, module) => {
+  "use strict";
+  if (false) {} else {
+    module.exports = require_reactivity_cjs();
+  }
+});
+
+// packages/alpinejs/src/scheduler.js
+var flushPending = false;
+var flushing = false;
+var queue = [];
+function scheduler(callback) {
+  queueJob(callback);
+}
+function queueJob(job) {
+  if (!queue.includes(job))
+    queue.push(job);
+  queueFlush();
+}
+function queueFlush() {
+  if (!flushing && !flushPending) {
+    flushPending = true;
+    queueMicrotask(flushJobs);
+  }
+}
+function flushJobs() {
+  flushPending = false;
+  flushing = true;
+  for (let i = 0; i < queue.length; i++) {
+    queue[i]();
+  }
+  queue.length = 0;
+  flushing = false;
+}
+
+// packages/alpinejs/src/reactivity.js
+var reactive;
+var effect;
+var release;
+var raw;
+var shouldSchedule = true;
+function disableEffectScheduling(callback) {
+  shouldSchedule = false;
+  callback();
+  shouldSchedule = true;
+}
+function setReactivityEngine(engine) {
+  reactive = engine.reactive;
+  release = engine.release;
+  effect = (callback) => engine.effect(callback, {scheduler: (task) => {
+    if (shouldSchedule) {
+      scheduler(task);
+    } else {
+      task();
+    }
+  }});
+  raw = engine.raw;
+}
+function overrideEffect(override) {
+  effect = override;
+}
+function elementBoundEffect(el) {
+  let cleanup = () => {
+  };
+  let wrappedEffect = (callback) => {
+    let effectReference = effect(callback);
+    if (!el._x_effects) {
+      el._x_effects = new Set();
+      el._x_runEffects = () => {
+        el._x_effects.forEach((i) => i());
+      };
+    }
+    el._x_effects.add(effectReference);
+    cleanup = () => {
+      if (effectReference === void 0)
+        return;
+      el._x_effects.delete(effectReference);
+      release(effectReference);
+    };
+  };
+  return [wrappedEffect, () => {
+    cleanup();
+  }];
+}
+
+// packages/alpinejs/src/mutation.js
+var onAttributeAddeds = [];
+var onElRemoveds = [];
+var onElAddeds = [];
+function onElAdded(callback) {
+  onElAddeds.push(callback);
+}
+function onElRemoved(callback) {
+  onElRemoveds.push(callback);
+}
+function onAttributesAdded(callback) {
+  onAttributeAddeds.push(callback);
+}
+function onAttributeRemoved(el, name, callback) {
+  if (!el._x_attributeCleanups)
+    el._x_attributeCleanups = {};
+  if (!el._x_attributeCleanups[name])
+    el._x_attributeCleanups[name] = [];
+  el._x_attributeCleanups[name].push(callback);
+}
+function cleanupAttributes(el, names) {
+  if (!el._x_attributeCleanups)
+    return;
+  Object.entries(el._x_attributeCleanups).forEach(([name, value]) => {
+    (names === void 0 || names.includes(name)) && value.forEach((i) => i());
+    delete el._x_attributeCleanups[name];
+  });
+}
+var observer = new MutationObserver(onMutate);
+var currentlyObserving = false;
+function startObservingMutations() {
+  observer.observe(document, {subtree: true, childList: true, attributes: true, attributeOldValue: true});
+  currentlyObserving = true;
+}
+function stopObservingMutations() {
+  observer.disconnect();
+  currentlyObserving = false;
+}
+var recordQueue = [];
+var willProcessRecordQueue = false;
+function flushObserver() {
+  recordQueue = recordQueue.concat(observer.takeRecords());
+  if (recordQueue.length && !willProcessRecordQueue) {
+    willProcessRecordQueue = true;
+    queueMicrotask(() => {
+      processRecordQueue();
+      willProcessRecordQueue = false;
+    });
+  }
+}
+function processRecordQueue() {
+  onMutate(recordQueue);
+  recordQueue.length = 0;
+}
+function mutateDom(callback) {
+  if (!currentlyObserving)
+    return callback();
+  flushObserver();
+  stopObservingMutations();
+  let result = callback();
+  startObservingMutations();
+  return result;
+}
+function onMutate(mutations) {
+  let addedNodes = [];
+  let removedNodes = [];
+  let addedAttributes = new Map();
+  let removedAttributes = new Map();
+  for (let i = 0; i < mutations.length; i++) {
+    if (mutations[i].target._x_ignoreMutationObserver)
+      continue;
+    if (mutations[i].type === "childList") {
+      mutations[i].addedNodes.forEach((node) => node.nodeType === 1 && addedNodes.push(node));
+      mutations[i].removedNodes.forEach((node) => node.nodeType === 1 && removedNodes.push(node));
+    }
+    if (mutations[i].type === "attributes") {
+      let el = mutations[i].target;
+      let name = mutations[i].attributeName;
+      let oldValue = mutations[i].oldValue;
+      let add = () => {
+        if (!addedAttributes.has(el))
+          addedAttributes.set(el, []);
+        addedAttributes.get(el).push({name, value: el.getAttribute(name)});
+      };
+      let remove = () => {
+        if (!removedAttributes.has(el))
+          removedAttributes.set(el, []);
+        removedAttributes.get(el).push(name);
+      };
+      if (el.hasAttribute(name) && oldValue === null) {
+        add();
+      } else if (el.hasAttribute(name)) {
+        remove();
+        add();
+      } else {
+        remove();
+      }
+    }
+  }
+  removedAttributes.forEach((attrs, el) => {
+    cleanupAttributes(el, attrs);
+  });
+  addedAttributes.forEach((attrs, el) => {
+    onAttributeAddeds.forEach((i) => i(el, attrs));
+  });
+  for (let node of addedNodes) {
+    if (removedNodes.includes(node))
+      continue;
+    onElAddeds.forEach((i) => i(node));
+  }
+  for (let node of removedNodes) {
+    if (addedNodes.includes(node))
+      continue;
+    onElRemoveds.forEach((i) => i(node));
+  }
+  addedNodes = null;
+  removedNodes = null;
+  addedAttributes = null;
+  removedAttributes = null;
+}
+
+// packages/alpinejs/src/scope.js
+function addScopeToNode(node, data2, referenceNode) {
+  node._x_dataStack = [data2, ...closestDataStack(referenceNode || node)];
+  return () => {
+    node._x_dataStack = node._x_dataStack.filter((i) => i !== data2);
+  };
+}
+function refreshScope(element, scope) {
+  let existingScope = element._x_dataStack[0];
+  Object.entries(scope).forEach(([key, value]) => {
+    existingScope[key] = value;
+  });
+}
+function closestDataStack(node) {
+  if (node._x_dataStack)
+    return node._x_dataStack;
+  if (node instanceof ShadowRoot) {
+    return closestDataStack(node.host);
+  }
+  if (!node.parentNode) {
+    return [];
+  }
+  return closestDataStack(node.parentNode);
+}
+function mergeProxies(objects) {
+  return new Proxy({}, {
+    ownKeys: () => {
+      return Array.from(new Set(objects.flatMap((i) => Object.keys(i))));
+    },
+    has: (target, name) => {
+      return objects.some((obj) => obj.hasOwnProperty(name));
+    },
+    get: (target, name) => {
+      return (objects.find((obj) => obj.hasOwnProperty(name)) || {})[name];
+    },
+    set: (target, name, value) => {
+      let closestObjectWithKey = objects.find((obj) => obj.hasOwnProperty(name));
+      if (closestObjectWithKey) {
+        closestObjectWithKey[name] = value;
+      } else {
+        objects[objects.length - 1][name] = value;
+      }
+      return true;
+    }
+  });
+}
+
+// packages/alpinejs/src/interceptor.js
+function initInterceptors(data2) {
+  let isObject = (val) => typeof val === "object" && !Array.isArray(val) && val !== null;
+  let recurse = (obj, basePath = "") => {
+    Object.entries(obj).forEach(([key, value]) => {
+      let path = basePath === "" ? key : `${basePath}.${key}`;
+      if (typeof value === "object" && value !== null && value._x_interceptor) {
+        obj[key] = value.initialize(data2, path, key);
+      } else {
+        if (isObject(value) && value !== obj && !(value instanceof Element)) {
+          recurse(value, path);
+        }
+      }
+    });
+  };
+  return recurse(data2);
+}
+function interceptor(callback, mutateObj = () => {
+}) {
+  let obj = {
+    initialValue: void 0,
+    _x_interceptor: true,
+    initialize(data2, path, key) {
+      return callback(this.initialValue, () => get(data2, path), (value) => set(data2, path, value), path, key);
+    }
+  };
+  mutateObj(obj);
+  return (initialValue) => {
+    if (typeof initialValue === "object" && initialValue !== null && initialValue._x_interceptor) {
+      let initialize = obj.initialize.bind(obj);
+      obj.initialize = (data2, path, key) => {
+        let innerValue = initialValue.initialize(data2, path, key);
+        obj.initialValue = innerValue;
+        return initialize(data2, path, key);
+      };
+    } else {
+      obj.initialValue = initialValue;
+    }
+    return obj;
+  };
+}
+function get(obj, path) {
+  return path.split(".").reduce((carry, segment) => carry[segment], obj);
+}
+function set(obj, path, value) {
+  if (typeof path === "string")
+    path = path.split(".");
+  if (path.length === 1)
+    obj[path[0]] = value;
+  else if (path.length === 0)
+    throw error;
+  else {
+    if (obj[path[0]])
+      return set(obj[path[0]], path.slice(1), value);
+    else {
+      obj[path[0]] = {};
+      return set(obj[path[0]], path.slice(1), value);
+    }
+  }
+}
+
+// packages/alpinejs/src/magics.js
+var magics = {};
+function magic(name, callback) {
+  magics[name] = callback;
+}
+function injectMagics(obj, el) {
+  Object.entries(magics).forEach(([name, callback]) => {
+    Object.defineProperty(obj, `$${name}`, {
+      get() {
+        return callback(el, {Alpine: alpine_default, interceptor});
+      },
+      enumerable: false
+    });
+  });
+  return obj;
+}
+
+// packages/alpinejs/src/evaluator.js
+function evaluate(el, expression, extras = {}) {
+  let result;
+  evaluateLater(el, expression)((value) => result = value, extras);
+  return result;
+}
+function evaluateLater(...args) {
+  return theEvaluatorFunction(...args);
+}
+var theEvaluatorFunction = normalEvaluator;
+function setEvaluator(newEvaluator) {
+  theEvaluatorFunction = newEvaluator;
+}
+function normalEvaluator(el, expression) {
+  let overriddenMagics = {};
+  injectMagics(overriddenMagics, el);
+  let dataStack = [overriddenMagics, ...closestDataStack(el)];
+  if (typeof expression === "function") {
+    return generateEvaluatorFromFunction(dataStack, expression);
+  }
+  let evaluator = generateEvaluatorFromString(dataStack, expression);
+  return tryCatch.bind(null, el, expression, evaluator);
+}
+function generateEvaluatorFromFunction(dataStack, func) {
+  return (receiver = () => {
+  }, {scope = {}, params = []} = {}) => {
+    let result = func.apply(mergeProxies([scope, ...dataStack]), params);
+    runIfTypeOfFunction(receiver, result);
+  };
+}
+var evaluatorMemo = {};
+function generateFunctionFromString(expression) {
+  if (evaluatorMemo[expression]) {
+    return evaluatorMemo[expression];
+  }
+  let AsyncFunction = Object.getPrototypeOf(async function() {
+  }).constructor;
+  let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression) || /^(let|const)/.test(expression) ? `(() => { ${expression} })()` : expression;
+  let func = new AsyncFunction(["__self", "scope"], `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`);
+  evaluatorMemo[expression] = func;
+  return func;
+}
+function generateEvaluatorFromString(dataStack, expression) {
+  let func = generateFunctionFromString(expression);
+  return (receiver = () => {
+  }, {scope = {}, params = []} = {}) => {
+    func.result = void 0;
+    func.finished = false;
+    let completeScope = mergeProxies([scope, ...dataStack]);
+    let promise = func(func, completeScope);
+    if (func.finished) {
+      runIfTypeOfFunction(receiver, func.result, completeScope, params);
+    } else {
+      promise.then((result) => {
+        runIfTypeOfFunction(receiver, result, completeScope, params);
+      });
+    }
+  };
+}
+function runIfTypeOfFunction(receiver, value, scope, params) {
+  if (typeof value === "function") {
+    let result = value.apply(scope, params);
+    if (result instanceof Promise) {
+      result.then((i) => runIfTypeOfFunction(receiver, i, scope, params));
+    } else {
+      receiver(result);
+    }
+  } else {
+    receiver(value);
+  }
+}
+function tryCatch(el, expression, callback, ...args) {
+  try {
+    return callback(...args);
+  } catch (e) {
+    console.warn(`Alpine Expression Error: ${e.message}
+
+Expression: "${expression}"
+
+`, el);
+    throw e;
+  }
+}
+
+// packages/alpinejs/src/directives.js
+var prefixAsString = "x-";
+function prefix(subject = "") {
+  return prefixAsString + subject;
+}
+function setPrefix(newPrefix) {
+  prefixAsString = newPrefix;
+}
+var directiveHandlers = {};
+function directive(name, callback) {
+  directiveHandlers[name] = callback;
+}
+function directives(el, attributes, originalAttributeOverride) {
+  let transformedAttributeMap = {};
+  let directives2 = Array.from(attributes).map(toTransformedAttributes((newName, oldName) => transformedAttributeMap[newName] = oldName)).filter(outNonAlpineAttributes).map(toParsedDirectives(transformedAttributeMap, originalAttributeOverride)).sort(byPriority);
+  return directives2.map((directive2) => {
+    return getDirectiveHandler(el, directive2);
+  });
+}
+var isDeferringHandlers = false;
+var directiveHandlerStack = [];
+function deferHandlingDirectives(callback) {
+  isDeferringHandlers = true;
+  let flushHandlers = () => {
+    while (directiveHandlerStack.length)
+      directiveHandlerStack.shift()();
+  };
+  let stopDeferring = () => {
+    isDeferringHandlers = false;
+    flushHandlers();
+  };
+  callback(flushHandlers);
+  stopDeferring();
+}
+function getDirectiveHandler(el, directive2) {
+  let noop = () => {
+  };
+  let handler3 = directiveHandlers[directive2.type] || noop;
+  let cleanups = [];
+  let cleanup = (callback) => cleanups.push(callback);
+  let [effect3, cleanupEffect] = elementBoundEffect(el);
+  cleanups.push(cleanupEffect);
+  let utilities = {
+    Alpine: alpine_default,
+    effect: effect3,
+    cleanup,
+    evaluateLater: evaluateLater.bind(evaluateLater, el),
+    evaluate: evaluate.bind(evaluate, el)
+  };
+  let doCleanup = () => cleanups.forEach((i) => i());
+  onAttributeRemoved(el, directive2.original, doCleanup);
+  let fullHandler = () => {
+    if (el._x_ignore || el._x_ignoreSelf)
+      return;
+    handler3.inline && handler3.inline(el, directive2, utilities);
+    handler3 = handler3.bind(handler3, el, directive2, utilities);
+    isDeferringHandlers ? directiveHandlerStack.push(handler3) : handler3();
+  };
+  fullHandler.runCleanups = doCleanup;
+  return fullHandler;
+}
+var startingWith = (subject, replacement) => ({name, value}) => {
+  if (name.startsWith(subject))
+    name = name.replace(subject, replacement);
+  return {name, value};
+};
+var into = (i) => i;
+function toTransformedAttributes(callback) {
+  return ({name, value}) => {
+    let {name: newName, value: newValue} = attributeTransformers.reduce((carry, transform) => {
+      return transform(carry);
+    }, {name, value});
+    if (newName !== name)
+      callback(newName, name);
+    return {name: newName, value: newValue};
+  };
+}
+var attributeTransformers = [];
+function mapAttributes(callback) {
+  attributeTransformers.push(callback);
+}
+function outNonAlpineAttributes({name}) {
+  return alpineAttributeRegex().test(name);
+}
+var alpineAttributeRegex = () => new RegExp(`^${prefixAsString}([^:^.]+)\\b`);
+function toParsedDirectives(transformedAttributeMap, originalAttributeOverride) {
+  return ({name, value}) => {
+    let typeMatch = name.match(alpineAttributeRegex());
+    let valueMatch = name.match(/:([a-zA-Z0-9\-:]+)/);
+    let modifiers = name.match(/\.[^.\]]+(?=[^\]]*$)/g) || [];
+    let original = originalAttributeOverride || transformedAttributeMap[name] || name;
+    return {
+      type: typeMatch ? typeMatch[1] : null,
+      value: valueMatch ? valueMatch[1] : null,
+      modifiers: modifiers.map((i) => i.replace(".", "")),
+      expression: value,
+      original
+    };
+  };
+}
+var DEFAULT = "DEFAULT";
+var directiveOrder = [
+  "ignore",
+  "ref",
+  "data",
+  "bind",
+  "init",
+  "for",
+  "model",
+  "transition",
+  "show",
+  "if",
+  DEFAULT,
+  "element"
+];
+function byPriority(a, b) {
+  let typeA = directiveOrder.indexOf(a.type) === -1 ? DEFAULT : a.type;
+  let typeB = directiveOrder.indexOf(b.type) === -1 ? DEFAULT : b.type;
+  return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
+}
+
+// packages/alpinejs/src/utils/dispatch.js
+function dispatch(el, name, detail = {}) {
+  el.dispatchEvent(new CustomEvent(name, {
+    detail,
+    bubbles: true,
+    composed: true,
+    cancelable: true
+  }));
+}
+
+// packages/alpinejs/src/nextTick.js
+var tickStack = [];
+var isHolding = false;
+function nextTick(callback) {
+  tickStack.push(callback);
+  queueMicrotask(() => {
+    isHolding || setTimeout(() => {
+      releaseNextTicks();
+    });
+  });
+}
+function releaseNextTicks() {
+  isHolding = false;
+  while (tickStack.length)
+    tickStack.shift()();
+}
+function holdNextTicks() {
+  isHolding = true;
+}
+
+// packages/alpinejs/src/utils/walk.js
+function walk(el, callback) {
+  if (el instanceof ShadowRoot) {
+    Array.from(el.children).forEach((el2) => walk(el2, callback));
+    return;
+  }
+  let skip = false;
+  callback(el, () => skip = true);
+  if (skip)
+    return;
+  let node = el.firstElementChild;
+  while (node) {
+    walk(node, callback, false);
+    node = node.nextElementSibling;
+  }
+}
+
+// packages/alpinejs/src/utils/warn.js
+function warn(message, ...args) {
+  console.warn(`Alpine Warning: ${message}`, ...args);
+}
+
+// packages/alpinejs/src/lifecycle.js
+function start() {
+  if (!document.body)
+    warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
+  dispatch(document, "alpine:init");
+  dispatch(document, "alpine:initializing");
+  startObservingMutations();
+  onElAdded((el) => initTree(el, walk));
+  onElRemoved((el) => nextTick(() => destroyTree(el)));
+  onAttributesAdded((el, attrs) => {
+    directives(el, attrs).forEach((handle) => handle());
+  });
+  let outNestedComponents = (el) => !closestRoot(el.parentNode || closestRoot(el));
+  Array.from(document.querySelectorAll(allSelectors())).filter(outNestedComponents).forEach((el) => {
+    initTree(el);
+  });
+  dispatch(document, "alpine:initialized");
+}
+var rootSelectorCallbacks = [];
+var initSelectorCallbacks = [];
+function rootSelectors() {
+  return rootSelectorCallbacks.map((fn) => fn());
+}
+function allSelectors() {
+  return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn) => fn());
+}
+function addRootSelector(selectorCallback) {
+  rootSelectorCallbacks.push(selectorCallback);
+}
+function addInitSelector(selectorCallback) {
+  initSelectorCallbacks.push(selectorCallback);
+}
+function closestRoot(el) {
+  if (rootSelectors().some((selector) => el.matches(selector)))
+    return el;
+  if (!el.parentElement)
+    return;
+  return closestRoot(el.parentElement);
+}
+function isRoot(el) {
+  return rootSelectors().some((selector) => el.matches(selector));
+}
+function initTree(el, walker = walk) {
+  deferHandlingDirectives(() => {
+    walker(el, (el2, skip) => {
+      directives(el2, el2.attributes).forEach((handle) => handle());
+      el2._x_ignore && skip();
+    });
+  });
+}
+function destroyTree(root) {
+  walk(root, (el) => cleanupAttributes(el));
+}
+
+// packages/alpinejs/src/plugin.js
+function plugin(callback) {
+  callback(alpine_default);
+}
+
+// packages/alpinejs/src/store.js
+var stores = {};
+var isReactive = false;
+function store(name, value) {
+  if (!isReactive) {
+    stores = reactive(stores);
+    isReactive = true;
+  }
+  if (value === void 0) {
+    return stores[name];
+  }
+  stores[name] = value;
+  if (typeof value === "object" && value !== null && value.hasOwnProperty("init") && typeof value.init === "function") {
+    stores[name].init();
+  }
+}
+function getStores() {
+  return stores;
+}
+
+// packages/alpinejs/src/clone.js
+var isCloning = false;
+function skipDuringClone(callback) {
+  return (...args) => isCloning || callback(...args);
+}
+function clone(oldEl, newEl) {
+  newEl._x_dataStack = oldEl._x_dataStack;
+  isCloning = true;
+  dontRegisterReactiveSideEffects(() => {
+    cloneTree(newEl);
+  });
+  isCloning = false;
+}
+function cloneTree(el) {
+  let hasRunThroughFirstEl = false;
+  let shallowWalker = (el2, callback) => {
+    walk(el2, (el3, skip) => {
+      if (hasRunThroughFirstEl && isRoot(el3))
+        return skip();
+      hasRunThroughFirstEl = true;
+      callback(el3, skip);
+    });
+  };
+  initTree(el, shallowWalker);
+}
+function dontRegisterReactiveSideEffects(callback) {
+  let cache = effect;
+  overrideEffect((callback2, el) => {
+    let storedEffect = cache(callback2);
+    release(storedEffect);
+    return () => {
+    };
+  });
+  callback();
+  overrideEffect(cache);
+}
+
+// packages/alpinejs/src/datas.js
+var datas = {};
+function data(name, callback) {
+  datas[name] = callback;
+}
+function injectDataProviders(obj, context) {
+  Object.entries(datas).forEach(([name, callback]) => {
+    Object.defineProperty(obj, name, {
+      get() {
+        return (...args) => {
+          return callback.bind(context)(...args);
+        };
+      },
+      enumerable: false
+    });
+  });
+  return obj;
+}
+
+// packages/alpinejs/src/alpine.js
+var Alpine = {
+  get reactive() {
+    return reactive;
+  },
+  get release() {
+    return release;
+  },
+  get effect() {
+    return effect;
+  },
+  get raw() {
+    return raw;
+  },
+  version: "3.2.2",
+  disableEffectScheduling,
+  setReactivityEngine,
+  addRootSelector,
+  mapAttributes,
+  evaluateLater,
+  setEvaluator,
+  closestRoot,
+  interceptor,
+  mutateDom,
+  directive,
+  evaluate,
+  initTree,
+  nextTick,
+  prefix: setPrefix,
+  plugin,
+  magic,
+  store,
+  start,
+  clone,
+  data
+};
+var alpine_default = Alpine;
+
+// packages/alpinejs/src/index.js
+var import_reactivity9 = __toModule(require_reactivity());
+
+// packages/alpinejs/src/magics/$nextTick.js
+magic("nextTick", () => nextTick);
+
+// packages/alpinejs/src/magics/$dispatch.js
+magic("dispatch", (el) => dispatch.bind(dispatch, el));
+
+// packages/alpinejs/src/magics/$watch.js
+magic("watch", (el) => (key, callback) => {
+  let evaluate2 = evaluateLater(el, key);
+  let firstTime = true;
+  let oldValue;
+  effect(() => evaluate2((value) => {
+    let div = document.createElement("div");
+    div.dataset.throwAway = value;
+    if (!firstTime) {
+      queueMicrotask(() => {
+        callback(value, oldValue);
+        oldValue = value;
+      });
+    } else {
+      oldValue = value;
+    }
+    firstTime = false;
+  }));
+});
+
+// packages/alpinejs/src/magics/$store.js
+magic("store", getStores);
+
+// packages/alpinejs/src/magics/$refs.js
+magic("refs", (el) => closestRoot(el)._x_refs || {});
+
+// packages/alpinejs/src/magics/$el.js
+magic("el", (el) => el);
+
+// packages/alpinejs/src/utils/classes.js
+function setClasses(el, value) {
+  if (Array.isArray(value)) {
+    return setClassesFromString(el, value.join(" "));
+  } else if (typeof value === "object" && value !== null) {
+    return setClassesFromObject(el, value);
+  } else if (typeof value === "function") {
+    return setClasses(el, value());
+  }
+  return setClassesFromString(el, value);
+}
+function setClassesFromString(el, classString) {
+  let split = (classString2) => classString2.split(" ").filter(Boolean);
+  let missingClasses = (classString2) => classString2.split(" ").filter((i) => !el.classList.contains(i)).filter(Boolean);
+  let addClassesAndReturnUndo = (classes) => {
+    el.classList.add(...classes);
+    return () => {
+      el.classList.remove(...classes);
+    };
+  };
+  classString = classString === true ? classString = "" : classString || "";
+  return addClassesAndReturnUndo(missingClasses(classString));
+}
+function setClassesFromObject(el, classObject) {
+  let split = (classString) => classString.split(" ").filter(Boolean);
+  let forAdd = Object.entries(classObject).flatMap(([classString, bool]) => bool ? split(classString) : false).filter(Boolean);
+  let forRemove = Object.entries(classObject).flatMap(([classString, bool]) => !bool ? split(classString) : false).filter(Boolean);
+  let added = [];
+  let removed = [];
+  forRemove.forEach((i) => {
+    if (el.classList.contains(i)) {
+      el.classList.remove(i);
+      removed.push(i);
+    }
+  });
+  forAdd.forEach((i) => {
+    if (!el.classList.contains(i)) {
+      el.classList.add(i);
+      added.push(i);
+    }
+  });
+  return () => {
+    removed.forEach((i) => el.classList.add(i));
+    added.forEach((i) => el.classList.remove(i));
+  };
+}
+
+// packages/alpinejs/src/utils/styles.js
+function setStyles(el, value) {
+  if (typeof value === "object" && value !== null) {
+    return setStylesFromObject(el, value);
+  }
+  return setStylesFromString(el, value);
+}
+function setStylesFromObject(el, value) {
+  let previousStyles = {};
+  Object.entries(value).forEach(([key, value2]) => {
+    previousStyles[key] = el.style[key];
+    el.style[key] = value2;
+  });
+  setTimeout(() => {
+    if (el.style.length === 0) {
+      el.removeAttribute("style");
+    }
+  });
+  return () => {
+    setStyles(el, previousStyles);
+  };
+}
+function setStylesFromString(el, value) {
+  let cache = el.getAttribute("style", value);
+  el.setAttribute("style", value);
+  return () => {
+    el.setAttribute("style", cache);
+  };
+}
+
+// packages/alpinejs/src/utils/once.js
+function once(callback, fallback = () => {
+}) {
+  let called = false;
+  return function() {
+    if (!called) {
+      called = true;
+      callback.apply(this, arguments);
+    } else {
+      fallback.apply(this, arguments);
+    }
+  };
+}
+
+// packages/alpinejs/src/directives/x-transition.js
+directive("transition", (el, {value, modifiers, expression}, {evaluate: evaluate2}) => {
+  if (typeof expression === "function")
+    expression = evaluate2(expression);
+  if (!expression) {
+    registerTransitionsFromHelper(el, modifiers, value);
+  } else {
+    registerTransitionsFromClassString(el, expression, value);
+  }
+});
+function registerTransitionsFromClassString(el, classString, stage) {
+  registerTransitionObject(el, setClasses, "");
+  let directiveStorageMap = {
+    enter: (classes) => {
+      el._x_transition.enter.during = classes;
+    },
+    "enter-start": (classes) => {
+      el._x_transition.enter.start = classes;
+    },
+    "enter-end": (classes) => {
+      el._x_transition.enter.end = classes;
+    },
+    leave: (classes) => {
+      el._x_transition.leave.during = classes;
+    },
+    "leave-start": (classes) => {
+      el._x_transition.leave.start = classes;
+    },
+    "leave-end": (classes) => {
+      el._x_transition.leave.end = classes;
+    }
+  };
+  directiveStorageMap[stage](classString);
+}
+function registerTransitionsFromHelper(el, modifiers, stage) {
+  registerTransitionObject(el, setStyles);
+  let doesntSpecify = !modifiers.includes("in") && !modifiers.includes("out") && !stage;
+  let transitioningIn = doesntSpecify || modifiers.includes("in") || ["enter"].includes(stage);
+  let transitioningOut = doesntSpecify || modifiers.includes("out") || ["leave"].includes(stage);
+  if (modifiers.includes("in") && !doesntSpecify) {
+    modifiers = modifiers.filter((i, index) => index < modifiers.indexOf("out"));
+  }
+  if (modifiers.includes("out") && !doesntSpecify) {
+    modifiers = modifiers.filter((i, index) => index > modifiers.indexOf("out"));
+  }
+  let wantsAll = !modifiers.includes("opacity") && !modifiers.includes("scale");
+  let wantsOpacity = wantsAll || modifiers.includes("opacity");
+  let wantsScale = wantsAll || modifiers.includes("scale");
+  let opacityValue = wantsOpacity ? 0 : 1;
+  let scaleValue = wantsScale ? modifierValue(modifiers, "scale", 95) / 100 : 1;
+  let delay = modifierValue(modifiers, "delay", 0);
+  let origin = modifierValue(modifiers, "origin", "center");
+  let property = "opacity, transform";
+  let durationIn = modifierValue(modifiers, "duration", 150) / 1e3;
+  let durationOut = modifierValue(modifiers, "duration", 75) / 1e3;
+  let easing = `cubic-bezier(0.4, 0.0, 0.2, 1)`;
+  if (transitioningIn) {
+    el._x_transition.enter.during = {
+      transformOrigin: origin,
+      transitionDelay: delay,
+      transitionProperty: property,
+      transitionDuration: `${durationIn}s`,
+      transitionTimingFunction: easing
+    };
+    el._x_transition.enter.start = {
+      opacity: opacityValue,
+      transform: `scale(${scaleValue})`
+    };
+    el._x_transition.enter.end = {
+      opacity: 1,
+      transform: `scale(1)`
+    };
+  }
+  if (transitioningOut) {
+    el._x_transition.leave.during = {
+      transformOrigin: origin,
+      transitionDelay: delay,
+      transitionProperty: property,
+      transitionDuration: `${durationOut}s`,
+      transitionTimingFunction: easing
+    };
+    el._x_transition.leave.start = {
+      opacity: 1,
+      transform: `scale(1)`
+    };
+    el._x_transition.leave.end = {
+      opacity: opacityValue,
+      transform: `scale(${scaleValue})`
+    };
+  }
+}
+function registerTransitionObject(el, setFunction, defaultValue = {}) {
+  if (!el._x_transition)
+    el._x_transition = {
+      enter: {during: defaultValue, start: defaultValue, end: defaultValue},
+      leave: {during: defaultValue, start: defaultValue, end: defaultValue},
+      in(before = () => {
+      }, after = () => {
+      }) {
+        transition(el, setFunction, {
+          during: this.enter.during,
+          start: this.enter.start,
+          end: this.enter.end,
+          entering: true
+        }, before, after);
+      },
+      out(before = () => {
+      }, after = () => {
+      }) {
+        transition(el, setFunction, {
+          during: this.leave.during,
+          start: this.leave.start,
+          end: this.leave.end,
+          entering: false
+        }, before, after);
+      }
+    };
+}
+window.Element.prototype._x_toggleAndCascadeWithTransitions = function(el, value, show, hide) {
+  let clickAwayCompatibleShow = () => requestAnimationFrame(show);
+  if (value) {
+    el._x_transition ? el._x_transition.in(show) : clickAwayCompatibleShow();
+    return;
+  }
+  el._x_hidePromise = el._x_transition ? new Promise((resolve, reject) => {
+    el._x_transition.out(() => {
+    }, () => resolve(hide));
+    el._x_transitioning.beforeCancel(() => reject({isFromCancelledTransition: true}));
+  }) : Promise.resolve(hide);
+  queueMicrotask(() => {
+    let closest = closestHide(el);
+    if (closest) {
+      if (!closest._x_hideChildren)
+        closest._x_hideChildren = [];
+      closest._x_hideChildren.push(el);
+    } else {
+      queueMicrotask(() => {
+        let hideAfterChildren = (el2) => {
+          let carry = Promise.all([
+            el2._x_hidePromise,
+            ...(el2._x_hideChildren || []).map(hideAfterChildren)
+          ]).then(([i]) => i());
+          delete el2._x_hidePromise;
+          delete el2._x_hideChildren;
+          return carry;
+        };
+        hideAfterChildren(el).catch((e) => {
+          if (!e.isFromCancelledTransition)
+            throw e;
+        });
+      });
+    }
+  });
+};
+function closestHide(el) {
+  let parent = el.parentNode;
+  if (!parent)
+    return;
+  return parent._x_hidePromise ? parent : closestHide(parent);
+}
+function transition(el, setFunction, {during, start: start2, end, entering} = {}, before = () => {
+}, after = () => {
+}) {
+  if (el._x_transitioning)
+    el._x_transitioning.cancel();
+  if (Object.keys(during).length === 0 && Object.keys(start2).length === 0 && Object.keys(end).length === 0) {
+    before();
+    after();
+    return;
+  }
+  let undoStart, undoDuring, undoEnd;
+  performTransition(el, {
+    start() {
+      undoStart = setFunction(el, start2);
+    },
+    during() {
+      undoDuring = setFunction(el, during);
+    },
+    before,
+    end() {
+      undoStart();
+      undoEnd = setFunction(el, end);
+    },
+    after,
+    cleanup() {
+      undoDuring();
+      undoEnd();
+    }
+  }, entering);
+}
+function performTransition(el, stages, entering) {
+  let interrupted, reachedBefore, reachedEnd;
+  let finish = once(() => {
+    mutateDom(() => {
+      interrupted = true;
+      if (!reachedBefore)
+        stages.before();
+      if (!reachedEnd) {
+        stages.end();
+        releaseNextTicks();
+      }
+      stages.after();
+      if (el.isConnected)
+        stages.cleanup();
+      delete el._x_transitioning;
+    });
+  });
+  el._x_transitioning = {
+    beforeCancels: [],
+    beforeCancel(callback) {
+      this.beforeCancels.push(callback);
+    },
+    cancel: once(function() {
+      while (this.beforeCancels.length) {
+        this.beforeCancels.shift()();
+      }
+      ;
+      finish();
+    }),
+    finish,
+    entering
+  };
+  mutateDom(() => {
+    stages.start();
+    stages.during();
+  });
+  holdNextTicks();
+  requestAnimationFrame(() => {
+    if (interrupted)
+      return;
+    let duration = Number(getComputedStyle(el).transitionDuration.replace(/,.*/, "").replace("s", "")) * 1e3;
+    let delay = Number(getComputedStyle(el).transitionDelay.replace(/,.*/, "").replace("s", "")) * 1e3;
+    if (duration === 0)
+      duration = Number(getComputedStyle(el).animationDuration.replace("s", "")) * 1e3;
+    mutateDom(() => {
+      stages.before();
+    });
+    reachedBefore = true;
+    requestAnimationFrame(() => {
+      if (interrupted)
+        return;
+      mutateDom(() => {
+        stages.end();
+      });
+      releaseNextTicks();
+      setTimeout(el._x_transitioning.finish, duration + delay);
+      reachedEnd = true;
+    });
+  });
+}
+function modifierValue(modifiers, key, fallback) {
+  if (modifiers.indexOf(key) === -1)
+    return fallback;
+  const rawValue = modifiers[modifiers.indexOf(key) + 1];
+  if (!rawValue)
+    return fallback;
+  if (key === "scale") {
+    if (isNaN(rawValue))
+      return fallback;
+  }
+  if (key === "duration") {
+    let match = rawValue.match(/([0-9]+)ms/);
+    if (match)
+      return match[1];
+  }
+  if (key === "origin") {
+    if (["top", "right", "left", "center", "bottom"].includes(modifiers[modifiers.indexOf(key) + 2])) {
+      return [rawValue, modifiers[modifiers.indexOf(key) + 2]].join(" ");
+    }
+  }
+  return rawValue;
+}
+
+// packages/alpinejs/src/directives/x-ignore.js
+var handler = () => {
+};
+handler.inline = (el, {modifiers}, {cleanup}) => {
+  modifiers.includes("self") ? el._x_ignoreSelf = true : el._x_ignore = true;
+  cleanup(() => {
+    modifiers.includes("self") ? delete el._x_ignoreSelf : delete el._x_ignore;
+  });
+};
+directive("ignore", handler);
+
+// packages/alpinejs/src/directives/x-effect.js
+directive("effect", (el, {expression}, {effect: effect3}) => effect3(evaluateLater(el, expression)));
+
+// packages/alpinejs/src/utils/bind.js
+function bind(el, name, value, modifiers = []) {
+  if (!el._x_bindings)
+    el._x_bindings = reactive({});
+  el._x_bindings[name] = value;
+  name = modifiers.includes("camel") ? camelCase(name) : name;
+  switch (name) {
+    case "value":
+      bindInputValue(el, value);
+      break;
+    case "style":
+      bindStyles(el, value);
+      break;
+    case "class":
+      bindClasses(el, value);
+      break;
+    default:
+      bindAttribute(el, name, value);
+      break;
+  }
+}
+function bindInputValue(el, value) {
+  if (el.type === "radio") {
+    if (el.attributes.value === void 0) {
+      el.value = value;
+    }
+    if (window.fromModel) {
+      el.checked = checkedAttrLooseCompare(el.value, value);
+    }
+  } else if (el.type === "checkbox") {
+    if (Number.isInteger(value)) {
+      el.value = value;
+    } else if (!Number.isInteger(value) && !Array.isArray(value) && typeof value !== "boolean" && ![null, void 0].includes(value)) {
+      el.value = String(value);
+    } else {
+      if (Array.isArray(value)) {
+        el.checked = value.some((val) => checkedAttrLooseCompare(val, el.value));
+      } else {
+        el.checked = !!value;
+      }
+    }
+  } else if (el.tagName === "SELECT") {
+    updateSelect(el, value);
+  } else {
+    if (el.value === value)
+      return;
+    el.value = value;
+  }
+}
+function bindClasses(el, value) {
+  if (el._x_undoAddedClasses)
+    el._x_undoAddedClasses();
+  el._x_undoAddedClasses = setClasses(el, value);
+}
+function bindStyles(el, value) {
+  if (el._x_undoAddedStyles)
+    el._x_undoAddedStyles();
+  el._x_undoAddedStyles = setStyles(el, value);
+}
+function bindAttribute(el, name, value) {
+  if ([null, void 0, false].includes(value) && attributeShouldntBePreservedIfFalsy(name)) {
+    el.removeAttribute(name);
+  } else {
+    if (isBooleanAttr(name))
+      value = name;
+    setIfChanged(el, name, value);
+  }
+}
+function setIfChanged(el, attrName, value) {
+  if (el.getAttribute(attrName) != value) {
+    el.setAttribute(attrName, value);
+  }
+}
+function updateSelect(el, value) {
+  const arrayWrappedValue = [].concat(value).map((value2) => {
+    return value2 + "";
+  });
+  Array.from(el.options).forEach((option) => {
+    option.selected = arrayWrappedValue.includes(option.value);
+  });
+}
+function camelCase(subject) {
+  return subject.toLowerCase().replace(/-(\w)/g, (match, char) => char.toUpperCase());
+}
+function checkedAttrLooseCompare(valueA, valueB) {
+  return valueA == valueB;
+}
+function isBooleanAttr(attrName) {
+  const booleanAttributes = [
+    "disabled",
+    "checked",
+    "required",
+    "readonly",
+    "hidden",
+    "open",
+    "selected",
+    "autofocus",
+    "itemscope",
+    "multiple",
+    "novalidate",
+    "allowfullscreen",
+    "allowpaymentrequest",
+    "formnovalidate",
+    "autoplay",
+    "controls",
+    "loop",
+    "muted",
+    "playsinline",
+    "default",
+    "ismap",
+    "reversed",
+    "async",
+    "defer",
+    "nomodule"
+  ];
+  return booleanAttributes.includes(attrName);
+}
+function attributeShouldntBePreservedIfFalsy(name) {
+  return !["aria-pressed", "aria-checked"].includes(name);
+}
+
+// packages/alpinejs/src/utils/on.js
+function on(el, event, modifiers, callback) {
+  let listenerTarget = el;
+  let handler3 = (e) => callback(e);
+  let options = {};
+  let wrapHandler = (callback2, wrapper) => (e) => wrapper(callback2, e);
+  if (modifiers.includes("camel"))
+    event = camelCase2(event);
+  if (modifiers.includes("passive"))
+    options.passive = true;
+  if (modifiers.includes("window"))
+    listenerTarget = window;
+  if (modifiers.includes("document"))
+    listenerTarget = document;
+  if (modifiers.includes("prevent"))
+    handler3 = wrapHandler(handler3, (next, e) => {
+      e.preventDefault();
+      next(e);
+    });
+  if (modifiers.includes("stop"))
+    handler3 = wrapHandler(handler3, (next, e) => {
+      e.stopPropagation();
+      next(e);
+    });
+  if (modifiers.includes("self"))
+    handler3 = wrapHandler(handler3, (next, e) => {
+      e.target === el && next(e);
+    });
+  if (modifiers.includes("away") || modifiers.includes("outside")) {
+    listenerTarget = document;
+    handler3 = wrapHandler(handler3, (next, e) => {
+      if (el.contains(e.target))
+        return;
+      if (el.offsetWidth < 1 && el.offsetHeight < 1)
+        return;
+      next(e);
+    });
+  }
+  handler3 = wrapHandler(handler3, (next, e) => {
+    if (isKeyEvent(event)) {
+      if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) {
+        return;
+      }
+    }
+    next(e);
+  });
+  if (modifiers.includes("debounce")) {
+    let nextModifier = modifiers[modifiers.indexOf("debounce") + 1] || "invalid-wait";
+    let wait = isNumeric(nextModifier.split("ms")[0]) ? Number(nextModifier.split("ms")[0]) : 250;
+    handler3 = debounce(handler3, wait, this);
+  }
+  if (modifiers.includes("throttle")) {
+    let nextModifier = modifiers[modifiers.indexOf("throttle") + 1] || "invalid-wait";
+    let wait = isNumeric(nextModifier.split("ms")[0]) ? Number(nextModifier.split("ms")[0]) : 250;
+    handler3 = throttle(handler3, wait, this);
+  }
+  if (modifiers.includes("once")) {
+    handler3 = wrapHandler(handler3, (next, e) => {
+      next(e);
+      listenerTarget.removeEventListener(event, handler3, options);
+    });
+  }
+  listenerTarget.addEventListener(event, handler3, options);
+  return () => {
+    listenerTarget.removeEventListener(event, handler3, options);
+  };
+}
+function camelCase2(subject) {
+  return subject.toLowerCase().replace(/-(\w)/g, (match, char) => char.toUpperCase());
+}
+function debounce(func, wait) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      func.apply(context, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+function throttle(func, limit) {
+  let inThrottle;
+  return function() {
+    let context = this, args = arguments;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+function isNumeric(subject) {
+  return !Array.isArray(subject) && !isNaN(subject);
+}
+function kebabCase(subject) {
+  return subject.replace(/([a-z])([A-Z])/g, "$1-$2").replace(/[_\s]/, "-").toLowerCase();
+}
+function isKeyEvent(event) {
+  return ["keydown", "keyup"].includes(event);
+}
+function isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers) {
+  let keyModifiers = modifiers.filter((i) => {
+    return !["window", "document", "prevent", "stop", "once"].includes(i);
+  });
+  if (keyModifiers.includes("debounce")) {
+    let debounceIndex = keyModifiers.indexOf("debounce");
+    keyModifiers.splice(debounceIndex, isNumeric((keyModifiers[debounceIndex + 1] || "invalid-wait").split("ms")[0]) ? 2 : 1);
+  }
+  if (keyModifiers.length === 0)
+    return false;
+  if (keyModifiers.length === 1 && keyModifiers[0] === keyToModifier(e.key))
+    return false;
+  const systemKeyModifiers = ["ctrl", "shift", "alt", "meta", "cmd", "super"];
+  const selectedSystemKeyModifiers = systemKeyModifiers.filter((modifier) => keyModifiers.includes(modifier));
+  keyModifiers = keyModifiers.filter((i) => !selectedSystemKeyModifiers.includes(i));
+  if (selectedSystemKeyModifiers.length > 0) {
+    const activelyPressedKeyModifiers = selectedSystemKeyModifiers.filter((modifier) => {
+      if (modifier === "cmd" || modifier === "super")
+        modifier = "meta";
+      return e[`${modifier}Key`];
+    });
+    if (activelyPressedKeyModifiers.length === selectedSystemKeyModifiers.length) {
+      if (keyModifiers[0] === keyToModifier(e.key))
+        return false;
+    }
+  }
+  return true;
+}
+function keyToModifier(key) {
+  switch (key) {
+    case "/":
+      return "slash";
+    case " ":
+    case "Spacebar":
+      return "space";
+    default:
+      return key && kebabCase(key);
+  }
+}
+
+// packages/alpinejs/src/directives/x-model.js
+directive("model", (el, {modifiers, expression}, {effect: effect3, cleanup}) => {
+  let evaluate2 = evaluateLater(el, expression);
+  let assignmentExpression = `${expression} = rightSideOfExpression($event, ${expression})`;
+  let evaluateAssignment = evaluateLater(el, assignmentExpression);
+  var event = el.tagName.toLowerCase() === "select" || ["checkbox", "radio"].includes(el.type) || modifiers.includes("lazy") ? "change" : "input";
+  let assigmentFunction = generateAssignmentFunction(el, modifiers, expression);
+  let removeListener = on(el, event, modifiers, (e) => {
+    evaluateAssignment(() => {
+    }, {scope: {
+      $event: e,
+      rightSideOfExpression: assigmentFunction
+    }});
+  });
+  cleanup(() => removeListener());
+  el._x_forceModelUpdate = () => {
+    evaluate2((value) => {
+      if (value === void 0 && expression.match(/\./))
+        value = "";
+      window.fromModel = true;
+      mutateDom(() => bind(el, "value", value));
+      delete window.fromModel;
+    });
+  };
+  effect3(() => {
+    if (modifiers.includes("unintrusive") && document.activeElement.isSameNode(el))
+      return;
+    el._x_forceModelUpdate();
+  });
+});
+function generateAssignmentFunction(el, modifiers, expression) {
+  if (el.type === "radio") {
+    mutateDom(() => {
+      if (!el.hasAttribute("name"))
+        el.setAttribute("name", expression);
+    });
+  }
+  return (event, currentValue) => {
+    return mutateDom(() => {
+      if (event instanceof CustomEvent && event.detail !== void 0) {
+        return event.detail;
+      } else if (el.type === "checkbox") {
+        if (Array.isArray(currentValue)) {
+          let newValue = modifiers.includes("number") ? safeParseNumber(event.target.value) : event.target.value;
+          return event.target.checked ? currentValue.concat([newValue]) : currentValue.filter((el2) => !checkedAttrLooseCompare2(el2, newValue));
+        } else {
+          return event.target.checked;
+        }
+      } else if (el.tagName.toLowerCase() === "select" && el.multiple) {
+        return modifiers.includes("number") ? Array.from(event.target.selectedOptions).map((option) => {
+          let rawValue = option.value || option.text;
+          return safeParseNumber(rawValue);
+        }) : Array.from(event.target.selectedOptions).map((option) => {
+          return option.value || option.text;
+        });
+      } else {
+        let rawValue = event.target.value;
+        return modifiers.includes("number") ? safeParseNumber(rawValue) : modifiers.includes("trim") ? rawValue.trim() : rawValue;
+      }
+    });
+  };
+}
+function safeParseNumber(rawValue) {
+  let number = rawValue ? parseFloat(rawValue) : null;
+  return isNumeric2(number) ? number : rawValue;
+}
+function checkedAttrLooseCompare2(valueA, valueB) {
+  return valueA == valueB;
+}
+function isNumeric2(subject) {
+  return !Array.isArray(subject) && !isNaN(subject);
+}
+
+// packages/alpinejs/src/directives/x-cloak.js
+directive("cloak", (el) => queueMicrotask(() => mutateDom(() => el.removeAttribute(prefix("cloak")))));
+
+// packages/alpinejs/src/directives/x-init.js
+addInitSelector(() => `[${prefix("init")}]`);
+directive("init", skipDuringClone((el, {expression}) => evaluate(el, expression, {}, false)));
+
+// packages/alpinejs/src/directives/x-text.js
+directive("text", (el, {expression}, {effect: effect3, evaluateLater: evaluateLater2}) => {
+  let evaluate2 = evaluateLater2(expression);
+  effect3(() => {
+    evaluate2((value) => {
+      mutateDom(() => {
+        el.textContent = value;
+      });
+    });
+  });
+});
+
+// packages/alpinejs/src/directives/x-html.js
+directive("html", (el, {expression}, {effect: effect3, evaluateLater: evaluateLater2}) => {
+  let evaluate2 = evaluateLater2(expression);
+  effect3(() => {
+    evaluate2((value) => {
+      el.innerHTML = value;
+    });
+  });
+});
+
+// packages/alpinejs/src/directives/x-bind.js
+mapAttributes(startingWith(":", into(prefix("bind:"))));
+directive("bind", (el, {value, modifiers, expression, original}, {effect: effect3}) => {
+  if (!value)
+    return applyBindingsObject(el, expression, original, effect3);
+  if (value === "key")
+    return storeKeyForXFor(el, expression);
+  let evaluate2 = evaluateLater(el, expression);
+  effect3(() => evaluate2((result) => {
+    if (result === void 0 && expression.match(/\./))
+      result = "";
+    mutateDom(() => bind(el, value, result, modifiers));
+  }));
+});
+function applyBindingsObject(el, expression, original, effect3) {
+  let getBindings = evaluateLater(el, expression);
+  let cleanupRunners = [];
+  effect3(() => {
+    while (cleanupRunners.length)
+      cleanupRunners.pop()();
+    getBindings((bindings) => {
+      let attributes = Object.entries(bindings).map(([name, value]) => ({name, value}));
+      directives(el, attributes, original).map((handle) => {
+        cleanupRunners.push(handle.runCleanups);
+        handle();
+      });
+    });
+  });
+}
+function storeKeyForXFor(el, expression) {
+  el._x_keyExpression = expression;
+}
+
+// packages/alpinejs/src/directives/x-data.js
+addRootSelector(() => `[${prefix("data")}]`);
+directive("data", skipDuringClone((el, {expression}, {cleanup}) => {
+  expression = expression === "" ? "{}" : expression;
+  let magicContext = {};
+  injectMagics(magicContext, el);
+  let dataProviderContext = {};
+  injectDataProviders(dataProviderContext, magicContext);
+  let data2 = evaluate(el, expression, {scope: dataProviderContext});
+  injectMagics(data2, el);
+  let reactiveData = reactive(data2);
+  initInterceptors(reactiveData);
+  let undo = addScopeToNode(el, reactiveData);
+  if (reactiveData["init"])
+    reactiveData["init"]();
+  cleanup(() => {
+    undo();
+    reactiveData["destroy"] && reactiveData["destroy"]();
+  });
+}));
+
+// packages/alpinejs/src/directives/x-show.js
+directive("show", (el, {modifiers, expression}, {effect: effect3}) => {
+  let evaluate2 = evaluateLater(el, expression);
+  let hide = () => mutateDom(() => {
+    el.style.display = "none";
+    el._x_isShown = false;
+  });
+  let show = () => mutateDom(() => {
+    if (el.style.length === 1 && el.style.display === "none") {
+      el.removeAttribute("style");
+    } else {
+      el.style.removeProperty("display");
+    }
+    el._x_isShown = true;
+  });
+  let clickAwayCompatibleShow = () => setTimeout(show);
+  let toggle = once((value) => value ? show() : hide(), (value) => {
+    if (typeof el._x_toggleAndCascadeWithTransitions === "function") {
+      el._x_toggleAndCascadeWithTransitions(el, value, show, hide);
+    } else {
+      value ? clickAwayCompatibleShow() : hide();
+    }
+  });
+  let oldValue;
+  let firstTime = true;
+  effect3(() => evaluate2((value) => {
+    if (!firstTime && value === oldValue)
+      return;
+    if (modifiers.includes("immediate"))
+      value ? clickAwayCompatibleShow() : hide();
+    toggle(value);
+    oldValue = value;
+    firstTime = false;
+  }));
+});
+
+// packages/alpinejs/src/directives/x-for.js
+directive("for", (el, {expression}, {effect: effect3, cleanup}) => {
+  let iteratorNames = parseForExpression(expression);
+  let evaluateItems = evaluateLater(el, iteratorNames.items);
+  let evaluateKey = evaluateLater(el, el._x_keyExpression || "index");
+  el._x_prevKeys = [];
+  el._x_lookup = {};
+  effect3(() => loop(el, iteratorNames, evaluateItems, evaluateKey));
+  cleanup(() => {
+    Object.values(el._x_lookup).forEach((el2) => el2.remove());
+    delete el._x_prevKeys;
+    delete el._x_lookup;
+  });
+});
+function loop(el, iteratorNames, evaluateItems, evaluateKey) {
+  let isObject = (i) => typeof i === "object" && !Array.isArray(i);
+  let templateEl = el;
+  evaluateItems((items) => {
+    if (isNumeric3(items) && items >= 0) {
+      items = Array.from(Array(items).keys(), (i) => i + 1);
+    }
+    let lookup = el._x_lookup;
+    let prevKeys = el._x_prevKeys;
+    let scopes = [];
+    let keys = [];
+    if (isObject(items)) {
+      items = Object.entries(items).map(([key, value]) => {
+        let scope = getIterationScopeVariables(iteratorNames, value, key, items);
+        evaluateKey((value2) => keys.push(value2), {scope: {index: key, ...scope}});
+        scopes.push(scope);
+      });
+    } else {
+      for (let i = 0; i < items.length; i++) {
+        let scope = getIterationScopeVariables(iteratorNames, items[i], i, items);
+        evaluateKey((value) => keys.push(value), {scope: {index: i, ...scope}});
+        scopes.push(scope);
+      }
+    }
+    let adds = [];
+    let moves = [];
+    let removes = [];
+    let sames = [];
+    for (let i = 0; i < prevKeys.length; i++) {
+      let key = prevKeys[i];
+      if (keys.indexOf(key) === -1)
+        removes.push(key);
+    }
+    prevKeys = prevKeys.filter((key) => !removes.includes(key));
+    let lastKey = "template";
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      let prevIndex = prevKeys.indexOf(key);
+      if (prevIndex === -1) {
+        prevKeys.splice(i, 0, key);
+        adds.push([lastKey, i]);
+      } else if (prevIndex !== i) {
+        let keyInSpot = prevKeys.splice(i, 1)[0];
+        let keyForSpot = prevKeys.splice(prevIndex - 1, 1)[0];
+        prevKeys.splice(i, 0, keyForSpot);
+        prevKeys.splice(prevIndex, 0, keyInSpot);
+        moves.push([keyInSpot, keyForSpot]);
+      } else {
+        sames.push(key);
+      }
+      lastKey = key;
+    }
+    for (let i = 0; i < removes.length; i++) {
+      let key = removes[i];
+      lookup[key].remove();
+      lookup[key] = null;
+      delete lookup[key];
+    }
+    for (let i = 0; i < moves.length; i++) {
+      let [keyInSpot, keyForSpot] = moves[i];
+      let elInSpot = lookup[keyInSpot];
+      let elForSpot = lookup[keyForSpot];
+      let marker = document.createElement("div");
+      mutateDom(() => {
+        elForSpot.after(marker);
+        elInSpot.after(elForSpot);
+        marker.before(elInSpot);
+        marker.remove();
+      });
+      refreshScope(elForSpot, scopes[keys.indexOf(keyForSpot)]);
+    }
+    for (let i = 0; i < adds.length; i++) {
+      let [lastKey2, index] = adds[i];
+      let lastEl = lastKey2 === "template" ? templateEl : lookup[lastKey2];
+      let scope = scopes[index];
+      let key = keys[index];
+      let clone2 = document.importNode(templateEl.content, true).firstElementChild;
+      addScopeToNode(clone2, reactive(scope), templateEl);
+      mutateDom(() => {
+        lastEl.after(clone2);
+        initTree(clone2);
+      });
+      if (typeof key === "object") {
+        warn("x-for key cannot be an object, it must be a string or an integer", templateEl);
+      }
+      lookup[key] = clone2;
+    }
+    for (let i = 0; i < sames.length; i++) {
+      refreshScope(lookup[sames[i]], scopes[keys.indexOf(sames[i])]);
+    }
+    templateEl._x_prevKeys = keys;
+  });
+}
+function parseForExpression(expression) {
+  let forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
+  let stripParensRE = /^\s*\(|\)\s*$/g;
+  let forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
+  let inMatch = expression.match(forAliasRE);
+  if (!inMatch)
+    return;
+  let res = {};
+  res.items = inMatch[2].trim();
+  let item = inMatch[1].replace(stripParensRE, "").trim();
+  let iteratorMatch = item.match(forIteratorRE);
+  if (iteratorMatch) {
+    res.item = item.replace(forIteratorRE, "").trim();
+    res.index = iteratorMatch[1].trim();
+    if (iteratorMatch[2]) {
+      res.collection = iteratorMatch[2].trim();
+    }
+  } else {
+    res.item = item;
+  }
+  return res;
+}
+function getIterationScopeVariables(iteratorNames, item, index, items) {
+  let scopeVariables = {};
+  if (/^\[.*\]$/.test(iteratorNames.item) && Array.isArray(item)) {
+    let names = iteratorNames.item.replace("[", "").replace("]", "").split(",").map((i) => i.trim());
+    names.forEach((name, i) => {
+      scopeVariables[name] = item[i];
+    });
+  } else {
+    scopeVariables[iteratorNames.item] = item;
+  }
+  if (iteratorNames.index)
+    scopeVariables[iteratorNames.index] = index;
+  if (iteratorNames.collection)
+    scopeVariables[iteratorNames.collection] = items;
+  return scopeVariables;
+}
+function isNumeric3(subject) {
+  return !Array.isArray(subject) && !isNaN(subject);
+}
+
+// packages/alpinejs/src/directives/x-ref.js
+function handler2() {
+}
+handler2.inline = (el, {expression}, {cleanup}) => {
+  let root = closestRoot(el);
+  if (!root._x_refs)
+    root._x_refs = {};
+  root._x_refs[expression] = el;
+  cleanup(() => delete root._x_refs[expression]);
+};
+directive("ref", handler2);
+
+// packages/alpinejs/src/directives/x-if.js
+directive("if", (el, {expression}, {effect: effect3, cleanup}) => {
+  let evaluate2 = evaluateLater(el, expression);
+  let show = () => {
+    if (el._x_currentIfEl)
+      return el._x_currentIfEl;
+    let clone2 = el.content.cloneNode(true).firstElementChild;
+    addScopeToNode(clone2, {}, el);
+    mutateDom(() => {
+      el.after(clone2);
+      initTree(clone2);
+    });
+    el._x_currentIfEl = clone2;
+    el._x_undoIf = () => {
+      clone2.remove();
+      delete el._x_currentIfEl;
+    };
+    return clone2;
+  };
+  let hide = () => {
+    if (!el._x_undoIf)
+      return;
+    el._x_undoIf();
+    delete el._x_undoIf;
+  };
+  effect3(() => evaluate2((value) => {
+    value ? show() : hide();
+  }));
+  cleanup(() => el._x_undoIf && el._x_undoIf());
+});
+
+// packages/alpinejs/src/directives/x-on.js
+mapAttributes(startingWith("@", into(prefix("on:"))));
+directive("on", skipDuringClone((el, {value, modifiers, expression}, {cleanup}) => {
+  let evaluate2 = expression ? evaluateLater(el, expression) : () => {
+  };
+  let removeListener = on(el, value, modifiers, (e) => {
+    evaluate2(() => {
+    }, {scope: {$event: e}, params: [e]});
+  });
+  cleanup(() => removeListener());
+}));
+
+// packages/alpinejs/src/index.js
+alpine_default.setEvaluator(normalEvaluator);
+alpine_default.setReactivityEngine({reactive: import_reactivity9.reactive, effect: import_reactivity9.effect, release: import_reactivity9.stop, raw: import_reactivity9.toRaw});
+var src_default = alpine_default;
+
+// packages/alpinejs/builds/module.js
+var module_default = src_default;
+
+
 
 /***/ }),
 
@@ -23,9 +3109,15 @@ eval("(function (global, factory) {\n   true ? module.exports = factory() :\n  0
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__(/*! ./bootstrap */ \"./resources/js/bootstrap.js\");\n\nfunction helloWorld() {\n  alert('ehllo');\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzPzZkNDAiXSwibmFtZXMiOlsicmVxdWlyZSIsImhlbGxvV29ybGQiLCJhbGVydCJdLCJtYXBwaW5ncyI6IkFBQUFBLG1CQUFPLENBQUMsZ0RBQUQsQ0FBUDs7QUFFQSxTQUFTQyxVQUFULEdBQXFCO0FBQ2pCQyxPQUFLLENBQUMsT0FBRCxDQUFMO0FBQ0giLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsicmVxdWlyZSgnLi9ib290c3RyYXAnKTtcblxuZnVuY3Rpb24gaGVsbG9Xb3JsZCgpe1xuICAgIGFsZXJ0KCdlaGxsbycpO1xufSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__.default;
+alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.start();
 
 /***/ }),
 
@@ -35,30 +3127,34 @@ eval("__webpack_require__(/*! ./bootstrap */ \"./resources/js/bootstrap.js\");\n
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/alpinejs/dist/alpine.js\");\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(alpinejs__WEBPACK_IMPORTED_MODULE_0__);\n\n/**\n * Echo exposes an expressive API for subscribing to channels and listening\n * for events that are broadcast by Laravel. Echo and event broadcasting\n * allows your team to easily build robust real-time web applications.\n */\n// import Echo from 'laravel-echo'\n// window.Pusher = require('pusher-js');\n// window.Echo = new Echo({\n//     broadcaster: 'pusher',\n//     key: process.env.MIX_PUSHER_APP_KEY,\n//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,\n//     forceTLS: true\n// });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYm9vdHN0cmFwLmpzP2Y1NjgiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUE7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFFQTtBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9ib290c3RyYXAuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgJ2FscGluZWpzJztcblxuLyoqXG4gKiBFY2hvIGV4cG9zZXMgYW4gZXhwcmVzc2l2ZSBBUEkgZm9yIHN1YnNjcmliaW5nIHRvIGNoYW5uZWxzIGFuZCBsaXN0ZW5pbmdcbiAqIGZvciBldmVudHMgdGhhdCBhcmUgYnJvYWRjYXN0IGJ5IExhcmF2ZWwuIEVjaG8gYW5kIGV2ZW50IGJyb2FkY2FzdGluZ1xuICogYWxsb3dzIHlvdXIgdGVhbSB0byBlYXNpbHkgYnVpbGQgcm9idXN0IHJlYWwtdGltZSB3ZWIgYXBwbGljYXRpb25zLlxuICovXG5cbi8vIGltcG9ydCBFY2hvIGZyb20gJ2xhcmF2ZWwtZWNobydcblxuLy8gd2luZG93LlB1c2hlciA9IHJlcXVpcmUoJ3B1c2hlci1qcycpO1xuXG4vLyB3aW5kb3cuRWNobyA9IG5ldyBFY2hvKHtcbi8vICAgICBicm9hZGNhc3RlcjogJ3B1c2hlcicsXG4vLyAgICAga2V5OiBwcm9jZXNzLmVudi5NSVhfUFVTSEVSX0FQUF9LRVksXG4vLyAgICAgY2x1c3RlcjogcHJvY2Vzcy5lbnYuTUlYX1BVU0hFUl9BUFBfQ0xVU1RFUixcbi8vICAgICBmb3JjZVRMUzogdHJ1ZVxuLy8gfSk7XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/bootstrap.js\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+// import Echo from 'laravel-echo'
+// window.Pusher = require('pusher-js');
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
+/***/ "./resources/css/app.css":
+/*!*******************************!*\
+  !*** ./resources/css/app.css ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9hcHAuc2Nzcz80OTEwIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSIsImZpbGUiOiIuL3Jlc291cmNlcy9zYXNzL2FwcC5zY3NzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/app.scss\n");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
-/***/ }),
-
-/***/ "./resources/css/styles.css":
-/*!**********************************!*\
-  !*** ./resources/css/styles.css ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvY3NzL3N0eWxlcy5jc3M/NzJjYiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEiLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL3N0eWxlcy5jc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/css/styles.css\n");
 
 /***/ })
 
@@ -82,7 +3178,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -123,18 +3219,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -145,6 +3229,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 				}
 /******/ 			}
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
@@ -172,7 +3268,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/styles": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
@@ -221,9 +3316,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/styles","css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/styles","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/styles","css/app"], () => (__webpack_require__("./resources/css/styles.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

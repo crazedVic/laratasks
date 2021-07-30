@@ -20,3 +20,7 @@ use App\Http\Livewire\Index;
 
 // pulls the livewire class instead, can use code behind then
 Route::get('/', Index::class)->name('home');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

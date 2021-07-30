@@ -1,5 +1,7 @@
 require('./bootstrap');
 
-function helloWorld(){
-    alert('ehllo');
-}
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();

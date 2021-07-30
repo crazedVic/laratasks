@@ -31,3 +31,9 @@ Can run artisan commands, ex.: ```$schedule->command('migrate:refresh --seed')->
 - to run locally: php artisan schedule:work
 - use cron to run on production machine
 ---
+Mail Queue
+- make email: ```php artisan make:mail [mailName]```
+
+---
+Other tips:
+- ```Log::info('this is logged')```
