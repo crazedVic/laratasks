@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        //retry then delete old failed queue items once a day
+        $schedule->command('queue:retry all')->daily();
+        $schedule->command('queue:prune-failed --hours=48')->daily();
     }
 
     /**

@@ -49,10 +49,9 @@ Other tips:
 1. Set default queue to 'database' not sync
 2. Add a priority queue (queue.php): ```'queue' => ['default', 'priority'],```
 
-
-Running workers for this project
--  ```php artisan queue:work --queue=priority,default``` -> runs priority queue items first
-
-Add to the priority queue: ``` dispatch((new Job)->onQueue('priority')); ```
+To add to the priority queue: ```dispatch((new Job)->onQueue('priority')); ```
+---
+Run this worker for this project with Supervisor/CRON:
+-  ```php artisan queue:work --queue=priority,default --tries=2``` -> runs priority queue items first, allows 2 attempts before failing
 
 
