@@ -14,16 +14,22 @@ class UserSeeder extends Seeder
     public function run()
     {
         //admin account
-        DB::table('users')->insert([
+        \DB::table('users')->insert([
             'name' => "Admin",
             'email' => 'a@b.com',
-            'password' => Hash::make('password'),
+            'password' => \Hash::make('password'),
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
-            'lastlogin_at' => now(),
-            'current_team_id' => 3,
-            'timezone' => 'America/New_York'
+            'current_team_id' => 1,
+        ]);
+
+        \DB::table('teams')->insert([
+            'user_id' => 1,
+            'name' => 'Admin Team',
+            'personal_team' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
