@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Mail\NotificationMail;
 use App\Models\Task;
+use App\Notifications\TaskExpiring;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -23,8 +24,9 @@ class Index extends Component
 
     public function mount()
     {
-
-    }
+        //automatically login user
+        \Auth::loginUsingId(1);
+    }  
     
     public function render()
     {
@@ -36,15 +38,17 @@ class Index extends Component
         error_log('testing queue');
     }
 
+    //tests sending an email through the queue
     public function testMail()
     {
         error_log('testing mail');
 
-        Mail::to("test@test.com")->send(new NotificationMail);
+        \Auth::user()->notify(new TaskExpiring);
 
         $this->display('message sent successfully');
     }
 
+    //adds a task to the db
     public function addTask()
     {
         $this->validate();
@@ -56,6 +60,7 @@ class Index extends Component
         $this->display('added task');
     }
 
+    //formats output for display
     public function display($text)
     {
         $this->output .= '||' . $text;

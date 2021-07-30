@@ -6,11 +6,13 @@ Demonstrates laravel queues and demonstrates a notification and reminder system
 ## Notes from links: ##
 ---
 In .env 
+
 #Replace this line.
 QUEUE_CONNECTION=sync 
 
 #With this line.
 QUEUE_CONNECTION=database
+
 ---
 
 Queues
@@ -38,20 +40,41 @@ Can run artisan commands, ex.: ```$schedule->command('migrate:refresh --seed')->
 - to run locally: php artisan schedule:work
 - use cron to run on production machine
 ---
-Mail Queue
-- make email: ```php artisan make:mail [mailName]```
+Mail
+- make email: ```php artisan make:mail [mailName] --markdown=emails.etc```
 
 ---
 Other tips:
 - ```Log::info('this is logged')```
+
+---
+
+Notifications:
+- use the 'Notifiable' trait on models to notify, added to user model by default
+- various channels: mail, slack nexmo (SMS)
+- add ```implements shouldQueue ``` after making a notification with ```make:notification```
+- to notify: ``` $user->notify(new Notification()) ```
+- notify non user: ``` Notification::route('mail', 'email@email.com')->route(etc...)->notify(new Notification())```
+
 ---
 ---
+
 1. Set default queue to 'database' not sync
-2. Add a priority queue (queue.php): ```'queue' => ['default', 'priority'],```
+2. Add a priority queue (queue.php): ```'queue' => ['default', 'priority']```
 
 To add to the priority queue: ```dispatch((new Job)->onQueue('priority')); ```
+
 ---
+
+
 Run this worker for this project with Supervisor/CRON:
 -  ```php artisan queue:work --queue=priority,default --tries=2``` -> runs priority queue items first, allows 2 attempts before failing
+
+- can run this line locally for development
+
+---
+
+#Gotchas
+- queue worker must be running before queueable stuff runs or it will error
 
 
