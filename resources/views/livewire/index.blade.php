@@ -7,9 +7,17 @@
     </div>
 
     <div class="flex w-full justify-center mt-10">
-        <div class="max-w-xl h-96 border w-full"> 
+        <div class="max-w-xl h-96 border w-full flex flex-col"> 
             <div>Add Task</div>
-            <input type="date"/>
+            <span>Date:</span><input wire:model="date" type="date"/>
+            @error('date')
+                <span class="text-red-500">{{$message}}</span>
+            @enderror
+            <span>Message:</span><input wire:model="message" type="text"/>
+            @error('message')
+                <span class="text-red-500">{{$message}}</span>
+            @enderror
+            <button class="bg-green-500 text-white rounded px-3 py-1" wire:click="addTask">Add</button>
         </div>
 
         <div class="max-w-xl h-96 border w-full">
@@ -24,6 +32,11 @@
 
         <div class="max-w-xl h-96 border w-full">
             Output:
+            <ul>
+            @foreach (explode('||', $output) as $text)
+                <li>{{$text}}</li>
+            @endforeach
+            <ul>
         </div>
     </div>
 </div>

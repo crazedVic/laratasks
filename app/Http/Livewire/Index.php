@@ -3,11 +3,23 @@
 namespace App\Http\Livewire;
 
 use App\Mail\NotificationMail;
+use App\Models\Task;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Index extends Component
 {
+    //task values
+    public $date;
+    public $message;
+
+    public $output = "";
+
+    public $rules = 
+    [
+        'date' => 'required',
+        'message' => 'required'
+    ];
 
     public function mount()
     {
@@ -30,6 +42,22 @@ class Index extends Component
 
         Mail::to("test@test.com")->send(new NotificationMail);
 
+        $this->display('message sent successfully');
+    }
 
+    public function addTask()
+    {
+        $this->validate();
+
+        $task = new Task(['message' => $this->message, 'date' => $this->date]);
+
+        $task->save();
+
+        $this->display('added task');
+    }
+
+    public function display($text)
+    {
+        $this->output .= '||' . $text;
     }
 }

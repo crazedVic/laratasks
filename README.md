@@ -44,3 +44,15 @@ Mail Queue
 ---
 Other tips:
 - ```Log::info('this is logged')```
+---
+---
+1. Set default queue to 'database' not sync
+2. Add a priority queue (queue.php): ```'queue' => ['default', 'priority'],```
+
+
+Running workers for this project
+-  ```php artisan queue:work --queue=priority,default``` -> runs priority queue items first
+
+Add to the priority queue: ``` dispatch((new Job)->onQueue('priority')); ```
+
+
