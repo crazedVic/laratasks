@@ -3,7 +3,9 @@
 Demonstrates laravel queues and demonstrates a notification and reminder system
 
 
-## Learned: ##
+## Notes from links: ##
+---
+
 Queues
 - multiple queues allowed with multiple names, different queues can have different priorities
 - config @ config/queue.php
@@ -21,3 +23,11 @@ Jobs
 
 Failed Jobs
 - Make failed jobs table: ```php artisan queue:failed-table```, ```php artisan migrate```
+---
+Schedules
+- inside ```schedule()``` methd of App\Console\Kernel class
+Can run artisan commands, ex.: ```$schedule->command('migrate:refresh --seed')->daily();```
+- lots of time constraints available
+- to run locally: php artisan schedule:work
+- use cron to run on production machine
+---
