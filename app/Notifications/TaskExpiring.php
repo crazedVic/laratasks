@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +12,16 @@ class TaskExpiring extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $task; //task that is expiring
+
     /**
      * Create a new notification instance
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Task $task)
     {
-        error_log('construct');
+        $this->task = $task;
     }
 
     /**
@@ -47,8 +50,10 @@ class TaskExpiring extends Notification implements ShouldQueue
         //             ->action('Notification Action', url('/'))
         //             ->line('Thank you for using our application!');
         return (new MailMessage)->markdown('emails.notify', [
-            'message_text' => 'Superb',
-            'url' => '/'
+            'message_text' => 'Your task \'' . $this->task->message 
+                                . '\' is expiring within 24h, please complete it.',
+            'button_url' => '/',
+            'button_text' => 'Complete Task'
         ]);
     }
 

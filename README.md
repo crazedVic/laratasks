@@ -80,6 +80,5 @@ Run this worker for this project with Supervisor/CRON:
 1. secondary queues are not created in the config file, you can essentially dispatch to any string you want as long as the worker
 knows to look for it
 2. dd() inside an item being processed by the queue worker is displayed inside the terminal
-3. The queue worker may need to be rereun if you change any related code
-4. DON'T make a custom notifications table like I tried, laravel makes one itself
+3. DON'T make a custom notifications table like I tried, laravel makes one itself
 
