@@ -36,7 +36,7 @@ Failed Jobs
 - Make failed jobs table: ```php artisan queue:failed-table```, ```php artisan migrate```
 ---
 Schedules
-- inside ```schedule()``` methd of App\Console\Kernel class
+- inside ```schedule()``` method of App\Console\Kernel class
 Can run artisan commands, ex.: ```$schedule->command('migrate:refresh --seed')->daily();```
 - lots of time constraints available
 - to run locally: php artisan schedule:work
@@ -57,6 +57,7 @@ Notifications:
 - add ```implements shouldQueue ``` after making a notification with ```make:notification```
 - to notify: ``` $user->notify(new Notification()) ```
 - notify non user: ``` Notification::route('mail', 'email@email.com')->route(etc...)->notify(new Notification())```
+- make notifications table: ```php artisan notifications:table``` - see gotchas (4)
 
 ---
 ---
@@ -80,4 +81,5 @@ Run this worker for this project with Supervisor/CRON:
 knows to look for it
 2. dd() inside an item being processed by the queue worker is displayed inside the terminal
 3. The queue worker may need to be rereun if you change any related code
+4. DON'T make a custom notifications table like I tried, laravel makes one itself
 

@@ -31,7 +31,7 @@ class TaskExpiring extends Notification implements ShouldQueue
     {   
         //notifiable is typically the user so:
         //if notifiable prefers SMS is possible here
-        return ['mail']; //add sms here 'nexmo'
+        return ['mail', 'database']; //add sms here 'nexmo'
     }
 
     /**
@@ -54,7 +54,8 @@ class TaskExpiring extends Notification implements ShouldQueue
 
     /**
      * Get the array representation of the notification.
-     *
+     *  (for database saving particularily)
+     * 
      * @param  mixed  $notifiable
      * @return array
      */

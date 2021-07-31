@@ -10,4 +10,10 @@ class Task extends Model
     use HasFactory;
 
     public $guarded = [];
+
+    //user task belongs to
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

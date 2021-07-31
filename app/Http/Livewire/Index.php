@@ -54,8 +54,7 @@ class Index extends Component
         $this->validate();
 
         $task = new Task(['message' => $this->message, 'date' => $this->date]);
-
-        $task->save();
+        \Auth::user()->task()->save($task);
 
         $this->display('added task');
     }
