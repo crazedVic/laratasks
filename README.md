@@ -39,7 +39,7 @@ Schedules
 - inside ```schedule()``` method of App\Console\Kernel class
 Can run artisan commands, ex.: ```$schedule->command('migrate:refresh --seed')->daily();```
 - lots of time constraints available
-- to run locally: php artisan schedule:work
+- to run locally: ```php artisan schedule:work```
 - use cron to run on production machine
 ---
 Mail

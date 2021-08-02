@@ -13,7 +13,7 @@
             @error('date')
                 <span class="text-red-500">{{$message}}</span>
             @enderror
-            <span>Message:</span><input wire:model="message" type="text"/>
+            <span>Task:</span><input wire:model="message" type="text"/>
             @error('message')
                 <span class="text-red-500">{{$message}}</span>
             @enderror

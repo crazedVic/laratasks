@@ -3,25 +3,41 @@
 namespace App\Notifications;
 
 use App\Models\Task;
+use App\Models\User;
+use App\Traits\Logging;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class TaskExpiring extends Notification implements ShouldQueue
 {
     use Queueable;
+    use Logging;
 
     protected $task; //task that is expiring
+    protected string $message; //message to send out
+    protected $time;
+    protected User $user;
 
     /**
      * Create a new notification instance
      *
      * @return void
      */
-    public function __construct(Task $task)
+    public function __construct(Task $task, User $user)
     {
         $this->task = $task;
+
+        $this->message = 'Your task \'' . $this->task->message 
+                                . '\' is expiring within 24h, please complete it.';
+        $this->time = Carbon::now();
+        $this->user = $user;
+
+        $this->logNotification($this->message, $this->user, $this->time);
     }
 
     /**
@@ -45,13 +61,8 @@ class TaskExpiring extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        // return (new MailMessage)
-        //             ->line('The introduction to the notification.')
-        //             ->action('Notification Action', url('/'))
-        //             ->line('Thank you for using our application!');
         return (new MailMessage)->markdown('emails.notify', [
-            'message_text' => 'Your task \'' . $this->task->message 
-                                . '\' is expiring within 24h, please complete it.',
+            'message_text' => $this->message,
             'button_url' => '/',
             'button_text' => 'Complete Task'
         ]);
@@ -67,7 +78,9 @@ class TaskExpiring extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'time' => $this->time,
+            'message' => $this->message,
+            'user' => $this->user
         ];
     }
 }

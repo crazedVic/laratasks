@@ -37,7 +37,7 @@ class ProcessTasks implements ShouldQueue
         //loop through expiring tasks
         foreach (Task::where('date', '<', now()->addHours(env('TASK_EXPIRY_WARNING')))->get() as $task)
         {
-            $task->user->notify(new TaskExpiring($task));
+            $task->user->notify(new TaskExpiring($task, $task->user));
         }
     }
 }
