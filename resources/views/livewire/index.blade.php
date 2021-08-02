@@ -1,6 +1,13 @@
 <div class="flex flex-col justify-around items-center h-full">
     <div class="w-full h-10 bg-gray-500 flex justify-end items-center">
-        <x-heroicon-o-bell class="text-white h-6 w-6 mr-10"/>
+        @if ($notification_count > 0)
+            <x-heroicon-s-bell class="h-6 w-6 mr-10 text-yellow-600"/>
+        @else
+            <x-heroicon-o-bell class="text-white h-6 w-6 mr-10"/>
+        @endif
+
+        @dump($notification_count)
+
         @if (!Auth::user())
         <a href="/login" class="mr-10 text-white">Login</a>
         @endif

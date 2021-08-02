@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Mail\NotificationMail;
+use App\Models\Notification as ModelsNotification;
 use App\Models\Task;
 use App\Notifications\TaskExpiring;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -13,6 +15,9 @@ class Index extends Component
     //task values
     public $date;
     public $message;
+
+    //notification values
+    public $notification_count;
 
     public $output = "";
 
@@ -26,6 +31,8 @@ class Index extends Component
     {
         //automatically login user
         \Auth::loginUsingId(1);
+
+        $this->notification_count = \Auth::user()->notifications()->count();
     }  
     
     public function render()
@@ -43,7 +50,7 @@ class Index extends Component
     {
         error_log('testing mail');
 
-        \Auth::user()->notify(new TaskExpiring());
+        \Auth::user()->notify(new TaskExpiring(new Task(), \Auth::user()));
 
         $this->display('message sent');
     }

@@ -2,20 +2,18 @@
 
 namespace App\Jobs;
 
-use App\Models\Task;
-use App\Notifications\TaskExpiring;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Notifications\NotificationDigest as Digest;
 
-class ProcessTasks implements ShouldQueue
+class NotificationDigest implements ShouldQueue 
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-
 
     /**
      * Create a new job instance.
@@ -34,10 +32,16 @@ class ProcessTasks implements ShouldQueue
      */
     public function handle()
     {
-        //loop through expiring tasks
-        foreach (Task::where('date', '<', now()->addHours(env('TASK_EXPIRY_WARNING')))->get() as $task)
+        error_log('handling notification digest');
+        //check all users
+        foreach (User::all() as $user)
         {
-            $task->user->notify(new TaskExpiring($task, $task->user));
+            //user has unread notifications
+            if ($user->notifications()->whereNull('read_at')->count() > 0)
+            {
+                error_log('notifying');
+                $user->notify(new Digest($user));
+            }
         }
     }
 }
