@@ -65,4 +65,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Task::class);
     }
+
+    //for demo purposes
+    public function notes()
+    {
+        return $this->morphMany(Note::class);
+    }
 }

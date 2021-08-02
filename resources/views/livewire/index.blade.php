@@ -13,7 +13,16 @@
         @endif
     </div>
 
-    <div class="flex w-full justify-center mt-10">
+    <div class="flex w-full justify-center mt-10 flex-wrap">
+        <div class="max-w-xl h-96 border w-full flex flex-col"> 
+            <div>Add Note</div>
+            <span>Note:</span><input wire:model="note" type="text"/>
+            @error('note')
+                <span class="text-red-500">{{$message}}</span>
+            @enderror
+            <button class="bg-green-500 text-white rounded px-3 py-1" wire:click="addNote">Add</button>
+        </div>
+
         <div class="max-w-xl h-96 border w-full flex flex-col"> 
             <div>Add Task</div>
             <span>Date:</span><input wire:model="date" type="date"/>
@@ -32,9 +41,7 @@
             
             <button class="bg-yellow-500 text-white rounded px-3 py-1" wire:click="testMail">Send Test Mail</button>
 
-            <button class="bg-blue-500 text-white rounded px-3 py-1" wire:click="testQueue">Test Queue</button>
-
-            
+            <button class="bg-blue-500 text-white rounded px-3 py-1" wire:click="testQueue">Test Queue</button> 
         </div>
 
         <div class="max-w-xl h-96 border w-full">

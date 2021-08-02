@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\NotificationMail;
+use App\Models\Note;
 use App\Models\Notification as ModelsNotification;
 use App\Models\Task;
 use App\Notifications\TaskExpiring;
@@ -16,6 +17,9 @@ class Index extends Component
     public $date;
     public $message;
 
+    //note value
+    public $note;
+
     //notification values
     public $notification_count;
 
@@ -23,8 +27,12 @@ class Index extends Component
 
     public $rules = 
     [
-        'date' => 'required',
-        'message' => 'required'
+        'date' => 'nullable',
+        'message' => 'nullable',
+        'note' => 'nullable'
+    ];
+    public $validationAttributes = [
+        'message' => 'task'
     ];
 
     public function mount()
@@ -58,12 +66,21 @@ class Index extends Component
     //adds a task to the db
     public function addTask()
     {
-        $this->validate();
+        //$this->validate();
 
         $task = new Task(['message' => $this->message, 'date' => $this->date]);
         \Auth::user()->task()->save($task);
 
         $this->display('added task');
+    }
+
+    //adds a note to the db
+    public function addNote()
+    {
+        //$this->validate();
+        $note = new Note(['note' => $this->note]);
+        \Auth::user()->notes()->save($this->note);
+
     }
 
     //formats output for display
