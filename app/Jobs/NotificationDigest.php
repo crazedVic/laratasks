@@ -32,14 +32,12 @@ class NotificationDigest implements ShouldQueue
      */
     public function handle()
     {
-        error_log('handling notification digest');
         //check all users
         foreach (User::all() as $user)
         {
             //user has unread notifications
             if ($user->notifications()->whereNull('read_at')->count() > 0)
             {
-                error_log('notifying');
                 $user->notify(new Digest($user));
             }
         }

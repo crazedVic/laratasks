@@ -11,11 +11,14 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+use function GuzzleHttp\Promise\all;
+
 class ProcessTasks implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
+    //models to process
+    public $modelClasses = ['App\Models\Task', 'App\Models\User'];
 
     /**
      * Create a new job instance.
@@ -34,10 +37,14 @@ class ProcessTasks implements ShouldQueue
      */
     public function handle()
     {
-        //loop through expiring tasks
-        foreach (Task::where('date', '<', now()->addHours(env('TASK_EXPIRY_WARNING')))->get() as $task)
+        //loop through model classes
+        foreach ($this->modelClasses as $class)
         {
-            $task->user->notify(new TaskExpiring($task, $task->user));
+            //verify that class implements correct trait
+            if (in_array('App\Traits\HasProcess', class_uses($class)))
+                $class::process();
+            else
+                error_log('Class \'' . $class . ' does not implement HasProcess');
         }
     }
 }
