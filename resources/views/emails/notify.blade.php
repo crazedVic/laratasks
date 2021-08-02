@@ -1,6 +1,6 @@
 @component('mail::message')
 
-{{$message_text?: ''}}
+{!! $message_text?: ''!!}
 
 {{-- Copied styling from button component, doing it this way to allow for custom urls --}}
 <div style="display:flex;justify-content:center;width:full;">

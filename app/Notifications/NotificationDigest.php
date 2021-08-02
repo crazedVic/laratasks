@@ -28,7 +28,7 @@ class NotificationDigest extends Notification implements ShouldQueue
         $message = "These notifications are unread:<ul>";
         foreach ($user->notifications as $notification)
         {
-            $message .= "<li>" . json_decode($notification->data)->message . "</li>";
+            $message .= "<li>" . $notification->data['message'] . "</li>";
         }
 
         $this->message = $message;
