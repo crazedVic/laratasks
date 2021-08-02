@@ -81,4 +81,5 @@ Run this worker for this project with Supervisor/CRON:
 knows to look for it
 2. dd() inside an item being processed by the queue worker is displayed inside the terminal
 3. DON'T make a custom notifications table like I tried, laravel makes one itself
+4. If Queue code is changed, the queue will need to be rerun or it will continue using the old code
 

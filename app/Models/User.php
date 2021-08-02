@@ -69,6 +69,6 @@ class User extends Authenticatable
     //for demo purposes
     public function notes()
     {
-        return $this->morphMany(Note::class);
+        return $this->morphMany(Note::class, 'noteof');
     }
 }

@@ -27,7 +27,6 @@ class Index extends Component
 
     public $rules = 
     [
-        'date' => 'nullable',
         'message' => 'nullable',
         'note' => 'nullable'
     ];
@@ -64,14 +63,19 @@ class Index extends Component
     }
 
     //adds a task to the db
-    public function addTask()
+    // public function addTask()
+    // {
+    //     //$this->validate();
+
+    //     $task = new Task(['message' => $this->message, 'date' => $this->date]);
+    //     \Auth::user()->task()->save($task);
+
+    //     $this->display('added task');
+    // }
+
+    public function addTaskTemplate()
     {
-        //$this->validate();
 
-        $task = new Task(['message' => $this->message, 'date' => $this->date]);
-        \Auth::user()->task()->save($task);
-
-        $this->display('added task');
     }
 
     //adds a note to the db
@@ -79,8 +83,10 @@ class Index extends Component
     {
         //$this->validate();
         $note = new Note(['note' => $this->note]);
-        \Auth::user()->notes()->save($this->note);
+        $note->author = \Auth::user()->name;
+        \Auth::user()->notes()->save($note);
 
+        $this->display('added note');
     }
 
     //formats output for display

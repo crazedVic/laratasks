@@ -18,7 +18,7 @@ trait Logging
         ];
 
         //file exists, overwrite
-        if($exists) 
+        if($exists && file_get_contents($file) != null) 
         {
             $current = json_decode(file_get_contents($file));
         }
