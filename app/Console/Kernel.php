@@ -28,16 +28,17 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //scanning processes
-        $schedule->job(new ProcessTasks)->everyMinute(); //TODO: make longer than a minute
+        //$schedule->job(new ProcessTasks)->everyMinute(); //TODO: make longer than a minute
 
         //retry then delete old failed queue items once a day
         $schedule->command('queue:retry all')->daily();
         $schedule->command('queue:prune-failed --hours=48')->daily();
 
-        $schedule->job(new RecurringTasks)->weekly();
+        //check if task needs to be copied
+        $schedule->job(new RecurringTasks)->everyMinute();
 
         //weekly notification reminder
-        $schedule->job(new NotificationDigest)->everyMinute(); //TODO: make weekly
+        //$schedule->job(new NotificationDigest)->everyMinute(); //TODO: make weekly
     }
 
     /**

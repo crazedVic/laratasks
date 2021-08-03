@@ -10,6 +10,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use NotificationChannels\Twilio\TwilioChannel;
+use NotificationChannels\Twilio\TwilioSmsMessage;
+
 class Mentioned extends Notification implements ShouldQueue
 {
     use Queueable;
@@ -18,6 +21,7 @@ class Mentioned extends Notification implements ShouldQueue
     protected string $message; //message to send
     protected $time;
     protected User $user;
+    protected $url;
 
     /**
      * Create a new notification instance.
@@ -41,7 +45,19 @@ class Mentioned extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', TwilioChannel::class];
+    }
+
+    /**
+     * Send an sms message.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toTwilio($notifiable)
+    {
+        return (new TwilioSmsMessage())
+            ->content($this->message . ' https://google.com');
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Note;
 use App\Models\Notification as ModelsNotification;
 use App\Models\Task;
 use App\Notifications\TaskExpiring;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
@@ -14,8 +15,9 @@ use Livewire\Component;
 class Index extends Component
 {
     //task values
-    public $minutes;
-    public $message;
+    public $frequency;
+    public $day;
+    public $title;
 
     //note value
     public $note;
@@ -27,12 +29,13 @@ class Index extends Component
 
     public $rules = 
     [
-        'message' => 'nullable',
-        'minutes' => 'nullable',
-        'note' => 'nullable'
+        'title' => 'sometimes|required',
+        'frequency' => 'sometimes|required',
+        'day' => 'sometimes|required|min:0|max:29',
+        'note' => 'sometimes|required'
     ];
     public $validationAttributes = [
-        'message' => 'task'
+        'title' => 'task'
     ];
 
     public function mount()
@@ -63,20 +66,25 @@ class Index extends Component
         $this->display('message sent');
     }
 
-    //adds a task to the db
-    // public function addTask()
-    // {
-    //     //$this->validate();
 
-    //     $task = new Task(['message' => $this->message, 'date' => $this->date]);
-    //     \Auth::user()->task()->save($task);
-
-    //     $this->display('added task');
-    // }
-
-    public function addTaskTemplate()
+    //makes a recurring task
+    public function addTask()
     {
+        $this->validate();
 
+        $task = new Task([
+            'title' => $this->title, 
+            'day' => $this->day,
+            'frequency' => $this->frequency
+        ]);
+
+        //disable task recurrance
+        if ($this->frequency == 'none')
+            $task->current = false;
+
+        $task->save();
+    
+        $this->display('added task');
     }
 
     //adds a note to the db
@@ -88,6 +96,21 @@ class Index extends Component
         \Auth::user()->notes()->save($note);
 
         $this->display('added note');
+    }
+
+    //used to test carbon functions on click
+    public function carbonTest()
+    {
+        $days = ['Sunday','Monday','Tuesday',
+             'Wednesday','Thursday','Friday','Saturday'];
+             
+        $this->display(Carbon::parse('monday next bi-week'));
+        // $copyDay = Carbon::parse(Carbon::now())->addWeek();
+
+        // if (Carbon::now())
+        // {
+
+        // }
     }
 
     //formats output for display

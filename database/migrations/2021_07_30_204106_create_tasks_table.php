@@ -15,9 +15,11 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->default('Draft');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('message');
+            $table->string("frequency")->default('none');
+            $table->integer("day")->default(0); //0-6
+            $table->boolean('current')->default(true);
+            $table->string("status")->default('Pending');//Submitted,Accepted
+            $table->string("title");
             $table->timestamps();
         });
     }

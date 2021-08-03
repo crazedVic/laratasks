@@ -14,6 +14,7 @@
     </div>
 
     <div class="flex w-full justify-center mt-10 flex-wrap">
+
         <div class="max-w-xl h-96 border w-full flex flex-col"> 
             <div>Add Note</div>
             <span>Note:</span><input wire:model="note" type="text"/>
@@ -25,21 +26,67 @@
 
         <div class="max-w-xl h-96 border w-full flex flex-col"> 
             <div>Add Task</div>
-            <span>Task:</span><input wire:model="message" type="text"/>
-            @error('message')
+            <span>Task:</span><input wire:model="title" type="text"/>
+            @error('title')
                 <span class="text-red-500">{{$message}}</span>
             @enderror
-            <span>Reoccurring:</span><input type="number"/><span>minutes</span>
-            <button class="bg-green-500 text-white rounded px-3 py-1" wire:click="addTaskTemplate">Add Task Template</button>
+
+            <div>Frequency</div>
+            <select wire:model="frequency">
+                <option value="">Please select</option>
+                <option value="none">None</option>
+                <option value="weekly">Weekly</option>
+                <option value="bi-weekly">Bi-Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+            </select>
+            @error('frequency')
+                <span class="text-red-500">{{$message}}</span>
+            @enderror
+
+            @if ($frequency == "weekly" || $frequency == "bi-weekly")
+                <div>Weekday</div>
+                <select wire:model="day">
+                    <option value="">Please select</option>
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                </select>
+            @elseif ($frequency != "none" && $frequency != "")
+                <div>Day of Month</div>
+                <input type="number" wire:model="day" max="29" min="0"/>
+            @endif
+            @error('day')
+                <span class="text-red-500">{{$message}}</span>
+            @enderror
+
+            <button class="bg-green-500 text-white rounded px-3 py-1" wire:click="addTask">Add Task</button>
         </div>
 
-        {{-- <div class="max-w-xl h-96 border w-full">
-            <button class="bg-green-500 text-white rounded px-3 py-1">Mark Document as Approved</button>
+        <div class="max-w-xl h-96 border w-full">
+            {{-- <button class="bg-green-500 text-white rounded px-3 py-1">Mark Document as Approved</button>
             
             <button class="bg-yellow-500 text-white rounded px-3 py-1" wire:click="testMail">Send Test Mail</button>
 
             <button class="bg-blue-500 text-white rounded px-3 py-1" wire:click="testQueue">Test Queue</button> 
-        </div> --}}
+
+            <button class="bg-green-500 text-white rounded px-3 py-1">Mark Document as Approved</button>
+            
+            <button class="bg-yellow-500 text-white rounded px-3 py-1" wire:click="testMail">Send Test Mail</button> --}}
+
+            <button class="bg-blue-500 text-white rounded px-3 py-1" wire:click="carbonTest">Carbon Test</button> 
+        </div>
+
+        <div class="max-w-xl h-96 border w-full">
+            Tasks:
+            @foreach (\App\Models\Task::all() as $task)
+                {{$task}}
+            @endforeach
+        </div>
 
         <div class="max-w-xl h-96 border w-full">
             Output:
@@ -54,7 +101,7 @@
             Notifications:
             <ul>
             @foreach (\App\Models\Notification::all() as $notification)
-                <li>{{$notification}}</li>
+                <li class="truncate">{{json_decode($notification->data)->message}}</li>
             @endforeach
             <ul>
         </div>

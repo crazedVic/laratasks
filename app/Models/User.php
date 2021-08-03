@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->morphMany(Note::class, 'noteof');
     }
+
+    public function routeNotificationForTwilio()
+    {
+        return '+17802576956';
+    }
 }
