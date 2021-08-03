@@ -14,7 +14,7 @@ use Livewire\Component;
 class Index extends Component
 {
     //task values
-    public $date;
+    public $minutes;
     public $message;
 
     //note value
@@ -28,6 +28,7 @@ class Index extends Component
     public $rules = 
     [
         'message' => 'nullable',
+        'minutes' => 'nullable',
         'note' => 'nullable'
     ];
     public $validationAttributes = [
