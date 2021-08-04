@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Processors;
-
+use App\Models\Task;
+use App\Models\User;
+use App\Notifications\NotificationDigest;
 use App\Models\Process;
 use Carbon\Carbon;
 
-class DummyClass
+class NotificationDigestProcessor
 {
     protected static Process $process; //holder for the current process
 
@@ -32,9 +34,7 @@ class DummyClass
         }
 
         //get time for next run process
-        $next_run = Carbon::parse(static::$process->last_run) //NOTE: PUT A TIME IN HERE FOR REPEATING 
-                                                              //(ex. addMinute() for a minute frequency)
-        ;
+        $next_run = Carbon::parse(static::$process->last_run)->addWeek();
 
         //don't run if not time
         if (!static::$process->active || !$next_run->isPast()) return false;
@@ -58,7 +58,15 @@ class DummyClass
         if (!static::beforeRun()) return;
         //----------------------------------------------------------------------
 
-        //PLACEHOLDER: code here
+        //check all users
+        foreach (User::all() as $user)
+        {
+            //user has unread notifications
+            if ($user->notifications()->whereNull('read_at')->count() > 0)
+            {
+                $user->notify(new NotificationDigest($user));
+            }
+        }
 
         //----------------------------------------------------------------------
         //run finalizing code

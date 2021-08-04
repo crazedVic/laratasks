@@ -1,4 +1,5 @@
 <div class="flex flex-col justify-around items-center h-full">
+    @auth
     <div class="w-full h-10 bg-gray-500 flex justify-end items-center">
         @if ($notification_count > 0)
             <x-heroicon-s-bell class="h-6 w-6 mr-10 text-yellow-600"/>
@@ -106,4 +107,5 @@
             <ul>
         </div>
     </div>
+    @endauth
 </div>

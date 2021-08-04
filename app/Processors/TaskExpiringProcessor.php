@@ -3,9 +3,11 @@
 namespace App\Processors;
 
 use App\Models\Process;
+use App\Models\Task;
+use App\Notifications\TaskExpiring;
 use Carbon\Carbon;
 
-class DummyClass
+class TaskExpiringProcessor
 {
     protected static Process $process; //holder for the current process
 
@@ -32,9 +34,7 @@ class DummyClass
         }
 
         //get time for next run process
-        $next_run = Carbon::parse(static::$process->last_run) //NOTE: PUT A TIME IN HERE FOR REPEATING 
-                                                              //(ex. addMinute() for a minute frequency)
-        ;
+        $next_run = Carbon::parse(static::$process->last_run)->addHour();
 
         //don't run if not time
         if (!static::$process->active || !$next_run->isPast()) return false;
@@ -58,7 +58,11 @@ class DummyClass
         if (!static::beforeRun()) return;
         //----------------------------------------------------------------------
 
-        //PLACEHOLDER: code here
+        //loop through expiring tasks
+        foreach (Task::where('status', 'Draft')->where('updated_at', '<', now()->addHours(env('TASK_EXPIRY_WARNING')))->get() as $task)
+        {
+            $task->user->notify(new TaskExpiring($task, $task->user));
+        }
 
         //----------------------------------------------------------------------
         //run finalizing code

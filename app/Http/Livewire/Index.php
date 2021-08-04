@@ -41,9 +41,12 @@ class Index extends Component
     public function mount()
     {
         //automatically login user
-        \Auth::loginUsingId(1);
+        //\Auth::loginUsingId(1);
 
-        $this->notification_count = \Auth::user()->notifications()->count();
+        if (\Auth::check())
+            $this->notification_count = \Auth::user()->notifications()->count();
+        else
+            redirect()->route('login');
     }  
     
     public function render()
@@ -101,16 +104,10 @@ class Index extends Component
     //used to test carbon functions on click
     public function carbonTest()
     {
-        $days = ['Sunday','Monday','Tuesday',
-             'Wednesday','Thursday','Friday','Saturday'];
-             
-        $this->display(Carbon::parse('monday next bi-week'));
-        // $copyDay = Carbon::parse(Carbon::now())->addWeek();
+        $val = 'null';
+        $this->display($val);
 
-        // if (Carbon::now())
-        // {
-
-        // }
+        $this->display(Carbon::parse($val));
     }
 
     //formats output for display

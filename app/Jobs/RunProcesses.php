@@ -2,16 +2,16 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
+use App\Notifications\TaskExpiring;
+use App\Processors\NotificationDigestProcessor;
+use App\Processors\TaskExpiringProcessor;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Notifications\NotificationDigest as Digest;
 
-class NotificationDigest implements ShouldQueue 
+class RunProcesses implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,14 +32,8 @@ class NotificationDigest implements ShouldQueue
      */
     public function handle()
     {
-        //check all users
-        foreach (User::all() as $user)
-        {
-            //user has unread notifications
-            if ($user->notifications()->whereNull('read_at')->count() > 0)
-            {
-                $user->notify(new Digest($user));
-            }
-        }
+        //register processes here
+        NotificationDigestProcessor::run();
+        TaskExpiringProcessor::run();
     }
 }

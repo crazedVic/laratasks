@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Jobs\NotificationDigest;
 use App\Jobs\ProcessTasks;
 use App\Jobs\RecurringTasks;
+use App\Jobs\RunProcesses;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,18 +28,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //scanning processes
-        //$schedule->job(new ProcessTasks)->everyMinute(); //TODO: make longer than a minute
-
         //retry then delete old failed queue items once a day
         $schedule->command('queue:retry all')->daily();
         $schedule->command('queue:prune-failed --hours=48')->daily();
 
-        //check if task needs to be copied
-        $schedule->job(new RecurringTasks)->everyMinute();
-
-        //weekly notification reminder
-        //$schedule->job(new NotificationDigest)->everyMinute(); //TODO: make weekly
+        //run the processes in the processes folder once a minute
+        $schedule->job(new RunProcesses)->everyMinute();
     }
 
     /**

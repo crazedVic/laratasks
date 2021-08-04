@@ -1,40 +1,67 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Processors;
 
+use App\Models\Process;
 use App\Models\Task;
 use Carbon\Carbon;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
-class RecurringTasks implements ShouldQueue
+class RecurringTaskProcessor
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    protected static Process $process; //holder for the current process
 
-    public $days = ['Sunday','Monday','Tuesday',
-             'Wednesday','Thursday','Friday','Saturday'];
+    public static $days = ['Sunday','Monday','Tuesday',
+             'Wednesday','Thursday','Friday','Saturday']; //lookup for days
 
     /**
-     * Create a new job instance.
-     *
-     * @return void
+     * Helper function to prepare for run()
+     * Checks if allowed to run
      */
-    public function __construct()
+    private static function beforeRun()
     {
-        //
+        static::$process = Process::where('name', __CLASS__)->first();
+
+        //create process if doesn't exist
+        if (!static::$process)
+        {
+            $process = new Process([
+                'name' => __CLASS__,
+                'last_run' => Carbon::createFromTimestamp(0)->toDateString(), //put in past to run first
+                'active' => true
+            ]);
+
+            $process->save();
+            
+            static::$process = $process;
+        }
+
+        //get time for next run process
+        $next_run = Carbon::parse(static::$process->last_run) //NOTE: PUT A TIME IN HERE FOR REPEATING 
+                                                              //(ex. addMinute() for a minute frequency)
+        ;
+
+        //don't run if not time
+        if (!static::$process->active || !$next_run->isPast()) return false;
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
+     * Helper function to finish run()
      */
-    public function handle()
+    private static function afterRun()
     {
+        static::$process->last_run = Carbon::now();
+        static::$process->save();
+    }
+
+    /**
+     * Processing to run
+     */
+    public static function run()
+    {   
+        //prepare for run
+        if (!static::beforeRun()) return;
+        //----------------------------------------------------------------------
+
         foreach(Task::where('current', true)->get() as $task) //TODO: orWhere('status', 'Pending') ?
         {            
             //determine if task needs to be copied
@@ -42,7 +69,7 @@ class RecurringTasks implements ShouldQueue
             {
                 case 'weekly':
                     //get day that new task needs to be completed
-                    $copyDay = Carbon::parse($task->created_at)->modify($this->days[$task->day] . ' next week');
+                    $copyDay = Carbon::parse($task->created_at)->modify(static::$days[$task->day] . ' next week');
 
                     //ready for new task
                     if ($copyDay->isPast())
@@ -61,7 +88,7 @@ class RecurringTasks implements ShouldQueue
 
                     //get day that new task needs to be completed
                     $copyDay = Carbon::parse($task->created_at)
-                        ->modify($this->days[$task->day] . ' next week')
+                        ->modify(static::$days[$task->day] . ' next week')
                         ->addWeek();
 
                     //ready for new task
@@ -117,5 +144,9 @@ class RecurringTasks implements ShouldQueue
                     break;
             }
         }
+
+        //----------------------------------------------------------------------
+        //run finalizing code
+        static::afterRun();
     }
 }
