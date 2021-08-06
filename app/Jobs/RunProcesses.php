@@ -33,7 +33,7 @@ class RunProcesses implements ShouldQueue
     public function handle()
     {
         //register processes here
-        NotificationDigestProcessor::run();
+        //NotificationDigestProcessor::run();
         TaskExpiringProcessor::run();
     }
 }

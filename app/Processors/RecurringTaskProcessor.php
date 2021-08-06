@@ -63,7 +63,12 @@ class RecurringTaskProcessor
         //----------------------------------------------------------------------
 
         foreach(Task::where('current', true)->get() as $task) //TODO: orWhere('status', 'Pending') ?
-        {            
+        {         
+            
+            //TODO: remove debug
+            $task->created_at = Carbon::now()->subWeek();
+            $task->save();
+
             //determine if task needs to be copied
             switch ($task->frequency)
             {
@@ -77,6 +82,10 @@ class RecurringTaskProcessor
                         //make a new task
                         $newTask = $task->replicate();
                         $newTask->current = true;
+
+                        //set title
+                        $newTask->title .= ' Week ending: ' . Carbon::parse("next friday");
+                        
                         $newTask->save();
 
                         //deactivate old task
@@ -97,6 +106,10 @@ class RecurringTaskProcessor
                         //make a new task
                         $newTask = $task->replicate();
                         $newTask->current = true;
+
+                        //set title
+                        $newTask->title .= ' Week ending: ' . Carbon::parse("next friday")->addWeek();
+
                         $newTask->save();
 
                         //deactivate old task
@@ -116,6 +129,10 @@ class RecurringTaskProcessor
                         //make a new task
                         $newTask = $task->replicate();
                         $newTask->current = true;
+
+                        //set title
+                        $newTask->title .=  ' ' .now()->month() . ' ' . now()->year();
+
                         $newTask->save();
 
                         //deactivate old task
@@ -135,6 +152,10 @@ class RecurringTaskProcessor
                         //make a new task
                         $newTask = $task->replicate();
                         $newTask->current = true;
+
+                        //set title
+                        $newTask->title .= ' Q' . Carbon::now()->quarter . ' ' . now()->year();
+
                         $newTask->save();
 
                         //deactivate old task

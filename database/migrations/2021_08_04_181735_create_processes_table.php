@@ -19,6 +19,8 @@ class CreateProcessesTable extends Migration
             $table->timestamp('last_run');
             $table->boolean('active')->default(true);
             $table->integer('last_count')->nullable();
+            
+            $table->timestamps();
         });
     }
 

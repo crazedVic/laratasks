@@ -104,10 +104,7 @@ class Index extends Component
     //used to test carbon functions on click
     public function carbonTest()
     {
-        $val = 'null';
-        $this->display($val);
-
-        $this->display(Carbon::parse($val));
+        $this->display(Carbon::parse("next friday"));
     }
 
     //formats output for display

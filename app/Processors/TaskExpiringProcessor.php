@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class TaskExpiringProcessor
 {
-    protected static Process $process; //holder for the current process
+    protected static $process; //holder for the current process
 
     /**
      * Helper function to prepare for run()
