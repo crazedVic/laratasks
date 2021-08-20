@@ -76,6 +76,20 @@ Run this worker for this project with Supervisor/CRON:
 
 ---
 
+Twilio (https://github.com/laravel-notification-channels/twilio):
+composer require laravel-notification-channels/twilio
+
+Enter in .env:
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_DEBUG_TO=
+TWILIO_FROM=
+
+php artisan vendor:publish --provider="NotificationChannels\Twilio\TwilioProvider"
+
+
+---
+
 # Gotchas #
 1. secondary queues are not created in the config file, you can essentially dispatch to any string you want as long as the worker
 knows to look for it
