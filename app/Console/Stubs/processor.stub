@@ -50,18 +50,24 @@ class DummyClass
     }
 
     /**
-     * Processing to run
+     * Processing skeleton
      */
     public static function run()
     {   
         //prepare for run
         if (!static::beforeRun()) return;
-        //----------------------------------------------------------------------
 
-        //PLACEHOLDER: code here
+        static::main();
 
-        //----------------------------------------------------------------------
         //run finalizing code
         static::afterRun();
+    }
+
+    /**
+     * Main processing code
+     */
+    private static function main()
+    {
+
     }
 }
