@@ -38,6 +38,7 @@ class TaskExpiringProcessor
 
         //don't run if not time
         if (!static::$process->active || !$next_run->isPast()) return false;
+        else return true;
     }
 
     /**
