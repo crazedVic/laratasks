@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class RecurringTaskProcessor
 {
-    protected static Process $process; //holder for the current process
+    protected static $process; //holder for the current process
 
     public static $days = ['Sunday','Monday','Tuesday',
              'Wednesday','Thursday','Friday','Saturday']; //lookup for days
